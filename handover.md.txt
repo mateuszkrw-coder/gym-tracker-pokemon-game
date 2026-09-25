@@ -19,8 +19,9 @@ A single-file Progressive Web App that is two things fused together:
 Design conceit: it had to be ONE PWA, not a separate game app, because iOS gives each
 installed home-screen app isolated storage — a separate app couldn't read the workout logs.
 
-Live URL:  https://mateuszkrw-coder.github.io/gym-tracker/
-Repo:      https://github.com/mateuszkrw-coder/gym-tracker  (GitHub Pages from main branch root)
+Live URL:  https://mateuszkrw-coder.github.io/gym-tracker-pokemon-game/
+Repo:      https://github.com/mateuszkrw-coder/gym-tracker-pokemon-game  (GitHub Pages from main branch root;
+           renamed from gym-tracker, whose old Pages URL now 404s)
 Current:   app v6.9 “Level Rush”, service-worker cache v56, data schema v20.
 
 ============================================================
@@ -135,6 +136,7 @@ sounds/cries/, sounds/moves/  — audio (see §4)
                             PER-MACHINE — see §2!)
 .claude/hoenn-gen/     — v6.0 build scratch (PokeAPI CSVs + gen.ps1). GITIGNORED.
 docs/poi-blueprints.md — older design notes
+docs/screenshots/      — README images (light theme, 390×844 @2x, captured with Playwright)
 
 ============================================================
 6. DATA MODEL  (state, localStorage key `gymtracker.v1`, schema version 18)
