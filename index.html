@@ -853,7 +853,10 @@ button.vfc{background:linear-gradient(180deg,#58A868 0%,#3E8850 100%);
 'use strict';
 
 /* ===== utils ===== */
-var KEY='gymtracker.v1';
+/* v6.9.1: ?demo (the README's phone-frame test page, play.html) plays on its own
+   save, so a demo game never touches a real one on the same browser */
+var DEMO=/[?&]demo(=|&|$)/.test(location.search);
+var KEY=DEMO?'gymtracker.demo':'gymtracker.v1';
 function $(s){return document.querySelector(s);}
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
 function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7);}
@@ -10152,7 +10155,7 @@ function settingsHTML(){
     '<button class="btn danger" data-action="reset-game">Reset</button></div>'+
   '<div class="srow"><div><div class="lab" style="color:var(--red)">Reset everything</div><div class="sub">Deletes all history</div></div>'+
     '<button class="btn danger" data-action="reset">Reset</button></div>'+
-  '<div class="about">Gym Tracker v6.9 “Level Rush” · '+kb+' KB stored locally<br>'+
+  '<div class="about">Gym Tracker v6.9.1 “Level Rush” · '+kb+' KB stored locally<br>'+
   'Your data never leaves your phone. Export a backup once in a while —<br>if you delete the app icon, its data goes with it.</div>';
 }
 
@@ -12138,7 +12141,8 @@ else{
   if(!state.game.player)setTimeout(showGenderModal,450);
   setTimeout(checkGameEvents,900);
 }
-if('serviceWorker' in navigator){
+// the demo skips the offline cache: a visitor trying it once shouldn't download every sprite
+if('serviceWorker' in navigator&&!DEMO){
   window.addEventListener('load',function(){
     navigator.serviceWorker.register('./sw.js').catch(function(){});
   });

@@ -4,13 +4,18 @@
 Pokémon fights with them: wild Pokémon to catch, gym leaders to beat, a Pokédex to fill. Two full
 campaigns, FireRed's Kanto and Emerald's Hoenn, run entirely on your real training.
 
-### ▶ [Try it live: mateuszkrw-coder.github.io/gym-tracker-pokemon-game](https://mateuszkrw-coder.github.io/gym-tracker-pokemon-game/)
+### ▶ [Try it live: a new game in a phone-sized window](https://mateuszkrw-coder.github.io/gym-tracker-pokemon-game/play.html)
 
-[![Logging a set during a wild battle, the VS splash before a gym fight, and the Vermilion City town map](docs/screenshots/00-banner.jpg)](https://mateuszkrw-coder.github.io/gym-tracker-pokemon-game/)
+[![Logging a set during a wild battle, the VS splash before a gym fight, and the Vermilion City town map](docs/screenshots/00-banner.jpg)](https://mateuszkrw-coder.github.io/gym-tracker-pokemon-game/play.html)
 
-Made for the phone: open the link in Safari on an iPhone and add it to your Home Screen, and it runs
-full screen and offline like an app. It also works in any desktop browser. No account, no server:
-everything stays on your device.
+The try-it link starts a fresh game every time, from Professor Oak's welcome and your first Pokémon.
+On a computer it shows the game at phone size; on a phone it opens full screen. It keeps its own
+save, so it never touches a real one.
+
+To use it for your own training, [install the app](#install-on-iphone) from
+[mateuszkrw-coder.github.io/gym-tracker-pokemon-game](https://mateuszkrw-coder.github.io/gym-tracker-pokemon-game/):
+it runs full screen and offline like an app, with no account and no server. Everything stays on your
+device.
 
 ## Screenshots
 
@@ -55,7 +60,7 @@ everything stays on your device.
 
 ## Install on iPhone
 
-1. Open the [live link](https://mateuszkrw-coder.github.io/gym-tracker-pokemon-game/) in **Safari**.
+1. Open [mateuszkrw-coder.github.io/gym-tracker-pokemon-game](https://mateuszkrw-coder.github.io/gym-tracker-pokemon-game/) in **Safari**.
 2. Tap the **Share** button (the square with an arrow).
 3. Tap **Add to Home Screen**, then **Add**.
 4. Launch it from the home screen icon. It runs full screen and works offline.
@@ -74,6 +79,7 @@ everything stays on your device.
 | `index.html` | The whole app: HTML, CSS and JavaScript in one file, no build step |
 | `sw.js` | Service worker that caches the app so it works offline |
 | `manifest.webmanifest` | Home screen name, icons and full-screen display |
+| `play.html` | The try-it page: the game in a phone-sized frame, on a separate demo save (`?demo`) |
 | `sprites/`, `map/`, `sounds/`, `fonts/`, `icons/` | Pokémon and trainer sprites, town maps and interiors, cries and move sounds, pixel fonts, app icons |
 | `handover.md.txt` | Developer notes: architecture, data model, every game system, release history |
 | `docs/screenshots/` | The images in this README |
@@ -81,7 +87,7 @@ everything stays on your device.
 ## Updating the app
 
 1. Edit the files and commit to `main`. GitHub Pages publishes the site from the repository root.
-2. **Important:** in `sw.js`, bump the version string (for example `gym-tracker-v56` → `gym-tracker-v57`),
+2. **Important:** in `sw.js`, bump the version string (for example `gym-tracker-v57` → `gym-tracker-v58`),
    or installed phones keep the old version.
 3. Installed phones pick up the new version the next time the app is opened with internet. Close it
    fully and open it twice.

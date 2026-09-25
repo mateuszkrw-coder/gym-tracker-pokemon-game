@@ -1,6 +1,6 @@
 /* Gym Tracker service worker.
    Bump CACHE when you change any file, so installed phones pick up the update. */
-const CACHE = 'gym-tracker-v56';
+const CACHE = 'gym-tracker-v57';
 const TOWN_MAPS = ['viridian','pewter','cerulean','vermilion','celadon','fuchsia','saffron','cinnabar','indigo'];
 const HOENN_TOWN_MAPS = ['littleroot','rustboro','dewford','mauville','lavaridge','petalburg','fortree','mossdeep','sootopolis','evergrande'];
 const ARENAS = ['gym','grass','water','cave','pond','ice','sand','poison','teal','psychic'];
@@ -95,7 +95,10 @@ self.addEventListener('fetch', (e) => {
   if (req.method !== 'GET') return;
 
   // Pages: try network first (so updates arrive), fall back to cache when offline.
+  // Only the app itself: other pages on the site (play.html) must not be cached as index.html.
   if (req.mode === 'navigate') {
+    const path = new URL(req.url).pathname;
+    if (!path.endsWith('/') && !path.endsWith('/index.html')) return;
     e.respondWith(
       fetch(req)
         .then((res) => {

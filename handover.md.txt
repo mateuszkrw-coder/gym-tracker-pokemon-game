@@ -468,6 +468,19 @@ Johto/Gen-2 content pack (a 3rd campaign — the region model supports it cleanl
 ============================================================
 13. IMMEDIATE STATE
 ============================================================
+v6.9.1 (2026-09-25, from C:\Users\Mateusz\Desktop\flights\gym-tracker-pokemon-game) — the
+README's TRY-IT page, no game changes:
+• play.html: the game in a 390×844 phone frame (scaled to fit the window), for PC
+  visitors from the README. Wipes localStorage 'gymtracker.demo' on every visit and
+  loads ./?demo, so each visit starts at Oak's intro; RESTART does the same. Screens
+  under 600px wide are sent straight to ./?demo full screen.
+• index.html: ?demo → KEY='gymtracker.demo' (never the real 'gymtracker.v1') and NO
+  service-worker registration (a one-off visitor shouldn't precache every sprite).
+• sw.js v57: the navigate handler now only handles the app itself (path ending in
+  '/' or '/index.html'). Before, ANY page navigation was cached as ./index.html, so
+  opening play.html would have replaced the offline app shell.
+• README rewritten with 12 light-theme screenshots (docs/screenshots).
+
 v6.9 “Level Rush” SHIPPED 2026-07-20 from machine C (Desktop) — the TRAINER CARDS
 rework Mateusz asked for same-day (“XP bar like my pokemon, more cards, more often,
 more rare/epic, loud outlines, new mechanics not just stats”):
