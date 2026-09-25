@@ -87,7 +87,7 @@ device.
 ## Updating the app
 
 1. Edit the files and commit to `main`. GitHub Pages publishes the site from the repository root.
-2. **Important:** in `sw.js`, bump the version string (for example `gym-tracker-v57` → `gym-tracker-v58`),
+2. **Important:** in `sw.js`, bump the version string (for example `gym-tracker-v58` → `gym-tracker-v59`),
    or installed phones keep the old version.
 3. Installed phones pick up the new version the next time the app is opened with internet. Close it
    fully and open it twice.

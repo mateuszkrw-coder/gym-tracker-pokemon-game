@@ -902,7 +902,9 @@ function load(){
   try{var d=JSON.parse(localStorage.getItem(KEY));
     if(d&&Array.isArray(d.groups)&&d.logs&&typeof d.logs==='object')return d;
   }catch(e){}
-  return seedState();
+  // v6.9.2: a brand-new player starts in the light (day) theme; saved choices are kept
+  var fresh=seedState();fresh.theme='day';
+  return fresh;
 }
 var state=load();
 function save(){
@@ -10155,7 +10157,7 @@ function settingsHTML(){
     '<button class="btn danger" data-action="reset-game">Reset</button></div>'+
   '<div class="srow"><div><div class="lab" style="color:var(--red)">Reset everything</div><div class="sub">Deletes all history</div></div>'+
     '<button class="btn danger" data-action="reset">Reset</button></div>'+
-  '<div class="about">Gym Tracker v6.9.1 “Level Rush” · '+kb+' KB stored locally<br>'+
+  '<div class="about">Gym Tracker v6.9.2 “Level Rush” · '+kb+' KB stored locally<br>'+
   'Your data never leaves your phone. Export a backup once in a while —<br>if you delete the app icon, its data goes with it.</div>';
 }
 
@@ -12024,7 +12026,9 @@ document.addEventListener('click',function(e){
     else ssp=b.dataset.sp==='squirtle'?'squirtle':'charmander';
     // Hoenn is a locked fresh start — no retro XP, ever
     var retro=(inHoenn()||state.gamePlayed)?0:Math.min(Math.round(totalVolumeAll()/10),xpFloor(15));
-    state.game={startTs:Date.now(),starter:ssp,mons:[],active:null,enc:{},flags:{},seen:{},dex:{},round:1,
+    // v6.9.2: a new game already plays by today's rules, so the v6.7/v6.8 “what's new”
+    // notes (EFFORT SCALING, TRAINER CARDS) are pre-flagged — they're for older saves
+    state.game={startTs:Date.now(),starter:ssp,mons:[],active:null,enc:{},flags:{v67note:1,v68note:1},seen:{},dex:{},round:1,
       boss:{idx:0,hp:BOSSES[0].hp},player:{name:pendingName||(inHoenn()?'BRENDAN':'RED'),spr:pendingGender||(inHoenn()?'brendan':'red')},
       money:3000,bag:{},hof:[],partyIds:null,egg:null,medals:{},hurt:{},raid:null,rest:{},road:null,roadLog:{},poi:{},bp:0,bestStreak:0,daily:null,npcq:null,visit:0,beenTo:{0:1},region:state.region};
     state.gamePlayed=1;
@@ -12040,7 +12044,7 @@ document.addEventListener('click',function(e){
         'Every set you log earns it XP. You pick who trains at each workout start.</p>'+
         '<div style="text-align:center;padding:8px 0"><img class="bigspr" src="'+sprPath(ssp,false)+'" alt=""></div>'+
         '<div class="mbtns"><button class="btn acc" data-action="modal-ok">LET’S GO</button></div>',true);
-      modalOk=function(){closeModal();tab='team';render();checkGameEvents();};
+      modalOk=function(){closeModal();tab='summary';checkGameEvents();render();}; // events first: they open the road to BROCK
     });
   }
   else if(a==='evo-choice'){

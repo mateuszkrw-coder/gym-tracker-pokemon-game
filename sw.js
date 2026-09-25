@@ -1,6 +1,6 @@
 /* Gym Tracker service worker.
    Bump CACHE when you change any file, so installed phones pick up the update. */
-const CACHE = 'gym-tracker-v57';
+const CACHE = 'gym-tracker-v58';
 const TOWN_MAPS = ['viridian','pewter','cerulean','vermilion','celadon','fuchsia','saffron','cinnabar','indigo'];
 const HOENN_TOWN_MAPS = ['littleroot','rustboro','dewford','mauville','lavaridge','petalburg','fortree','mossdeep','sootopolis','evergrande'];
 const ARENAS = ['gym','grass','water','cave','pond','ice','sand','poison','teal','psychic'];

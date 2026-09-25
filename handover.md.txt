@@ -468,6 +468,16 @@ Johto/Gen-2 content pack (a 3rd campaign — the region model supports it cleanl
 ============================================================
 13. IMMEDIATE STATE
 ============================================================
+v6.9.2 (2026-09-25) — the first minutes of a NEW game, asked for after trying play.html:
+• load() with no save returns seedState() + theme:'day' — new players start LIGHT.
+  Existing saves keep their theme; RESET EVERYTHING (seedState) is unchanged.
+• pick-starter creates the game with flags {v67note:1, v68note:1}: the EFFORT SCALING
+  and TRAINER CARDS what's-new modals only show to saves from before those releases.
+  (v68note's SHOW ME jumped to the PERKS page, so new players never saw TRAINER.)
+• The starter's LET'S GO now lands on TRAINER (tab 'summary'), not TEAM, and runs
+  checkGameEvents() BEFORE render(): it's what creates the road, so rendering first
+  showed BROCK as “tap to challenge” on a brand-new game. sw v58.
+
 v6.9.1 (2026-09-25, from C:\Users\Mateusz\Desktop\flights\gym-tracker-pokemon-game) — the
 README's TRY-IT page, no game changes:
 • play.html: the game in a 390×844 phone frame (scaled to fit the window), for PC
