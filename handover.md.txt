@@ -137,6 +137,12 @@ sounds/cries/, sounds/moves/  — audio (see §4)
 .claude/hoenn-gen/     — v6.0 build scratch (PokeAPI CSVs + gen.ps1). GITIGNORED.
 docs/poi-blueprints.md — older design notes
 docs/screenshots/      — README images (light theme, 390×844 @2x, captured with Playwright)
+docs/showreel/         — the 15 s README showreel, NOT part of the app (sw.js never precaches it):
+                          showreel.mp4 (1080p60 + sound), showreel.webp (the silent README loop),
+                          src/showreel.html (one deterministic canvas timeline on a 128 BPM grid,
+                          opens in a browser), src/render.mjs (Playwright → PNG frames with motion
+                          blur), src/soundtrack.py (numpy synth, same beat grid), src/encode.sh
+                          (ffmpeg). Rebuilding needs Node + Python + ffmpeg — not on machines A/B.
 
 ============================================================
 6. DATA MODEL  (state, localStorage key `gymtracker.v1`, schema version 18)
@@ -325,6 +331,9 @@ feebasTown() (the day's lucky pier), trickOf(). migrateState() runs at INIT.
 • BUMP `CACHE` in sw.js on EVERY change (v44 → v45…), or installed phones keep the stale
   version. Then commit AND push — Pages auto-deploys.
 • BUMP the app version string in settingsHTML() ("Gym Tracker vX.X") so you can confirm live.
+• NEVER publish a page reached through a URL ending in '/' (e.g. docs/x/index.html): sw.js caches
+  EVERY '/'-ending navigation as ./index.html, so that page would replace the offline app shell.
+  Link straight to files instead (the README showreel links to docs/showreel/showreel.mp4).
 • NO NODE/NPM/PYTHON on either machine. Syntax check = load the preview and probe:
   fetch index.html, extract the <script>, `new Function(src)` in preview_eval —
   parse errors surface there; then execute-probe for runtime errors (see §9).

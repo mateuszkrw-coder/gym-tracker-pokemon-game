@@ -1,5 +1,9 @@
 # Gym Tracker: the Pokémon game you play by lifting
 
+[![15-second showreel: log a set and Charizard lands a critical hit on a wild Pikachu, catch it, beat the gym leaders, level up and pick a trainer card, then explore Kanto and Hoenn](docs/showreel/showreel.webp)](https://mateuszkrw-coder.github.io/gym-tracker-pokemon-game/docs/showreel/showreel.mp4)
+
+<sub>▶ [Watch the showreel in HD with sound](https://mateuszkrw-coder.github.io/gym-tracker-pokemon-game/docs/showreel/showreel.mp4) (15 seconds)</sub>
+
 **A workout log where every set you save is an attack.** Log weight × reps × sets as usual, and your
 Pokémon fights with them: wild Pokémon to catch, gym leaders to beat, a Pokédex to fill. Two full
 campaigns, FireRed's Kanto and Emerald's Hoenn, run entirely on your real training.
@@ -83,6 +87,7 @@ device.
 | `sprites/`, `map/`, `sounds/`, `fonts/`, `icons/` | Pokémon and trainer sprites, town maps and interiors, cries and move sounds, pixel fonts, app icons |
 | `handover.md.txt` | Developer notes: architecture, data model, every game system, release history |
 | `docs/screenshots/` | The images in this README |
+| `docs/showreel/` | The 15-second showreel: `showreel.mp4` (1080p60 with sound), `showreel.webp` (the loop at the top of this page), and `src/`, the canvas animation, renderer and synthesized soundtrack that make them |
 
 ## Updating the app
 
@@ -96,4 +101,5 @@ device.
 
 A personal fan project, not affiliated with or endorsed by Nintendo, Game Freak or The Pokémon
 Company. Pokémon names, sprites, artwork, maps and sounds belong to their respective owners. The
-pixel fonts are Press Start 2P and VT323 (SIL Open Font License).
+pixel fonts are Press Start 2P and VT323 (SIL Open Font License). The showreel adds Barlow Condensed
+(SIL Open Font License); its music and sound effects are synthesized from scratch.
