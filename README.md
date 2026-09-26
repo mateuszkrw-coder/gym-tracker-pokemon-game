@@ -10,8 +10,6 @@ campaigns, FireRed's Kanto and Emerald's Hoenn, run entirely on your real traini
 
 ### ▶ [Try it live: a new game in a phone-sized window](https://mateuszkrw-coder.github.io/gym-tracker-pokemon-game/play.html)
 
-[![Logging a set during a wild battle, the VS splash before a gym fight, and the Vermilion City town map](docs/screenshots/00-banner.jpg)](https://mateuszkrw-coder.github.io/gym-tracker-pokemon-game/play.html)
-
 The try-it link starts a fresh game every time, from Professor Oak's welcome and your first Pokémon.
 On a computer it shows the game at phone size; on a phone it opens full screen. It keeps its own
 save, so it never touches a real one.
@@ -26,23 +24,13 @@ device.
 <table>
 <tr>
 <td width="33%"><img src="docs/screenshots/01-trainer.jpg" alt="Trainer page: money, workouts, badges, trainer level, next boss and the league ladder"><br><sub><b>Trainer page.</b> Your badges, money and trainer level, and the next gym leader waiting.</sub></td>
-<td width="33%"><img src="docs/screenshots/02-log-a-set.jpg" alt="Log a set sheet with a wild Magnemite battle above the weight, reps and sets inputs"><br><sub><b>Log a set.</b> The workout log and the battle share one screen. Saving the set attacks.</sub></td>
-<td width="33%"><img src="docs/screenshots/03-super-effective.jpg" alt="Charmeleon uses Ember on Erika's Victreebel: super effective, 1,091 damage"><br><sub><b>Super effective!</b> Damage comes from effort: how close the set is to your own best on that lift.</sub></td>
+<td width="33%"><img src="docs/screenshots/02-log-a-set.jpg" alt="Log a set sheet with a wild Magnemite battle above the weight, reps and sets inputs"><br><sub><b>Log a set.</b> The workout log and the battle share one screen. Saving the set attacks, harder the closer it is to your best.</sub></td>
+<td width="33%"><img src="docs/screenshots/05-new-record.jpg" alt="New record celebration: Lat pull down 63 kg with Charmeleon's official artwork"><br><sub><b>New record.</b> Beat your best on a lift and the game celebrates, with a Rare Candy.</sub></td>
 </tr>
 <tr>
-<td><img src="docs/screenshots/04-vs-erika.jpg" alt="VS splash: Erika against Red before the Celadon gym battle"><br><sub><b>Gym battles.</b> Thirteen bosses per region, each a whole workout long.</sub></td>
-<td><img src="docs/screenshots/05-new-record.jpg" alt="New record celebration: Lat pull down 63 kg with Charmeleon's official artwork"><br><sub><b>New record.</b> Beat your best on a lift and the game celebrates, with a Rare Candy.</sub></td>
 <td><img src="docs/screenshots/06-town-map.jpg" alt="Vermilion City town map with the gym, shop, Pokémon Center and training spots"><br><sub><b>Town map.</b> Nine Kanto towns on the official FireRed maps, each with its own wild Pokémon.</sub></td>
-</tr>
-<tr>
 <td><img src="docs/screenshots/07-team.jpg" alt="Team page: an egg and six Pokémon with HP and EXP bars"><br><sub><b>Your team.</b> The six who fight for you, plus an egg that hatches as you log sets.</sub></td>
-<td><img src="docs/screenshots/08-bills-pc.jpg" alt="Bill's PC: twenty caught Pokémon with type filters and sorting"><br><sub><b>Bill's PC.</b> Every Pokémon you've caught, searchable and sortable.</sub></td>
-<td><img src="docs/screenshots/09-trainer-cards.jpg" alt="Trainer level 7 card pick: Keen Eye (common), Ball Maestro (rare), Titan Slayer (epic)"><br><sub><b>Trainer cards.</b> Every trainer level lets you keep one of three perks.</sub></td>
-</tr>
-<tr>
 <td><img src="docs/screenshots/10-progress.jpg" alt="Progress chart for lat pull down rising from 50 to 59.5 kg over eight weeks"><br><sub><b>Progress per exercise.</b> The tracker underneath: your history and personal best for every lift.</sub></td>
-<td><img src="docs/screenshots/11-workout-complete.jpg" alt="Workout complete summary: duration, exercises and sets, kg moved and XP earned"><br><sub><b>Workout complete.</b> Duration, sets, volume moved and XP earned.</sub></td>
-<td><img src="docs/screenshots/12-weekly-stats.jpg" alt="Type medals, days trained this month and a training-days-per-week bar chart"><br><sub><b>Stats and medals.</b> Training days per week, this month's total, and type medals to collect.</sub></td>
 </tr>
 </table>
 
