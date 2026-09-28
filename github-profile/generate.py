@@ -54,8 +54,9 @@ FONT = ("SFMono-Regular,Menlo,Consolas,'DejaVu Sans Mono',"
         "'Liberation Mono',monospace")
 FS = 15          # font size
 CW = 9           # width of one character cell
-LH = 21          # line height
-PAD = 24
+LH = 25          # line height
+GAP = 16         # extra space between one command's output and the next prompt
+PAD = 28
 WIDTH = PAD * 2 + COLS * CW
 
 rng = random.Random(7)
@@ -149,7 +150,7 @@ def cursor(c, dur):
 
 def build():
     s = Scene()
-    y = PAD + 14
+    y = PAD + 16
     t = 0.0
     idle = 1.0
     for cmd, output in SESSION:
@@ -162,7 +163,7 @@ def build():
                                   bold=color == "dir"))
                 col += len(piece)
             s.add(t + 0.05, "".join(parts))
-        y += LH
+        y += LH + GAP
         t += 0.1
         idle = 0.6
 
@@ -177,7 +178,7 @@ def build():
             anim = discrete("opacity", [(0, 0), (appear, 1)], dur)
             body.append(f'<g opacity="0">{anim}{svg}</g>')
     body += [cursor(c, dur) for c in s.cursors]
-    return render(body, y + PAD - 4)
+    return render(body, y + PAD - 2)
 
 
 def render(body, h):
