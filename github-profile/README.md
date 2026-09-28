@@ -2,5 +2,5 @@
      To change the text or the repo list, edit the settings at the top of
      generate.py and run: python3 generate.py -->
 <a href="https://github.com/mateuszkrw-coder?tab=repositories">
-  <img src="assets/hello.svg" alt="Hi, I'm Mateusz 👋 Thanks for stopping by! Go check out my repositories." />
+  <img src="assets/hello.svg" alt="hey, i'm mateusz. not much going on here, go check out my repos instead." />
 </a>
