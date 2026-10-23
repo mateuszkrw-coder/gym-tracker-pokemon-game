@@ -1,4 +1,4 @@
-Gym Tracker — Handover Document (current as of app v7.0.1 / sw v60 / schema v20, 2026-10-23)
+Gym Tracker — Handover Document (current as of app v7.1 / sw v61 / schema v20, 2026-10-23)
 
 ============================================================
 1. WHAT THIS IS
@@ -22,7 +22,7 @@ installed home-screen app isolated storage — a separate app couldn't read the 
 Live URL:  https://mateuszkrw-coder.github.io/gym-tracker-pokemon-game/
 Repo:      https://github.com/mateuszkrw-coder/gym-tracker-pokemon-game  (GitHub Pages from main branch root;
            renamed from gym-tracker, whose old Pages URL now 404s)
-Current:   app v7.0.1 “First Steps”, service-worker cache v60, data schema v20.
+Current:   app v7.1 “Lobby”, service-worker cache v61, data schema v20.
 
 ============================================================
 2. THE TWO-LAPTOP WORKFLOW (read this FIRST on any machine)
@@ -477,6 +477,48 @@ Johto/Gen-2 content pack (a 3rd campaign — the region model supports it cleanl
 ============================================================
 13. IMMEDIATE STATE
 ============================================================
+v7.1 “Lobby” (2026-10-24) — Mateusz: rare/epic cards too frequent; TRAINER page “feels weird”,
+wants an Archero-style home screen; keep the old version to go back to.
+• BACKUP: branch backup-v7.0.1-classic (= the live v7.0.1, commit 82bc34d) on GitHub, AND an
+  in-app switch: OPTION → Home screen → NEW / CLASSIC (state.homeStyle; 'classic' renders
+  the untouched summaryHTML). Tag pushes are blocked by this machine's git proxy — use a branch.
+• CARD ODDS (perkOdds/perkRollOffer), researched: each of the 3 slots rolls its own rarity
+  (Slay the Spire 60/37/3 per reward card; Hades ~10% rare / 5% epic); odds climb with
+  TRAINER LEVEL then cap (Brotato tiers by wave): RARE 10%→18%, EPIC 2%→5%; LEGENDARY
+  locked until LV 10 (PERK_LEG_LV), 0.3%→1%; an StS-style EPIC offset in perks.pity
+  (-1.5% right after an epic, +0.75% per dry hand, max +9%; sanitized 0..14); max ONE
+  epic-or-better per hand; first hand all COMMON (powerbrace/ironguard/scholar). 100k-hand
+  sim: LV2 ≈ 1 epic hand in 8.5, LV40 ≈ 1 in 5; legendary ≈ 1 hand in 100 late.
+  PERK_RAR_W is gone. PERKS page shows a CARD ODDS panel (live per-card %, pity note).
+• LEGENDARY tier (r:3, gold #D89818, cap 1): SACRED FLAME (handleLeadFaint: once per
+  workout, session.sfUsed, the team revives at half HP instead of a blackout), CHAMPION
+  AURA (+12% dmg at both damage formulas, +12% set XP, −12% taken in both counters),
+  CANDY CROWN (endWorkout: +1 rare candy, recap row), WISH STAR (perkOdds ×2 on r/e/l).
+  Theatre: .pcard.rar3 gold/pink face, #perkfx.top3 gold rays, .legflash + 'pr' fanfare.
+• HOME = homeHTML() (tab 'summary'): full-bleed .lobby — the current town's map art
+  (blurred, --town) behind a stage with the lead's Sugimori art on a glowing ring +
+  platform, the trainer sprite beside it, a FRLG-style town sign that drops in, top bar
+  (avatar + trainer LV badge + hero XP → PERKS; ₽ and badge pills), floating icon
+  buttons (left BAG/CARDS/CARD/TROPHY, right QUEST/HEAL/SHOP/STATS or NAV in Hoenn, red
+  dots for picks/quests/hurt), the plate (HP/EXP → open-mon), ONE 3D START WORKOUT button
+  (BACK TO BATTLE + END during a session), the lesson nudge (lessons-open modal), the
+  next-boss strip + 8-slot badge case, three quick numbers → STATS. Entrance flourishes
+  only when you ARRIVE on the tab (lbintro = lastRenderedTab!=='summary').
+• STATS tab (statsHTML) = summaryStatsHTML(): ladder, HOF, medals, frontier, POKENAV,
+  month/volume, weekly chart, last session, top lift — split out of summaryHTML, which
+  the CLASSIC home still renders in full.
+• PIXEL ICONS: PX_ICONS 12×12 grids → pxIcon(k,size) crisp SVG (merged runs). Tab bar
+  gets icons via decorateTabbar() (once, in render); grey until active, active pops.
+• EFFORT GAUGE (updateEffort, #sh-eff in the set sheet): live as you type/step the weight
+  — % of your best on this lift, WARM-UP / SOLID / STRONG / PERFECT FORM — GUARANTEED
+  CRIT (pfT()) / NEW RECORD! +RARE CANDY / FIRST LOG baseline. Same rule the battle uses.
+• TEAM rows: type-tinted (.prow.tm, --tc, color-mix behind @supports), type chips, the
+  lead framed gold with a bobbing icon. Buttons: .savebtn/.btn got a pressable lip;
+  SAVE SET is a solid filled button.
+• Tested (Playwright, 390×844): odds sim, legendary reveal + pick, CLASSIC↔NEW switch,
+  new-game W1 (lessons, catch, card, recap), veteran save, day + night lobby, zero
+  console errors. sw v61.
+
 v7.0.1 (2026-10-23) — sw.js hardening after Mateusz's phone showed GitHub's "There isn't a
 GitHub Pages site here" 404 right after the v7.0 deploy (the deploy itself reported success).
 The navigate handler cached ANY network response as ./index.html — so one 404 (a Pages
