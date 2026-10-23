@@ -299,6 +299,32 @@ button.card:active,button.prow:active{transform:scale(.98)}
   display:flex;align-items:center;gap:10px;background:var(--cream);border:none;border-bottom:3px solid var(--bord);border-radius:0;
   padding:calc(env(safe-area-inset-top) + 10px) 12px 9px 14px;color:var(--text)}
 .livebar .elapsed{font-family:'Press Start 2P';font-size:12px}
+.lessons .lsrow{display:flex;align-items:center;gap:9px;padding:6px 4px;border-top:2px dashed rgba(0,0,0,.08)}
+.lessons .lsnum{width:22px;height:22px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;
+  font-family:'Press Start 2P';font-size:8px;border:2px solid var(--bord);color:var(--mut)}
+.lessons .lsname{font-size:19px;line-height:1.1}
+.lessons .lshint{font-size:15px;color:var(--mut);line-height:1.15;margin-top:2px}
+.lessons .lsrw{display:flex;align-items:center;gap:4px;font-family:'Press Start 2P';font-size:7px;color:var(--mut);flex:none}
+.lessons .lsrow.done{opacity:.55}
+.lessons .lsrow.done .lsnum{background:#48A860;border-color:#48A860;color:#FFF}
+.lessons .lsrow.done .lsname{text-decoration:line-through}
+.lessons .lsrow.cur{background:rgba(72,168,96,.10);border-radius:6px;border-top-color:transparent}
+.lessons .lsrow.cur .lsnum{border-color:#48A860;color:#2E8B48;animation:pulse 1.2s ease-in-out infinite}
+html.theme-night .lessons .lsrow.cur .lsnum{border-color:#78D890;color:#78D890}
+.lessonpop{position:fixed;left:50%;top:calc(env(safe-area-inset-top) + 58px);z-index:240;width:min(92vw,360px);
+  transform:translateX(-50%);display:flex;align-items:center;gap:9px;padding:8px 11px;pointer-events:none;
+  background:#FFFDF6;color:#2A2A2A;border:3px solid #48A860;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,.28);
+  animation:lpin .45s cubic-bezier(.2,1.3,.4,1)}
+.lessonpop.out{animation:lpout .4s ease-in forwards}
+@keyframes lpin{from{transform:translate(-50%,-70px);opacity:0}to{transform:translateX(-50%);opacity:1}}
+@keyframes lpout{to{transform:translate(-50%,-70px);opacity:0}}
+.lessonpop .lpck{width:26px;height:26px;border-radius:50%;background:#48A860;color:#FFF;flex:none;display:flex;align-items:center;justify-content:center;
+  font-size:16px;animation:vpop .5s ease-out .15s backwards}
+.lessonpop b{display:block;font-family:'Press Start 2P';font-size:8px;color:#2E8B48;font-weight:400}
+.lessonpop span{font-size:18px;line-height:1.1}
+.lessonpop .lprw{display:flex;align-items:center;gap:4px;font-family:'Press Start 2P';font-size:7px;flex:none}
+.livebar .rkchip{font-family:'Press Start 2P';font-size:7px;color:#2E8B48;border:2px solid #48A860;
+  border-radius:4px;padding:3px 5px;margin-right:8px;flex:none}
 .livebar .lb-sets{color:var(--mut);font-size:18px;flex:1}
 .btn.small{padding:9px 10px}
 .lvspace{height:54px}
@@ -440,6 +466,103 @@ button.dexcell{display:block;width:100%;font:inherit;white-space:normal}
 .bt-msg.msgdone::after{content:'▼';color:var(--red);font-size:13px;margin-left:5px;
   display:inline-block;animation:bob 0.8s steps(2) infinite}
 .hpcrit{animation:pulse 1s ease-in-out infinite}
+/* v7.0 trainer level-up ribbon across the arena */
+.tlvband{position:absolute;left:0;right:0;top:50%;height:46px;margin-top:-23px;z-index:8;pointer-events:none;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  background:linear-gradient(90deg,transparent,rgba(110,48,160,.92) 15%,rgba(140,70,200,.95) 50%,rgba(110,48,160,.92) 85%,transparent);
+  border-top:2px solid #F8D848;border-bottom:2px solid #F8D848;animation:tlvbk 2.3s cubic-bezier(.2,.9,.3,1) forwards}
+.tlvband img{width:40px;height:40px;image-rendering:pixelated}
+.tlvband b{display:block;font-family:'Press Start 2P';font-size:11px;color:#F8D848;font-weight:400;text-shadow:2px 2px 0 rgba(0,0,0,.4)}
+.tlvband span{display:block;font-family:'Press Start 2P';font-size:8px;color:#F0E4FF;margin-top:5px}
+@keyframes tlvbk{0%{transform:scaleY(0);opacity:0}10%{transform:scaleY(1.15);opacity:1}16%{transform:none}
+  85%{transform:none;opacity:1}100%{transform:translateX(60px);opacity:0}}
+.tlvband>*{animation:tlvin .5s ease-out .15s backwards}
+@keyframes tlvin{from{transform:translateX(-50px);opacity:0}to{transform:none;opacity:1}}
+/* v7.0 ROOKIE SEASON rescue: the professor's cameo + a green heal glow */
+.bt-oak{position:absolute;left:3%;top:5%;width:60px;height:60px;image-rendering:pixelated;z-index:6;
+  pointer-events:none;filter:drop-shadow(0 2px 0 rgba(0,0,0,.25));animation:oakink 2.6s cubic-bezier(.2,.8,.3,1) forwards}
+@keyframes oakink{0%{transform:translateX(-90px);opacity:0}14%{transform:translateX(4px);opacity:1}
+  20%{transform:none}82%{transform:none;opacity:1}100%{transform:translateX(-90px);opacity:0}}
+.healfx{animation:healfxk 1.1s ease-out}
+@keyframes healfxk{0%{filter:none}25%{filter:brightness(1.7) drop-shadow(0 0 7px #70F080)}
+  55%{filter:brightness(1.25) drop-shadow(0 0 4px #70F080)}100%{filter:none}}
+.hsparks{position:absolute;inset:0;pointer-events:none;z-index:6}
+.hsparks span{position:absolute;bottom:14%;font-family:'Press Start 2P';font-size:11px;color:#48D060;
+  text-shadow:1px 1px 0 #FFF;opacity:0;animation:hsparkk 1s ease-out forwards}
+@keyframes hsparkk{0%{transform:translateY(0) scale(.6);opacity:0}25%{opacity:1}
+  100%{transform:translateY(-46px) scale(1.1);opacity:0}}
+/* ---------- v7.0 STARTER THEATRE: the professor's table ---------- */
+#starterfx{position:fixed;inset:0;z-index:75;animation:fadein .35s ease-out}
+#starterfx.out{animation:stoutk .38s ease-in forwards}
+@keyframes stoutk{to{opacity:0;transform:scale(1.04)}}
+.stlab{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;overflow:hidden;
+  padding:calc(env(safe-area-inset-top) + 14px) 16px calc(env(safe-area-inset-bottom) + 16px);
+  background:
+    linear-gradient(180deg,rgba(246,240,222,.30) 0%,rgba(246,240,222,.55) 70%,rgba(232,222,196,.95) 100%) top/100% 57% no-repeat,
+    url('map/poi/lab.png') top center/auto 57% no-repeat,
+    linear-gradient(180deg,#E8DEC4 0%,#E8DEC4 57%,#B89870 57%,#B89870 58%) top/100% 100% no-repeat,
+    repeating-conic-gradient(#D8C4A0 0 25%,#CCB690 0 50%) 0 0/32px 32px;
+  color:#2A2A2A;image-rendering:pixelated}
+.stlab::before{content:'';position:absolute;left:0;right:0;top:0;height:57%;pointer-events:none;
+  background:linear-gradient(180deg,rgba(246,240,222,.9),rgba(240,232,212,.96));opacity:0;transition:opacity .45s}
+#starterfx.peek .stlab::before{opacity:1}
+.sthead,.sttable,.stinfo{position:relative;z-index:1}
+.sthint{position:absolute;bottom:8px;left:0;right:0;text-align:center;font-family:'Press Start 2P';font-size:9px;
+  color:#FFF;text-shadow:2px 2px 0 rgba(0,0,0,.55);animation:prtwinkle 1.1s steps(2) infinite;transition:opacity .2s}
+#starterfx.peek .sthint{opacity:0;animation:none}
+.sthead{display:flex;align-items:flex-start;gap:10px;width:100%;max-width:420px}
+.stprof{width:64px;height:64px;image-rendering:pixelated;flex:none;animation:stprofin .5s cubic-bezier(.2,.9,.3,1.2)}
+@keyframes stprofin{from{transform:translateX(-60px);opacity:0}to{transform:none;opacity:1}}
+.stbubble{flex:1;min-width:0;background:#FFF;border:3px solid #484848;border-radius:8px;padding:8px 10px;
+  box-shadow:inset 0 0 0 2px #D8D0C0,0 3px 0 rgba(0,0,0,.15);font-size:19px;line-height:1.2;
+  animation:stbubk .35s ease-out .25s backwards;position:relative}
+.stbubble::before{content:'';position:absolute;left:-10px;top:18px;border:7px solid transparent;border-right-color:#484848}
+.stbubble b{display:block;font-family:'Press Start 2P';font-size:9px;color:#C05028;font-weight:400;margin-bottom:4px}
+@keyframes stbubk{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:none}}
+.ststage{position:relative;z-index:1;flex:1;min-height:150px;width:100%;max-width:420px;display:flex;align-items:center;justify-content:center}
+.stglow{position:absolute;width:300px;height:300px;border-radius:50%;opacity:0;transform:scale(.4);transition:opacity .5s,transform .7s cubic-bezier(.2,.9,.3,1)}
+.stglow.on{opacity:1;transform:scale(1);animation:stglowk 3s ease-in-out infinite .7s}
+@keyframes stglowk{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+.stflash{position:absolute;width:40px;height:40px;border-radius:50%;bottom:-6px;opacity:0;pointer-events:none;
+  background:radial-gradient(circle,#FFF 30%,rgba(255,255,255,0) 70%)}
+.stflash.go{animation:stflashk .55s ease-out}
+@keyframes stflashk{0%{opacity:1;transform:scale(.3)}100%{opacity:0;transform:scale(9)}}
+.start{position:relative;width:min(56vw,210px);height:min(56vw,210px);object-fit:contain;opacity:0;
+  filter:drop-shadow(0 6px 10px rgba(0,0,0,.25))}
+.start.pop{opacity:1;animation:startpop .6s cubic-bezier(.2,.9,.3,1.25),stfloat 2.6s ease-in-out .7s infinite}
+@keyframes startpop{0%{transform:translateY(60px) scale(.15);filter:brightness(8) saturate(0)}
+  55%{filter:brightness(4) saturate(0)}100%{transform:none;filter:drop-shadow(0 6px 10px rgba(0,0,0,.25))}}
+@keyframes stfloat{0%,100%{transform:none}50%{transform:translateY(-6px)}}
+.start.chosen{animation:stchosen .6s ease-in forwards}
+@keyframes stchosen{0%{transform:none}30%{transform:scale(1.12);filter:brightness(2.2)}100%{transform:scale(.1) translateY(160px);opacity:0;filter:brightness(6)}}
+.sttable{position:relative;width:100%;max-width:330px;height:70px;margin-top:4px;flex:none;
+  background:linear-gradient(180deg,#C88A52 0 14px,#A86C38 14px 100%);border:3px solid #6A4020;border-radius:10px;
+  box-shadow:0 8px 0 rgba(0,0,0,.18);display:flex;align-items:flex-start;justify-content:space-around;padding:0 18px}
+.stball{background:none;border:0;padding:0;margin-top:-28px;cursor:pointer;animation:stbob 1.8s ease-in-out infinite;
+  transition:opacity .3s,filter .3s;-webkit-tap-highlight-color:transparent}
+.stball img{width:54px;height:54px;image-rendering:pixelated;display:block;filter:drop-shadow(0 4px 0 rgba(0,0,0,.25))}
+@keyframes stbob{0%,100%{transform:none}50%{transform:translateY(-5px)}}
+.stball.dim{opacity:.35;filter:grayscale(.7)}
+.stball.wob{animation:stwob .48s ease-in-out}
+@keyframes stwob{0%,100%{transform:none}20%{transform:rotate(-22deg)}45%{transform:rotate(18deg)}70%{transform:rotate(-10deg)}}
+.stball.opened{animation:stopen .35s ease-out forwards}
+@keyframes stopen{0%{transform:none}40%{transform:scale(1.3);filter:brightness(3)}100%{transform:scale(.9);opacity:.25;filter:grayscale(.5)}}
+.stinfo{width:100%;max-width:420px;min-height:150px;margin-top:18px;flex:none;background:#FFF;border:3px solid #484848;border-radius:8px;
+  box-shadow:inset 0 0 0 2px #D8D0C0;padding:10px 12px;opacity:0;transform:translateY(24px);
+  transition:opacity .3s ease-out,transform .35s cubic-bezier(.2,.9,.3,1.15);pointer-events:none}
+.stinfo.up{opacity:1;transform:none;pointer-events:auto}
+.stname{font-family:'Press Start 2P';font-size:15px;letter-spacing:1px}
+.sttypes{margin:7px 0 5px;display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+.stbuild{font-family:'Press Start 2P';font-size:7px;color:#8A6A40;margin-left:auto}
+.stflav{font-size:19px;line-height:1.2}
+.stbtns{display:flex;gap:8px;margin-top:10px}
+.stbtns .btn{flex:1}.stbtns .btn.acc{flex:2}
+.joinart{width:140px;height:140px;object-fit:contain;animation:vpop .5s ease-out,stfloat 2.6s ease-in-out .5s infinite;
+  filter:drop-shadow(0 5px 8px rgba(0,0,0,.25))}
+.kitrow{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;font-family:'Press Start 2P';font-size:8px;margin-top:8px}
+.kitrow span{display:flex;align-items:center;gap:5px;background:var(--boxw);border:2px solid var(--bord);border-radius:6px;padding:5px 8px;
+  animation:vpop .45s ease-out .35s backwards}
+.kitrow span+span{animation-delay:.5s}
 /* full-screen move effects on the #fx overlay */
 #fx.fxfire{animation:fxfire .7s ease-out forwards}
 @keyframes fxfire{0%{background:linear-gradient(0deg,rgba(240,88,24,.55),transparent 55%);opacity:0}
@@ -497,6 +620,10 @@ html.theme-night .mapwrap img.mapimg{filter:brightness(.55) saturate(.68) contra
 @keyframes vpop{0%{transform:scale(.4);opacity:0}70%{transform:scale(1.12)}100%{transform:none;opacity:1}}
 .vrow{display:flex;align-items:center;gap:8px;font-size:20px;padding:3px 0}
 .vrow img{width:20px;height:20px;image-rendering:pixelated;flex:none}
+.cntpop{animation:cntpopk .32s ease-out}
+@keyframes cntpopk{0%{transform:scale(1)}40%{transform:scale(1.25)}100%{transform:none}}
+.rlvup{font-family:'Press Start 2P';font-size:9px;color:#A050C8;text-align:center;margin-top:7px;
+  animation:prtwinkle .9s ease-in-out infinite}
 .vexp{height:5px;width:0;background:#4890F8;border-radius:2px;animation:vexpfill 1.6s ease-out .4s forwards}
 @keyframes vexpfill{to{width:100%}}
 /* the training screen wears green; boss fights keep the FireRed frame */
@@ -514,9 +641,38 @@ html.theme-night .btwrap.mode-train>.panel{background:#15201A;border-color:#3560
 @keyframes sll{from{transform:translateX(-90px);opacity:0}to{transform:none;opacity:1}}
 .slidein-r{animation:slr .45s ease-out}
 .slidein-l{animation:sll .45s ease-out}
-.dmgfloat{position:absolute;font-family:'Press Start 2P';font-size:12px;color:#D03028;
-  animation:dfl .9s ease-out forwards;pointer-events:none;z-index:5}
-@keyframes dfl{from{transform:none;opacity:1}to{transform:translateY(-34px);opacity:0}}
+.dmgfloat{position:absolute;font-family:'Press Start 2P';font-size:13px;color:#F8F8F8;text-align:center;
+  text-shadow:2px 0 0 #A02020,-2px 0 0 #A02020,0 2px 0 #A02020,0 -2px 0 #A02020,2px 2px 0 #A02020;
+  animation:dfl 1.2s cubic-bezier(.2,.8,.3,1) forwards;pointer-events:none;z-index:7;white-space:nowrap}
+.dmgfloat em{display:block;font-style:normal;font-size:7px;margin-bottom:4px;letter-spacing:1px}
+.dmgfloat.dk-pl{text-shadow:2px 0 0 #284898,-2px 0 0 #284898,0 2px 0 #284898,0 -2px 0 #284898,2px 2px 0 #284898}
+.dmgfloat.dk-crit{font-size:17px;color:#F8D848;text-shadow:2px 0 0 #803808,-2px 0 0 #803808,0 2px 0 #803808,0 -2px 0 #803808,3px 3px 0 #803808}
+.dmgfloat.dk-super{font-size:15px;color:#F8A048}
+.dmgfloat.dk-weak{font-size:11px;color:#D0D0D0;text-shadow:1px 1px 0 #505050,-1px -1px 0 #505050}
+@keyframes dfl{0%{transform:scale(.3);opacity:0}14%{transform:scale(1.35);opacity:1}26%{transform:scale(.95)}
+  34%{transform:none}70%{transform:translateY(-14px);opacity:1}100%{transform:translateY(-34px);opacity:0}}
+/* v7.0 impact sparks + crit punch */
+.hitspark{position:absolute;width:0;height:0;z-index:6;pointer-events:none}
+.hitspark b{position:absolute;width:30px;height:30px;margin:-15px;border-radius:50%;opacity:.9;filter:blur(1px);
+  animation:hscore .35s ease-out forwards}
+.hitspark.big b{width:46px;height:46px;margin:-23px}
+@keyframes hscore{0%{transform:scale(.2);opacity:1}100%{transform:scale(1.6);opacity:0}}
+.hitspark span{position:absolute;width:4px;height:13px;margin:-6px -2px;border-radius:2px;
+  transform:rotate(var(--a)) translateY(-8px);animation:hsray .45s ease-out forwards}
+.hitspark.big span{height:18px}
+@keyframes hsray{0%{transform:rotate(var(--a)) translateY(-6px) scaleY(.4);opacity:1}
+  100%{transform:rotate(var(--a)) translateY(-40px) scaleY(1);opacity:0}}
+.arenabg.critflash::after{content:'';position:absolute;inset:0;z-index:9;pointer-events:none;background:#FFF;animation:critfk .32s steps(2,jump-none) forwards}
+@keyframes critfk{0%{opacity:.9}50%{opacity:.35}100%{opacity:0}}
+.bigshake{animation:bigshk .42s cubic-bezier(.3,.6,.4,1)}
+@keyframes bigshk{0%,100%{transform:none}15%{transform:translate(-7px,3px)}30%{transform:translate(6px,-3px)}
+  50%{transform:translate(-4px,2px)}70%{transform:translate(3px,-1px)}85%{transform:translate(-1px,1px)}}
+.xpglow{box-shadow:0 0 6px 1px #88C8FF;filter:brightness(1.3)}
+/* HP ghost trail */
+.gbar{position:relative}
+.gbar>div{position:relative;z-index:1}
+.hpghost{position:absolute;left:2px;top:2px;bottom:2px;width:0;border-radius:2px;background:#F8E8B0;z-index:0}
+.databox .hpghost{left:1px;top:1px;bottom:1px}
 /* ---------- ball throw theatre ---------- */
 .bball{position:absolute;left:16%;bottom:26%;width:22px;height:22px;image-rendering:pixelated;
   z-index:6;pointer-events:none}
@@ -726,52 +882,92 @@ html.theme-day #travelfx.hoenn .tfxsign{border-color:#2E8B48}
 #toast.show{opacity:1;transform:translate(-50%,0);pointer-events:auto}
 #toast button{background:none;border:none;color:var(--red);font-family:'Press Start 2P';font-size:11px;padding:0}
 
-/* ---------- v6.8 trainer cards (the Archero pick theatre) ---------- */
-#perkfx{position:fixed;inset:0;z-index:70;display:flex;align-items:center;justify-content:center}
-#perkfx .pkveil{position:absolute;inset:0;background:radial-gradient(circle at 50% 42%,rgba(30,26,60,.88),rgba(8,8,18,.96));animation:pkveil .35s ease-out}
+/* ---------- v6.8 trainer cards (the Archero pick theatre) — v7.0 rebuilt:
+   dealt face-down, flipped one by one, a detail panel instead of tiny card text ---------- */
+#perkfx{position:fixed;inset:0;z-index:70;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#perkfx .pkveil{position:absolute;inset:0;background:radial-gradient(circle at 50% 44%,#2A2450 0%,#141228 55%,#08080F 100%);animation:pkveil .35s ease-out}
 @keyframes pkveil{from{opacity:0}to{opacity:1}}
-#perkfx .pkwrap{position:relative;width:100%;max-width:390px;padding:0 10px;text-align:center}
-#perkfx .pktitle{font-family:'Press Start 2P';font-size:14px;color:#F8D848;text-shadow:0 2px 0 rgba(0,0,0,.6);animation:pkdrop .5s cubic-bezier(.2,1.4,.4,1)}
-#perkfx .pksub{font-family:'Press Start 2P';font-size:9px;color:#B8C4D8;margin-top:8px}
+#perkfx .pkrays{position:absolute;left:50%;top:46%;width:1000px;height:1000px;margin:-500px 0 0 -500px;pointer-events:none;
+  background:repeating-conic-gradient(rgba(255,255,255,.075) 0 9deg,transparent 9deg 18deg);
+  -webkit-mask:radial-gradient(circle,#000 0,transparent 55%);mask:radial-gradient(circle,#000 0,transparent 55%);
+  animation:pkveil .8s ease-out,pkspin 40s linear infinite}
+#perkfx.top1 .pkrays{background:repeating-conic-gradient(rgba(104,160,255,.13) 0 9deg,transparent 9deg 18deg)}
+#perkfx.top2 .pkrays{background:repeating-conic-gradient(rgba(232,184,56,.15) 0 9deg,rgba(160,80,200,.06) 9deg 18deg)}
+@keyframes pkspin{to{transform:rotate(360deg)}}
+#perkfx.quake .pkwrap{animation:cfquake .36s linear 1}
+#perkfx .pkwrap{position:relative;width:100%;max-width:400px;padding:0 12px;text-align:center}
+#perkfx .pkhead{display:flex;align-items:center;justify-content:center;gap:12px}
+#perkfx .pktr{width:56px;height:56px;image-rendering:pixelated;animation:pkdrop .45s cubic-bezier(.2,1.4,.4,1)}
+#perkfx .pkhead>div{text-align:left}
+#perkfx .pktitle{font-family:'Press Start 2P';font-size:18px;color:#F8D848;text-shadow:0 3px 0 #8A5A10,0 0 18px rgba(248,216,72,.45);
+  animation:pkdrop .5s cubic-bezier(.2,1.4,.4,1) .08s backwards}
+#perkfx .pklv{font-family:'Press Start 2P';font-size:10px;color:#C8A8F0;margin-top:8px;animation:pkdrop .5s cubic-bezier(.2,1.4,.4,1) .16s backwards}
+#perkfx .pksub{font-size:19px;color:#B8C4D8;line-height:1.2;max-width:330px;margin:12px auto 0;animation:fadein .5s .3s backwards}
 @keyframes pkdrop{from{opacity:0;transform:translateY(-26px)}to{opacity:1;transform:none}}
-#perkfx .pkrow{display:flex;gap:7px;margin:16px 0 14px;perspective:700px}
-.pcard{flex:1;min-width:0;border-radius:10px;padding:9px 5px 8px;cursor:pointer;position:relative;
-  font-family:inherit;display:flex;flex-direction:column;align-items:center;gap:5px;
-  background:linear-gradient(180deg,#FBF6EA 0%,#F1E7D2 100%);
-  animation:pkin .55s cubic-bezier(.2,1.3,.4,1) backwards,pkfloat 2.6s ease-in-out .6s infinite alternate;
-  transition:transform .18s ease,box-shadow .18s ease}
-@keyframes pkin{from{opacity:0;transform:translateY(90px) rotateY(96deg)}60%{opacity:1}to{opacity:1;transform:none}}
+#perkfx .pkrow{display:flex;gap:8px;margin:18px 0 12px}
+.pcard{flex:1;min-width:0;height:182px;padding:0;border:0;background:none;cursor:pointer;position:relative;font-family:inherit;
+  perspective:700px;-webkit-tap-highlight-color:transparent;
+  animation:pkdeal .5s cubic-bezier(.2,1.2,.4,1) calc(var(--i)*.12s) backwards;
+  transition:transform .2s cubic-bezier(.3,1.5,.5,1)}
+@keyframes pkdeal{from{opacity:0;transform:translateY(160px) rotate(calc(-10deg + var(--i)*10deg)) scale(.8)}to{opacity:1;transform:none}}
+#perkfx.ready .pcard:not(.sel):not(.pwin):not(.pgone){animation:pkfloat 2.4s ease-in-out calc(var(--i)*.3s) infinite alternate}
 @keyframes pkfloat{from{transform:translateY(0)}to{transform:translateY(-5px)}}
-.pcard.rar0{border:3px solid #B08048;box-shadow:0 4px 14px rgba(0,0,0,.45)}
-.pcard.rar1{border:3px solid #4878D8;box-shadow:0 4px 16px rgba(72,120,216,.5)}
-.pcard.rar2{border:3px solid #A050C8;box-shadow:0 4px 20px rgba(160,80,200,.65)}
-.pcard.rar2::before{content:'';position:absolute;inset:-3px;border-radius:10px;pointer-events:none;
-  background:linear-gradient(120deg,transparent 30%,rgba(255,232,140,.5) 50%,transparent 70%);
+.pcin{position:relative;width:100%;height:100%;transform-style:preserve-3d;transform:rotateY(180deg);
+  transition:transform .6s cubic-bezier(.3,1.35,.5,1)}
+.pcard.flip .pcin{transform:none}
+.pcface{position:absolute;inset:0;border-radius:11px;-webkit-backface-visibility:hidden;backface-visibility:hidden;
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:6px;padding:10px 5px 8px;overflow:hidden}
+.pcback{transform:rotateY(180deg);border:3px solid #F4ECDC;justify-content:center;
+  background:radial-gradient(circle at 50% 50%,#F8F8F8 0 21px,#303030 21px 25px,transparent 25px),
+    linear-gradient(180deg,#D84838 0 47%,#303030 47% 53%,#F0F0F0 53%);box-shadow:0 6px 16px rgba(0,0,0,.5)}
+.pcback img{width:30px;height:30px;image-rendering:pixelated;opacity:.9}
+.pcfront{background:linear-gradient(180deg,#FFFAEE 0%,#F1E6CE 100%);box-shadow:0 6px 16px rgba(0,0,0,.5)}
+.pcard.rar0 .pcfront{border:3px solid #B08048}
+.pcard.rar1 .pcfront{border:3px solid #4878D8;background:linear-gradient(180deg,#F6F9FF 0%,#DCE6F8 100%)}
+.pcard.rar2 .pcfront{border:3px solid #A050C8;background:linear-gradient(180deg,#FFF8F0 0%,#EADAF0 100%)}
+.pcard.rar2 .pcfront::before{content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(120deg,transparent 30%,rgba(255,232,140,.55) 50%,transparent 70%);
   background-size:250% 100%;animation:pkshimmer 2.2s linear infinite}
 @keyframes pkshimmer{from{background-position:120% 0}to{background-position:-130% 0}}
-.pcard.sel{transform:translateY(-14px) scale(1.06);animation:none;z-index:2}
-.pcard.rar0.sel{box-shadow:0 0 0 3px #F8D848,0 10px 22px rgba(0,0,0,.6)}
-.pcard.rar1.sel{box-shadow:0 0 0 3px #F8D848,0 10px 24px rgba(72,120,216,.75)}
-.pcard.rar2.sel{box-shadow:0 0 0 3px #F8D848,0 10px 26px rgba(160,80,200,.85)}
-.pcard .pcrar{font-family:'Press Start 2P';font-size:7px;letter-spacing:.5px}
-.pcard .pcicon{width:40px;height:40px;image-rendering:pixelated;margin:2px 0}
-.pcard .pcname{font-family:'Press Start 2P';font-size:8.5px;color:#3A3430;line-height:1.35}
-.pcard .pcdesc{font-size:14px;color:#5A5248;line-height:1.22;min-height:52px}
-.pcard .pcown{font-size:11px;color:#96897A;border-top:1px solid rgba(0,0,0,.12);padding-top:4px;width:100%}
 /* v6.9: rare and epic wear LOUD outlines — you spot the tier at a glance */
-.pcard.rar1::after{content:'';position:absolute;inset:-3px;border-radius:12px;pointer-events:none;
-  border:2px solid rgba(104,160,255,.9);box-shadow:0 0 10px 2px rgba(72,120,216,.6),inset 0 0 8px rgba(72,120,216,.25);
-  animation:pkpulse 1.5s ease-in-out infinite alternate}
-.pcard.rar2::after{content:'';position:absolute;inset:-3px;border-radius:12px;pointer-events:none;
-  border:2px solid rgba(232,184,56,.95);box-shadow:0 0 14px 3px rgba(160,80,200,.75),0 0 28px 7px rgba(232,184,56,.35),inset 0 0 10px rgba(160,80,200,.3);
+.pcard.rar1.flip::after,.pcard.rar2.flip::after{content:'';position:absolute;inset:-3px;border-radius:13px;pointer-events:none}
+.pcard.rar1.flip::after{border:2px solid rgba(104,160,255,.9);box-shadow:0 0 12px 2px rgba(72,120,216,.65);animation:pkpulse 1.5s ease-in-out infinite alternate}
+.pcard.rar2.flip::after{border:2px solid rgba(232,184,56,.95);box-shadow:0 0 16px 3px rgba(160,80,200,.8),0 0 30px 8px rgba(232,184,56,.35);
   animation:pkpulse 1.05s ease-in-out infinite alternate}
 @keyframes pkpulse{from{opacity:.45}to{opacity:1}}
-.pcard.pwin{animation:pkwin 1.1s ease-out forwards;z-index:3}
-@keyframes pkwin{0%{transform:translateY(-14px) scale(1.06)}30%{transform:translateY(-20px) scale(1.14);box-shadow:0 0 0 4px #F8D848,0 0 44px 14px rgba(248,216,72,.6)}100%{transform:translateY(-16px) scale(1.1);box-shadow:0 0 0 3px #F8D848,0 0 30px 8px rgba(248,216,72,.4);opacity:1}}
+.pcard .pcrar{font-family:'Press Start 2P';font-size:7px;letter-spacing:.5px}
+.pcard .pciconw{width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none;
+  background:radial-gradient(circle,rgba(255,255,255,.95) 40%,rgba(255,255,255,0) 72%)}
+.pcard .pcicon{width:44px;height:44px;image-rendering:pixelated}
+.pcard .pcname{font-family:'Press Start 2P';font-size:8px;color:#3A3430;line-height:1.4;min-height:23px;display:flex;align-items:center}
+.pcard .pcstat{font-family:'Press Start 2P';font-size:7px;color:#FFF;border-radius:4px;padding:4px 5px;line-height:1.2;max-width:100%}
+.pcard .pcown{font-family:'Press Start 2P';font-size:6px;color:#96897A;margin-top:auto}
+.pcard.sel{transform:translateY(-16px) scale(1.07);z-index:2}
+.pcard.sel .pcfront{box-shadow:0 0 0 3px #F8D848,0 14px 26px rgba(0,0,0,.6)}
+.pcard.pwin{transform:translateY(-22px) scale(1.14);z-index:3;animation:none}
+.pcard.pwin .pcfront{animation:pkwin 1.2s ease-out forwards}
+@keyframes pkwin{0%{box-shadow:0 0 0 3px #F8D848}25%{box-shadow:0 0 0 5px #FFF,0 0 50px 18px rgba(248,216,72,.75);filter:brightness(1.35)}
+  100%{box-shadow:0 0 0 3px #F8D848,0 0 30px 8px rgba(248,216,72,.45);filter:none}}
 .pcard.pgone{animation:pkgone .5s ease-in forwards}
-@keyframes pkgone{to{opacity:0;transform:translateY(70px) rotate(6deg)}}
-#perkfx .pkconfirm{width:100%;padding:14px 6px}
+@keyframes pkgone{to{opacity:0;transform:translateY(90px) rotate(8deg) scale(.85)}}
+.pkburst{position:fixed;width:0;height:0;z-index:4;pointer-events:none}
+.pkburst span{position:absolute;width:7px;height:7px;margin:-3px;animation:pkbk .75s cubic-bezier(.2,.8,.4,1) forwards}
+@keyframes pkbk{0%{transform:none;opacity:1}100%{transform:translate(var(--x),var(--y)) scale(.3);opacity:0}}
+.pkburst i{position:absolute;width:24px;height:24px;margin:-12px;border:3px solid;border-radius:50%;animation:pkring .6s ease-out forwards}
+@keyframes pkring{to{transform:scale(7);opacity:0}}
+#perkfx .pkdetail{min-height:92px;margin:0 0 12px;background:rgba(255,255,255,.06);border:2px solid rgba(255,255,255,.16);
+  border-radius:8px;padding:9px 11px;text-align:left;color:#E8ECF4;transition:border-color .2s}
+#perkfx .pkdetail.pop{animation:pkdpop .25s ease-out}
+@keyframes pkdpop{from{transform:scale(.97);opacity:.4}to{transform:none;opacity:1}}
+#perkfx .pkdhint{display:block;text-align:center;color:#8A96AC;font-size:18px;line-height:70px}
+#perkfx .pkdname{font-family:'Press Start 2P';font-size:10px;line-height:1.4}
+#perkfx .pkdname span{float:right;font-size:7px;opacity:.85;margin-top:2px}
+#perkfx .pkddesc{font-size:19px;line-height:1.2;margin-top:6px}
+#perkfx .pkdown{font-size:15px;color:#9AA6BC;margin-top:4px}
+#perkfx .pkconfirm{width:100%;padding:14px 6px;transition:opacity .2s}
+#perkfx .pkconfirm:disabled{opacity:.45}
 #perkfx .pkclose{display:block;margin:10px auto 0;color:#8A96AC}
+#perkfx.chosen .pkclose,#perkfx.chosen .pkdetail{opacity:0;transition:opacity .3s}
 
 /* ---------- v6.7 field research dex markers ---------- */
 .restick{position:absolute;top:2px;left:3px;font-size:11px;color:#2E8B48;text-shadow:0 0 3px var(--boxw)}
@@ -1100,6 +1296,7 @@ function startWorkout(mode){
   if(state.session)return;
   resolveRests(); // finished Center rests apply before the squad's HP is seeded
   state.session={start:Date.now(),mode:mode==='boss'?'boss':'train'};
+  if(state.game)state.session.tx0=perksOf().xp||0; // v7.0: the recap's hero-bar starting point
   if(state.game&&state.session.mode==='train'){
     state.session.wild=spawnWild();
     if(pendingMb!=null&&roadActive()&&!state.game.road.mb[pendingMb]){
@@ -1135,6 +1332,7 @@ function startWorkout(mode){
     state.session.lucky=1;
     state.session.bmsg='Your FOUR-LEAF charm shines — a LUCKY workout, 2× XP! '+(state.session.bmsg||'');
   }
+  if(state.game)lessonTick('start');
   save();ensureTicker();
   justStarted=true;
   tab='workout';editMode=false;render();
@@ -1158,6 +1356,7 @@ function endWorkout(){
   var ses=state.session;if(!ses)return;
   var end=Date.now();
   var st=sessionStats(ses.start,end);
+  var rkWas=state.game?rookieOn():false; // v7.0: read BEFORE this workout is counted
   // battle wounds walk home with you — the POKEMON CENTER heals them
   if(state.game&&ses.phps){
     state.game.hurt=state.game.hurt||{};
@@ -1173,19 +1372,33 @@ function endWorkout(){
   if(state.game&&st.volume){cut=Math.round(st.volume/20);addMoney(cut);}
   /* v6.8 GOLDEN TOUCH: the stipend joins the purse row of the recap */
   if(state.game&&perkN('goldentouch')){var gtp=250*perkN('goldentouch');addMoney(gtp);cut+=gtp;}
+  /* v7.0 ROOKIE SEASON: the team walks home fully rested */
+  var rkHealed=false;
+  if(rkWas&&state.game.hurt&&Object.keys(state.game.hurt).length){state.game.hurt={};rkHealed=true;}
+  var rkEnded=rkWas&&!rookieOn();
+  if(state.game)lessonTick('finish'); // v7.0 FIRST LESSONS
   save();render();
-  /* v6.8: a banked card pick greets you right after the recap */
-  if(state.game&&perkPicksLeft()>0)queueModal(function(){openPerkChooser();});
   /* v6.5: the FINISH theatre plays first, then the recap card slides up */
   sfx('victory');
   var amEnd=state.game?activeMon():null;
   fxHold=true;
   playFinishFx(fmtDur(end-ses.start));
-  function tile(icon,val,label,col){
-    return '<div style="background:var(--boxw);border:2px solid var(--bord);border-radius:8px;padding:8px 4px;text-align:center;min-width:0">'+
+  /* v7.0: the numbers COUNT UP on the recap (data-count), the hero bar fills */
+  function tile(icon,val,label,col,cnt){
+    return '<div class="rtile" style="background:var(--boxw);border:2px solid var(--bord);border-radius:8px;padding:8px 4px;text-align:center;min-width:0">'+
       '<img src="'+itemIcon(icon)+'" alt="" style="width:20px;height:20px;image-rendering:pixelated">'+
-      '<div style="font-family:\'Press Start 2P\';font-size:10px;margin-top:5px;color:'+col+';white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+val+'</div>'+
+      '<div'+(cnt!=null?' data-count="'+cnt+'"':'')+' style="font-family:\'Press Start 2P\';font-size:10px;margin-top:5px;color:'+col+';white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+val+'</div>'+
       '<div class="plv" style="margin-top:3px">'+label+'</div></div>';
+  }
+  var heroRow='';
+  if(state.game&&ses.tx0!=null){
+    var pkE=perksOf(),tx1=pkE.xp||0;
+    var lv0=tLvAt(ses.tx0),lv1=tLvAt(tx1);
+    heroRow='<div class="rhero" style="margin-top:8px;padding:7px 10px;background:var(--boxw);border:2px solid var(--bord);border-radius:8px">'+
+      '<div style="display:flex;align-items:center;gap:6px"><span class="barlab" style="background:#A050C8;color:#FFF">TRAINER LV '+lv1.lv+'</span>'+
+      '<div class="gbar exp" style="flex:1"><div class="rhbar" data-from="'+(lv1.lv>lv0.lv?0:lv0.pct)+'" data-to="'+lv1.pct+'" style="width:'+(lv1.lv>lv0.lv?0:lv0.pct)+'%;background:#A050C8"></div></div>'+
+      '<span class="barnum">+'+Math.max(0,Math.round(tx1-ses.tx0)).toLocaleString()+'</span></div>'+
+      (lv1.lv>lv0.lv?'<div class="rlvup">LEVEL UP! '+(perkPicksLeft()>0?'A CARD IS WAITING':'')+'</div>':'')+'</div>';
   }
   setTimeout(function(){
     fxHold=false;
@@ -1195,14 +1408,55 @@ function endWorkout(){
       tile('greatball',fmtDur(end-ses.start),'duration','#3878C8')+
       tile('protein',st.exercises+' · '+st.sets,'exercises · sets','#C04828')+
       tile('iron',fmtVol(st.volume),esc(state.unit)+' moved','#7848B0')+
-      tile('luckyegg',ses.xpg?'+'+ses.xpg:'—','XP earned','#B8860B')+
+      tile('luckyegg',ses.xpg?'+'+ses.xpg:'—','XP earned','#B8860B',ses.xpg||null)+
       '</div>'+
-      (cut?'<div style="display:flex;align-items:center;gap:8px;margin-top:8px;padding:7px 10px;background:var(--boxw);border:2px solid var(--bord);border-radius:8px">'+
+      (cut?'<div class="rtile" style="display:flex;align-items:center;gap:8px;margin-top:8px;padding:7px 10px;background:var(--boxw);border:2px solid var(--bord);border-radius:8px">'+
         '<img src="'+itemIcon('pokeball')+'" alt="" style="width:18px;height:18px;image-rendering:pixelated">'+
-        '<span class="plv" style="flex:1">Purse</span><b>₽'+cut.toLocaleString()+'</b></div>':'')+
+        '<span class="plv" style="flex:1">Purse</span><b data-count="'+cut+'" data-pre="₽">₽'+cut.toLocaleString()+'</b></div>':'')+
+      heroRow+
+      (rkWas?'<div class="rtile" style="display:flex;align-items:center;gap:8px;margin-top:8px;padding:7px 10px;background:var(--boxw);border:2px solid #48A860;border-radius:8px">'+
+        '<img src="'+profSpr()+'" alt="" style="width:22px;height:22px;image-rendering:pixelated">'+
+        '<span class="plv" style="flex:1;white-space:normal;line-height:1.2">'+(rkHealed?'Your team rested up — fully healed. ':'')+'ROOKIE SEASON '+Math.min(ROOKIE_N,rookieDone())+'/'+ROOKIE_N+'</span></div>':'')+
       '<div class="mbtns"><button class="btn acc" data-action="close-modal">DONE</button></div>');
+    recapCountUp();
   },2050);
-  if(state.game)checkGameEvents();
+  if(state.game){
+    checkGameEvents();
+    if(rkEnded){
+      var rkProf=profName(),rkSpr=profSpr();
+      queueModal(function(){
+        sfx('badge');
+        showModal('<div style="text-align:center"><img src="'+rkSpr+'" alt="" style="width:60px;height:60px;image-rendering:pixelated"></div>'+
+          '<div class="vbanner" style="font-size:12px;line-height:1.6">ROOKIE SEASON<br>COMPLETE!</div>'+
+          '<p>“Three workouts — you’re a real TRAINER now! From here on, battles hit at full strength and I won’t be rushing in with POTIONS.”</p>'+
+          '<p>Hurt POKEMON heal at the <b>POKEMON CENTER</b> on the MAP. Keep POTIONS in your BAG for tough fights!</p>'+
+          '<div class="mbtns"><button class="btn acc" data-action="modal-ok">GOT IT</button></div>',true);
+        modalOk=function(){closeModal();};
+      });
+    }
+    /* v6.8: a banked card pick greets you after the recap (v7.0: queued LAST, so it
+       never opens underneath the finish theatre like it used to) */
+    if(perkPicksLeft()>0)queueModal(function(){openPerkChooser();});
+  }
+}
+/* v7.0: recap numbers roll up from zero; the hero bar fills after them */
+function recapCountUp(){
+  var els=[].slice.call(document.querySelectorAll('#modalwrap [data-count]'));
+  var t0=performance.now(),dur=900;
+  function fmt(el,v){return (el.dataset.pre||'')+(el.dataset.pre?'':'+')+Math.round(v).toLocaleString();}
+  els.forEach(function(el){el.textContent=fmt(el,0);});
+  function step(now){
+    var k=Math.min(1,(now-t0)/dur),e=1-Math.pow(1-k,3);
+    els.forEach(function(el){if(el.isConnected)el.textContent=fmt(el,+el.dataset.count*e);});
+    if(k<1)requestAnimationFrame(step);
+    else{
+      els.forEach(function(el){el.classList.add('cntpop');});
+      if(els.length)sfx('click');
+    }
+  }
+  requestAnimationFrame(step);
+  var hb=document.querySelector('#modalwrap .rhbar');
+  if(hb)setTimeout(function(){hb.style.transition='width .9s cubic-bezier(.3,.8,.3,1)';hb.style.width=hb.dataset.to+'%';},700);
 }
 function applyTheme(){
   var th=state.theme==='day'?'theme-day':'theme-night';
@@ -1638,6 +1892,11 @@ function perkN(k){
 }
 /* the perk-tuned knobs, read at their engine hooks */
 function pfT(){return perkN('formmaster')?0.90:0.95;} /* PERFECT FORM threshold */
+/* v7.0: a lift's very FIRST log has no record to measure against (rel=1 by default),
+   so it sets the baseline instead of faking a PERFECT FORM crit on every new exercise */
+var baselineSet=false;
+var tlvBanner=0,tlvShown=0; /* v7.0: a trainer level-up waiting for / shown in the battle */
+function pfHit(e){return !baselineSet&&e.rel>=pfT();}
 function eshRate(){return perkN('mentor')?0.75:0.5;}  /* EXP SHARE payout */
 function centerFee(){return Math.max(200,CENTER_FEE-100*perkN('fieldmedic'));}
 function restMsNow(){return REST_MS-perkN('fieldmedic')*2*3600000;}
@@ -1664,6 +1923,12 @@ function trainerLevel(){
   while(L<999&&xp>=tXpNeed(L)){xp-=tXpNeed(L);L++;}
   return L;
 }
+/* v7.0: level + % into it for any XP total (the recap's before/after hero bar) */
+function tLvAt(xp){
+  var L=1;xp=xp||0;
+  while(L<999&&xp>=tXpNeed(L)){xp-=tXpNeed(L);L++;}
+  return {lv:L,pct:Math.min(100,Math.round(xp/tXpNeed(L)*100))};
+}
 function trainerLvProg(){
   var xp=(state.game.perks&&state.game.perks.xp)||0,L=1;
   while(L<999&&xp>=tXpNeed(L)){xp-=tXpNeed(L);L++;}
@@ -1681,9 +1946,38 @@ function perkPicksLeft(){
 function perkEligible(){
   return PERKS.filter(function(p){return perkN(p.k)<p.cap;});
 }
+/* v7.0: a card only shows up once the thing it boosts exists in YOUR game — a new
+   trainer was being offered SAFARI PASS, PHARMACIST and TIP JAR before seeing a single
+   building, and Hoenn-only cards (blocks, lottery) could land in Kanto doing nothing */
+function poiReach(k){
+  return POIS.some(function(p){return p.k===k&&p.town!=null&&p.town<=townIdx();});
+}
+function perkFits(p){
+  var g=state.game;if(!g)return false;
+  switch(p.k){
+    case 'haggler':return featOn('mart');
+    case 'goldrush':case 'prospector':return featOn('mine');
+    case 'highroller':case 'arcaderat':return poiReach('corner');
+    case 'safaripass':return poiReach('safari');
+    case 'warmnest':return featOn('lab');
+    case 'mentor':return !!(g.flags.expshare||bagOf().expshare||g.mons.some(function(m){return m.held==='expshare';}));
+    case 'blockartist':return inHoenn()&&featOn('hall');
+    case 'twintickets':return inHoenn()&&featOn('lotto');
+    case 'bounty':return badgeCount()>=1||!!g.road;
+  }
+  return true;
+}
+/* the FIRST hand is a lesson in rarity: one of each, all useful from set one */
+var PERK_FIRST_HAND=['powerbrace','ballmaestro','vitalspirit'];
 /* roll the 3-card offer STATE-FIRST; stored until a pick is made */
 function perkRollOffer(){
-  var pool=perkEligible(),picks=[];
+  var all=perkEligible(),pool=all.filter(perkFits);
+  if(!(perksOf().used>0)){
+    var fh=PERK_FIRST_HAND.filter(function(k){return all.some(function(p){return p.k===k;});});
+    if(fh.length===3)return fh;
+  }
+  if(pool.length<3)pool=all; // late game: everything relevant is maxed — open the full deck
+  var picks=[];
   while(picks.length<3&&pool.length){
     var tot=0;
     pool.forEach(function(p){tot+=PERK_RAR_W[p.r];});
@@ -1695,6 +1989,9 @@ function perkRollOffer(){
   return picks.length?picks:null;
 }
 var perkSel=null; /* the raised card in the open theatre */
+/* v7.0 THE CARD THEATRE, rebuilt: cards are DEALT face-down, then flip one by one —
+   each rarity with its own burst and sound (epics shake the room). Tap to inspect
+   (the detail panel reads the full text), tap again or CHOOSE to keep it. */
 function openPerkChooser(){
   if(!state.game||perkPicksLeft()<=0)return;
   var pk=perksOf();
@@ -1707,29 +2004,86 @@ function openPerkChooser(){
   fxHold=true;
   var old=document.getElementById('perkfx');
   if(old)old.parentNode.removeChild(old);
+  var first=!(pk.used>0),left=perkPicksLeft(),top=0;
   var cards='';
   pk.offer.forEach(function(k,i){
     var p=perkDef(k);if(!p)return;
+    if(p.r>top)top=p.r;
     var have=perkN(k);
-    cards+='<button class="pcard rar'+p.r+'" data-action="perk-pick" data-k="'+p.k+'" style="animation-delay:'+(i*0.13)+'s">'+
-      '<div class="pcrar" style="color:'+PERK_RAR_C[p.r]+'">'+PERK_RAR_N[p.r]+'</div>'+
-      '<img class="pcicon" src="'+p.icon+'" alt="">'+
-      '<div class="pcname">'+p.n+'</div>'+
-      '<div class="pcdesc">'+p.d+'</div>'+
-      '<div class="pcown">'+(have?('OWNED ×'+have+' → ×'+(have+1)):(p.cap>1?'stacks to ×'+p.cap:'unique'))+'</div>'+
-      '</button>';
+    cards+='<button class="pcard rar'+p.r+'" data-action="perk-pick" data-k="'+p.k+'" style="--i:'+i+'">'+
+      '<div class="pcin">'+
+        '<div class="pcface pcfront">'+
+          '<div class="pcrar" style="color:'+PERK_RAR_C[p.r]+'">'+PERK_RAR_N[p.r]+'</div>'+
+          '<div class="pciconw"><img class="pcicon" src="'+p.icon+'" alt=""></div>'+
+          '<div class="pcname">'+p.n+'</div>'+
+          '<div class="pcstat" style="background:'+PERK_RAR_C[p.r]+'">'+p.s+'</div>'+
+          '<div class="pcown">'+(have?('×'+have+' → ×'+(have+1)):'NEW')+'</div>'+
+        '</div>'+
+        '<div class="pcface pcback"><img src="'+itemIcon('pokeball')+'" alt=""></div>'+
+      '</div></button>';
   });
   var el=document.createElement('div');
   el.id='perkfx';
-  el.innerHTML='<div class="pkveil"></div><div class="pkwrap">'+
-    '<div class="pktitle">TRAINER LEVEL '+trainerLevel()+'</div>'+
-    '<div class="pksub">'+perkPicksLeft()+' pick'+(perkPicksLeft()===1?'':'s')+' banked — choose a card</div>'+
+  el.className='top'+top;
+  el.innerHTML='<div class="pkveil"></div><div class="pkrays"></div>'+
+    '<div class="pkwrap">'+
+    '<div class="pkhead"><img class="pktr" src="sprites/trainers/'+playerSpr()+'.png" alt="">'+
+      '<div><div class="pktitle">LEVEL UP!</div><div class="pklv">TRAINER LV '+trainerLevel()+'</div></div></div>'+
+    '<div class="pksub">'+(first?'Your training made YOU stronger. Pick ONE card — a permanent boost for this adventure.'
+      :(left>1?left+' picks banked — choose a card':'Choose one card to keep'))+'</div>'+
     '<div class="pkrow">'+cards+'</div>'+
-    '<button class="btn acc pkconfirm" data-action="perk-confirm" disabled style="opacity:.45">TAP A CARD FIRST</button>'+
+    '<div class="pkdetail" id="pk-detail"><span class="pkdhint">Tap a card to read it</span></div>'+
+    '<button class="btn acc pkconfirm" data-action="perk-confirm" disabled>TAP A CARD FIRST</button>'+
     '<button class="textbtn pkclose" data-action="perk-close">later</button>'+
     '</div>';
   document.body.appendChild(el);
-  sfx('ballopen');
+  sfx('levelup');
+  /* the flips, one by one, each rarity louder than the last */
+  var cEls=[].slice.call(el.querySelectorAll('.pcard'));
+  cEls.forEach(function(c,i){
+    setTimeout(function(){
+      if(!c.isConnected)return;
+      c.classList.add('flip');
+      var p=perkDef(c.dataset.k);
+      sfx(p.r===2?'shiny':(p.r===1?'ballopen':'ballclick'));
+      if(p.r>0)perkBurst(c,PERK_RAR_C[p.r],p.r===2?14:9);
+      if(p.r===2){el.classList.remove('quake');void el.offsetWidth;el.classList.add('quake');}
+    },650+i*360);
+  });
+  setTimeout(function(){if(el.isConnected)el.classList.add('ready');},650+cEls.length*360+250);
+}
+/* a ring of pixel stars bursting off a card */
+function perkBurst(card,col,n){
+  var r=card.getBoundingClientRect(),host=document.getElementById('perkfx');if(!host)return;
+  var w=document.createElement('div');w.className='pkburst';
+  w.style.left=(r.left+r.width/2)+'px';w.style.top=(r.top+r.height/2)+'px';
+  for(var i=0;i<n;i++){
+    var s=document.createElement('span'),a=i/n*Math.PI*2,d=60+Math.random()*40;
+    s.style.setProperty('--x',Math.round(Math.cos(a)*d)+'px');
+    s.style.setProperty('--y',Math.round(Math.sin(a)*d)+'px');
+    s.style.background=i%2?col:'#F8E070';
+    w.appendChild(s);
+  }
+  var ring=document.createElement('i');ring.style.borderColor=col;w.appendChild(ring);
+  host.appendChild(w);
+  setTimeout(function(){if(w.parentNode)w.parentNode.removeChild(w);},900);
+}
+function perkInspect(k){
+  var el=document.getElementById('perkfx');
+  if(!el||!el.classList.contains('ready')||el.querySelector('.pcard.pwin'))return;
+  if(perkSel===k){confirmPerk();return;} // tap the raised card again to keep it
+  perkSel=k;
+  [].slice.call(el.querySelectorAll('.pcard')).forEach(function(c){c.classList.toggle('sel',c.dataset.k===perkSel);});
+  var p=perkDef(k),have=perkN(k);if(!p)return;
+  var det=el.querySelector('#pk-detail');
+  det.style.borderColor=PERK_RAR_C[p.r];
+  det.innerHTML='<div class="pkdname" style="color:'+PERK_RAR_C[p.r]+'">'+p.n+'<span>'+PERK_RAR_N[p.r]+'</span></div>'+
+    '<div class="pkddesc">'+p.d+'</div>'+
+    '<div class="pkdown">'+(have?'You own ×'+have+' — this makes ×'+(have+1)+' of '+p.cap:(p.cap>1?'Stacks up to ×'+p.cap:'Unique — one copy only'))+'</div>';
+  det.classList.remove('pop');void det.offsetWidth;det.classList.add('pop');
+  var cf=el.querySelector('.pkconfirm');
+  if(cf){cf.disabled=false;cf.textContent='CHOOSE '+p.n;}
+  sfx('click');
 }
 function closePerkChooser(){
   var el=document.getElementById('perkfx');
@@ -1749,13 +2103,16 @@ function confirmPerk(){
   pk.taken[p.k]=(pk.taken[p.k]||0)+1;
   pk.used=(pk.used||0)+1;
   pk.offer=null;
+  lessonTick('card'); // v7.0 FIRST LESSONS
   save();
-  sfx(p.r===2?'pr':'save');
+  sfx(p.r===2?'pr':'badge');
   var el=document.getElementById('perkfx');
   if(el){
+    el.classList.add('chosen');
     [].slice.call(el.querySelectorAll('.pcard')).forEach(function(c){
       c.classList.add(c.dataset.k===p.k?'pwin':'pgone');
       c.disabled=true;
+      if(c.dataset.k===p.k)setTimeout(function(){perkBurst(c,PERK_RAR_C[p.r],18);},180);
     });
     var cf=el.querySelector('.pkconfirm');
     if(cf){cf.textContent=p.n+' — YOURS!';cf.disabled=true;}
@@ -1765,7 +2122,7 @@ function confirmPerk(){
     render(true);
     toast(p.n+' learned!'+(perkPicksLeft()>0?' '+perkPicksLeft()+' pick'+(perkPicksLeft()===1?'':'s')+' left.':''));
     if(perkPicksLeft()>0)setTimeout(function(){openPerkChooser();},450);
-  },1250);
+  },1500);
 }
 function perksHTML(){
   if(!state.game)return summaryHTML();
@@ -1931,6 +2288,7 @@ function summaryHTML(){
   return '<div class="titlebar"><h1>TRAINER</h1></div>'+
     '<div class="subtitle">'+DAYSF[d.getDay()]+', '+MONTHS[d.getMonth()]+' '+d.getDate()+'</div>'+
     heroHTML()+
+    lessonsHTML()+ // v7.0 FIRST LESSONS (new campaigns only, gone once finished)
     bossCardHTML()+
     bossLadderHTML()+
     hofCardHTML()+
@@ -2213,7 +2571,7 @@ function rivalLine(){
     if(st==='mudkip')return ['treecko','grovyle','sceptile'];
     return ['torchic','combusken','blaziken'];
   }
-  return (st==='squirtle')
+  return (st==='squirtle'||st==='bulbasaur') // v7.0: BULBASAUR's rival takes CHARMANDER, as in FireRed
     ?['charmander','charmeleon','charizard']
     :['squirtle','wartortle','blastoise'];
 }
@@ -2482,10 +2840,10 @@ function catchOdds(w,ballMult){
   return Math.max(1,Math.round(Math.pow(Math.min(1,b/65536),4)*100));
 }
 var MOVESETS={
-  charmander:[[7,'EMBER'],[13,'METAL CLAW'],[25,'SCARY FACE'],[31,'FLAMETHROWER']],
+  charmander:[[1,'SCRATCH'],[7,'EMBER'],[13,'METAL CLAW'],[25,'SCARY FACE'],[31,'FLAMETHROWER']],
   charmeleon:[[7,'EMBER'],[20,'SMOKESCREEN'],[34,'FLAMETHROWER'],[48,'SLASH']],
   charizard:[[7,'EMBER'],[36,'WING ATTACK'],[42,'FLAMETHROWER'],[59,'FIRE SPIN']],
-  squirtle:[[7,'BUBBLE'],[13,'WATER GUN'],[28,'BITE'],[40,'HYDRO PUMP']],
+  squirtle:[[1,'TACKLE'],[7,'BUBBLE'],[13,'WATER GUN'],[28,'BITE'],[40,'HYDRO PUMP']],
   wartortle:[[7,'BUBBLE'],[19,'WATER GUN'],[31,'SKULL BASH'],[44,'HYDRO PUMP']],
   blastoise:[[7,'BUBBLE'],[29,'BITE'],[42,'RAIN DANCE'],[68,'HYDRO PUMP']],
   pidgey:[[9,'GUST'],[13,'QUICK ATTACK'],[27,'WHIRLWIND'],[39,'AGILITY']],
@@ -2649,7 +3007,7 @@ CATCH_QUEUES.biceps.push(['electabuzz',24000],['pinsir',30000]);
 CATCH_QUEUES.triceps.push(['bulbasaur',10000],['magmar',24000]);
 CATCH_QUEUES.forearm.push(['shellder',12000],['krabby',14000]);
 CATCH_QUEUES.legs.push(['goldeen',8000],['seel',10000],['slowpoke',12000],['horsea',14000],['tangela',26000]);
-MOVESETS.bulbasaur=[[7,'VINE WHIP'],[13,'POISONPOWDER'],[27,'RAZOR LEAF'],[41,'SOLARBEAM']];
+MOVESETS.bulbasaur=[[1,'TACKLE'],[7,'VINE WHIP'],[13,'POISONPOWDER'],[27,'RAZOR LEAF'],[41,'SOLARBEAM']];
 MOVESETS.ivysaur=[[7,'VINE WHIP'],[22,'RAZOR LEAF'],[38,'SLUDGE'],[53,'SOLARBEAM']];
 MOVESETS.venusaur=[[7,'VINE WHIP'],[41,'RAZOR LEAF'],[53,'PETAL DANCE'],[65,'SOLARBEAM']];
 MOVESETS.caterpie=[[1,'TACKLE']];
@@ -2999,11 +3357,14 @@ function grantMon(flag,sp,title,msg){
   if(g.flags[flag])return false;
   g.flags[flag]=1;
   var shiny=Math.random()<0.1;
-  addMon(sp,shiny);
+  var gm=addMon(sp,shiny);
+  /* v7.0: gifts join near your lead's level (a :L1 friend fainted on its first hit) */
+  var am0=activeMon(),glv=Math.max(5,(am0&&am0!==gm?monLevel(am0.xp):5)-2);
+  gm.xp=xpFloor(glv);
   queueModal(function(){
     sfx('catch');
     if(shiny)setTimeout(function(){sfx('shiny');},600);
-    showModal('<h3>'+esc(title)+'</h3><p>'+esc(msg)+(shiny?' ✨ It’s SHINY!':'')+'</p>'+
+    showModal('<h3>'+esc(title)+'</h3><p>'+esc(msg)+' (:L'+glv+')'+(shiny?' ✨ It’s SHINY!':'')+'</p>'+
       '<div style="text-align:center;padding:8px 0"><img class="bigspr'+(shiny?' shinyglow':'')+'" src="'+sprPath(sp,shiny)+'" alt=""></div>'+
       '<div class="mbtns"><button class="btn acc" data-action="modal-ok">OK</button></div>');
     modalOk=function(){closeModal();render(true);};
@@ -3226,7 +3587,7 @@ function checkGameEvents(){
   if(trainerLevel()>(pkA.annLv||1)){
     pkA.annLv=trainerLevel();changed=true;
     if(!state.session&&perkPicksLeft()>0)queueModal(function(){openPerkChooser();});
-    else if(state.session)toast('TRAINER LEVEL '+trainerLevel()+'! A card pick awaits after the workout.');
+    else if(state.session&&tlvShown!==trainerLevel())toast('TRAINER LEVEL '+trainerLevel()+'! A card pick awaits after the workout.');
   }
   // v6.7: EFFORT SCALING announces itself once, in both regions
   if(!g.flags.v67note){
@@ -3289,31 +3650,122 @@ function checkGameEvents(){
 }
 
 /* ===== game: screens ===== */
+/* ===== v7.0 STARTER THEATRE: three POKE BALLS on the professor's table.
+   Tap a ball → it wobbles, bursts open, the official artwork pops out with its cry;
+   CHOOSE confirms through the old pick-starter action (state-first, then theatre). ===== */
+var STARTER_INFO={
+  bulbasaur:{f:'The Seed POKEMON. Steady and tough — the friendliest start.',b:'ENDURANCE BUILD'},
+  charmander:{f:'The Lizard POKEMON. Fiery and hard-hitting — for trainers who love a challenge.',b:'EXPLOSIVE POWER'},
+  squirtle:{f:'The Tiny Turtle POKEMON. A sturdy shell and a cool head.',b:'SOLID DEFENSE'},
+  treecko:{f:'The Wood Gecko POKEMON. Swift, calm and precise.',b:'SPEED WORK'},
+  torchic:{f:'The Chick POKEMON. Small, fierce and never backs down.',b:'EXPLOSIVE POWER'},
+  mudkip:{f:'The Mud Fish POKEMON. Strong and sturdy — a great first partner.',b:'STRENGTH BASE'}
+};
+function starterList(){return inHoenn()?['treecko','torchic','mudkip']:['bulbasaur','charmander','squirtle'];}
+var starterPeekSp=null,starterBusy=false;
 function showStarterModal(){
-  var rows;
-  if(inHoenn()){
-    rows='<button class="prow" data-action="pick-starter" data-sp="treecko"><img class="pspr" src="sprites/252.png" alt="">'+
-      '<span><span class="pname">TREECKO</span><br><span class="plv">the Grass type</span></span></button>'+
-      '<button class="prow" data-action="pick-starter" data-sp="torchic"><img class="pspr" src="sprites/255.png" alt="">'+
-      '<span><span class="pname">TORCHIC</span><br><span class="plv">the Fire type</span></span></button>'+
-      '<button class="prow" data-action="pick-starter" data-sp="mudkip"><img class="pspr" src="sprites/258.png" alt="">'+
-      '<span><span class="pname">MUDKIP</span><br><span class="plv">the Water type</span></span></button>';
-  }else{
-    rows='<button class="prow" data-action="pick-starter" data-sp="charmander"><img class="pspr" src="sprites/4.png" alt="">'+
-      '<span><span class="pname">CHARMANDER</span><br><span class="plv">the Fire type</span></span></button>'+
-      '<button class="prow" data-action="pick-starter" data-sp="squirtle"><img class="pspr" src="sprites/7.png" alt="">'+
-      '<span><span class="pname">SQUIRTLE</span><br><span class="plv">the Water type</span></span></button>';
-  }
-  showModal('<div style="text-align:center;padding-bottom:4px"><img src="'+profSpr()+'" alt="'+profName()+'" style="width:64px;height:64px;image-rendering:pixelated"></div>'+
-    '<h3>'+profName()+'</h3><p>'+(pendingName?esc(pendingName)+'! ':'')+
-    (inHoenn()?'Welcome to HOENN! I was just attacked by a wild POOCHYENA — quick, grab a POKE BALL from my bag:':'Welcome to the world of POKEMON! Your gym adventure is about to unfold. Choose your partner:')+'</p>'+rows,true);
-  modalOk=null;
+  var old=document.getElementById('starterfx');if(old)old.parentNode.removeChild(old);
+  starterPeekSp=null;starterBusy=false;
+  var balls='';
+  starterList().forEach(function(sp,i){
+    balls+='<button class="stball" data-action="st-ball" data-sp="'+sp+'" style="animation-delay:'+(i*0.22)+'s" aria-label="'+DEX[sp].n+'">'+
+      '<img src="'+itemIcon('pokeball')+'" alt=""></button>';
+    var pre=new Image();pre.src='sprites/art/'+DEX[sp].id+'.png'; // warm the art before the reveal
+  });
+  var el=document.createElement('div');
+  el.id='starterfx';
+  el.innerHTML='<div class="stlab">'+
+    '<div class="sthead"><img class="stprof" src="'+profSpr()+'" alt="">'+
+      '<div class="stbubble"><b>'+profName()+'</b><span id="st-say">'+(pendingName?esc(pendingName)+'! ':'')+
+      (inHoenn()?'A wild POOCHYENA! Quick — grab a POKE BALL from my bag!':'Three POKEMON, three POKE BALLS. Tap one to meet your training partner!')+'</span></div></div>'+
+    '<div class="ststage"><div class="stglow"></div><div class="stflash"></div><img class="start" alt="">'+
+      '<div class="sthint">▼ TAP A POKE BALL ▼</div></div>'+
+    '<div class="sttable">'+balls+'</div>'+
+    '<div class="stinfo" id="st-info"></div>'+
+    '</div>';
+  document.body.appendChild(el);
+  sfx('title');
+}
+function starterPeek(sp){
+  var el=document.getElementById('starterfx');
+  if(!el||starterBusy||!DEX[sp])return;
+  if(starterPeekSp===sp)return;
+  starterBusy=true;starterPeekSp=sp;el.classList.add('peek');
+  var balls=[].slice.call(el.querySelectorAll('.stball'));
+  balls.forEach(function(b){b.classList.remove('wob','opened','dim');if(b.dataset.sp!==sp)b.classList.add('dim');});
+  var ball=el.querySelector('.stball[data-sp="'+sp+'"]');
+  var art=el.querySelector('.start'),fl=el.querySelector('.stflash'),gl=el.querySelector('.stglow');
+  var info=el.querySelector('#st-info');
+  art.classList.remove('pop');art.style.opacity='0';info.classList.remove('up');
+  gl.style.background='radial-gradient(circle,'+(TYPE_COLORS[DEX[sp].t[0]]||'#FFF')+'66 0%,transparent 65%)';
+  void ball.offsetWidth;
+  ball.classList.add('wob');
+  sfx('ballshake');
+  setTimeout(function(){
+    ball.classList.add('opened');
+    sfx('ballopen');
+    fl.classList.remove('go');void fl.offsetWidth;fl.classList.add('go');
+    art.onerror=function(){art.onerror=null;art.src=sprPath(sp,false);art.style.imageRendering='pixelated';};
+    art.style.imageRendering='';
+    art.src='sprites/art/'+DEX[sp].id+'.png';
+    art.style.opacity='';
+    void art.offsetWidth;art.classList.add('pop');
+    gl.classList.add('on');
+  },480);
+  setTimeout(function(){cry(sp);},720);
+  setTimeout(function(){
+    var inf=STARTER_INFO[sp]||{f:'',b:''};
+    var chips='';
+    DEX[sp].t.forEach(function(t){chips+='<span class="tchip" style="background:'+(TYPE_COLORS[t]||'#888')+'">'+t.toUpperCase()+'</span> ';});
+    info.innerHTML='<div class="stname">'+DEX[sp].n+'</div>'+
+      '<div class="sttypes">'+chips+'<span class="stbuild">'+inf.b+'</span></div>'+
+      '<div class="stflav">'+inf.f+'</div>'+
+      '<div class="stbtns"><button class="btn" data-action="st-back">BACK</button>'+
+      '<button class="btn acc" data-action="pick-starter" data-sp="'+sp+'">CHOOSE '+DEX[sp].n+'</button></div>';
+    void info.offsetWidth;info.classList.add('up');
+    var say=el.querySelector('#st-say');
+    if(say){if(!say.dataset.orig)say.dataset.orig=say.textContent;say.textContent='So, you’d like '+DEX[sp].n+'? It will battle with every set you lift!';}
+    starterBusy=false;
+  },820);
+}
+function starterBack(){
+  var el=document.getElementById('starterfx');if(!el||starterBusy)return;
+  starterPeekSp=null;el.classList.remove('peek');
+  [].slice.call(el.querySelectorAll('.stball')).forEach(function(b){b.classList.remove('wob','opened','dim');});
+  var art=el.querySelector('.start');art.classList.remove('pop');art.style.opacity='0';
+  el.querySelector('.stglow').classList.remove('on');
+  el.querySelector('#st-info').classList.remove('up');
+  var say=el.querySelector('#st-say');if(say&&say.dataset.orig)say.textContent=say.dataset.orig;
+  sfx('click');
+}
+function closeStarterFx(){
+  var el=document.getElementById('starterfx');if(!el)return;
+  el.classList.add('out');
+  setTimeout(function(){if(el.parentNode)el.parentNode.removeChild(el);},380);
 }
 var pendingMode='train';
+var tiredOk=false;
 function showChooserThenStart(mode){
   pendingMode=mode==='boss'?'boss':'train';
   var g=state.game;
   if(!g||!g.mons.length){startWorkout(pendingMode);return;}
+  /* v7.0: an all-fainted team used to start the workout ALREADY blacked out, with no
+     warning. Now the trainer is asked first — heal up, or train for XP only. */
+  if(pendingMode==='train'&&!state.session&&!tiredOk){
+    resolveRests();
+    if(!battleParty().some(function(m){return curHpOf(m)>0;})){
+      var tiredRow='';
+      battleParty().forEach(function(m){tiredRow+='<span style="display:inline-block;filter:grayscale(1);opacity:.6">'+monIconImg(m.sp,m.shiny,34)+'</span>';});
+      showModal('<h3>Your team is exhausted</h3>'+
+        '<div style="text-align:center;padding:4px 0 2px">'+tiredRow+'</div>'+
+        '<p>Every POKEMON fainted last time. Heal them at the <b>POKEMON CENTER</b> first — or train anyway: your sets still earn XP, but there will be no battles.</p>'+
+        '<div class="mbtns"><button class="btn" data-action="tired-go">TRAIN ANYWAY</button>'+
+        '<button class="btn acc" data-action="tired-center">POKEMON CENTER</button></div>');
+      modalOk=null;
+      return;
+    }
+  }
+  tiredOk=false;
   if(pendingMode==='boss'){showBossPartyModal();return;}
   if(g.mons.length<=1){g.active=g.mons[0].uid;startWorkout('train');return;}
   var h='<h3>Choose a POKEMON.</h3><p>It banks all XP from this workout.</p>';
@@ -3465,6 +3917,7 @@ function runThrow(bk){
   if(res.caught){
     var cm=addMon(w.sp,w.shiny);
     cm.xp=xpFloor(w.lv); // it keeps the level it fought at
+    lessonTick('catch');
     if(w.ghost!==undefined){ // a caught ghost is a spirit at rest too
       var pgc=poiOf('tower2');
       if((pgc.floor||0)===w.ghost)pgc.floor=(pgc.floor||0)+1;
@@ -4026,7 +4479,7 @@ function knownMoves(m){
   movesFor(m.sp).forEach(function(mv){if(mv[0]<=l)out.push(mv[1]);});
   // TMs taught at the CELADON DEPT. STORE ride on top of the level-up moves
   (m.tm||[]).forEach(function(n){if(out.indexOf(n)<0)out.push(n);});
-  if(!out.length)out.push('STRUGGLE');
+  if(!out.length)out.push('TACKLE'); // v7.0: a basic hit, never STRUGGLE (no SFX, and it read as broken)
   return out;
 }
 /* your pick for this mon, else the best move vs the current foe */
@@ -4378,6 +4831,93 @@ function applyBossCounter(bz,lead){
   return res;
 }
 /* wilds bite back too — lighter than bosses, route trainers hit harder */
+/* v7.0 ROOKIE SEASON — the first workouts of a campaign are a lesson, not a wall.
+   Until 3 workouts are finished (or the first badge is won): wild/route counters hit
+   40% softer, the professor rescues your LAST standing POKEMON once per workout instead
+   of a blackout, and the team walks home fully healed. Derived live — nothing stored. */
+var ROOKIE_N=3;
+/* v7.0 FIRST LESSONS — the professor's six-step checklist for a NEW campaign: it points
+   at the next thing to do and pays out on the spot, ending with a LUCKY EGG so the
+   SECOND workout is special too. Only games started on v7.0+ carry game.lessons
+   (veterans never see it); the panel disappears from TRAINER once it is finished. */
+var LESSONS=[
+  {k:'start',n:'Start a workout',h:'Tap START WORKOUT — a wild POKEMON jumps out',rw:{m:300}},
+  {k:'attack',n:'Log a set to attack',h:'Open any exercise and SAVE SET — every set is a hit',rw:{i:'pokeball',q:2}},
+  {k:'ko',n:'Defeat a wild POKEMON',h:'Keep logging sets until its HP runs out',rw:{i:'potion',q:1}},
+  {k:'catch',n:'Catch a wild POKEMON',h:'Weaken one first, then THROW BALL',rw:{i:'greatball',q:3}},
+  {k:'finish',n:'Finish the workout',h:'Tap END when your last set is done',rw:{m:500}},
+  {k:'card',n:'Pick a TRAINER CARD',h:'Your level-ups bank cards — keep one per level',rw:{i:'rarecandy',q:1}}
+];
+function lessonRwTxt(rw){return rw.m?'₽'+rw.m:('×'+rw.q+' '+ITEMS[rw.i].n);}
+function lessonRwIcon(rw,sz){return rw.m?'<img src="'+itemIcon('pokeball')+'" alt="" style="width:'+sz+'px;height:'+sz+'px;image-rendering:pixelated;filter:sepia(1) saturate(4) hue-rotate(5deg)">':itemImg(rw.i,sz);}
+function lessonTick(k){
+  var g=state.game;if(!g||!g.lessons||g.lessons.fin)return;
+  var d=g.lessons.d=g.lessons.d||{};
+  if(d[k])return;
+  var L=null;LESSONS.forEach(function(x){if(x.k===k)L=x;});if(!L)return;
+  d[k]=1;
+  if(L.rw.m)addMoney(L.rw.m);else bagOf()[L.rw.i]=(bagOf()[L.rw.i]||0)+L.rw.q;
+  lessonPop(L);
+  if(LESSONS.every(function(x){return d[x.k];})){
+    g.lessons.fin=1;
+    bagOf().luckyegg=(bagOf().luckyegg||0)+1;
+    var lp=profName(),ls=profSpr();
+    queueModal(function(){
+      sfx('badge');
+      showModal('<div style="text-align:center"><img src="'+ls+'" alt="" style="width:60px;height:60px;image-rendering:pixelated"></div>'+
+        '<div class="vbanner" style="font-size:12px;line-height:1.6">LESSONS<br>COMPLETE!</div>'+
+        '<p>“You’ve got the basics — lift, battle, catch, level up. Here’s my graduation gift!”</p>'+
+        '<div style="text-align:center;padding:4px 0">'+itemImg('luckyegg',40)+'</div>'+
+        '<p style="text-align:center"><b>LUCKY EGG</b> — your next workout earns <b>2× EXP</b>. It activates by itself.</p>'+
+        '<div class="mbtns"><button class="btn acc" data-action="modal-ok">THANK YOU!</button></div>',true);
+      modalOk=function(){closeModal();render(true);};
+    });
+  }
+  save();
+}
+/* a little card slides down from the top: lesson done + its reward */
+var lessonPopQ=[],lessonPopOn=false;
+function lessonPop(L){
+  lessonPopQ.push(L);
+  if(!lessonPopOn)lessonPopNext();
+}
+function lessonPopNext(){
+  var L=lessonPopQ.shift();
+  if(!L){lessonPopOn=false;return;}
+  lessonPopOn=true;
+  var el=document.createElement('div');el.className='lessonpop';
+  el.innerHTML='<span class="lpck">✓</span><div style="flex:1;min-width:0"><b>LESSON DONE</b><span>'+esc(L.n)+'</span></div>'+
+    '<span class="lprw">'+lessonRwIcon(L.rw,18)+' '+lessonRwTxt(L.rw)+'</span>';
+  document.body.appendChild(el);
+  setTimeout(function(){sfx('ballclick');},250);
+  setTimeout(function(){el.classList.add('out');},2600);
+  setTimeout(function(){if(el.parentNode)el.parentNode.removeChild(el);lessonPopNext();},3000);
+}
+function lessonsHTML(){
+  var g=state.game;if(!g||!g.lessons||g.lessons.fin)return '';
+  var d=g.lessons.d||{},n=0,next=null,rows='';
+  LESSONS.forEach(function(L){if(d[L.k])n++;else if(!next)next=L;});
+  LESSONS.forEach(function(L,i){
+    var done=!!d[L.k],cur=next===L;
+    rows+='<div class="lsrow'+(done?' done':'')+(cur?' cur':'')+'">'+
+      '<span class="lsnum">'+(done?'✓':(i+1))+'</span>'+
+      '<div style="flex:1;min-width:0"><div class="lsname">'+L.n+'</div>'+(cur?'<div class="lshint">'+L.h+'</div>':'')+'</div>'+
+      '<span class="lsrw">'+lessonRwIcon(L.rw,16)+'<span>'+lessonRwTxt(L.rw)+'</span></span></div>';
+  });
+  return '<div class="panel lessons"><h3><img src="'+profSpr()+'" alt="" style="width:26px;height:26px;image-rendering:pixelated;vertical-align:-8px;margin-right:4px">'+
+    profName()+'’S LESSONS<span class="bestchip">'+n+' / '+LESSONS.length+'</span></h3>'+
+    '<div class="gbar exp" style="margin:2px 0 8px"><div style="width:'+Math.round(n/LESSONS.length*100)+'%;background:#48A860"></div></div>'+
+    rows+'<div class="plv" style="white-space:normal;line-height:1.25;margin-top:6px">Finish all six for a graduation gift: a LUCKY EGG (2× EXP).</div></div>';
+}
+function rookieDone(){
+  var g=state.game;if(!g)return ROOKIE_N;
+  return (state.sessions||[]).filter(function(x){return x.start>=(g.startTs||0);}).length;
+}
+function rookieOn(){
+  if(!state.game||badgeCount()>0)return false;
+  if(state.altGame)return false; // a second campaign means a CHAMPION — no training wheels in Hoenn
+  return rookieDone()<ROOKIE_N;
+}
 function applyWildCounter(wd,lead){
   if(!state.session.phps)state.session.phps={};
   var st=statsFor(lead);
@@ -4386,6 +4926,8 @@ function applyWildCounter(wd,lead){
   var raw=(wd.lv*(wd.tr?1.6:1.15)+3)*eff;
   var def=(st.def+st.spd)/2;
   var dmg=Math.max(1,Math.round(raw*45/(45+def)));
+  var rookie=rookieOn()&&lead.uid!=='bfrent';
+  if(rookie)dmg=Math.max(1,Math.round(dmg*0.6)); // v7.0 ROOKIE SEASON
   var mx=maxHpOf(lead);
   var from=Math.round(Math.max(0,curHpOf(lead))/Math.max(1,mx)*100);
   /* v6.8 perks: SWIFT STEP dodge, IRON GUARD cut, GUARDIAN ANGEL save */
@@ -4401,6 +4943,16 @@ function applyWildCounter(wd,lead){
   var res={dmg:dmg,php:[from,to],msg:wdodge?((wd.tr?DEX[wd.sp].n:'Wild '+DEX[wd.sp].n)+' fought back — but '+DEX[lead.sp].n+' DODGED it!')
     :((wd.tr?DEX[wd.sp].n:'Wild '+DEX[wd.sp].n)+' fought back — '+dmg+' dmg!'+(wsaved?' GUARDIAN ANGEL — '+DEX[lead.sp].n+' hung on at 1 HP!':'')),fainted:false,faintMsg:null,goMsg:null};
   state.session.bmsg+=' '+res.msg;
+  /* v7.0 ROOKIE SEASON: the professor steps in before the LAST POKEMON falls */
+  if(state.session.phps[lead.uid]<=0&&rookie&&!state.session.oakUsed&&
+     !partyMons().some(function(q){return q.uid!==lead.uid&&curHpOf(q)>0;})){
+    state.session.oakUsed=1;
+    partyMons().forEach(function(q){state.session.phps[q.uid]=maxHpOf(q);});
+    res.oak={who:profName(),spr:profSpr(),
+      msg:profName()+': “Not so fast!” A POTION from the lab — '+DEX[lead.sp].n+' is back to full HP!'};
+    state.session.bmsg+=' '+res.oak.msg;
+    return res;
+  }
   if(state.session.phps[lead.uid]<=0){
     res.fainted=true;
     if(lead.uid==='bfrent'){
@@ -4503,7 +5055,7 @@ function resolveBossSet(am,entry,vol,id){
   if(boosted){state.session.xatkArmed=false;state.session.xatkUsed=true;}
   // speed = crit chance, the gen-1 way (capped at 25%); SCOPE LENS stacks on top
   // v6.7: a set at ≥95% of your record always crits — PERFECT FORM (v6.8: FORM MASTER lowers to 90%)
-  var crit=(entry.rel>=pfT())||Math.random()<Math.min(0.25,stA.spe/400)+heldCritBonus(am)+0.04*perkN('keeneye');
+  var crit=pfHit(entry)||Math.random()<Math.min(0.25,stA.spe/400)+heldCritBonus(am)+0.04*perkN('keeneye');
   var dmg=Math.round(vol*eff*(1+Math.max(stA.atk,stA.spa)/250)*(boosted?1.5:1)*(crit?(1.5+0.15*perkN('sharplens')):1)*heldBoostFor(am,mvType)*(1+0.06*perkN('powerbrace'))*(1+0.2*perkN('titanslayer')));
   var ehpFrom=Math.round(bz.memberHp/Math.max(1,bz.memberMax)*100);
   var hpBefore=state.game.boss.hp;
@@ -4511,7 +5063,7 @@ function resolveBossSet(am,entry,vol,id){
   entry.dmg=dmg;entry.bidx=bz.idx;
   var effTxt=eff>=2?" It's super effective!":(eff<=0.3?' It barely affects it…':(eff<1?" It's not very effective…":''));
   var hitSfx=(crit||eff>=2)?'superhit':(eff<=0.3?'weakhit':'hit');
-  var atkMsg=DEX[am.sp].n+' used '+mvName+'!'+(crit?((entry.rel>=pfT())?' PERFECT FORM — critical hit!':' A critical hit!'):'')+(boosted?' X ATTACK boost!':'')+effTxt;
+  var atkMsg=DEX[am.sp].n+' used '+mvName+'!'+(crit?(pfHit(entry)?' PERFECT FORM — critical hit!':' A critical hit!'):'')+(boosted?' X ATTACK boost!':'')+effTxt;
   state.session.bmsg=atkMsg+' '+dmg.toLocaleString()+' dmg.';
   var steps=[];
   if(state.game.boss.hp<=0){
@@ -4523,7 +5075,7 @@ function resolveBossSet(am,entry,vol,id){
     resBump(am.sp,'v'); // v6.7: boss takedowns count toward field research too
     var eshF=expShareHolder(am.uid);
     if(eshF){var eshFK=Math.max(1,Math.round(koF*eshRate()));applyXP(eshF,eshFK);state.session.xpg=(state.session.xpg||0)+eshFK;}
-    steps.push({msg:atkMsg,sfx:hitSfx,movesfx:mvName,lunge:'player',blink:'enemy',ehp:[ehpFrom,0],dmg:['enemy',dmg],fx:mvType});
+    steps.push({msg:atkMsg,sfx:hitSfx,movesfx:mvName,lunge:'player',blink:'enemy',ehp:[ehpFrom,0],dmg:['enemy',dmg,crit?'crit':(eff>=2?'super':(eff<1?'weak':''))],fx:mvType});
     steps.push({msg:'Foe '+bz.mon+' is unable to battle! +'+koF+' EXP!',sfx:'faint',cryId:bz.monId,faint:'enemy',hold:1100});
     // the beaten leader steps back out to concede
     steps.push({msg:bz.n+' was defeated!',sfx:'badge',trainer:bz.tr,hold:1600});
@@ -4547,13 +5099,13 @@ function resolveBossSet(am,entry,vol,id){
     var eshK=expShareHolder(am.uid);
     if(eshK){var eshKK=Math.max(1,Math.round(ko*0.5));applyXP(eshK,eshKK);state.session.xpg=(state.session.xpg||0)+eshKK;}
     state.session.bmsg+=' Foe '+bz.mon+' is unable to battle! +'+ko+' EXP! '+bz.n+' sent out '+after.mon+'!';
-    steps.push({msg:atkMsg,sfx:hitSfx,movesfx:mvName,lunge:'player',blink:'enemy',ehp:[ehpFrom,0],dmg:['enemy',dmg],fx:mvType});
+    steps.push({msg:atkMsg,sfx:hitSfx,movesfx:mvName,lunge:'player',blink:'enemy',ehp:[ehpFrom,0],dmg:['enemy',dmg,crit?'crit':(eff>=2?'super':(eff<1?'weak':''))],fx:mvType});
     steps.push({msg:'Foe '+bz.mon+' is unable to battle! +'+ko+' EXP!',sfx:'faint',cryId:bz.monId,faint:'enemy',hold:1100});
     steps.push({msg:bz.n+' sent out '+after.mon+'!',sfx:'battlestart',cryId:after.monId,refresh:true,slide:'enemy'});
   }else{
     // member survives → your strike lands first, THEN it hits back
     var ehpTo=Math.round(after.memberHp/Math.max(1,after.memberMax)*100);
-    steps.push({msg:atkMsg,sfx:hitSfx,movesfx:mvName,lunge:'player',blink:'enemy',ehp:[ehpFrom,ehpTo],dmg:['enemy',dmg],fx:mvType});
+    steps.push({msg:atkMsg,sfx:hitSfx,movesfx:mvName,lunge:'player',blink:'enemy',ehp:[ehpFrom,ehpTo],dmg:['enemy',dmg,crit?'crit':(eff>=2?'super':(eff<1?'weak':''))],fx:mvType});
     var ct=applyBossCounter(after,am);
     steps.push({msg:ct.msg,sfx:'hit',lunge:'enemy',blink:'player',php:ct.php,dmg:['player',ct.dmg],quake:true});
     if(ct.fainted){
@@ -4847,12 +5399,31 @@ function setBarNow(sel,pct,isHp){
   var el=bq(sel);if(!el)return;
   el.style.transition='none';
   el.style.width=pct+'%';
-  if(isHp)el.style.background=hpColor(pct);
+  if(isHp){el.style.background=hpColor(pct);hpGhost(el,null,pct);}
   void el.offsetWidth;
   el.style.transition='';
 }
+/* v7.0: a pale GHOST bar lingers where the HP was, then drains after the hit —
+   you SEE how much a set took off (fighting-game style) */
+function hpGhost(el,from,to){
+  var gb=el.parentNode;if(!gb)return;
+  var gh=gb.querySelector('.hpghost');
+  if(!gh){gh=document.createElement('i');gh.className='hpghost';gb.insertBefore(gh,el);}
+  var pad=parseFloat(getComputedStyle(gb).paddingLeft)*2||0;
+  function gw(v){return 'calc((100% - '+pad+'px) * '+(Math.max(0,v)/100)+')';} // match the bar's content box
+  gh.style.transition='none';
+  if(from!=null&&!isNaN(from)&&to<from){
+    gh.style.width=gw(from);void gh.offsetWidth;
+    gh.style.transition='width .6s ease-in .5s';gh.style.width=gw(to);
+  }else{gh.style.width=gw(to);}
+}
 function driftBar(sel,to,isHp){
   var el=bq(sel);if(!el)return;
+  if(isHp)hpGhost(el,parseFloat(el.style.width),to);
+  else if(to>(parseFloat(el.style.width)||0)){ // v7.0: EXP shimmers while it fills
+    el.classList.remove('xpglow');void el.offsetWidth;el.classList.add('xpglow');
+    setTimeout(function(){el.classList.remove('xpglow');},900);
+  }
   el.style.width=to+'%';
   if(isHp){
     el.style.background=hpColor(to);
@@ -4869,20 +5440,47 @@ function driftBar(sel,to,isHp){
     }
   }
 }
-function dmgFloat(side,val){
+/* v7.0: damage numbers POP (overshoot, outline, float) — crits gold and bigger with a
+   tag, super-effective hits orange, a dodge reads DODGE instead of -0 */
+function dmgFloat(side,val,kind){
   var sc=bq(side==='player'?'.bt-pscene':'.bt-scene');
   if(!sc)return;
   var f=document.createElement('span');
-  f.className='dmgfloat';
-  if(side==='player'){f.style.color='#3878C8';f.style.left='24%';f.style.top='34%';}
-  else{f.style.right='9%';f.style.top='7%';}
-  f.textContent='-'+Number(val).toLocaleString();
+  f.className='dmgfloat'+(kind?' dk-'+kind:'')+(side==='player'?' dk-pl':'');
+  if(side==='player'){f.style.left='22%';f.style.top='30%';}
+  else{f.style.right='8%';f.style.top='4%';}
+  var tag=kind==='crit'?'CRITICAL':(kind==='super'?'SUPER':(kind==='weak'?'WEAK':''));
+  f.innerHTML=(tag?'<em>'+tag+'</em>':'')+(Number(val)>0?'-'+Number(val).toLocaleString():'DODGE');
   sc.appendChild(f);
-  setTimeout(function(){if(f.parentNode)f.parentNode.removeChild(f);},950);
+  setTimeout(function(){if(f.parentNode)f.parentNode.removeChild(f);},1250);
+}
+/* v7.0: an impact spark on whoever got hit — rays in the move's type color */
+function hitSpark(side,col,big){
+  var spr=bq(side==='player'?'.bt-pspr':'.bt-espr'),sc=bq(side==='player'?'.bt-pscene':'.bt-scene');
+  if(!spr||!sc)return;
+  var w=document.createElement('div');w.className='hitspark'+(big?' big':'');
+  w.style.left=(spr.offsetLeft+spr.offsetWidth*0.5)+'px';
+  w.style.top=(spr.offsetTop+spr.offsetHeight*0.5)+'px';
+  var n=big?10:7,h='<b style="background:'+col+'"></b>';
+  for(var i=0;i<n;i++)h+='<span style="--a:'+Math.round(i*360/n+Math.random()*20)+'deg;background:'+(i%2?col:'#FFF')+'"></span>';
+  w.innerHTML=h;
+  sc.appendChild(w);
+  setTimeout(function(){if(w.parentNode)w.parentNode.removeChild(w);},600);
+}
+function healSparks(){
+  var sc=bq('.bt-pscene');if(!sc)return;
+  var w=document.createElement('div');w.className='hsparks';
+  for(var i=0;i<8;i++){
+    var sp=document.createElement('span');sp.textContent='+';
+    sp.style.left=(8+Math.random()*24)+'%';sp.style.animationDelay=(i*0.07)+'s';
+    w.appendChild(sp);
+  }
+  sc.appendChild(w);
+  setTimeout(function(){if(w.parentNode)w.parentNode.removeChild(w);},1500);
 }
 function sprFx(sel,cls){
   var el=bq(sel);if(!el)return;
-  el.classList.remove('lunge-l','lunge-r','blink','faintdrop','matz','wildin');
+  el.classList.remove('lunge-l','lunge-r','blink','faintdrop','matz','wildin','healfx','critflash','knock-l','knock-r');
   el.style.animationDelay='';
   void el.offsetWidth;
   el.classList.add(cls);
@@ -5035,6 +5633,26 @@ function runBattleStep(st){
       sprFx('.bt-espr','slidein-r');
     }
   }
+  if(st.tlv){
+    /* v7.0: the trainer level-up ribbon */
+    var tArena=bq('.arenabg');
+    if(tArena){
+      var tb=document.createElement('div');tb.className='tlvband';
+      tb.innerHTML='<img src="sprites/trainers/'+playerSpr()+'.png" alt=""><div><b>LEVEL UP!</b><span>TRAINER LV '+st.tlv+'</span></div>';
+      tArena.appendChild(tb);
+      setTimeout(function(){if(tb.parentNode)tb.parentNode.removeChild(tb);},2300);
+    }
+  }
+  if(st.oak){
+    /* v7.0 ROOKIE SEASON: the professor dashes in, the fighter glows back to health */
+    var oArena=bq('.arenabg');
+    if(oArena){
+      var oImg=document.createElement('img');oImg.className='bt-oak';oImg.src=st.oak;oImg.alt='';
+      oArena.appendChild(oImg);
+      setTimeout(function(){if(oImg.parentNode)oImg.parentNode.removeChild(oImg);},2700);
+    }
+    animTimers.push(setTimeout(function(){sprFx('.bt-pspr','healfx');healSparks();},650));
+  }
   if(st.fx)animTimers.push(setTimeout(function(){moveFx(st.fx);},180));
   if(st.quake){
     var qw=bw();
@@ -5042,7 +5660,19 @@ function runBattleStep(st){
   }
   if(st.ehp)animTimers.push(setTimeout(function(){driftBar('.bt-ehp',st.ehp[1],true);},300));
   if(st.php)animTimers.push(setTimeout(function(){driftBar('.bt-php',st.php[1],true);},300));
-  if(st.dmg)animTimers.push(setTimeout(function(){dmgFloat(st.dmg[0],st.dmg[1]);},260));
+  if(st.dmg)animTimers.push(setTimeout(function(){dmgFloat(st.dmg[0],st.dmg[1],st.dmg[2]);},260));
+  if(st.dmg&&st.dmg[1]>0){
+    var isCrit=st.dmg[2]==='crit';
+    animTimers.push(setTimeout(function(){
+      hitSpark(st.dmg[0],st.dmg[0]==='enemy'?(TYPE_COLORS[st.fx]||'#F8F8F8'):'#F86848',isCrit||st.dmg[2]==='super');
+      if(isCrit){
+        /* a crit lands with a white flash and a heavier shake */
+        var ca=bq('.arenabg'),cw=bw();
+        if(ca){ca.classList.remove('critflash');void ca.offsetWidth;ca.classList.add('critflash');}
+        if(cw){cw.classList.remove('shake','bigshake');void cw.offsetWidth;cw.classList.add('bigshake');}
+      }
+    },230));
+  }
 }
 function stepHold(st){
   var base=st.hold||950;
@@ -10097,6 +10727,7 @@ function workoutHTML(){
     var modeCls=battleModeCls();
     h+='<div class="livebar'+modeCls+'"><span class="pulse"></span><span class="elapsed">'+fmtElapsed(Date.now()-state.session.start)+'</span>'+
       '<span class="lb-sets">'+sessionSets()+' sets</span>'+
+      (state.game&&rookieOn()?'<span class="rkchip">ROOKIE '+(rookieDone()+1)+'/'+ROOKIE_N+'</span>':'')+
       '<button class="btn small" data-action="end-workout">End</button></div><div class="lvspace"></div>'+
       '<div class="btwrap'+modeCls+'">'+battlePanelHTML(anim0,null,cam0)+'</div>';
   }
@@ -10157,7 +10788,7 @@ function settingsHTML(){
     '<button class="btn danger" data-action="reset-game">Reset</button></div>'+
   '<div class="srow"><div><div class="lab" style="color:var(--red)">Reset everything</div><div class="sub">Deletes all history</div></div>'+
     '<button class="btn danger" data-action="reset">Reset</button></div>'+
-  '<div class="about">Gym Tracker v6.9.2 “Level Rush” · '+kb+' KB stored locally<br>'+
+  '<div class="about">Gym Tracker v7.0 “First Steps” · '+kb+' KB stored locally<br>'+
   'Your data never leaves your phone. Export a backup once in a while —<br>if you delete the app icon, its data goes with it.</div>';
 }
 
@@ -10326,6 +10957,7 @@ function saveLogEntry(){
   var s=Math.max(1,parseInt($('#in-s').value,10)||0);
   if(!(w>0)){toast('Enter a weight first');$('#in-w').focus();return;}
   var prevBest=bestW(id);
+  baselineSet=!(prevBest>0);
   var entry={id:uid(),ts:Date.now(),w:Math.round(w*100)/100,r:r,s:s};
   if(state.game){
     var am=activeMon();
@@ -10339,11 +10971,14 @@ function saveLogEntry(){
       var vol=rel*powerBase()*entry.r*entry.s;
       var expFrom=expPctOf(am),expLv0=monLevel(am.xp);
       var gain=Math.round(vol/10*(state.session?(state.session.mode==='boss'?1:1.5):1)*(state.session&&state.session.lucky?2:1)*(heldOf(am)==='machobrace'?1.25:1)*(1+0.08*perkN('scholar')));
+      if(state.session)lessonTick('attack');
       if(gain>0){
         entry.xpg=gain;entry.mon=am.uid;
         if(state.session)state.session.xpg=(state.session.xpg||0)+gain;
         applyXP(am,gain);
+        var tlv0=trainerLevel();
         perkAddXp(gain); // v6.9: YOUR bar fills with the same effort-scaled XP
+        if(state.session&&trainerLevel()>tlv0)tlvBanner=trainerLevel(); // v7.0: announced in the battle
         /* v6.9 CANDY MAKER: every 25 logged sets bakes free RARE CANDY */
         if(perkN('candymaker')){
           var pkc=perksOf();
@@ -10400,7 +11035,7 @@ function saveLogEntry(){
         var stT=statsFor(fm);
         var wKm=knownMoves(fm);
         var wMv=wKm[Math.floor(Math.random()*wKm.length)];
-        var wCrit=(entry.rel>=pfT())||Math.random()<Math.min(0.25,stT.spe/400)+heldCritBonus(fm)+0.04*perkN('keeneye');
+        var wCrit=pfHit(entry)||Math.random()<Math.min(0.25,stT.spe/400)+heldCritBonus(fm)+0.04*perkN('keeneye');
         var dmgT=Math.round(vol*(1+Math.max(stT.atk,stT.spa)/250)*(wCrit?(1.5+0.15*perkN('sharplens')):1)*heldBoostFor(fm,moveTypeOf(wMv))*(wd.tr&&wd.tr.mood?wd.tr.mood:1)*(1+0.06*perkN('powerbrace'))*(wd.tr&&wd.tr.brain?(1+0.2*perkN('titanslayer')):1));
         var wPre={sp:wd.sp,lv:wd.lv,hp:Math.max(0,wd.hp),max:wd.max,shiny:wd.shiny,tr:wd.tr};
         var wFrom=Math.round(wPre.hp/wd.max*100);
@@ -10416,8 +11051,8 @@ function saveLogEntry(){
           }
         }
         var wTo=Math.round(Math.max(0,wd.hp)/wd.max*100);
-        var wAtk=DEX[fm.sp].n+' used '+wMv+'!'+(wCrit?((entry.rel>=pfT())?' PERFECT FORM — critical hit!':' A critical hit!'):'');
-        var wSteps=[{msg:wAtk,sfx:wCrit?'superhit':'hit',movesfx:wMv,lunge:'player',blink:'enemy',ehp:[wFrom,wTo],dmg:['enemy',dmgT],fx:moveTypeOf(wMv)}];
+        var wAtk=DEX[fm.sp].n+' used '+wMv+'!'+(wCrit?(pfHit(entry)?' PERFECT FORM — critical hit!':' A critical hit!'):'')+(baselineSet?' New lift — baseline set!':'');
+        var wSteps=[{msg:wAtk,sfx:wCrit?'superhit':'hit',movesfx:wMv,lunge:'player',blink:'enemy',ehp:[wFrom,wTo],dmg:['enemy',dmgT,wCrit?'crit':''],fx:moveTypeOf(wMv)}];
         if(judgeLoss){
           var arp=bfOf();
           if(arp.ar.streak)toast('The ARENA streak of '+arp.ar.streak+' ends…');
@@ -10432,6 +11067,7 @@ function saveLogEntry(){
         else if(wd.hp<=0){
           // classic EXP: base yield × level / 7, ×1.5 for trainer mons, ×2 Lucky Egg,
           // split among every party member that took part in the fight
+          lessonTick('ko');
           var wParts=Object.keys(wd.parts||{}).filter(function(u){return !!findMon(u);});
           if(!wParts.length)wParts=[am.uid];
           resBump(wd.sp,'f');resBump(fm.sp,'v'); // v6.7: field research tallies
@@ -10512,6 +11148,7 @@ function saveLogEntry(){
           state.session.bmsg=wAtk+' '+dmgT.toLocaleString()+' dmg.'+(wd.tr&&wd.tr.judge?' ('+(3-(wd.jd||0))+' set'+((3-(wd.jd||0))===1?'':'s')+' on the clock!)':'');
           var wct=applyWildCounter(wd,fm);
           wSteps.push({msg:wct.msg,sfx:'hit',lunge:'enemy',blink:'player',php:wct.php,dmg:['player',wct.dmg],quake:true});
+          if(wct.oak)wSteps.push({msg:wct.oak.msg,sfx:'heal',oak:wct.oak.spr,php:[0,100],hold:2600});
           if(wct.fainted){
             wSteps.push({msg:wct.faintMsg,sfx:'faint',cry:fm.sp,faint:'player',hold:1100});
             if(wct.goMsg)wSteps.push({msg:wct.goMsg,sfx:'battlestart',cry:(findMon(state.session.lead)||{}).sp,refresh:true,slide:'player'});
@@ -10545,6 +11182,12 @@ function saveLogEntry(){
         else toast(lvfx.n+' grew to :L'+lvfx.to+'!');
       }
       pendingLvCapture=null;
+      /* v7.0: YOUR level-up sweeps across the arena too */
+      if(tlvBanner&&pendingSteps){
+        pendingSteps.list.push({msg:playerName()+' reached TRAINER LV '+tlvBanner+'! A card awaits after this workout.',sfx:'badge',tlv:tlvBanner,hold:2300});
+        tlvShown=tlvBanner;
+      }
+      tlvBanner=0;
       if(state.game.egg){
         state.game.egg.left-=Math.round(entry.s*(1+0.25*perkN('warmnest')));
         if(state.game.egg.left<=0){
@@ -10765,7 +11408,7 @@ function applyImport(txt){
   if(dgame&&Array.isArray(dgame.mons)){
     gm={startTs:+dgame.startTs||Date.now(),
       starter:hoR?(HOENN_STARTERS.indexOf(dgame.starter)>=0?dgame.starter:'treecko')
-                 :(dgame.starter==='squirtle'?'squirtle':'charmander'),
+                 :(['bulbasaur','squirtle'].indexOf(dgame.starter)>=0?dgame.starter:'charmander'),
       mons:dgame.mons.filter(function(m){return m&&DEX[m.sp];}).map(function(m){
         var nm={uid:m.uid||uid(),sp:m.sp,xp:Math.max(0,Math.round(+m.xp)||0),shiny:!!m.shiny,ts:+m.ts||Date.now()};
         if(m.vits&&typeof m.vits==='object'){
@@ -11014,6 +11657,13 @@ function applyImport(txt){
         if(ofr.length)gm.perks.offer=ofr;
       }
     }
+    /* v7.0 FIRST LESSONS: only known keys survive; absent stays absent (veterans) */
+    if(dgame.lessons&&typeof dgame.lessons==='object'){
+      gm.lessons={d:{}};
+      if(dgame.lessons.fin)gm.lessons.fin=1;
+      var ld=dgame.lessons.d||{};
+      LESSONS.forEach(function(L){if(ld[L.k])gm.lessons.d[L.k]=1;});
+    }
     gm.bp=Math.max(0,Math.round(+dgame.bp)||0);
     gm.bestStreak=Math.max(0,parseInt(dgame.bestStreak,10)||0);
     gm.visit=(isFinite(dgame.visit)&&+dgame.visit>=0&&+dgame.visit<R_TOWNS.length)?+dgame.visit:null;
@@ -11172,6 +11822,8 @@ document.addEventListener('click',function(e){
   else if(a==='modal-ok'){if(modalOk)modalOk();}
   else if(a==='unit'){state.unit=b.dataset.u==='lb'?'lb':'kg';save();render(true);}
   else if(a==='theme'){state.theme=b.dataset.th==='day'?'day':'night';save();applyTheme();render(true);}
+  else if(a==='tired-center'){closeModal();pendingMb=null;pendingPoi=null;tab='center';render();}
+  else if(a==='tired-go'){closeModal();tiredOk=true;showChooserThenStart(pendingMode);}
   else if(a==='start-workout'){if(state.game)showChooserThenStart('train');else startWorkout('train');}
   else if(a==='end-workout'){endWorkout();}
   else if(a==='team-view'){teamView=(b.dataset.v==='dex'||b.dataset.v==='box')?b.dataset.v:'party';render(true);}
@@ -11182,14 +11834,7 @@ document.addEventListener('click',function(e){
   else if(a==='emblem-info'){showEmblemInfo(b.dataset.k);}
   /* ===== v6.8 trainer cards ===== */
   else if(a==='perk-open'){openPerkChooser();}
-  else if(a==='perk-pick'){
-    if(document.querySelector('#perkfx .pcard.pwin'))return;
-    perkSel=b.dataset.k;
-    [].slice.call(document.querySelectorAll('#perkfx .pcard')).forEach(function(c){c.classList.toggle('sel',c.dataset.k===perkSel);});
-    var pcf=document.querySelector('#perkfx .pkconfirm');
-    var ppd=perkDef(perkSel);
-    if(pcf&&ppd){pcf.disabled=false;pcf.style.opacity='1';pcf.textContent='CHOOSE '+ppd.n;}
-  }
+  else if(a==='perk-pick'){perkInspect(b.dataset.k);}
   else if(a==='perk-confirm'){confirmPerk();}
   else if(a==='perk-close'){closePerkChooser();}
   else if(a==='set-fx'){
@@ -12020,32 +12665,46 @@ document.addEventListener('click',function(e){
       setTimeout(showStarterModal,350);
     });
   }
+  else if(a==='st-ball'){starterPeek(b.dataset.sp);}
+  else if(a==='st-back'){starterBack();}
   else if(a==='pick-starter'){
+    if(starterBusy)return;
     var ssp;
     if(inHoenn())ssp=HOENN_STARTERS.indexOf(b.dataset.sp)>=0?b.dataset.sp:'treecko';
-    else ssp=b.dataset.sp==='squirtle'?'squirtle':'charmander';
+    else ssp=['bulbasaur','charmander','squirtle'].indexOf(b.dataset.sp)>=0?b.dataset.sp:'charmander';
     // Hoenn is a locked fresh start — no retro XP, ever
     var retro=(inHoenn()||state.gamePlayed)?0:Math.min(Math.round(totalVolumeAll()/10),xpFloor(15));
     // v6.9.2: a new game already plays by today's rules, so the v6.7/v6.8 “what's new”
     // notes (EFFORT SCALING, TRAINER CARDS) are pre-flagged — they're for older saves
     state.game={startTs:Date.now(),starter:ssp,mons:[],active:null,enc:{},flags:{v67note:1,v68note:1},seen:{},dex:{},round:1,
       boss:{idx:0,hp:BOSSES[0].hp},player:{name:pendingName||(inHoenn()?'BRENDAN':'RED'),spr:pendingGender||(inHoenn()?'brendan':'red')},
-      money:3000,bag:{},hof:[],partyIds:null,egg:null,medals:{},hurt:{},raid:null,rest:{},road:null,roadLog:{},poi:{},bp:0,bestStreak:0,daily:null,npcq:null,visit:0,beenTo:{0:1},region:state.region};
+      money:3000,bag:{pokeball:5,potion:2},hof:[],partyIds:null,egg:null,medals:{},hurt:{},raid:null,rest:{},road:null,roadLog:{},poi:{},bp:0,bestStreak:0,daily:null,npcq:null,visit:0,beenTo:{0:1},region:state.region,lessons:{d:{}}};
     state.gamePlayed=1;
     var sm=addMon(ssp,false);
-    sm.xp=retro;
+    /* v7.0: partners start at :L5 like the real games (a :L1 starter with 11 HP fainted
+       in two sets and blacked the first workout out) — past training can still lift it higher */
+    sm.xp=Math.max(retro,xpFloor(5));
     state.game.active=sm.uid;
     save();
     closeModal();
     var slv=monLevel(sm.xp);
-    queueModal(function(){
-      showModal('<h3>'+esc(DEX[ssp].n)+' joined you!</h3><p>'+
-        (retro>0?('Your past training counts: +'+retro+' XP — it’s already LV '+slv+'! '):'')+
-        'Every set you log earns it XP. You pick who trains at each workout start.</p>'+
-        '<div style="text-align:center;padding:8px 0"><img class="bigspr" src="'+sprPath(ssp,false)+'" alt=""></div>'+
+    /* v7.0: the chosen ball flares, the lab fades, then the partner card + starter kit */
+    var stEl=document.getElementById('starterfx');
+    if(stEl){var stArt=stEl.querySelector('.start');if(stArt)stArt.classList.add('chosen');}
+    sfx('catch');
+    setTimeout(closeStarterFx,650);
+    setTimeout(function(){queueModal(function(){
+      sfx('levelup');
+      showModal('<div class="vbanner" style="font-size:12px;line-height:1.6">A NEW PARTNER!</div>'+
+        '<div style="text-align:center;padding:2px 0 0"><img class="joinart" src="sprites/art/'+DEX[ssp].id+'.png" onerror="this.onerror=null;this.src=\''+sprPath(ssp,false)+'\';this.style.imageRendering=\'pixelated\'" alt=""></div>'+
+        '<h3 style="text-align:center">'+esc(DEX[ssp].n)+' :L'+slv+' joined you!</h3><p>'+
+        (retro>xpFloor(5)?('Your past training counts: +'+retro+' XP — it’s already LV '+slv+'! '):'')+
+        'Every set you log is an attack — the closer to your best, the harder it hits.</p>'+
+        '<div class="kitrow"><span>'+itemImg('pokeball',22)+' ×5 POKE BALL</span><span>'+itemImg('potion',22)+' ×2 POTION</span></div>'+
+        '<p class="plv" style="text-align:center;white-space:normal;line-height:1.3;margin-top:6px">'+profName()+': “Take these for the road — weaken a wild POKEMON, then throw a ball!”</p>'+
         '<div class="mbtns"><button class="btn acc" data-action="modal-ok">LET’S GO</button></div>',true);
       modalOk=function(){closeModal();tab='summary';checkGameEvents();render();}; // events first: they open the road to BROCK
-    });
+    });},700);
   }
   else if(a==='evo-choice'){
     var em=findMon(b.dataset.m);

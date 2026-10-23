@@ -1,4 +1,4 @@
-Gym Tracker — Handover Document (current as of app v6.9 / sw v56 / schema v20, 2026-07-20)
+Gym Tracker — Handover Document (current as of app v7.0 / sw v59 / schema v20, 2026-10-23)
 
 ============================================================
 1. WHAT THIS IS
@@ -22,7 +22,7 @@ installed home-screen app isolated storage — a separate app couldn't read the 
 Live URL:  https://mateuszkrw-coder.github.io/gym-tracker-pokemon-game/
 Repo:      https://github.com/mateuszkrw-coder/gym-tracker-pokemon-game  (GitHub Pages from main branch root;
            renamed from gym-tracker, whose old Pages URL now 404s)
-Current:   app v6.9 “Level Rush”, service-worker cache v56, data schema v20.
+Current:   app v7.0 “First Steps”, service-worker cache v59, data schema v20.
 
 ============================================================
 2. THE TWO-LAPTOP WORKFLOW (read this FIRST on any machine)
@@ -477,6 +477,59 @@ Johto/Gen-2 content pack (a 3rd campaign — the region model supports it cleanl
 ============================================================
 13. IMMEDIATE STATE
 ============================================================
+v7.0 “First Steps” (2026-10-23) — the first minutes and the first workouts, rebuilt after
+playing a fresh game: the :L1 starter knew no moves (STRUGGLE), had 11 HP, blacked out on
+set 3 of workout ONE, went home at 0 HP so workout TWO started blacked out, the bag had no
+POKE BALLS, every first-ever log was a fake PERFECT FORM crit, and the first card hand
+offered SAFARI PASS / PHARMACIST / TIP JAR (plus Hoenn-only cards could land in Kanto).
+• STARTER: partners start at :L5 (max with retro XP); Kanto starters learn SCRATCH /
+  TACKLE at :L1 (knownMoves' empty fallback is TACKLE now, never STRUGGLE). New games
+  get bag {pokeball:5, potion:2}. BULBASAUR is the third Kanto starter (rivalLine:
+  bulbasaur → CHARMANDER line, sanitizer accepts it; champion BLUE keeps the old rule).
+• STARTER THEATRE (#starterfx, replaces showStarterModal's list): the official lab
+  interior (map/poi/lab.png) behind the professor's table, three bobbing POKE BALLS;
+  tap = wobble → white burst → Sugimori art materializes + cry + info card (types,
+  one-line flavor, STARTER_INFO); CHOOSE goes through the old 'pick-starter' action
+  (starterBusy guard). The "joined" modal shows the art + the starter kit.
+• ROOKIE SEASON (rookieOn(): fewer than ROOKIE_N=3 finished workouts since startTs,
+  no badge, and no altGame — derived live, nothing stored): wild/route counters ×0.6;
+  once per workout (session.oakUsed) the professor saves your LAST standing POKEMON
+  instead of a blackout (res.oak in applyWildCounter → step {oak} = sprite cameo
+  .bt-oak + .healfx + healSparks, HP bar refills); the team walks home fully healed;
+  a ROOKIE n/3 chip on the livebar; a professor modal when the season ends.
+• EXHAUSTED TEAM: starting a workout with every battleParty mon fainted now asks first
+  (POKEMON CENTER / TRAIN ANYWAY — tiredOk flag) instead of silently starting blacked out.
+• BASELINE SETS: pfHit(entry) replaces `entry.rel>=pfT()` at all 4 sites; the very first
+  log of an exercise (baselineSet) can still crit by chance but never forces PERFECT FORM.
+• GIFT MONS (grantMon) join at max(5, lead level − 2) instead of :L1.
+• TRAINER CARDS: perkFits(p) gates the pool by content you can reach (featOn mine/lab/
+  mart, poiReach corner/safari, EXP SHARE owned, Hoenn-only hall/lotto, road for
+  BOUNTY); falls back to the full deck if <3 fit. The first hand is curated
+  (PERK_FIRST_HAND: POWER BRACE / BALL MAESTRO / VITAL SPIRIT — one per rarity).
+  Theatre rebuilt: cards DEALT face-down (pokéball backs), flipped one by one with
+  rarity sfx + perkBurst (epics shake the room, rays tint by best rarity), detail
+  panel holds the full text (perkInspect), tap the raised card again to keep it.
+  Already-saved offers are NOT rerolled (state-first rule kept).
+• CARD TIMING BUG: endWorkout queued openPerkChooser BEFORE fxHold was set, so the
+  chooser opened instantly UNDER the finish theatre + recap. Now: recap → checkGame
+  Events modals → rookie-end note → card chooser, all through the queue.
+• TRAINER LV-UP mid-workout = a battle step {tlv} (purple ribbon .tlvband across the
+  arena); the old toast only fires when no banner showed (tlvShown).
+• RECAP: numbers count up (recapCountUp, data-count), a TRAINER LV bar fills from the
+  session's start XP (session.tx0, tLvAt()), LEVEL UP / card-waiting line, rookie row.
+• BATTLE JUICE: dmgFloat(side,val,kind) pops with overshoot + outline (crit gold with a
+  CRITICAL tag, SUPER orange, WEAK grey, DODGE for 0); hitSpark() rays in the move's
+  type color on whoever got hit; crits add .critflash on the arena + .bigshake; HP bars
+  get a pale GHOST trail (hpGhost, .hpghost under the bar, drains .5s later); EXP bar
+  glows while filling (.xpglow). Damage steps now carry dmg[2] = crit|super|weak.
+• FIRST LESSONS (game.lessons {d:{k:1}, fin}): only games created on v7.0+ (veterans
+  never see it). Six steps — start / attack / ko / catch / finish / card — via
+  lessonTick(k) hooks (startWorkout, saveLogEntry, wild faint, runThrow catch,
+  endWorkout, confirmPerk); each pays out instantly (₽300, 2 balls, potion, 3 great
+  balls, ₽500, rare candy) with a slide-down .lessonpop; all six → LUCKY EGG + modal.
+  Panel on TRAINER under the hero card, disappears when finished. Sanitizer keeps it.
+• sw v59. No new assets (lab art, item icons, Sugimori art all existed).
+
 v6.9.2 (2026-09-25) — the first minutes of a NEW game, asked for after trying play.html:
 • load() with no save returns seedState() + theme:'day' — new players start LIGHT.
   Existing saves keep their theme; RESET EVERYTHING (seedState) is unchanged.
