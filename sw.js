@@ -1,6 +1,6 @@
 /* Gym Tracker service worker.
    Bump CACHE when you change any file, so installed phones pick up the update. */
-const CACHE = 'gym-tracker-v59';
+const CACHE = 'gym-tracker-v60';
 const TOWN_MAPS = ['viridian','pewter','cerulean','vermilion','celadon','fuchsia','saffron','cinnabar','indigo'];
 const HOENN_TOWN_MAPS = ['littleroot','rustboro','dewford','mauville','lavaridge','petalburg','fortree','mossdeep','sootopolis','evergrande'];
 const ARENAS = ['gym','grass','water','cave','pond','ice','sand','poison','teal','psychic'];
@@ -99,9 +99,13 @@ self.addEventListener('fetch', (e) => {
   if (req.mode === 'navigate') {
     const path = new URL(req.url).pathname;
     if (!path.endsWith('/') && !path.endsWith('/index.html')) return;
+    // Only a real 200 replaces the cached app. A 404/5xx (a Pages hiccup mid-deploy, a
+    // captive portal) used to be cached AS the app shell, stranding the phone on GitHub's
+    // "There isn't a GitHub Pages site here" page; now the saved app opens instead.
     e.respondWith(
       fetch(req)
         .then((res) => {
+          if (!res.ok) return caches.match('./index.html').then((hit) => hit || res);
           const copy = res.clone();
           caches.open(CACHE).then((c) => c.put('./index.html', copy));
           return res;

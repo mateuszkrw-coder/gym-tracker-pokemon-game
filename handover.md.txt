@@ -1,4 +1,4 @@
-Gym Tracker — Handover Document (current as of app v7.0 / sw v59 / schema v20, 2026-10-23)
+Gym Tracker — Handover Document (current as of app v7.0.1 / sw v60 / schema v20, 2026-10-23)
 
 ============================================================
 1. WHAT THIS IS
@@ -22,7 +22,7 @@ installed home-screen app isolated storage — a separate app couldn't read the 
 Live URL:  https://mateuszkrw-coder.github.io/gym-tracker-pokemon-game/
 Repo:      https://github.com/mateuszkrw-coder/gym-tracker-pokemon-game  (GitHub Pages from main branch root;
            renamed from gym-tracker, whose old Pages URL now 404s)
-Current:   app v7.0 “First Steps”, service-worker cache v59, data schema v20.
+Current:   app v7.0.1 “First Steps”, service-worker cache v60, data schema v20.
 
 ============================================================
 2. THE TWO-LAPTOP WORKFLOW (read this FIRST on any machine)
@@ -477,6 +477,14 @@ Johto/Gen-2 content pack (a 3rd campaign — the region model supports it cleanl
 ============================================================
 13. IMMEDIATE STATE
 ============================================================
+v7.0.1 (2026-10-23) — sw.js hardening after Mateusz's phone showed GitHub's "There isn't a
+GitHub Pages site here" 404 right after the v7.0 deploy (the deploy itself reported success).
+The navigate handler cached ANY network response as ./index.html — so one 404 (a Pages
+hiccup mid-deploy, or an old/renamed URL) replaced the offline app shell. Now only res.ok
+responses are cached; a non-OK response serves the cached app instead. Tested with a local
+server flipped to 404: the installed app keeps opening, and updates once the server is back.
+sw v60.
+
 v7.0 “First Steps” (2026-10-23) — the first minutes and the first workouts, rebuilt after
 playing a fresh game: the :L1 starter knew no moves (STRUGGLE), had 11 HP, blacked out on
 set 3 of workout ONE, went home at 0 HP so workout TWO started blacked out, the bag had no
