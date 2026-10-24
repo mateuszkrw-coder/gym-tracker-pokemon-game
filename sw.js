@@ -1,6 +1,6 @@
 /* Gym Tracker service worker.
    Bump CACHE when you change any file, so installed phones pick up the update. */
-const CACHE = 'gym-tracker-v64';
+const CACHE = 'gym-tracker-v65';
 const TOWN_MAPS = ['viridian','pewter','cerulean','vermilion','celadon','fuchsia','saffron','cinnabar','indigo'];
 const HOENN_TOWN_MAPS = ['littleroot','rustboro','dewford','mauville','lavaridge','petalburg','fortree','mossdeep','sootopolis','evergrande'];
 const ARENAS = ['gym','grass','water','cave','pond','ice','sand','poison','teal','psychic'];
@@ -71,7 +71,7 @@ const ASSETS = [
   .concat(ROAD_MAPS.map((r) => './map/road/' + r + '.png'))
   .concat(POI_MAPS.map((p) => './map/poi/' + p + '.png'))
   .concat(['./map/center.png', './map/mart.png', './map/kanto.png', './map/hoenn.png']);
-/* Sugimori artwork (sprites/art/*.png) is NOT precached — the fetch handler caches each on first view. */
+/* Sugimori artwork (sprites/art/*.png, and the official shiny art in sprites/art/shiny/) is NOT precached — the fetch handler caches each on first view. */
 
 self.addEventListener('install', (e) => {
   // Add each asset individually so one missing file can't abort the whole install.

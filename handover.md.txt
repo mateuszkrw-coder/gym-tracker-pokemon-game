@@ -1,4 +1,4 @@
-Gym Tracker — Handover Document (current as of app v7.4 / sw v64 / schema v20, 2026-10-24)
+Gym Tracker — Handover Document (current as of app v7.5 / sw v65 / schema v20, 2026-10-24)
 
 ============================================================
 1. WHAT THIS IS
@@ -22,7 +22,7 @@ installed home-screen app isolated storage — a separate app couldn't read the 
 Live URL:  https://mateuszkrw-coder.github.io/gym-tracker-pokemon-game/
 Repo:      https://github.com/mateuszkrw-coder/gym-tracker-pokemon-game  (GitHub Pages from main branch root;
            renamed from gym-tracker, whose old Pages URL now 404s)
-Current:   app v7.4 “Style”, service-worker cache v64, data schema v20.
+Current:   app v7.5 “Journey”, service-worker cache v65, data schema v20.
 
 ============================================================
 2. THE TWO-LAPTOP WORKFLOW (read this FIRST on any machine)
@@ -477,6 +477,53 @@ Johto/Gen-2 content pack (a 3rd campaign — the region model supports it cleanl
 ============================================================
 13. IMMEDIATE STATE
 ============================================================
+v7.5 “Journey” (2026-10-24) — Mateusz: official illustrations of your main POKEMON on the
+TRAINER page, a better QUEST page (structure from popular games), better animations when a
+fight starts / a workout starts, the SAME header size on MAP / TEAM / QUEST / OPTION, and a
+better animation when travelling between cities.
+• OFFICIAL ART: sprites/art/shiny/{id}.png — the official shiny artwork for all 306 species
+  (PokeAPI official-artwork/shiny, resized to the 300px of sprites/art). artSrc(sp,shiny) +
+  artFallback(sp,shiny) (pixel sprite only if a file is missing) now drive the lobby stage,
+  results screen, GOTCHA, EVOLUTION, finish/PR flashes — shiny partners show real art
+  (with .lbart.shinyglow) instead of the pixel sprite. Not precached (cached on first view).
+• HEADERS: pageHero always renders ONE band (.phero.band / .phero.scene → .phhead) with a
+  FIXED height (safe-area + 112px): back button inline, 46px icon, one-line title and
+  subtitle (ellipsis), one non-wrapping chip row (scrolls sideways if it ever overflows).
+  o.scene pages keep their interior/map BELOW the band; o.img blurs behind it. Every page
+  measures the same (checked 13 pages: 112px).
+• QUEST BOARD (questsHTML → qRouteHTML / qDailyHTML / qRequestsHTML): Pokémon GO-style
+  tabs ROUTE / DAILY / REQUESTS (questTab, auto-picks the tab with something to collect,
+  red count badges from qTabCounts ← claimableList). ROUTE = a CHAPTER banner (area map,
+  progress ring) + a battle-pass style JOURNEY PATH (rail + numbered dots): side quests as
+  Brawl Stars-style cards (short task title qTaskTitle, bar, ₽ chip or the gold claim) →
+  roadblock trainers (FIGHT) → the leader card (locked “n LEFT” / CHALLENGE → bld boss).
+  Old towns show the cleared chapter (qRouteHistHTML) + ferry back. DAILY = streak card
+  (flame, best, “NEW QUESTS IN h m” to midnight, 3 pips) + daily cards. REQUESTS = the
+  collectors (silhouette rewards). Cards deal in on arrival (.qintro). The old roadBar /
+  dailyPanel / collectors / historicalRoad builders are gone; claim actions unchanged.
+• ENCOUNTERS (encounterFx(kind,show,vs), ENC_T): startWorkout no longer flashes then pops —
+  WILD: two white flashes + the FRLG shutter (10 bars slam shut from alternate sides, the
+  battle renders while covered, bars sweep off); TRAINER/BOSS: flashes + a giant POKE BALL
+  closes (button pops and glows), the new VS splash plays on it, banners fly off, the
+  ball splits open on the fight. Entrance delays (pendingEntrance dly) are derived from
+  ENC_T; cries/shiny burst wait for the reveal. Also used by mid-workout roadblock fights
+  and POI fights. A fresh wild after a KO gets an arena double flash (arenaFlash).
+  VS (playVsFx(cls,name,{tag,c,boss})): spinning speed rays, striped banners (opponent in
+  its colour — a gym leader in its TYPE colour, the rival red), titles (GYM LEADER / ELITE
+  FOUR / CHAMPION / class name; you: TRAINER LV n), a white crack, VS slams with a shake +
+  'superhit'. START WORKOUT's ball spins up on tap (.lbgo.launch). The old emoji toasts
+  (“Training battle started! 🔥”) are gone.
+• TRAVEL (playTravelFx(from,to,firstTime,done,fare)): a camera flight over the official
+  region map — zoomed on the town you leave, pull back (Web Animations), the ferry rides a
+  quadratic ARC (trail draws via pathLength dashoffset, clouds slide under the camera),
+  dive into the destination, its town map fades up and the FRLG location sign drops in
+  (WELCOME TO… on a first visit, “FERRY · −₽fare”). Tap to skip. The destination page
+  renders under the overlay before it fades. The arrival toast is gone (the sign says it).
+• Tested: header heights on 13 pages, quest tabs (route / old-town / daily / requests,
+  claims with coin FX), wild + trainer + gym-leader intros (frame strips), travel day +
+  night + skip, new game W1, veteran, results, buildings, gotcha, evolution, wardrobe —
+  zero console errors. sw v65.
+
 v7.4 “Style” (2026-10-24) — Mateusz: “add a way to customize your character, how it looks
 with outfits etc, from pants to shirts to boots to caps, if its not possible then tell me”.
 What is and isn't possible (told to Mateusz): garment SHAPES can't change — a beanie

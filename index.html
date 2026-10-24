@@ -1090,6 +1090,7 @@ html.theme-night .lbscene::after{background:radial-gradient(ellipse 62% 46% at 5
 .lbintro .lbart{animation:lbartin .7s cubic-bezier(.2,1.2,.4,1),lbfloat 3s ease-in-out .7s infinite}
 @keyframes lbfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
 @keyframes lbartin{0%{transform:translateY(40px) scale(.3);filter:brightness(6) saturate(0);opacity:0}60%{filter:brightness(2.5) saturate(0);opacity:1}100%{transform:none}}
+.lbart.shinyglow{filter:drop-shadow(0 0 10px rgba(255,214,70,.9)) drop-shadow(0 8px 6px rgba(0,0,0,.35))}
 .lbplate{left:50%;bottom:10px;transform:translateX(-50%);width:min(240px,62vw);padding:5px 9px 6px;cursor:pointer;
   background:rgba(255,255,255,.94);color:#303030;border:2px solid #2C3440;border-radius:8px;box-shadow:0 3px 0 rgba(0,0,0,.25);
   display:flex;flex-direction:column;gap:3px;text-align:left;font-family:inherit}
@@ -1228,7 +1229,6 @@ html.theme-night .phero{filter:brightness(.82) saturate(.85)}
   display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.94);border:2px solid #2C3440;
   box-shadow:0 3px 0 rgba(0,0,0,.35);font-family:'Press Start 2P';font-size:14px;color:#2C3440;z-index:2}
 .phback:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(0,0,0,.35)}
-.phmain{display:flex;align-items:center;gap:12px;margin-top:44px}
 .phicon{width:54px;height:54px;border-radius:15px;flex:none;display:flex;align-items:center;justify-content:center;
   background:linear-gradient(180deg,#FFFFFF,#E4EAF2);border:2px solid #2C3440;box-shadow:0 4px 0 rgba(0,0,0,.35)}
 .phtx{min-width:0}
@@ -1266,15 +1266,18 @@ html.theme-night .panel .prow{border-color:rgba(255,255,255,.08);background:var(
 .card{border-radius:14px;box-shadow:0 3px 0 rgba(0,0,0,.07)}
 .gobtn,.iconbtn{border-radius:10px}
 /* page hero — SCENE variant: a header band over the full-bleed official interior/map */
-.phero.scene{display:block;min-height:0;padding:0}
-.phhead{position:relative;z-index:1;display:flex;flex-wrap:wrap;align-items:center;gap:10px 11px;
-  padding:calc(env(safe-area-inset-top) + 12px) 12px 12px}
-.phero.scene .phback{position:static;flex:none}
-.phero.scene .phicon{width:46px;height:46px;border-radius:13px}
-.phero.scene .phtx{flex:1}
-.phero.scene .phtx h1{font-size:14px}
-.phero.scene .phsub{font-size:16px}
-.phero.scene .phchips{width:100%}
+.phero.scene,.phero.band{display:block;min-height:0;padding:0}
+/* v7.5: a FIXED-height band (one line of title, one of subtitle, one row of chips) */
+.phhead{position:relative;z-index:1;display:flex;flex-wrap:wrap;align-items:center;align-content:center;gap:10px 11px;
+  box-sizing:border-box;height:calc(env(safe-area-inset-top) + 112px);padding:calc(env(safe-area-inset-top) + 10px) 12px 10px}
+.phhead .phback{position:static;flex:none}
+.phhead .phicon{width:46px;height:46px;border-radius:13px}
+.phhead .phtx{flex:1}
+.phhead .phtx h1{font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.phhead .phsub{font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.phhead .phchips{width:100%;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;padding-bottom:3px;margin-bottom:-3px;scrollbar-width:none}
+.phhead .phchips::-webkit-scrollbar{display:none}
+.phhead .phchip{flex:none}
 .phscene{position:relative;z-index:1;line-height:0;border-top:3px solid rgba(0,0,0,.3);overflow:hidden}
 html.theme-night .phero.scene{filter:none}
 html.theme-night .phero.scene .phhead{filter:brightness(.82) saturate(.85)}
@@ -1624,6 +1627,232 @@ html.theme-night .wdcard.lock img{filter:brightness(0) invert(1);opacity:.16}
 .tcme{position:relative;flex:none;width:60px;height:60px;padding:0;border:0;background:none;cursor:pointer}
 .tcme img{width:56px;height:56px;image-rendering:pixelated}
 .tcme svg{position:absolute;right:-4px;bottom:-2px;box-sizing:content-box;padding:3px;border-radius:50%;background:#FFF;border:2px solid #2C3440}
+/* ---------- v7.5 QUEST BOARD ---------- */
+.qtabs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:12px 12px 0;padding:5px;border-radius:16px;
+  background:var(--cream);border:3px solid var(--bord);box-shadow:0 4px 0 rgba(0,0,0,.07)}
+.qtabs.two{grid-template-columns:repeat(2,1fr)}
+.qtab{position:relative;display:flex;align-items:center;justify-content:center;gap:6px;height:40px;padding:0 4px;border-radius:11px;border:0;cursor:pointer;
+  background:transparent;color:var(--mut);font-family:'Press Start 2P';font-size:8px;transition:transform .1s}
+.qtab svg{opacity:.5;flex:none}
+.qtab:active{transform:scale(.96)}
+.qtab.on{background:linear-gradient(180deg,#F8C850,#E0A020);color:#4A2E00;box-shadow:0 3px 0 #9A6008}
+.qtab.on svg{opacity:1}
+.qbadge{position:absolute;top:-7px;right:-3px;min-width:19px;height:19px;padding:0 4px;border-radius:10px;background:#E83828;border:2px solid #FFF;
+  color:#FFF;font-style:normal;font-family:'Press Start 2P';font-size:7px;line-height:15px;text-align:center;animation:lbdotk 1.2s ease-in-out infinite}
+.qchap{position:relative;display:block;height:132px;margin:12px 12px 0;border-radius:16px;overflow:hidden;border:3px solid var(--qc);box-shadow:0 4px 0 rgba(0,0,0,.1)}
+.qchapimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;image-rendering:pixelated}
+html.theme-night .qchapimg{filter:brightness(.7) saturate(.8)}
+.qchapshade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,14,22,.8) 0%,rgba(10,14,22,.4) 58%,rgba(10,14,22,.08) 100%)}
+.qchaptx{position:absolute;left:14px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:7px;color:#FFF;max-width:60%}
+.qchaptx .qk{color:#FFE7A0}
+.qchaptx b{font-family:'Press Start 2P';font-size:13px;font-weight:400;line-height:1.35;text-shadow:2px 2px 0 rgba(0,0,0,.5)}
+.qchaptx>span:last-child{font-size:17px;line-height:1;color:rgba(255,255,255,.92)}
+.qring{position:absolute;right:14px;top:50%;width:76px;height:76px;margin-top:-38px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+  background:radial-gradient(circle,rgba(10,14,22,.85) 0 57%,transparent 58%),conic-gradient(#F8C850 calc(var(--p) * 1%),rgba(255,255,255,.28) 0);color:#FFF;
+  box-shadow:0 3px 0 rgba(0,0,0,.25)}
+.qring b{font-family:'Press Start 2P';font-size:11px;font-weight:400}
+.qring span{font-family:'Press Start 2P';font-size:6px;color:#FFE7A0}
+.qpath{position:relative;margin:16px 12px 0;padding-left:36px}
+.qrail{position:absolute;left:14px;top:20px;bottom:36px;width:6px;border-radius:3px;background:rgba(0,0,0,.12);overflow:hidden}
+html.theme-night .qrail{background:rgba(255,255,255,.1)}
+.qrail i{display:block;width:100%;border-radius:3px;background:var(--qc)}
+.qstep{position:relative;margin-bottom:10px}
+.qdot{position:absolute;left:-36px;top:50%;width:30px;height:30px;margin-top:-15px;border-radius:50%;z-index:1;box-sizing:border-box;
+  display:flex;align-items:center;justify-content:center;background:var(--boxw);border:3px solid var(--bord);
+  font-family:'Press Start 2P';font-size:9px;color:var(--mut)}
+.qstep.done .qdot{background:var(--qc);border-color:var(--qc);color:#FFF}
+.qstep.ready .qdot{background:#F8C850;border-color:#9A6008;color:#4A2E00;animation:lbdotk 1.2s ease-in-out infinite}
+.qstep.boss .qdot{width:34px;height:34px;margin-top:-17px;left:-38px}
+.qstep.boss.open .qdot{background:#F8C850;border-color:#9A6008}
+.qcard{display:flex;align-items:center;gap:10px;padding:10px;border-radius:14px;background:var(--boxw);border:2px solid rgba(0,0,0,.1);
+  box-shadow:0 3px 0 rgba(0,0,0,.06);color:var(--text)}
+html.theme-night .qcard{background:var(--cream);border-color:rgba(255,255,255,.08)}
+.qcard.ready{border-color:#E0A020;box-shadow:0 3px 0 #C08A18,0 0 0 3px rgba(248,200,80,.22)}
+.qcard.done{opacity:.62;padding:6px 10px}
+.qcard.done .qic{width:32px;height:32px;filter:grayscale(1)}
+.qcard.done .qic img{width:22px}
+.qcard.done .qic.tr img{width:30px;height:30px;margin-top:5px}
+.qcard.done .qt{font-size:16px}
+.qcard.rival{border-color:#D03028}
+.qcard.locked{opacity:.6}
+.qic{width:44px;height:44px;flex:none;border-radius:12px;display:flex;align-items:center;justify-content:center;overflow:hidden;
+  background:radial-gradient(circle at 50% 40%,#FFFFFF,#E4EAF2);border:2px solid rgba(0,0,0,.1)}
+html.theme-night .qic{background:radial-gradient(circle at 50% 40%,#3A4656,#232B37);border-color:rgba(255,255,255,.08)}
+.qic img{width:30px;image-rendering:pixelated}
+.qic.tr img{width:46px;height:46px;margin-top:9px}
+.qic.mon img{width:40px;height:40px}
+.qmid{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.qk{display:block;font-family:'Press Start 2P';font-size:6px;line-height:1.4;color:var(--mut);letter-spacing:.3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.qt{font-size:19px;font-weight:400;line-height:1.05}
+.qsub{display:flex;align-items:center;gap:4px;font-size:15px;line-height:1;color:var(--mut)}
+.qprog{display:flex;align-items:center;gap:7px;margin-top:3px}
+.qbar{flex:1;min-width:0;height:8px;border-radius:4px;background:rgba(0,0,0,.12);overflow:hidden}
+html.theme-night .qbar{background:rgba(255,255,255,.1)}
+.qbar i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,#E0A020,#F8D060)}
+.qpath .qbar i{background:linear-gradient(90deg,var(--qc),color-mix(in srgb,var(--qc) 55%,#FFF))}
+.qnum{font-size:14px;color:var(--mut);white-space:nowrap}
+.qright{flex:none;display:flex;align-items:center}
+.qrew{display:inline-flex;align-items:center;height:26px;padding:0 9px;border-radius:13px;background:rgba(232,160,16,.13);border:2px solid rgba(200,138,32,.45);
+  font-family:'Press Start 2P';font-size:8px;color:#9A6008;white-space:nowrap}
+html.theme-night .qrew{color:#F0C860}
+.qok{font-family:'Press Start 2P';font-size:7px;color:#2E8B48}
+html.theme-night .qok{color:#5FC97B}
+.qcard .btn{min-height:0;padding-top:9px;padding-bottom:9px;font-size:9px;white-space:nowrap}
+.btn.qfight{padding-left:14px;padding-right:14px;background:linear-gradient(180deg,#F86A48,#D83820);border:2px solid #7A1810;color:#FFF;box-shadow:0 3px 0 #7A1810}
+.qboss{padding:10px 12px;border:3px solid var(--bord)}
+.qboss>img{width:58px;height:58px;image-rendering:pixelated;flex:none;filter:grayscale(.7);opacity:.75}
+.qstep.boss.open .qboss{border-color:#E0A020;background:linear-gradient(135deg,var(--boxw),color-mix(in srgb,#E0A020 14%,var(--boxw)))}
+.qstep.boss.open .qboss>img{filter:none;opacity:1}
+.qboss .qt{font-family:'Press Start 2P';font-size:11px;line-height:1.4}
+.qlock{display:inline-flex;align-items:center;gap:5px;flex:none;font-family:'Press Start 2P';font-size:7px;color:var(--mut);padding:7px 8px;border-radius:10px;border:2px dashed var(--bord)}
+.qmon{width:44px;height:44px;image-rendering:pixelated}
+.qmon.sil{filter:brightness(0);opacity:.32}
+html.theme-night .qmon.sil{filter:brightness(0) invert(1);opacity:.18}
+.qstreak{display:flex;align-items:center;gap:12px;margin:12px 12px 0;padding:12px 14px;border-radius:16px;color:#FFF;
+  background:linear-gradient(135deg,#F48040,#D04020);border:3px solid #8A2810;box-shadow:0 4px 0 #8A2810}
+.qflame{display:flex}
+.qflame svg{filter:drop-shadow(0 2px 0 rgba(0,0,0,.25));transform-origin:50% 90%;animation:qflk 1.6s ease-in-out infinite}
+@keyframes qflk{0%,100%{transform:scale(1) rotate(-3deg)}50%{transform:scale(1.06,1.12) rotate(3deg)}}
+.qsmid{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px}
+.qsmid b{font-family:'Press Start 2P';font-size:24px;font-weight:400;line-height:1;text-shadow:2px 2px 0 rgba(0,0,0,.3)}
+.qsmid span{font-family:'Press Start 2P';font-size:7px;line-height:1.4;color:#FFE4C8}
+.qreset{display:flex;flex-direction:column;align-items:flex-end;gap:5px;padding-left:12px;border-left:2px solid rgba(255,255,255,.3)}
+.qreset>span:first-child{font-family:'Press Start 2P';font-size:6px;color:#FFE4C8}
+.qreset b{font-family:'Press Start 2P';font-size:11px;font-weight:400}
+.qpips{display:flex;gap:4px}
+.qpips i{width:10px;height:10px;border-radius:50%;background:rgba(0,0,0,.25);border:2px solid rgba(255,255,255,.6)}
+.qpips i.on{background:#FFE070;border-color:#FFF}
+.qlist{display:flex;flex-direction:column;gap:10px;margin:12px 12px 0}
+.qfoot{margin:12px 18px 0;font-size:15px;line-height:1.2;color:var(--mut);text-align:center}
+.qempty{display:flex;flex-direction:column;align-items:center;gap:10px;margin:14px 12px 0;padding:22px 16px;text-align:center;
+  background:var(--cream);border:3px solid var(--bord);border-radius:16px;color:var(--text)}
+.qempty b{font-family:'Press Start 2P';font-size:11px;font-weight:400}
+.qempty span{font-size:17px;color:var(--mut);line-height:1.2}
+.qhist{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:8px;margin:10px 12px 0}
+.qhist span{background:var(--boxw);border:2px solid var(--bord);border-radius:12px;padding:9px 4px;text-align:center;font-family:'Press Start 2P';font-size:6px;color:var(--mut)}
+.qhist b{display:block;font-family:'Press Start 2P';font-size:11px;font-weight:400;color:var(--text);margin-bottom:6px}
+.qnext{display:flex;flex-direction:column;gap:10px;margin:4px 12px 0;padding:12px;border-radius:16px;border:3px solid #E0A020;background:var(--cream);
+  color:var(--text);font-size:17px;line-height:1.2}
+/* arriving on a tab: the cards deal in one after another */
+.qintro .qstep,.qintro .qcard,.qintro.qchap,.qintro.qstreak{animation:qdeal .42s cubic-bezier(.2,1.1,.4,1) backwards}
+@keyframes qdeal{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:none}}
+.qintro>:nth-child(2){animation-delay:.05s}.qintro>:nth-child(3){animation-delay:.1s}.qintro>:nth-child(4){animation-delay:.15s}
+.qintro>:nth-child(5){animation-delay:.2s}.qintro>:nth-child(6){animation-delay:.25s}.qintro>:nth-child(n+7){animation-delay:.3s}
+.qreveal .qchap,.qreveal .qstep{animation:qrev .55s cubic-bezier(.2,.8,.25,1) both}
+.qreveal .qstep:nth-child(3){animation-delay:.08s}.qreveal .qstep:nth-child(4){animation-delay:.14s}.qreveal .qstep:nth-child(n+5){animation-delay:.2s}
+/* ---------- v7.5 ENCOUNTER TRANSITIONS ---------- */
+#encfx{position:fixed;inset:0;z-index:205;overflow:hidden;pointer-events:auto}
+#encfx .encflash{position:absolute;inset:0;z-index:3;background:#F8F8F0;opacity:0;pointer-events:none}
+#encfx.go .encflash{animation:encflash .32s steps(1) forwards}
+@keyframes encflash{0%{opacity:.95}25%{opacity:0}50%{opacity:.95}75%,100%{opacity:0}}
+/* WILD — the shutter */
+#encfx .encbar{position:absolute;left:0;width:100%;height:10.4%;background:#10141A;transform:translateX(calc(var(--d) * 101%))}
+#encfx .encbar::after{content:'';position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.07)}
+#encfx.go .encbar{animation:encbarin .3s cubic-bezier(.55,0,.8,.3) forwards;animation-delay:calc(.3s + var(--i) * 20ms)}
+@keyframes encbarin{to{transform:none}}
+#encfx.open .encbar{animation:encbarout .34s cubic-bezier(.2,.9,.4,1) forwards;animation-delay:calc(var(--i) * 14ms)}
+@keyframes encbarout{from{transform:none}to{transform:translateX(calc(var(--d) * -101%))}}
+/* TRAINER / BOSS — the POKE BALL wipe */
+#encfx .encball{position:absolute;left:0;width:100%;height:50.5%}
+#encfx .encball.top{top:0;transform:translateY(-101%);
+  background:radial-gradient(ellipse 70% 90% at 28% 18%,#FF9078 0%,#E83820 42%,#A81810 100%);box-shadow:inset 0 -16px 0 #16161E}
+#encfx .encball.bot{bottom:0;transform:translateY(101%);
+  background:radial-gradient(ellipse 70% 90% at 28% 30%,#FFFFFF 0%,#E8ECF2 50%,#AEB8C6 100%);box-shadow:inset 0 16px 0 #16161E}
+#encfx.go .encball{animation:encballin .34s cubic-bezier(.6,0,.85,.35) .3s forwards}
+@keyframes encballin{to{transform:none}}
+#encfx .encbtn{position:absolute;left:50%;top:50%;width:104px;height:104px;margin:-52px 0 0 -52px;border-radius:50%;box-sizing:border-box;
+  background:radial-gradient(circle,#FFFFFF 0 30%,#D0D6DE 31% 40%,#16161E 41% 54%,#F4F6F8 55% 100%);border:9px solid #16161E;transform:scale(0)}
+#encfx.go .encbtn{animation:encbtnin .32s cubic-bezier(.2,1.6,.4,1) .62s forwards,encbtnglow 1s ease-in-out 1s infinite}
+@keyframes encbtnin{to{transform:scale(1)}}
+@keyframes encbtnglow{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,.0)}50%{box-shadow:0 0 0 12px rgba(255,255,255,.28)}}
+#encfx.open .encball.top{animation:encballtop .42s cubic-bezier(.4,0,.2,1) forwards}
+#encfx.open .encball.bot{animation:encballbot .42s cubic-bezier(.4,0,.2,1) forwards}
+@keyframes encballtop{from{transform:none}to{transform:translateY(-104%)}}
+@keyframes encballbot{from{transform:none}to{transform:translateY(104%)}}
+#encfx.open .encbtn{animation:encbtnout .26s ease-in forwards}
+@keyframes encbtnout{from{transform:scale(1);opacity:1}to{transform:scale(1.7);opacity:0}}
+/* a fresh wild mid-workout: the arena flashes twice */
+.arflash{position:absolute;inset:0;z-index:7;pointer-events:none;background:#FFF;opacity:0;animation:encflash .36s steps(1) forwards}
+/* ---------- v7.5 VS splash ---------- */
+#vsfx{animation:vsshake .32s linear .44s}
+@keyframes vsshake{0%,100%{transform:none}20%{transform:translate(-6px,3px)}40%{transform:translate(5px,-4px)}60%{transform:translate(-4px,-2px)}80%{transform:translate(3px,3px)}}
+#vsfx.out{animation:none}
+#vsfx.out::before,#vsfx.out .vsrays{transition:opacity .28s;opacity:0}
+#vsfx.out .vsl{animation:none;transition:transform .28s cubic-bezier(.5,0,.9,.4);transform:translateX(-110%)}
+#vsfx.out .vsr{animation:none;transition:transform .28s cubic-bezier(.5,0,.9,.4);transform:translateX(110%)}
+#vsfx.out .vstxt{animation:vsgone .26s ease-in forwards}
+@keyframes vsgone{from{transform:translate(-50%,-50%) scale(1) rotate(-6deg);opacity:1}to{transform:translate(-50%,-50%) scale(.2) rotate(-30deg);opacity:0}}
+#vsfx::before{opacity:.8}
+#vsfx .vsrays{position:absolute;left:50%;top:50%;width:200vmax;height:200vmax;margin:-100vmax 0 0 -100vmax;pointer-events:none;
+  background:repeating-conic-gradient(from 0deg,rgba(255,255,255,.09) 0deg 5deg,transparent 5deg 15deg);animation:vsspin 7s linear infinite;opacity:0;
+  animation:vsspin 7s linear infinite,vsfade .3s ease-out .35s forwards}
+@keyframes vsspin{to{transform:rotate(360deg)}}
+@keyframes vsfade{to{opacity:1}}
+#vsfx .vsr{background:linear-gradient(-75deg,var(--vc,#3878C8) 72%,transparent 72%)}
+#vsfx .vsp::after{content:'';position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(105deg,rgba(255,255,255,.09) 0 8px,transparent 8px 22px)}
+#vsfx .vsr::after{background:repeating-linear-gradient(-75deg,rgba(255,255,255,.09) 0 8px,transparent 8px 22px)}
+#vsfx .vsp img{width:128px;height:128px;position:relative;z-index:1}
+#vsfx .vsr img{animation:vsland .4s cubic-bezier(.2,1.5,.4,1) .3s backwards}
+#vsfx .vsl img{animation:vsland .4s cubic-bezier(.2,1.5,.4,1) .42s backwards}
+@keyframes vsland{from{transform:translateY(-18px) scale(.85)}to{transform:none}}
+#vsfx .vsnm{position:relative;z-index:1;display:flex;flex-direction:column;gap:7px;font-family:'Press Start 2P';font-size:12px;color:#FFF8F0;line-height:1.3;
+  text-shadow:2px 2px 0 rgba(0,0,0,.55)}
+#vsfx .vsnm em{font-style:normal;font-size:7px;color:#FFE7A0;letter-spacing:.5px}
+#vsfx.vsboss .vsr .vsnm{font-size:15px}
+#vsfx .vscrack{position:absolute;left:-10%;right:-10%;top:50%;height:7px;margin-top:-3px;background:#FFF;
+  box-shadow:0 0 18px 6px rgba(255,255,255,.7);transform:rotate(-15deg) scaleX(0);opacity:0;
+  animation:vscrack .5s ease-out .36s forwards}
+@keyframes vscrack{0%{transform:rotate(-15deg) scaleX(0);opacity:1}35%{transform:rotate(-15deg) scaleX(1);opacity:1}100%{transform:rotate(-15deg) scaleX(1);opacity:0}}
+#vsfx .vstxt{z-index:2;font-size:46px;animation:vsslam .34s cubic-bezier(.3,1.5,.5,1) .42s forwards}
+@keyframes vsslam{0%{transform:translate(-50%,-50%) scale(3.2) rotate(-14deg);opacity:0}60%{opacity:1}100%{transform:translate(-50%,-50%) scale(1) rotate(-6deg);opacity:1}}
+.lbgo.launch img{animation:lblaunch .55s cubic-bezier(.3,1.3,.5,1)}
+@keyframes lblaunch{0%{transform:none}40%{transform:scale(1.45) rotate(-200deg)}100%{transform:rotate(-360deg)}}
+.lbgo.launch::before{content:'';position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:#FFF;animation:lbflashk .4s ease-out forwards}
+@keyframes lbflashk{from{opacity:.55}to{opacity:0}}
+/* ---------- v7.5 TRAVEL: a camera flight over the region map ---------- */
+#travelfx.tv2{display:block;padding:0;background:#10141A;opacity:0;overflow:hidden;cursor:pointer}
+#travelfx.tv2.on{animation:tfxin .3s ease-out forwards}
+#travelfx.tv2.out{animation:tfxout .3s ease-in forwards}
+.tvsky{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,#3E74B0,#182A46 72%)}
+#travelfx.hoenn .tvsky{background:radial-gradient(ellipse at 50% 30%,#2E8AA0,#10343F 72%)}
+.tvworld{position:absolute;left:0;top:0;width:100vw;transform-origin:0 0;will-change:transform}
+.tvmap{width:100%;height:100%;display:block;image-rendering:pixelated;box-shadow:0 0 0 2px rgba(0,0,0,.45),0 10px 30px rgba(0,0,0,.45)}
+.tvsvg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.tvroute{fill:none;stroke:rgba(255,255,255,.7);stroke-width:2;stroke-dasharray:3 4;stroke-linecap:round}
+.tvtrail{fill:none;stroke:#E83828;stroke-width:3.5;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100;filter:drop-shadow(0 0 2px #FFF)}
+.tvpin{position:absolute;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:#FFF;border:3px solid #E83828;box-sizing:content-box}
+.tvpin.to{border-color:#F8C030;animation:tvping 1s ease-out infinite}
+@keyframes tvping{0%{box-shadow:0 0 0 0 rgba(248,192,48,.7)}100%{box-shadow:0 0 0 14px rgba(248,192,48,0)}}
+.tvrider{position:absolute;z-index:2;transform:translate(-50%,-75%);filter:drop-shadow(0 3px 2px rgba(0,0,0,.5))}
+.tvrider.flip{transform:translate(-50%,-75%) scaleX(-1)}
+.tvrider svg{display:block}
+#travelfx.fly .tvrider svg{animation:tvbob .45s ease-in-out infinite alternate}
+@keyframes tvbob{from{transform:translateY(-2px) rotate(-5deg)}to{transform:translateY(2px) rotate(5deg)}}
+.tvclouds{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .4s}
+#travelfx.fly .tvclouds{opacity:1}
+.tvclouds i{position:absolute;left:0;width:64vw;height:20vw;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(255,255,255,.8) 0%,rgba(255,255,255,.35) 45%,transparent 70%);animation:tvcloud 2.2s linear infinite}
+.tvclouds i:nth-child(1){top:10%;animation-delay:-.3s}
+.tvclouds i:nth-child(2){top:38%;width:82vw;animation-duration:1.7s;animation-delay:-1.1s}
+.tvclouds i:nth-child(3){top:63%;animation-duration:2.6s;animation-delay:-.8s}
+.tvclouds i:nth-child(4){top:84%;width:50vw;animation-duration:2s;animation-delay:-1.7s}
+@keyframes tvcloud{from{transform:translateX(105vw)}to{transform:translateX(-90vw)}}
+.tvdest{position:absolute;inset:0;background:#000 center/cover no-repeat;image-rendering:pixelated;opacity:0;transform:scale(1.3);
+  transition:opacity .35s ease-out,transform 1.3s cubic-bezier(.2,.8,.3,1)}
+#travelfx.dest .tvdest{opacity:1;transform:none}
+html.theme-night #travelfx .tvdest{filter:brightness(.62) saturate(.8)}
+.tvsign{position:absolute;left:50%;top:calc(env(safe-area-inset-top) + 70px);z-index:3;min-width:230px;transform:translate(-50%,-260%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 18px;text-align:center;white-space:nowrap;
+  background:#F8F8F8;color:#303030;border:3px solid #484848;border-radius:8px;box-shadow:inset 0 0 0 2px #C8C8C8,0 6px 0 rgba(0,0,0,.3)}
+.tvsign span{font-family:'Press Start 2P';font-size:7px;color:#787878}
+.tvsign b{font-family:'Press Start 2P';font-size:14px;font-weight:400}
+.tvsign em{font-style:normal;font-size:16px;line-height:1;color:#C05028}
+#travelfx.sign .tvsign{animation:tvsignk .55s cubic-bezier(.2,1.4,.4,1) forwards}
+@keyframes tvsignk{to{transform:translate(-50%,0)}}
+.tvskip{position:absolute;left:50%;bottom:calc(env(safe-area-inset-bottom) + 24px);transform:translateX(-50%);z-index:4;
+  font-family:'Press Start 2P';font-size:7px;color:rgba(255,255,255,.65);animation:tvskipk 1.2s ease-in-out infinite}
+@keyframes tvskipk{50%{opacity:.3}}
 </style>
 </head>
 <body>
@@ -1940,22 +2169,67 @@ function startWorkout(mode){
   if(state.game)lessonTick('start');
   save();ensureTicker();
   justStarted=true;
-  tab='workout';editMode=false;render();
-  var fx=$('#fx');
-  if(fx){fx.classList.remove('go');void fx.offsetWidth;fx.classList.add('go');setTimeout(function(){fx.classList.remove('go');},950);}
-  sfx(state.game?'battlestart':'save');
-  // the opponent announces itself once the flash clears
-  if(state.game&&state.session){
-    var cw=state.session.wild?state.session.wild.sp:null;
-    var cb=(!cw&&state.session.mode==='boss')?bossInfo():null;
-    setTimeout(function(){if(cw)cry(cw);else if(cb)cryById(cb.monId);},1050);
-    // trainer fights open on the big VS splash; shiny wilds get their fanfare
-    var vw=state.session.wild;
-    if(state.session.mode==='boss'&&cb)playVsFx(cb.tr,cb.n);
-    else if(vw&&vw.tr)playVsFx(vw.tr.cls,vw.tr.clsN+' '+vw.tr.name);
-    else if(vw&&vw.shiny)setTimeout(shinyBurst,1200);
+  var showBattle=function(){tab='workout';editMode=false;render();};
+  if(!state.game){ /* plain tracker: no battle, just the quick flash */
+    showBattle();
+    var fx=$('#fx');
+    if(fx){fx.classList.remove('go');void fx.offsetWidth;fx.classList.add('go');setTimeout(function(){fx.classList.remove('go');},950);}
+    sfx('save');toast('Workout started!');
+    return;
   }
-  toast(mode==='boss'?'Boss battle started! ⚔️':'Training battle started! 🔥');
+  /* v7.5: the battle opens on a real ENCOUNTER transition (state is already saved) —
+     wild: flashes + the shutter; trainer/boss: a POKE BALL wipe around the VS splash */
+  sfx('battlestart');
+  var vw=state.session.wild,cb=state.session.mode==='boss'?bossInfo():null;
+  if(cb){
+    encounterFx('boss',showBattle,vsOfBoss(cb));
+    setTimeout(function(){cryById(cb.monId);},ENC_T.ball.open+600);
+  }else if(vw&&vw.tr){
+    encounterFx('trainer',showBattle,vsOfTrainer(vw.tr));
+    setTimeout(function(){cry(vw.sp);},ENC_T.ball.open+600);
+  }else{
+    encounterFx('wild',showBattle);
+    if(vw){
+      setTimeout(function(){cry(vw.sp);},ENC_T.wild.open+260);
+      if(vw.shiny)setTimeout(shinyBurst,ENC_T.wild.open+700);
+    }
+  }
+}
+/* ===== v7.5 ENCOUNTER TRANSITIONS — every Pokémon battle opens on a screen wipe:
+   WILD → two white flashes, then the FRLG shutter (black bars slam shut from alternate
+   sides) and sweep away off the arena; TRAINER / BOSS → the flashes, a giant POKE BALL
+   closes over the screen, the VS splash plays on it, the ball splits open on the fight.
+   show() renders the battle while the screen is covered, so nothing pops. */
+var ENC_T={wild:{cover:640,open:760,end:1200},ball:{cover:620,open:2120,end:2620}};
+function encounterFx(kind,show,vs){
+  var old=document.getElementById('encfx');if(old&&old.parentNode)old.parentNode.removeChild(old);
+  var ball=kind!=='wild',T=ball?ENC_T.ball:ENC_T.wild;
+  var el=document.createElement('div');el.id='encfx';
+  el.className=ball?'enc-ball':'enc-wild';
+  var inner='<div class="encflash"></div>';
+  if(ball)inner+='<div class="encball top"></div><div class="encball bot"></div><div class="encbtn"></div>';
+  else for(var i=0;i<10;i++)inner+='<i class="encbar" style="--i:'+i+';--d:'+(i%2?1:-1)+';top:'+(i*10)+'%"></i>';
+  el.innerHTML=inner;
+  document.body.appendChild(el);
+  void el.offsetWidth;el.classList.add('go');
+  setTimeout(function(){
+    try{show();}catch(e){}
+    if(vs)playVsFx(vs.cls,vs.name,vs);
+  },T.cover);
+  setTimeout(function(){el.classList.add('open');if(ball)sfx('ballopen');},T.open);
+  setTimeout(function(){if(el.parentNode)el.parentNode.removeChild(el);},T.end);
+}
+/* the VS banner's opponent line for a leader / a road trainer */
+function vsOfBoss(bz){
+  return {cls:bz.tr,name:bz.n,tag:bz.idx>=12?'CHAMPION':bz.idx>=8?'ELITE FOUR':'GYM LEADER',
+    c:TYPE_COLORS[bz.type]||'#3878C8',boss:1};
+}
+function vsOfTrainer(tr){return {cls:tr.cls,name:tr.name,tag:tr.clsN||'TRAINER',c:tr.clsN==='RIVAL'?'#C83838':'#3878C8'};}
+/* a fresh wild bursting out of the grass mid-workout gets the classic double flash */
+function arenaFlash(){
+  var a=bq('.arenabg');if(!a)return;
+  var f=document.createElement('div');f.className='arflash';a.appendChild(f);
+  setTimeout(function(){if(f.parentNode)f.parentNode.removeChild(f);},420);
 }
 function endWorkout(){
   var ses=state.session;if(!ses)return;
@@ -2044,8 +2318,7 @@ function showResults(d){
   if(m){
     var tc=TYPE_COLORS[DEX[m.sp].t[0]]||'#FFF';
     stage='<div class="rsstage" style="--tc:'+tc+'"><div class="rsglow"></div><div class="rsplat"></div>'+
-      '<img class="rsart'+(m.shiny?' shinyglow':'')+'" src="'+(m.shiny?sprPath(m.sp,true):'sprites/art/'+DEX[m.sp].id+'.png')+'" alt=""'+
-        (m.shiny?' style="image-rendering:pixelated"':' onerror="this.onerror=null;this.src=\''+sprPath(m.sp,false)+'\';this.style.imageRendering=\'pixelated\'"')+'>'+
+      '<img class="rsart'+(m.shiny?' shinyglow':'')+'" src="'+artSrc(m.sp,m.shiny)+'" alt=""'+artFallback(m.sp,m.shiny)+'>'+
       (state.game?'<img class="rstr" data-me src="'+playerSrc()+'" alt="">':'')+'</div>';
   }
   function tile(icon,val,label,cnt,pre){
@@ -2398,6 +2671,7 @@ var PX_ICONS={
   hanger:['.....##.....','....#..#....','.......#....','......#.....','.....#o#....','....#ooO#...','...#oo#oO#..','..#oo#.#oO#.','.#oo#...#oO#','#oooooooooO#','############','............'],
   dice:['.##########.','#wwwwwwwwww#','#w##wwww##w#','#w##wwww##w#','#wwwwwwwwww#','#wwww##wwww#','#wwww##wwww#','#wwwwwwwwww#','#w##wwww##w#','#w##wwww##w#','#wwwwwwwwww#','.##########.'],
   person:['....####....','...#kkkk#...','...#kkkk#...','...#kkkk#...','....####....','..########..','.#rrrrrrrr#.','.#rrrrrrrr#.','.#r#rrrr#r#.','...#bbbb#...','...#b##b#...','...##..##...'],
+  flame:['.....#......','....#r#.....','....#rr#....','...#rrr#..#.','..#rrrr#.#r#','..#rroorr#r#','.#rroooorrr#','.#rooyyoorr#','.#rooyyyoor#','.#rroyyyorr#','..#rroooor#.','...#######..'],
   lock:['............','....####....','...#....#...','...#....#...','..########..','..#yyyyyy#..','..#yy##yy#..','..#yy##yy#..','..#yyyyyy#..','..########..','............','............'],
   nav:['..########..','.#rrrrrrrr#.','.#r######r#.','.#r#gggg#r#.','.#r#gggg#r#.','.#r######r#.','.#rrrrrrrr#.','.#rww#rwwr#.','.#rrrrrrrr#.','.#rr##rrrr#.','.#rrrrrrrr#.','..########..']
 };
@@ -2424,18 +2698,17 @@ function pageHero(o){
   var intro=lastRenderedTab!==tab;
   var back=o.back==='auto'?heroBackTo:o.back; // 'auto' = back to wherever you came from
   var backBtn=back?'<button class="phback" data-action="tab" data-tab="'+back+'" aria-label="Back">'+(back==='summary'?pxIcon('home',22):'‹')+'</button>':'';
-  var icon=o.ic?'<span class="phicon">'+pxIcon(o.ic,o.scene?28:32)+'</span>':
-    (o.icImg?'<span class="phicon"><img src="'+o.icImg+'" alt="" style="width:'+(o.scene?34:40)+'px;height:'+(o.scene?34:40)+'px;object-fit:contain;image-rendering:pixelated"></span>':'');
+  var icon=o.ic?'<span class="phicon">'+pxIcon(o.ic,28)+'</span>':
+    (o.icImg?'<span class="phicon"><img src="'+o.icImg+'" alt="" style="width:34px;height:34px;object-fit:contain;image-rendering:pixelated"></span>':'');
   var tx='<div class="phtx"><h1>'+o.t+'</h1>'+(o.s?'<div class="phsub">'+o.s+'</div>':'')+'</div>';
   var chips=o.chips&&o.chips.length?'<div class="phchips">'+o.chips.join('')+'</div>':'';
-  if(o.scene){ /* scene variant: a compact header band over the official interior / map */
-    return '<div class="phero scene'+(intro?' phintro':'')+'" style="--hc:'+(o.c||'#405068')+'">'+
-      '<div class="phhead">'+backBtn+icon+tx+chips+'</div>'+
-      '<div class="phscene">'+o.scene+'</div></div>';
-  }
-  return '<div class="phero'+(o.img?' img':'')+(intro?' phintro':'')+'" style="--hc:'+(o.c||'#405068')+
+  /* v7.5: ONE header band for every page — the same fixed height whether the page is a
+     plain banner, blurred official art (o.img) or sits above an interior/map (o.scene),
+     so hopping between MAP / TEAM / QUEST / OPTION never makes the header jump */
+  return '<div class="phero '+(o.scene?'scene':'band')+(o.img?' img':'')+(intro?' phintro':'')+'" style="--hc:'+(o.c||'#405068')+
       (o.img?';--hbg:url('+o.img+')':'')+(o.pos?';--hpos:'+o.pos:'')+'">'+
-    backBtn+'<div class="phmain">'+icon+tx+'</div>'+chips+'</div>';
+    '<div class="phhead">'+backBtn+icon+tx+chips+'</div>'+
+    (o.scene?'<div class="phscene">'+o.scene+'</div>':'')+'</div>';
 }
 function phChip(txt,icon,hot){return '<span class="phchip'+(hot?' hot':'')+'">'+(icon||'')+txt+'</span>';}
 function phBtn(txt,icon,act,extra){return '<button class="phchip btnchip" data-action="'+act+'"'+(extra||'')+'>'+(icon||'')+txt+'</button>';}
@@ -2499,8 +2772,7 @@ function homeHTML(){
     var tc=TYPE_COLORS[DEX[am.sp].t[0]]||'#FFFFFF';
     h+='<div class="lbstage" data-action="open-mon" data-m="'+am.uid+'" style="--tc:'+tc+'">'+
         '<div class="lbglow"></div><div class="lbring"></div><div class="lbplat"></div>'+
-        '<img class="lbart'+(am.shiny?' shinyglow':'')+'" src="'+(am.shiny?sprPath(am.sp,true):'sprites/art/'+DEX[am.sp].id+'.png')+'" alt="'+DEX[am.sp].n+'"'+
-          (am.shiny?' style="image-rendering:pixelated"':' onerror="this.onerror=null;this.src=\''+sprPath(am.sp,false)+'\';this.style.imageRendering=\'pixelated\'"')+'>'+
+        '<img class="lbart'+(am.shiny?' shinyglow':'')+'" src="'+artSrc(am.sp,am.shiny)+'" alt="'+DEX[am.sp].n+'"'+artFallback(am.sp,am.shiny)+'>'+
       '</div>'+
       '<button class="lbme" data-action="tab" data-tab="wardrobe" aria-label="Wardrobe"><img data-me src="'+playerSrc()+'" alt="">'+
         '<span class="lbmetag">'+pxIcon('hanger',14)+(wardFresh('ws').length?'<i class="lbdot"></i>':'')+'</span></button>'+
@@ -4382,9 +4654,7 @@ function playEvolution(mon,to){
   mon.sp=to;registerDex(to,mon.shiny);save();
   fxHold=true;
   var old=document.getElementById('evofx');if(old)old.parentNode.removeChild(old);
-  function art(sp){return mon.shiny?sprPath(sp,true):'sprites/art/'+DEX[sp].id+'.png';}
-  function img(sp,cls){return '<img class="'+cls+'" src="'+art(sp)+'" alt=""'+(mon.shiny?' style="image-rendering:pixelated"':
-    ' onerror="this.onerror=null;this.src=\''+sprPath(sp,false)+'\';this.style.imageRendering=\'pixelated\'"')+'>';}
+  function img(sp,cls){return '<img class="'+cls+'" src="'+artSrc(sp,mon.shiny)+'" alt=""'+artFallback(sp,mon.shiny)+'>';}
   var el=document.createElement('div');el.id='evofx';
   el.innerHTML='<div class="rsveil evoveil"></div><div class="rsrays evorays"></div>'+
     '<div class="evowrap"><div class="evostage">'+
@@ -4472,7 +4742,7 @@ function announceCatch(sp,shiny,lv){
   queueModal(function(){
     fxHold=true;
     var old=document.getElementById('gotfx');if(old)old.parentNode.removeChild(old);
-    var art=shiny?sprPath(sp,true):'sprites/art/'+DEX[sp].id+'.png';
+    var art=artSrc(sp,shiny);
     var chips='';
     DEX[sp].t.forEach(function(t){chips+='<span class="tchip" style="background:'+(TYPE_COLORS[t]||'#888')+'">'+t.toUpperCase()+'</span>';});
     var el=document.createElement('div');el.id='gotfx';
@@ -4480,8 +4750,7 @@ function announceCatch(sp,shiny,lv){
       '<div class="gotwrap">'+
         '<div class="gotban">GOTCHA!</div>'+
         '<div class="gotstage"><img class="gotball" src="'+itemIcon('pokeball')+'" alt=""><span class="gotburst"></span>'+
-          '<img class="gotart'+(shiny?' shinyglow':'')+'" src="'+art+'" alt=""'+(shiny?' style="image-rendering:pixelated"':
-            ' onerror="this.onerror=null;this.src=\''+sprPath(sp,false)+'\';this.style.imageRendering=\'pixelated\'"')+'>'+
+          '<img class="gotart'+(shiny?' shinyglow':'')+'" src="'+art+'" alt=""'+artFallback(sp,shiny)+'>'+
           (shiny?'<span class="gotshiny">✦</span><span class="gotshiny s2">✦</span><span class="gotshiny s3">✦</span>':'')+'</div>'+
         '<div class="gotname">'+DEX[sp].n+(lv?' <span>:L'+lv+'</span>':'')+'</div>'+
         '<div class="gottypes">'+chips+'</div>'+
@@ -6532,16 +6801,24 @@ function clearBattleAnim(){
   if(typeTimer){clearInterval(typeTimer);typeTimer=null;}
 }
 /* the big VS splash before any trainer fight — GBA sprites, blown up proud */
-function playVsFx(oppCls,oppName){
+function playVsFx(oppCls,oppName,opt){
+  /* v7.5 VS: spinning speed rays, the two banners slam in (opponent in its colour, with
+     its title — GYM LEADER / RIVAL / BUG CATCHER…), a white crack, then VS hits and the
+     whole splash shakes. opt={tag,c,boss} */
+  opt=opt||{};
   var old=document.getElementById('vsfx');
   if(old&&old.parentNode)old.parentNode.removeChild(old);
   var ov=document.createElement('div');ov.id='vsfx';
-  ov.innerHTML='<div class="vsp vsl"><img data-me src="'+playerSrc()+'" alt=""><span>'+esc(playerName())+'</span></div>'+
-    '<div class="vstxt">VS</div>'+
-    '<div class="vsp vsr"><span style="text-align:right">'+esc(oppName)+'</span><img src="sprites/trainers/'+oppCls+'.png" alt=""></div>';
+  if(opt.boss)ov.className='vsboss';
+  ov.innerHTML='<div class="vsrays"></div>'+
+    '<div class="vsp vsr" style="--vc:'+(opt.c||'#3878C8')+'"><span class="vsnm" style="text-align:right"><em>'+esc(opt.tag||'TRAINER')+'</em>'+esc(oppName)+'</span>'+
+      '<img src="sprites/trainers/'+oppCls+'.png" alt=""></div>'+
+    '<div class="vsp vsl"><img data-me src="'+playerSrc()+'" alt=""><span class="vsnm"><em>TRAINER LV '+trainerLevel()+'</em>'+esc(playerName())+'</span></div>'+
+    '<div class="vscrack"></div><div class="vstxt">VS</div>';
   document.body.appendChild(ov);
-  setTimeout(function(){ov.classList.add('out');},1500);
-  setTimeout(function(){if(ov.parentNode)ov.parentNode.removeChild(ov);},1880);
+  setTimeout(function(){if(ov.parentNode)sfx('superhit');},430);
+  setTimeout(function(){ov.classList.add('out');},1240); // banners fly off before the ball opens
+  setTimeout(function(){if(ov.parentNode)ov.parentNode.removeChild(ov);},1560);
 }
 /* the shiny fanfare — stars spray off the enemy sprite */
 function shinyBurst(){
@@ -6760,6 +7037,7 @@ function runBattleStep(st){
       w.innerHTML=battlePanelHTML(false);
       if(st.slide==='enemy'){
         var shw=state.session&&state.session.wild;
+        if(shw&&!shw.tr)arenaFlash();
         sendOutFx('enemy',(shw&&!shw.tr)?'wild':'ball');
         if(shw&&shw.shiny&&!shw.tr)animTimers.push(setTimeout(shinyBurst,660));
       }
@@ -6953,220 +7231,199 @@ function bossLadderHTML(){
     (g.hof&&g.hof.length?' · 🏆'+g.hof.length:'')+'</span></h3>'+
     '<div style="display:flex;flex-wrap:wrap;justify-content:space-between">'+cells+'</div></div>';
 }
-function roadBarHTML(){
-  if(!roadActive())return '';
-  var r=state.game.road,qs=questsFor(r.idx),bz=bossInfo();
-  if(!bz)return '';
-  var loc=roadLoc(r.idx),ac=loc.c||'#2E8B48';
-  var nodes=[],doneCount=0;
-  qs.forEach(function(q,qi){
-    var d=questClaimed(qi),rdy=!d&&questReady(q);
-    if(d)doneCount++;
-    nodes.push({img:'sprites/npc/'+q.npc+'.png',w:18,d:d,rdy:rdy});
-  });
-  for(var j=0;j<roadMbCount(r.idx);j++){
-    var dm=!!r.mb[j];if(dm)doneCount++;
-    nodes.push({img:'sprites/trainers/'+mbFor(r.idx,j).cls+'.png',w:26,d:dm,rdy:false});
+/* ===== v7.5 QUEST BOARD — rebuilt on the structure players already know:
+   Pokémon GO's research (TODAY / FIELD / SPECIAL tabs), Brawl Stars / Clash quest cards
+   (one clear task, a progress bar, the reward chip on the right, a glowing CLAIM) and a
+   battle-pass style JOURNEY PATH that ends at the gym leader. Three tabs, one at a time,
+   each badged with what's ready to collect:
+     ROUTE    — the road to the next gym: side quests + roadblock trainers → the leader
+     DAILY    — today's three quests, the streak and when the board refreshes
+     REQUESTS — the collectors' one-time POKEMON rewards */
+var questTab=null,qShownTab=null; // remembered while the app is open
+function qTabCounts(){
+  var c={road:0,daily:0,req:0};
+  claimableList().forEach(function(k){var t=k.charAt(0);c[t==='r'?'road':t==='d'?'daily':'req']++;});
+  return c;
+}
+function qTaskTitle(q){
+  if(q.t==='volume')return 'Move '+q.target.toLocaleString()+' '+state.unit;
+  if(q.t==='sets')return 'Log '+q.target+' sets';
+  if(q.t==='days')return 'Train on '+q.target+' different days';
+  if(q.t==='kills')return 'Tire out '+q.target+' wild POKEMON';
+  if(q.t==='ex')return 'Train '+q.target+' different exercises';
+  return q.ask;
+}
+function qUnit(q){return q.t==='volume'||q.t==='vol'?' '+state.unit:'';}
+function qBar(prog,target,unit){
+  var pc=Math.max(0,Math.min(100,Math.round(prog/Math.max(1,target)*100)));
+  return '<span class="qbar"><i style="width:'+pc+'%"></i></span><span class="qnum">'+prog.toLocaleString()+' / '+target.toLocaleString()+(unit||'')+'</span>';
+}
+function qRew(txt){return '<span class="qrew">'+txt+'</span>';}
+/* one quest card: icon · label/title/progress · reward or CLAIM */
+function qCard(o){
+  return '<div class="qcard'+(o.cls?' '+o.cls:'')+'">'+
+    '<span class="qic'+(o.icCls?' '+o.icCls:'')+'">'+o.icon+'</span>'+
+    '<span class="qmid">'+(o.k?'<span class="qk">'+o.k+'</span>':'')+'<b class="qt">'+o.t+'</b>'+(o.sub?'<span class="qsub">'+o.sub+'</span>':'')+
+      (o.bar?'<span class="qprog">'+o.bar+'</span>':'')+'</span>'+
+    (o.right?'<span class="qright">'+o.right+'</span>':'')+'</div>';
+}
+function questsHTML(){
+  var g=state.game;
+  if(!g)return pageHero({t:'QUESTS',s:'Roads, dailies and requests',ic:'quest',c:'#C88A20'})+
+    '<div class="empty"><div class="big">?</div>Your adventure has not started yet.<br>Reopen the app to meet '+profName()+'.</div>';
+  ensureRoad();ensureDaily();
+  var bz=bossInfo(),reqOn=featOn('collectors'),cnt=qTabCounts();
+  if(!questTab||(questTab==='req'&&!reqOn))questTab=cnt.road?'road':cnt.daily?'daily':(reqOn&&cnt.req)?'req':'road';
+  var left=roadStepsLeft(),dStreak=(g.daily&&g.daily.streak)||0;
+  var chips=[];
+  if(bz&&roadActive())chips.push(left?phChip(left+' STEP'+(left===1?'':'S')+' TO '+esc(bz.n)):phChip('GYM OPEN!','',true));
+  chips.push(phChip(dStreak+' DAY STREAK',pxIcon('flame',14)));
+  var h=pageHero({t:'QUESTS',s:bz?(roadActive()?'Road to '+esc(bz.gym):'The league gauntlet'):'Every road conquered',ic:'quest',c:'#C88A20',chips:chips});
+  function qtab(k,label,icon,n){
+    return '<button class="qtab'+(questTab===k?' on':'')+'" data-action="qtab" data-q="'+k+'">'+icon+'<span>'+label+'</span>'+
+      (n?'<i class="qbadge">'+n+'</i>':'')+'</button>';
   }
-  var total=nodes.length;
-  var pct=Math.round(doneCount/total*100);
-  var h='<div class="panel" style="border-color:'+ac+'"><h3>THE TRACK<span class="bestchip" style="border-color:'+ac+'">'+doneCount+' / '+total+'</span></h3>'+
-    '<div style="position:relative;height:66px;margin-top:6px">'+
-    '<div class="gbar" style="position:absolute;left:16px;right:44px;top:24px;min-width:0"><div style="width:'+pct+'%;background:'+ac+'"></div></div>';
-  nodes.forEach(function(nd,i){
-    var left=total>1?(i/(total-1))*72:0;
-    var ring=nd.d?'#2E8B48':(nd.rdy?'#E8A010':'var(--bord)');
-    h+='<div style="position:absolute;left:'+left+'%;top:6px;width:38px;text-align:center">'+
-      '<div style="width:36px;height:36px;margin:0 auto;border-radius:50%;border:3px solid '+ring+';background:var(--boxw);display:flex;align-items:center;justify-content:center;overflow:hidden">'+
-      '<img src="'+nd.img+'" alt="" style="width:'+nd.w+'px;image-rendering:pixelated'+(nd.d||nd.rdy?'':';filter:grayscale(1);opacity:.55')+'"></div>'+
-      '<div class="plv" style="font-size:12px;line-height:1.5;color:'+(nd.d?'#2E8B48':(nd.rdy?'#E8A010':'var(--mut)'))+'">'+(nd.d?'✓':(nd.rdy?'!':'·'))+'</div></div>';
-  });
-  var clear=roadClear();
-  h+='<div style="position:absolute;right:0;top:0;width:46px;text-align:center">'+
-    '<div style="width:44px;height:44px;margin:0 auto;border-radius:50%;border:3px solid '+(clear?'#E8A010':'var(--bord)')+';background:var(--boxw);display:flex;align-items:center;justify-content:center;overflow:hidden">'+
-    '<img src="sprites/trainers/'+bz.tr+'.png" alt="'+bz.n+'" style="width:34px;image-rendering:pixelated'+(clear?'':';filter:grayscale(1);opacity:.55')+'"></div>'+
-    '<div class="plv" style="font-size:12px;line-height:1.5;color:'+(clear?'#E8A010':'var(--mut)')+'">'+(clear?'GO!':'🔒')+'</div></div>';
-  h+='</div><div class="plv" style="margin-top:2px">'+(clear?'The road is clear — challenge '+bz.n+' at the GYM!':(total-doneCount)+' step'+(total-doneCount===1?'':'s')+' left before '+bz.n+' accepts your challenge.')+'</div></div>';
+  h+='<div class="qtabs'+(reqOn?'':' two')+'">'+
+    qtab('road','ROUTE',pxIcon('map',18),cnt.road)+
+    qtab('daily','DAILY',pxIcon('flame',18),cnt.daily)+
+    (reqOn?qtab('req','REQUESTS',pxIcon('team',18),cnt.req):'')+'</div>';
+  var intro=lastRenderedTab!=='quests'||qShownTab!==questTab;qShownTab=questTab;
+  var body=questTab==='daily'?qDailyHTML():questTab==='req'?qRequestsHTML():qRouteHTML();
+  if(intro)body=body.replace(/class="(qpath|qlist|qchap|qstreak)(?=[" ])/g,'class="$1 qintro');
+  h+=questTab==='road'?qRet(body):body;
   return h;
 }
-function dailyPanelHTML(){
-  var g=state.game;if(!g)return '';
-  ensureDaily();
-  var ds=dailyFor(),rows='';
+function qRet(inner){var rv=questReveal;questReveal=false;return rv?'<div class="qreveal">'+inner+'</div>':inner;}
+/* the CHAPTER banner: the real area map, where you are, and a progress ring */
+function qChapterHTML(t,done,total,toTxt,tag){
+  var loc=roadLoc(t),ac=loc.c||'#2E8B48',pc=Math.round(done/Math.max(1,total)*100);
+  return '<div class="qchap" style="--qc:'+ac+'">'+
+    '<img class="qchapimg" src="'+(loc.img||('sprites/arenas/'+loc.arena+'.png'))+'" alt="">'+
+    '<span class="qchapshade"></span>'+
+    '<span class="qchaptx"><span class="qk">'+tag+'</span><b>'+loc.n+'</b><span>'+toTxt+'</span></span>'+
+    '<span class="qring" style="--p:'+pc+'"><b>'+done+'/'+total+'</b><span>STEPS</span></span></div>';
+}
+function qRouteHTML(){
+  var g=state.game,bz=bossInfo();
+  if(!bz)return '<div class="qempty">'+pxIcon('trophy',40)+'<b>EVERY ROAD CONQUERED</b><span>You beat them all, CHAMPION. Dailies and requests keep coming.</span></div>';
+  /* standing in an OLD town: its cleared route, as a memento */
+  if(curTown()<townIdx()&&curTown()<ROAD_LOC.length)return qRouteHistHTML(curTown());
+  if(curTown()>townIdx())return '<div class="qempty">'+pxIcon('warn',40)+'<b>DEV PREVIEW</b><span>The story hasn’t reached '+TOWNS[curTown()].n+' yet — its quests open when your badges catch up.</span></div>';
+  if(!roadActive())return '<div class="qempty">'+'<img src="sprites/trainers/'+bz.tr+'.png" alt="" style="width:72px;height:72px;image-rendering:pixelated">'+
+    '<b>THE LEAGUE GAUNTLET</b><span>No side roads inside the INDIGO PLATEAU — only the league itself.</span>'+
+    '<button class="btn acc" data-action="bld" data-b="boss">CHALLENGE '+esc(bz.n)+'</button></div>';
+  var r=g.road,qs=questsFor(r.idx),loc=roadLoc(r.idx),ac=loc.c||'#2E8B48';
+  var total=qs.length+roadMbCount(r.idx),done=0;
+  qs.forEach(function(q,qi){if(questClaimed(qi))done++;});
+  for(var j0=0;j0<roadMbCount(r.idx);j0++)if(r.mb[j0])done++;
+  var clear=roadClear();
+  var h=qChapterHTML(r.idx,done,total,'to '+esc(bz.gym),'CHAPTER '+(r.idx+1)+(r.round>1?' · ROUND '+r.round:''));
+  var steps='',n=0;
+  qs.forEach(function(q,qi){
+    n++;
+    var claimed=questClaimed(qi),ready=!claimed&&questReady(q),prog=questProg(q);
+    var pay=Math.round(q.reward*(1+0.08*perkN('deeppockets')));
+    steps+='<div class="qstep'+(claimed?' done':ready?' ready':'')+'"><span class="qdot">'+(claimed?'✓':ready?'!':n)+'</span>'+
+      qCard({cls:claimed?'done':ready?'ready':'',icon:'<img src="sprites/npc/'+q.npc+'.png" alt="">',
+        k:'SIDE QUEST · '+q.clsN+' '+q.name,t:qTaskTitle(q),
+        bar:claimed?'':qBar(prog,q.target,q.t==='volume'?' '+state.unit:q.t==='days'?' days':''),
+        right:claimed?'<span class="qok">₽'+pay.toLocaleString()+'</span>':ready?'<button class="btn acc" data-action="quest-claim" data-qi="'+qi+'">₽'+pay.toLocaleString()+'</button>':qRew('₽'+pay.toLocaleString())})+'</div>';
+  });
+  for(var j=0;j<roadMbCount(r.idx);j++){
+    n++;
+    var mb=mbFor(r.idx,j),dn=!!r.mb[j];
+    steps+='<div class="qstep fight'+(dn?' done':'')+(mb.rival?' rival':'')+'"><span class="qdot">'+(dn?'✓':n)+'</span>'+
+      qCard({cls:(dn?'done':'')+(mb.rival?' rival':''),icCls:'tr',icon:'<img src="sprites/trainers/'+mb.cls+'.png" alt="">',
+        k:(mb.rival?'RIVAL':'ROADBLOCK')+' · '+mb.clsN,t:mb.name,
+        sub:monIconImg(mb.sp,false,22)+DEX[mb.sp].n+' :L'+mb.lv,
+        right:dn?'<span class="qok">BEATEN</span>':'<button class="btn acc qfight" data-action="mb-fight" data-j="'+j+'">FIGHT</button>'})+'</div>';
+  }
+  /* the end of the path: the leader */
+  steps+='<div class="qstep boss'+(clear?' open':'')+'"><span class="qdot">'+pxIcon('trophy',16)+'</span>'+
+    '<div class="qcard qboss"><img src="sprites/trainers/'+bz.tr+'.png" alt="">'+
+      '<span class="qmid"><span class="qk">'+(bz.idx>=8?'POKEMON LEAGUE':'GYM LEADER')+'</span><b class="qt">'+esc(bz.n)+'</b>'+
+      '<span class="qsub">'+esc(bz.gym)+(bz.badge?' · '+esc(bz.badge):'')+'</span></span>'+
+      (clear?'<button class="btn acc" data-action="bld" data-b="boss">CHALLENGE</button>'
+            :'<span class="qlock">'+pxIcon('lock',12)+(total-done)+' LEFT</span>')+'</div></div>';
+  var pc=Math.round(done/Math.max(1,total)*100);
+  h+='<div class="qpath" style="--qc:'+ac+'"><span class="qrail"><i style="height:'+pc+'%"></i></span>'+steps+'</div>';
+  return h;
+}
+/* an OLD town's cleared route — the same chapter banner, all lit, plus where to go next */
+function qRouteHistHTML(t){
+  var qs=questsFor(t),bn=BOSSES[t],g=state.game,lg=(g.roadLog&&g.roadLog[t])||null;
+  var total=qs.length+roadMbCount(t);
+  var rewardSum=0;qs.forEach(function(q){rewardSum+=q.reward;});
+  var h=qChapterHTML(t,total,total,'₽'+rewardSum.toLocaleString()+' earned on the way to '+(bn?bn.gym:'the gym'),'CHAPTER '+(t+1)+' · CLEARED');
+  if(lg&&!lg.synth){ /* the real numbers, when this route was walked in this save */
+    var durDays=Math.max(1,Math.round((lg.clearTs-lg.startTs)/86400000));
+    h+='<div class="qhist"><span><b>'+durDays+'</b>DAY'+(durDays===1?'':'S')+' ON THE ROAD</span><span><b>'+(lg.kills||0)+'</b>WILDS TIRED OUT</span>'+
+      '<span><b>'+String(MONTHS[new Date(lg.clearTs).getMonth()]).slice(0,3).toUpperCase()+' '+new Date(lg.clearTs).getDate()+'</b>CLEARED</span></div>';
+  }
+  var steps='';
+  qs.forEach(function(q){
+    steps+='<div class="qstep done"><span class="qdot">✓</span>'+qCard({cls:'done',icon:'<img src="sprites/npc/'+q.npc+'.png" alt="">',
+      k:'SIDE QUEST · '+q.clsN+' '+q.name,t:qTaskTitle(q),right:'<span class="qok">₽'+q.reward.toLocaleString()+'</span>'})+'</div>';
+  });
+  for(var j=0;j<roadMbCount(t);j++){var mb=mbFor(t,j);
+    steps+='<div class="qstep fight done"><span class="qdot">✓</span>'+qCard({cls:'done',icCls:'tr',icon:'<img src="sprites/trainers/'+mb.cls+'.png" alt="">',
+      k:(mb.rival?'RIVAL':'ROADBLOCK')+' · '+mb.clsN,t:mb.name,right:'<span class="qok">BEATEN</span>'})+'</div>';
+  }
+  if(bn)steps+='<div class="qstep boss open done"><span class="qdot">✓</span><div class="qcard qboss done"><img src="sprites/trainers/'+bn.tr+'.png" alt="">'+
+    '<span class="qmid"><span class="qk">GYM LEADER</span><b class="qt">'+bn.n+'</b><span class="qsub">'+(bn.badge||bn.gym)+' won</span></span></div></div>';
+  h+='<div class="qpath" style="--qc:'+(roadLoc(t).c||'#2E8B48')+'"><span class="qrail"><i style="height:100%"></i></span>'+steps+'</div>';
+  var bz=bossInfo();
+  if(bz&&roadActive()){
+    var fr=townIdx();
+    h+='<div class="qnext"><span>Your journey continues through <b>'+roadLoc(g.road.idx).n+'</b> — progress keeps counting while you’re here.</span>'+
+      '<button class="btn acc" data-action="travel-go" data-t="'+fr+'">'+ferryIcon(18)+' FERRY TO '+TOWNS[fr].n+'</button></div>';
+  }
+  return h;
+}
+function qDailyHTML(){
+  var g=state.game;ensureDaily();
+  var ds=dailyFor(),got=0,cards='';
   ds.forEach(function(q,di){
     var prog=dailyProg(q),ready=prog>=q.target,claimed=!!g.daily.claimed[di];
-    var pc=Math.round(prog/q.target*100);
-    rows+='<div class="prow" style="padding:7px 10px'+(claimed?';opacity:.7':'')+'">'+
-      (q.sp&&DEX[q.sp]?'<img src="'+sprPath(q.sp,false)+'" alt="" style="width:32px;height:32px;image-rendering:pixelated;flex:none'+(claimed?';filter:grayscale(1)':'')+'">':'')+
-      '<div style="flex:1;min-width:0">'+
-      '<div class="pname" style="font-size:16px">'+q.ask+(claimed?' <span style="color:#2E8B48">✓</span>':'')+'</div>'+
-      (claimed?'<div class="plv" style="color:#2E8B48">Collected ₽'+q.reward.toLocaleString()+'</div>'
-        :'<div style="display:flex;align-items:center;gap:5px;margin-top:4px"><div class="gbar"><div style="width:'+pc+'%;background:#E8A010"></div></div><span class="barnum">'+prog.toLocaleString()+'/'+q.target.toLocaleString()+'</span></div>')+
-      '</div>'+
-      (!claimed&&ready?'<button class="btn acc" data-action="daily-claim" data-di="'+di+'">COLLECT ₽'+q.reward+'</button>':'')+
-      '</div>';
+    if(claimed)got++;
+    cards+=qCard({cls:claimed?'done':ready?'ready':'',
+      icon:(q.sp&&DEX[q.sp]?'<img src="'+sprPath(q.sp,false)+'" alt="">':pxIcon('flame',26)),icCls:'mon',
+      k:'DAILY',t:q.ask,bar:claimed?'':qBar(prog,q.target,qUnit(q)),
+      right:claimed?'<span class="qok">₽'+q.reward.toLocaleString()+'</span>':ready?'<button class="btn acc" data-action="daily-claim" data-di="'+di+'">₽'+q.reward.toLocaleString()+'</button>':qRew('₽'+q.reward.toLocaleString())});
   });
-  return '<div class="panel"><h3>DAILY TRAINING<span class="bestchip">🔥 '+((g.daily&&g.daily.streak)||0)+'</span></h3>'+
-    rows+
-    '<div class="plv" style="margin-top:4px">Fresh quests every day. Your 🔥 streak grows each day you collect one — a rest day or two never breaks it.</div></div>';
+  /* the board refreshes at midnight */
+  var now=new Date(),mid=new Date(now);mid.setHours(24,0,0,0);
+  var ms=mid-now,hh=Math.floor(ms/3600000),mm=Math.floor(ms%3600000/60000);
+  var streak=(g.daily&&g.daily.streak)||0,best=Math.max(g.bestStreak||0,streak);
+  var pips='';for(var i=0;i<ds.length;i++)pips+='<i class="'+(i<got?'on':'')+'"></i>';
+  return '<div class="qstreak">'+
+      '<span class="qflame">'+pxIcon('flame',40)+'</span>'+
+      '<span class="qsmid"><b>'+streak+'</b><span>DAY STREAK'+(best>streak?' · BEST '+best:'')+'</span></span>'+
+      '<span class="qreset"><span>NEW QUESTS IN</span><b>'+hh+'h '+String(mm).padStart(2,'0')+'m</b><span class="qpips">'+pips+'</span></span></div>'+
+    '<div class="qlist">'+cards+'</div>'+
+    '<div class="qfoot">Collect a daily quest to grow the streak — a rest day or two never breaks it.</div>';
 }
-function collectorsHTML(){
-  var g=state.game;if(!g||!featOn('collectors'))return '';
-  ensureNpcq();
-  var rows='';
+function qRequestsHTML(){
+  var g=state.game;ensureNpcq();
+  var cards='',open=0;
   NPCQ.forEach(function(q){
     var claimed=!!g.npcq.claimed[q.k];
     if(!npcqOpen(q)){
-      // this collector hasn't posted yet — a silhouette teases the reward
-      rows+='<div class="prow" style="padding:8px 10px;opacity:.6">'+
-        '<img src="sprites/npc/'+q.npc+'.png" alt="" style="width:26px;image-rendering:pixelated;flex:none;filter:brightness(0);opacity:.5">'+
-        '<div style="flex:1;min-width:0">'+
-        '<div class="pname" style="font-size:16px;color:var(--mut)">?????</div>'+
-        '<div class="plv" style="margin-top:2px">A new request goes up at badge '+q.req+'.</div>'+
-        '</div>'+
-        '<img src="'+sprPath(q.mon,false)+'" alt="" style="width:36px;height:36px;image-rendering:pixelated;flex:none;filter:brightness(0);opacity:.35">'+
-        '</div>';
+      cards+=qCard({cls:'locked',icon:'<img src="sprites/npc/'+q.npc+'.png" alt="">',k:'REQUEST',t:'?????',
+        sub:'A new request goes up at badge '+q.req+'.',right:'<img class="qmon sil" src="'+sprPath(q.mon,false)+'" alt="">'});
       return;
     }
+    open++;
     var prog=npcqProg(q),ready=prog>=q.target;
-    var pc=Math.round(prog/q.target*100);
-    var unitLab=q.t==='volume'?(' '+state.unit):(q.t==='days'?' days':q.t==='sets'?' sets':'');
-    rows+='<div class="prow" style="padding:8px 10px'+(claimed?';opacity:.7':'')+'">'+
-      '<img src="sprites/npc/'+q.npc+'.png" alt="" style="width:26px;image-rendering:pixelated;flex:none'+(claimed?';filter:grayscale(1)':'')+'">'+
-      '<div style="flex:1;min-width:0">'+
-      '<div class="pname" style="font-size:16px">'+q.who+(claimed?' <span style="color:#2E8B48">✓</span>':'')+'</div>'+
-      '<div class="plv" style="margin:2px 0 5px;white-space:normal;line-height:1.25">“'+q.ask+'”</div>'+
-      (claimed?'<div class="plv" style="color:#2E8B48">'+DEX[q.mon].n+' collected!</div>'
-        :(ready?'<button class="btn acc" data-action="npcq-claim" data-k="'+q.k+'">COLLECT '+DEX[q.mon].n+'</button>'
-               :'<div style="display:flex;align-items:center;gap:5px"><div class="gbar"><div style="width:'+pc+'%;background:#7848B0"></div></div><span class="barnum">'+prog.toLocaleString()+'/'+q.target.toLocaleString()+unitLab+'</span></div>'))+
-      '</div>'+
-      '<img src="'+sprPath(q.mon,false)+'" alt="" style="width:36px;height:36px;image-rendering:pixelated;flex:none'+(claimed?'':';filter:brightness(0);opacity:.45')+'">'+
-      '</div>';
+    cards+=qCard({cls:claimed?'done':ready?'ready':'',icon:'<img src="sprites/npc/'+q.npc+'.png" alt="">',
+      k:'REQUEST · '+q.who,t:qTaskTitle(q),
+      sub:claimed?DEX[q.mon].n+' joined your team':'Reward: a '+(ready?DEX[q.mon].n:'mystery POKEMON'),
+      bar:claimed||ready?'':qBar(prog,q.target,q.t==='volume'?' '+state.unit:q.t==='days'?' days':''),
+      right:ready&&!claimed?'<button class="btn acc" data-action="npcq-claim" data-k="'+q.k+'">CLAIM</button>'
+        :'<img class="qmon'+(claimed?'':' sil')+'" src="'+sprPath(q.mon,false)+'" alt="">'});
   });
-  return '<div class="panel"><h3>COLLECTORS</h3>'+
-    '<div class="plv" style="margin-bottom:4px">Rare requests, one-time rewards — earn POKEMON you cannot catch anywhere else.</div>'+rows+'</div>';
-}
-function qRet(inner){var rv=questReveal;questReveal=false;return rv?'<div class="qreveal">'+inner+'</div>':inner;}
-function historicalRoadHTML(t){
-  var loc=roadLoc(t),ac=loc.c||'#2E8B48',qs=questsFor(t),bn=BOSSES[t];
-  var g=state.game,lg=(g.roadLog&&g.roadLog[t])||null;
-  var h='<div class="titlebar"><h1>QUESTS</h1></div>'+
-    '<div class="subtitle">'+loc.n+' · cleared route ✓</div>'+
-    '<div class="mapwrap" style="border-color:'+ac+'"><img class="mapimg" src="'+(loc.img||('sprites/arenas/'+loc.arena+'.png'))+'" alt="'+loc.n+'" style="width:100%;display:block;image-rendering:pixelated;aspect-ratio:240/110;object-fit:cover"><span class="maptag" style="position:absolute;left:8px;bottom:8px;border-color:'+ac+'">'+loc.n+'</span></div>';
-  /* the local clear report: this village's own quest history, in numbers */
-  var rep='';
-  if(lg&&!lg.synth){
-    var durDays=Math.max(1,Math.round((lg.clearTs-lg.startTs)/86400000));
-    rep='<div class="statrow"><span style="color:var(--mut)">CLEARED ON</span><b style="font-weight:400">'+fmtDayKey(dateKey(lg.clearTs))+'</b></div>'+
-      '<div class="statrow"><span style="color:var(--mut)">TIME ON THE ROAD</span><b style="font-weight:400">'+durDays+' day'+(durDays===1?'':'s')+'</b></div>'+
-      '<div class="statrow"><span style="color:var(--mut)">WILDS TIRED OUT</span><b style="font-weight:400">'+(lg.kills||0)+'</b></div>'+
-      (lg.round>1?'<div class="statrow"><span style="color:var(--mut)">ROUND</span><b style="font-weight:400">R'+lg.round+'</b></div>':'');
-  }else{
-    rep='<div class="plv">You blazed through '+loc.n+' on the way to '+(bn?bn.n:'the gym')+'. Every quest was completed and every reward collected.</div>';
-  }
-  var rewardSum=0;qs.forEach(function(q){rewardSum+=q.reward;});
-  rep+='<div class="statrow"><span style="color:var(--mut)">QUEST REWARDS BANKED</span><b style="font-weight:400">₽'+rewardSum.toLocaleString()+'</b></div>';
-  h+='<div class="panel" style="border-color:'+ac+'"><h3>ROUTE REPORT<span class="bestchip" style="border-color:'+ac+'">'+(3+roadMbCount(t))+' / '+(3+roadMbCount(t))+' ✓</span></h3>'+rep+'</div>';
-  /* the finished track — every stop lit green */
-  var nodes='';
-  qs.forEach(function(q){nodes+='<span style="display:inline-flex;width:30px;height:30px;border-radius:50%;border:3px solid #2E8B48;background:var(--boxw);align-items:center;justify-content:center;overflow:hidden;margin-right:6px"><img src="sprites/npc/'+q.npc+'.png" alt="" style="width:16px;image-rendering:pixelated"></span>';});
-  for(var nj=0;nj<roadMbCount(t);nj++){nodes+='<span style="display:inline-flex;width:30px;height:30px;border-radius:50%;border:3px solid #2E8B48;background:var(--boxw);align-items:center;justify-content:center;overflow:hidden;margin-right:6px"><img src="sprites/trainers/'+mbFor(t,nj).cls+'.png" alt="" style="width:22px;image-rendering:pixelated"></span>';}
-  nodes+='<span style="display:inline-flex;width:30px;height:30px;border-radius:50%;border:3px solid #E8A010;background:var(--boxw);align-items:center;justify-content:center;overflow:hidden"><img src="sprites/trainers/'+(bn?bn.tr:'red')+'.png" alt="" style="width:22px;image-rendering:pixelated"></span>';
-  h+='<div class="panel" style="border-color:'+ac+'"><h3>THE TRACK<span class="bestchip" style="border-color:'+ac+'">DONE</span></h3>'+
-    '<div class="gbar" style="margin:8px 0 10px"><div style="width:100%;background:'+ac+'"></div></div>'+
-    '<div style="display:flex;align-items:center;flex-wrap:wrap;gap:4px 0">'+nodes+'</div></div>';
-  var qrows='';
-  qs.forEach(function(q){
-    qrows+='<div class="prow" style="padding:8px 10px;opacity:.82">'+
-      '<img src="sprites/npc/'+q.npc+'.png" alt="" style="width:26px;image-rendering:pixelated;flex:none;filter:grayscale(1)">'+
-      '<div style="flex:1;min-width:0"><div class="pname" style="font-size:16px">'+q.clsN+' '+q.name+' <span style="color:#2E8B48">✓ DONE</span></div>'+
-      '<div class="plv" style="margin:2px 0 4px;white-space:normal;line-height:1.25">“'+q.ask+'”</div>'+
-      '<div class="plv" style="color:#2E8B48">Reward collected: ₽'+q.reward.toLocaleString()+'</div></div></div>';
-  });
-  h+='<div class="panel"><h3>SIDE QUESTS</h3>'+qrows+'</div>';
-  var mrows='';
-  for(var j=0;j<roadMbCount(t);j++){var mb=mbFor(t,j);
-    mrows+='<div class="prow" style="padding:8px 10px;opacity:.82">'+
-      '<img src="sprites/trainers/'+mb.cls+'.png" alt="" style="width:40px;height:40px;image-rendering:pixelated;flex:none;filter:grayscale(1)">'+
-      '<div style="flex:1;min-width:0"><div class="pname" style="font-size:16px">'+mb.clsN+' '+mb.name+' <span style="color:#2E8B48">✓ BEATEN</span></div>'+
-      '<div class="plv" style="margin-top:2px">'+DEX[mb.sp].n+' :L'+mb.lv+' · won ₽'+mb.purse.toLocaleString()+'</div></div>'+
-      '<img src="'+sprPath(mb.sp,false)+'" alt="" style="width:38px;height:38px;image-rendering:pixelated;flex:none;filter:grayscale(1);opacity:.6"></div>';
-  }
-  h+='<div class="panel"><h3>ROADBLOCKS</h3>'+mrows+'</div>';
-  /* your live road carries on elsewhere — point the way without spoiling it here */
-  var bz=bossInfo();
-  if(bz&&roadActive()){
-    var frontier=townIdx();
-    h+='<div class="panel" style="border-color:#E8A010"><h3>MEANWHILE…</h3>'+
-      '<div class="plv" style="margin-bottom:6px">Your journey continues through <b>'+roadLoc(state.game.road.idx).n+'</b>. Quest progress keeps counting while you\'re here — see it from '+TOWNS[frontier].n+'.</div>'+
-      '<button class="btn acc" data-action="travel-go" data-t="'+frontier+'" style="width:100%">'+ferryIcon(18)+' FERRY TO '+TOWNS[frontier].n+'</button></div>';
-  }
-  h+=dailyPanelHTML()+collectorsHTML();
-  return h;
-}
-function questsHTML(){
-  var h=pageHero({t:'QUESTS',s:'Roads, dailies and requests',ic:'quest',c:'#C88A20'});
-  if(!state.game)return h+'<div class="empty"><div class="big">?</div>Your adventure has not started yet.<br>Reopen the app to meet '+profName()+'.</div>';
-  ensureRoad();
-  var g=state.game,bz=bossInfo();
-  if(!bz)return qRet(h+'<div class="empty"><div class="big">🏆</div>All roads conquered, CHAMPION.</div>');
-  // standing in an OLD village → show its cleared route as a memento
-  if(curTown()<townIdx()&&curTown()<ROAD_LOC.length)return qRet(historicalRoadHTML(curTown()));
-  // DEV MODE can stand ahead of the story — preview note, no quest spoilers
-  if(curTown()>townIdx()){
-    return qRet(h+'<div class="subtitle">'+(curTown()<ROAD_LOC.length?roadLoc(curTown()).n:'THE LEAGUE')+' · preview</div>'+
-      '<div class="panel"><div class="memo">DEV PREVIEW — the story hasn’t reached '+TOWNS[curTown()].n+' yet. Its quests open when your badges catch up.</div></div>'+
-      dailyPanelHTML());
-  }
-  if(!roadActive()){
-    return qRet(h+'<div class="subtitle">The league gauntlet</div>'+
-      dailyPanelHTML()+
-      '<div class="panel"><div class="memo">No side roads inside the INDIGO PLATEAU — only the league itself. Challenge '+esc(bz.n)+' straight from the GYM!</div></div>'+
-      collectorsHTML());
-  }
-  var r=g.road,qs=questsFor(r.idx),loc=roadLoc(r.idx),ac=loc.c||'#2E8B48';
-  /* v7.2: the REAL area map is the page hero; the road's progress rides in the chips */
-  var qsLeft=roadStepsLeft(),dStreak=(g.daily&&g.daily.streak)||0;
-  h=pageHero({t:'QUESTS',s:'Road to '+esc(bz.gym)+' · through '+loc.n,ic:'quest',c:ac,
-    scene:'<img class="mapimg" src="'+(loc.img||('sprites/arenas/'+loc.arena+'.png'))+'" alt="'+loc.n+'" style="width:100%;display:block;image-rendering:pixelated;aspect-ratio:240/96;object-fit:cover">'+
-      '<span class="maptag" style="position:absolute;left:8px;bottom:8px;border-color:'+ac+'">'+loc.n+'</span>',
-    chips:[qsLeft?phChip(qsLeft+' STEP'+(qsLeft===1?'':'S')+' TO '+esc(bz.n)):phChip('GYM OPEN!','',true),
-      phChip('DAILY STREAK '+dStreak,pxIcon('stats',14))]});
-  h+=roadBarHTML();
-  h+=dailyPanelHTML();
-  var qrows='';
-  qs.forEach(function(q,qi){
-    var claimed=questClaimed(qi),ready=!claimed&&questReady(q),prog=questProg(q);
-    var pc=Math.round(prog/q.target*100);
-    var unitLab=q.t==='volume'?(' '+state.unit):(q.t==='days'?' days':q.t==='sets'?' sets':'');
-    qrows+='<div class="prow" style="padding:8px 10px'+(claimed?';opacity:.75':'')+'">'+
-      '<img src="sprites/npc/'+q.npc+'.png" alt="" style="width:26px;image-rendering:pixelated;flex:none'+(claimed?';filter:grayscale(1)':'')+'">'+
-      '<div style="flex:1;min-width:0">'+
-      '<div class="pname" style="font-size:16px">'+q.clsN+' '+q.name+(claimed?' <span style="color:#2E8B48">✓ DONE</span>':(ready?' <span style="color:#E8A010">! COMPLETE</span>':''))+'</div>'+
-      '<div class="plv" style="margin:2px 0 5px;white-space:normal;line-height:1.25">“'+q.ask+'”</div>'+
-      (claimed?'<div class="plv" style="color:#2E8B48">Reward collected: ₽'+q.reward.toLocaleString()+'</div>'
-        :(ready?'<button class="btn acc" data-action="quest-claim" data-qi="'+qi+'">COLLECT ₽'+q.reward.toLocaleString()+'</button>'
-               :'<div style="display:flex;align-items:center;gap:5px"><div class="gbar"><div style="width:'+pc+'%;background:'+ac+'"></div></div><span class="barnum">'+prog.toLocaleString()+'/'+q.target.toLocaleString()+unitLab+'</span></div>'))+
-      '</div></div>';
-  });
-  h+='<div class="panel" style="border-color:'+ac+'"><h3>SIDE QUESTS</h3>'+qrows+'</div>';
-  var mrows='';
-  for(var j=0;j<roadMbCount(r.idx);j++){
-    var mb=mbFor(r.idx,j),dn=!!r.mb[j];
-    mrows+='<div class="prow" style="padding:8px 10px'+(dn?';opacity:.75':'')+(mb.rival?';border-color:#D03028':'')+'">'+
-      '<img src="sprites/trainers/'+mb.cls+'.png" alt="" style="width:40px;height:40px;image-rendering:pixelated;flex:none'+(dn?';filter:grayscale(1)':'')+'">'+
-      '<div style="flex:1;min-width:0">'+
-      '<div class="pname" style="font-size:16px'+(mb.rival?';color:#D03028':'')+'">'+mb.clsN+' '+mb.name+(dn?' <span style="color:#2E8B48">✓ BEATEN</span>':'')+'</div>'+
-      '<div class="plv" style="margin-top:2px;white-space:normal;line-height:1.25">'+(mb.rival?'Your rival wants to battle! ':'')+DEX[mb.sp].n+' :L'+mb.lv+' · '+loc.n+(dn?'':' · ₽'+mb.purse)+'</div>'+
-      '</div>'+
-      '<img src="'+sprPath(mb.sp,false)+'" alt="'+DEX[mb.sp].n+'" style="width:38px;height:38px;image-rendering:pixelated;flex:none'+(dn?';filter:grayscale(1);opacity:.6':'')+'">'+
-      (dn?'':'<button class="btn acc" data-action="mb-fight" data-j="'+j+'">FIGHT</button>')+
-      '</div>';
-  }
-  h+='<div class="panel" style="border-color:'+ac+'"><h3>ROADBLOCKS<span class="bestchip" style="border-color:'+ac+'">'+loc.n+'</span></h3>'+
-    '<div class="plv" style="margin-bottom:4px">Trainers block the way to '+esc(bz.gym)+'. Beat them ALL to open the gym doors — they fight like the wilds, but harder.</div>'+mrows+'</div>';
-  h+=collectorsHTML();
-  return qRet(h);
+  return '<div class="qfoot top">One-time requests from collectors — each pays out a POKEMON you can’t catch anywhere else.</div>'+
+    '<div class="qlist">'+cards+'</div>';
 }
 function labHTML(){
   var h=pageHero({t:'LAB',ic:'lab',c:'#8050C0',img:'map/poi/lab.png'});
@@ -8988,7 +9245,7 @@ function playHatchFx(sp,shiny){
 function playFinishFx(durTxt){
   var old=document.getElementById('finfx');if(old)old.remove();
   var am=state.game?activeMon():null;
-  var art=am?'<img src="sprites/art/'+DEX[am.sp].id+'.png" alt="" onerror="this.onerror=null;this.src=\''+sprPath(am.sp,am.shiny)+'\';this.style.imageRendering=\'pixelated\'" style="width:120px;height:120px;object-fit:contain;filter:drop-shadow(0 4px 10px rgba(0,0,0,.45))">':'';
+  var art=am?'<img src="'+artSrc(am.sp,am.shiny)+'" alt=""'+artFallback(am.sp,am.shiny)+' style="width:120px;height:120px;object-fit:contain;filter:drop-shadow(0 4px 10px rgba(0,0,0,.45))">':'';
   var el=document.createElement('div');
   el.id='finfx';
   el.innerHTML='<div class="prveil"></div>'+
@@ -9005,7 +9262,7 @@ function playFinishFx(durTxt){
 function playPrFx(exName,w){
   var old=document.getElementById('prfx');if(old)old.remove();
   var am=state.game?activeMon():null;
-  var art=am?'<img src="sprites/art/'+DEX[am.sp].id+'.png" alt="" onerror="this.onerror=null;this.src=\''+sprPath(am.sp,am.shiny)+'\';this.style.imageRendering=\'pixelated\'" style="width:130px;height:130px;object-fit:contain;filter:drop-shadow(0 4px 10px rgba(0,0,0,.45))">':'';
+  var art=am?'<img src="'+artSrc(am.sp,am.shiny)+'" alt=""'+artFallback(am.sp,am.shiny)+' style="width:130px;height:130px;object-fit:contain;filter:drop-shadow(0 4px 10px rgba(0,0,0,.45))">':'';
   var el=document.createElement('div');
   el.id='prfx';
   el.innerHTML='<div class="prveil"></div>'+
@@ -9911,11 +10168,13 @@ function poiStartFight(kind,f){
     if(w.tr&&w.tr.fa!==undefined)bfSetupRental();
     state.session.bmsg=w.tr?(w.tr.clsN+' '+w.tr.name+' sent out '+DEX[w.sp].n+'! Log a set to attack!'+(w.tr.moodTxt||'')):poiWildMsg(w);
     save();sfx('battlestart');
-    pendingEntrance=w.tr?{enemy:'ball',dly:1450}:{enemy:'wild'};
-    tab='workout';render();
-    if(w.tr)playVsFx(w.tr.cls,w.tr.clsN+' '+w.tr.name);
-    else if(w.shiny)setTimeout(shinyBurst,700);
-    setTimeout(function(){cry(w.sp);},400);
+    encounterFx(w.tr?'trainer':'wild',function(){
+      pendingEntrance=w.tr?{enemy:'ball',dly:ENC_T.ball.open-ENC_T.ball.cover+80}:{enemy:'wild',dly:ENC_T.wild.open-ENC_T.wild.cover+60};
+      tab='workout';render();
+    },w.tr?vsOfTrainer(w.tr):null);
+    var wOpen=w.tr?ENC_T.ball.open:ENC_T.wild.open;
+    if(!w.tr&&w.shiny)setTimeout(shinyBurst,wOpen+700);
+    setTimeout(function(){cry(w.sp);},wOpen+(w.tr?600:260));
   }else{
     pendingPoi={kind:kind,f:f};
     pendingMb=null;
@@ -11583,39 +11842,91 @@ function skyHTML(){
   return h+poiBackBtn();
 }
 /* ===== the ferry ride: a GBA-style map transition between villages ===== */
+/* v7.5 TRAVEL — a camera flight over the official region map:
+   zoomed on the town you leave → pull back to the whole region → the ferry rides an
+   arcing route (the trail draws behind it, clouds slide under the camera) → the camera
+   dives into the destination → its town map fades up and the FRLG location sign drops
+   in (WELCOME TO… on a first visit, the fare under it). Tap anywhere to skip. */
 var travelBusy=false;
-function playTravelFx(from,to,firstTime,done){
+function playTravelFx(from,to,firstTime,done,fare){
   if(travelBusy||from===to){done();return;}
   travelBusy=true;
   var old=document.getElementById('travelfx');
   if(old&&old.parentNode)old.parentNode.removeChild(old);
-  var x0=TOWN_MAP_XY[from],x1=TOWN_MAP_XY[to];
-  var ov=document.createElement('div');ov.id='travelfx';
-  if(inHoenn())ov.className='hoenn';
-  ov.innerHTML='<div class="tfxcard">'+
-      '<div class="tfxtitle">'+TOWNS[from].n+' ▶ '+TOWNS[to].n+'</div>'+
-      '<div class="tfxmap"><img src="'+regionMapImg()+'" alt="'+regionName()+'">'+
-        '<svg class="tfxsvg" viewBox="0 0 100 100" preserveAspectRatio="none">'+
-        '<line x1="'+x0[0]+'" y1="'+x0[1]+'" x2="'+x1[0]+'" y2="'+x1[1]+'" stroke="#D03028" stroke-width="1.4" stroke-dasharray="2.6 2.2" vector-effect="non-scaling-stroke"/></svg>'+
-        '<span class="tfxdot" style="left:'+x0[0]+'%;top:'+x0[1]+'%">'+ferryIcon(20)+'</span>'+
-      '</div>'+
-      '<div class="tfxsign">'+(firstTime?'WELCOME TO<br>':'')+TOWNS[to].n+'</div>'+
-    '</div>';
+  var p0=TOWN_MAP_XY[from],p1=TOWN_MAP_XY[to];
+  var dx=p1[0]-p0[0],dy=p1[1]-p0[1],dist=Math.sqrt(dx*dx+dy*dy);
+  var c=[(p0[0]+p1[0])/2,Math.max(4,Math.min(p0[1],p1[1])-Math.max(10,dist*0.35))]; // the arc's control point
+  var ov=document.createElement('div');ov.id='travelfx';ov.className='tv2'+(inHoenn()?' hoenn':'');
+  var ar=inHoenn()?159/257:141/200;
+  ov.innerHTML='<div class="tvsky"></div>'+
+    '<div class="tvworld" style="aspect-ratio:'+(1/ar)+'">'+
+      '<img class="tvmap" src="'+regionMapImg()+'" alt="">'+
+      '<svg class="tvsvg"><path class="tvroute"/><path class="tvtrail" pathLength="100"/></svg>'+
+      '<span class="tvpin" style="left:'+p0[0]+'%;top:'+p0[1]+'%"></span>'+
+      '<span class="tvpin to" style="left:'+p1[0]+'%;top:'+p1[1]+'%"></span>'+
+      '<span class="tvrider" style="left:'+p0[0]+'%;top:'+p0[1]+'%">'+ferryIcon(30)+'</span>'+
+    '</div>'+
+    '<div class="tvclouds"><i></i><i></i><i></i><i></i></div>'+
+    '<div class="tvdest" style="background-image:url('+TOWNS[to].img+')"></div>'+
+    '<div class="tvsign"><span>'+(firstTime?'WELCOME TO':TOWNS[from].n+' ▶')+'</span><b>'+TOWNS[to].n+'</b>'+
+      '<em>'+(fare>0?'FERRY · −₽'+fare.toLocaleString():'FERRY · FREE')+'</em></div>'+
+    '<div class="tvskip">TAP TO SKIP</div>';
   document.body.appendChild(ov);
-  sfx('ferry');
-  var dot=ov.querySelector('.tfxdot');
-  requestAnimationFrame(function(){requestAnimationFrame(function(){ov.classList.add('on');});});
-  setTimeout(function(){ // the ferry chugs across in visible GBA steps
-    dot.style.transition='left 1.35s steps(11),top 1.35s steps(11)';
-    dot.style.left=x1[0]+'%';dot.style.top=x1[1]+'%';
-  },480);
-  setTimeout(function(){ov.classList.add('arrive');sfx(firstTime?'badge':'save');},2050);
-  setTimeout(function(){ov.classList.add('out');},2820);
-  setTimeout(function(){
-    if(ov.parentNode)ov.parentNode.removeChild(ov);
+  var world=ov.querySelector('.tvworld'),rider=ov.querySelector('.tvrider'),trail=ov.querySelector('.tvtrail');
+  /* the route in real pixels (a 0–100 box would stretch the stroke unevenly) */
+  var Wp=world.offsetWidth,Hp=world.offsetHeight;
+  function px(pt){return (pt[0]/100*Wp).toFixed(1)+' '+(pt[1]/100*Hp).toFixed(1);}
+  ov.querySelector('.tvsvg').setAttribute('viewBox','0 0 '+Wp+' '+Hp);
+  var dPath='M'+px(p0)+' Q'+px(c)+' '+px(p1);
+  ov.querySelector('.tvroute').setAttribute('d',dPath);trail.setAttribute('d',dPath);
+  var timers=[],raf=null,finished=false;
+  function at(ms,fn){timers.push(setTimeout(fn,ms));}
+  /* camera: put map point (x%,y%) at the screen centre at zoom s */
+  function cam(x,y,s){
+    var W=world.offsetWidth,H=world.offsetHeight,vw=window.innerWidth,vh=window.innerHeight;
+    if(x==null)return 'translate(0px,'+Math.round((vh-H)/2)+'px) scale(1)';
+    return 'translate('+Math.round(vw/2-s*x/100*W)+'px,'+Math.round(vh/2-s*y/100*H)+'px) scale('+s+')';
+  }
+  function move(fromT,toT,ms,ease){
+    if(world.animate)world.animate([{transform:fromT},{transform:toT}],{duration:ms,easing:ease,fill:'forwards'});
+    else world.style.transform=toT;
+  }
+  function finish(){
+    if(finished)return;finished=true;
+    timers.forEach(clearTimeout);if(raf)cancelAnimationFrame(raf);
     travelBusy=false;
-    done();
-  },3220);
+    done(); // the new town renders UNDER the overlay, which then fades off it
+    ov.classList.add('out');
+    setTimeout(function(){if(ov.parentNode)ov.parentNode.removeChild(ov);},320);
+  }
+  ov.addEventListener('click',function(){
+    if(ov.classList.contains('skip'))return;
+    ov.classList.add('skip','dest','sign');finish();
+  });
+  var zoomIn=2.6;
+  world.style.transform=cam(p0[0],p0[1],zoomIn);
+  requestAnimationFrame(function(){requestAnimationFrame(function(){ov.classList.add('on');});});
+  sfx('ferry');
+  at(260,function(){move(cam(p0[0],p0[1],zoomIn),cam(),620,'cubic-bezier(.5,0,.3,1)');});
+  /* the ride: the ferry follows the arc, the trail draws behind it */
+  at(900,function(){
+    ov.classList.add('fly');
+    var t0=performance.now(),dur=1250;
+    function step(now){
+      var t=Math.min(1,(now-t0)/dur),e=t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2,u=1-e;
+      var x=u*u*p0[0]+2*u*e*c[0]+e*e*p1[0],y=u*u*p0[1]+2*u*e*c[1]+e*e*p1[1];
+      rider.style.left=x+'%';rider.style.top=y+'%';
+      rider.classList.toggle('flip',p1[0]<p0[0]);
+      trail.style.strokeDashoffset=(100-e*100).toFixed(2);
+      if(t<1)raf=requestAnimationFrame(step);
+    }
+    raf=requestAnimationFrame(step);
+  });
+  /* dive into the destination, then its own map takes over */
+  at(2200,function(){ov.classList.remove('fly');move(cam(),cam(p1[0],p1[1],3.4),520,'cubic-bezier(.6,0,.9,.5)');});
+  at(2600,function(){ov.classList.add('dest');});
+  at(2800,function(){ov.classList.add('sign');sfx(firstTime?'badge':'save');});
+  at(3900,finish);
 }
 function travelHTML(){
   var h=pageHero({t:'TOWN MAP',ic:'map',c:'#2E7A9A',back:'map'});
@@ -11712,6 +12023,11 @@ function centerHTML(){
   return h;
 }
 
+/* v7.5: OFFICIAL ARTWORK for any species — shiny ones get the official shiny
+   illustration (sprites/art/shiny/, same 300px as the normal art); the pixel sprite
+   is only the fallback if a file is missing */
+function artSrc(sp,shiny){return 'sprites/art/'+(shiny?'shiny/':'')+DEX[sp].id+'.png';}
+function artFallback(sp,shiny){return ' onerror="this.onerror=null;this.src=\''+sprPath(sp,!!shiny)+'\';this.style.imageRendering=\'pixelated\'"';}
 /* ===== game: hero ===== */
 var pendingGender=null,pendingName=null,titlePlayed=false;
 function playerName(){return (state.game&&state.game.player&&state.game.player.name)?state.game.player.name:'TRAINER';}
@@ -12208,9 +12524,11 @@ function workoutHTML(){
       var ew0=state.session.wild;
       /* trainer/boss starts hide behind the VS splash — entrances wait for it to clear;
          the boss cameo keeps its own enemy choreography (leader walks on first) */
+      /* v7.5: entrances wait for the encounter wipe to open (see ENC_T) */
+      var encOpen=ENC_T.ball.open-ENC_T.ball.cover+80;
       pendingEntrance=ew0
-        ?(ew0.tr?{player:1,enemy:'ball',dly:1450}:{player:1,enemy:'wild'})
-        :(cam0?{player:1,dly:1450}:{player:1,enemy:'ball',dly:1450});
+        ?(ew0.tr?{player:1,enemy:'ball',dly:encOpen}:{player:1,enemy:'wild',dly:ENC_T.wild.open-ENC_T.wild.cover+60})
+        :(cam0?{player:1,dly:encOpen}:{player:1,enemy:'ball',dly:encOpen});
     }
     var modeCls=battleModeCls();
     h+='<div class="livebar'+modeCls+'"><span class="pulse"></span><span class="elapsed">'+fmtElapsed(Date.now()-state.session.start)+'</span>'+
@@ -12260,7 +12578,7 @@ function settingsHTML(){
   function group(t,rows){return '<div class="sgroup"><div class="sgh">'+t+'</div><div class="sgbox">'+rows+'</div></div>';}
   var bw=bwList();
   return pageHero({t:'OPTION',s:'Everything stays on this device',ic:'option',c:'#4A5A70',
-      chips:[phChip('v7.4 “Style”'),phChip(kb+' KB SAVED')]})+
+      chips:[phChip('v7.5 “Journey”'),phChip(kb+' KB SAVED')]})+
     group('LOOK & SOUND',
       row('daynight','Style','FireRed day or night look',seg('theme','th',[['night','NIGHT',state.theme!=='day'],['day','DAY',state.theme==='day']]))+
       (state.game?row('home','Home screen','TRAINER tab: new lobby or the classic page',seg('home-style','s',[['new','NEW',!homeStyleClassic()],['classic','CLASSIC',homeStyleClassic()]])):'')+
@@ -12279,7 +12597,7 @@ function settingsHTML(){
       row('save','Backup','Export your data as a file','<div style="display:flex;gap:6px"><button class="btn" data-action="copy">COPY</button><button class="btn acc" data-action="export">EXPORT</button></div>')+
       row('save','Restore','Import a backup file','<button class="btn" data-action="import">IMPORT</button>')+
       row('warn','Reset everything','Deletes all history','<button class="btn danger" data-action="reset">RESET</button>','danger'))+
-    '<div class="about">Gym Tracker v7.4 “Style” · '+kb+' KB stored locally<br>'+
+    '<div class="about">Gym Tracker v7.5 “Journey” · '+kb+' KB stored locally<br>'+
     'Your data never leaves your phone. Export a backup once in a while —<br>if you delete the app icon, its data goes with it.</div>';
 }
 
@@ -13374,7 +13692,10 @@ document.addEventListener('click',function(e){
   }
   else if(a==='tired-center'){closeModal();pendingMb=null;pendingPoi=null;tab='center';render();}
   else if(a==='tired-go'){closeModal();tiredOk=true;showChooserThenStart(pendingMode);}
-  else if(a==='start-workout'){if(state.game)showChooserThenStart('train');else startWorkout('train');}
+  else if(a==='start-workout'){
+    if(b.classList&&b.classList.contains('lbgo')){b.classList.remove('launch');void b.offsetWidth;b.classList.add('launch');} // v7.5: the ball spins up
+    if(state.game)showChooserThenStart('train');else startWorkout('train');
+  }
   else if(a==='end-workout'){endWorkout();}
   else if(a==='team-view'){teamView=(b.dataset.v==='dex'||b.dataset.v==='box')?b.dataset.v:'party';render(true);}
   else if(a==='box-type'){boxType=b.dataset.t||'';render(true);}
@@ -13623,8 +13944,7 @@ document.addEventListener('click',function(e){
     playTravelFx(origin,dest,firstTime,function(){
       if(firstTime)questReveal=true; // fresh village → the QUEST page reveals with a flourish
       tab='map';render();
-      toast((firstTime?'Welcome to ':'Arrived at ')+TOWNS[dest].n+(fare>0?' · −₽'+fare:' · FREE')+'!');
-    });
+    },fare); // v7.5: the arrival sign shows the town + the fare
   }
   else if(a==='pick-move'){showMoveModal();}
   else if(a==='set-move'){
@@ -13999,13 +14319,18 @@ document.addEventListener('click',function(e){
         tr:{cls:mbD.cls,clsN:mbD.clsN,name:mbD.name,purse:mbD.purse,mb:mj,arena:mbD.arena}};
       state.session.bmsg=mbD.clsN+' '+mbD.name+' sent out '+DEX[mbD.sp].n+'!';
       save();sfx('battlestart');
-      tab='workout';render();
-      playVsFx(mbD.cls,mbD.clsN+' '+mbD.name);
+      var mbTr=state.session.wild.tr;
+      encounterFx('trainer',function(){
+        pendingEntrance={enemy:'ball',dly:ENC_T.ball.open-ENC_T.ball.cover+80};
+        tab='workout';render();
+      },vsOfTrainer(mbTr));
+      setTimeout(function(){cry(mbD.sp);},ENC_T.ball.open+600);
     }else{
       pendingMb=mj;
       showChooserThenStart('train');
     }
   }
+  else if(a==='qtab'){questTab=b.dataset.q;sfx('click');render(true);}
   else if(a==='quest-claim'){
     if(!state.game||!roadActive())return;
     var cqi=parseInt(b.dataset.qi,10);
