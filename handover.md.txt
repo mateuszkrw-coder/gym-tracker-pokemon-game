@@ -1,4 +1,4 @@
-Gym Tracker — Handover Document (current as of app v7.1 / sw v61 / schema v20, 2026-10-23)
+Gym Tracker — Handover Document (current as of app v7.2 / sw v62 / schema v20, 2026-10-23)
 
 ============================================================
 1. WHAT THIS IS
@@ -22,7 +22,7 @@ installed home-screen app isolated storage — a separate app couldn't read the 
 Live URL:  https://mateuszkrw-coder.github.io/gym-tracker-pokemon-game/
 Repo:      https://github.com/mateuszkrw-coder/gym-tracker-pokemon-game  (GitHub Pages from main branch root;
            renamed from gym-tracker, whose old Pages URL now 404s)
-Current:   app v7.1 “Lobby”, service-worker cache v61, data schema v20.
+Current:   app v7.2 “Arcade”, service-worker cache v62, data schema v20.
 
 ============================================================
 2. THE TWO-LAPTOP WORKFLOW (read this FIRST on any machine)
@@ -477,6 +477,44 @@ Johto/Gen-2 content pack (a 3rd campaign — the region model supports it cleanl
 ============================================================
 13. IMMEDIATE STATE
 ============================================================
+v7.2 “Arcade” (2026-10-24) — Mateusz: redo the workout-complete screen, remove the weather
+(“weird”), modernise QUEST / MAP / OPTION and every page reachable from TRAINER.
+• WEATHER OFF: wxChipHTML() and wxOverlayHTML() return '' (map, battle, every caller);
+  the Weather Institute's forecast board is gone (story + CASTFORM untouched); wxFor()
+  kept, unused. The v5.19 “pure art, locked” note is superseded by this request.
+• PAGE HERO (pageHero(o), the shared header): full-bleed, under the status bar, pixel
+  icon + title + subtitle + chips (phChip / phBtn / moneyChip). Two variants:
+  – banner: tinted gradient (o.c) or blurred official art (o.img);
+  – SCENE (o.scene): a compact header band above the UNBLURRED official interior/map
+    — MAP (town map + hotspots), QUESTS (road map), CENTER and MART (interiors + NPCs),
+    GYM (interior cropped around the leader via GYMS[].ly).
+  o.back:'auto' returns to the MAIN tab you came from (heroBackTo, set in render on tab
+  change); 'summary' shows the home icon. Used on map, quests, settings, center, mart,
+  gymhall, card, trophy, stats, perks, nav, lab, team, travel, body, prhall. The old
+  “← BACK TO TOWN” buttons on center/mart/gym are gone (the hero back replaces them).
+• GLOBAL LOOK (CSS at the END of <style>, wins the cascade): --radius 14px, panels 16px
+  with a soft lip and a dashed h3 divider, rows inside panels lie flat (full width,
+  hairline border, no box-in-box), pill chips, rounder bars/segs/buttons.
+• OPTION rebuilt as grouped settings (LOOK & SOUND / TRAINING / ADVENTURE / SAVE DATA):
+  .sgroup/.sgbox/.srow2 with a pixel icon per row. New PX_ICONS: daynight, sound,
+  dumbbell, list, pen, save, warn.
+• MART: available stock = ON THE SHELVES list; locked stock = a compact 4-col grid
+  (.mgrid/.mtile, “n badges”) instead of 20 grey rows.
+• BAG modal: FRLG POCKETS (POKE BALLS / MEDICINE / HELD & BOOSTS) as tile grids
+  (.btile), tap a tile → its text in #bag-info (action bag-info).
+• TRAINER CARD: .tcard rank-tinted card stock (--rk) with a passing sheen.
+• RESULTS SCREEN (showResults(d), #resfx) replaces playFinishFx + the recap modal in
+  endWorkout (playFinishFx kept, unused): ribbon banner, 3 stars (RES_STARS: FINISHED /
+  12+ SETS / NEW RECORD-or-24-sets; records = session logs with rel>1), the lead's
+  Sugimori art on a stage, 4 count-up tiles (countUp(root)), reward pills (₽, EXP,
+  CANDY CROWN, records), the trainer-LV bar, rookie note or a hint naming the missing
+  stars, CONTINUE (res-done → closeResults: fxHold off + drains modalQueue, so the
+  card chooser / rookie note / lessons gift follow in order).
+• ASSET FIX: all 8 sprites/npc/*.png had an opaque white right-edge column (visible on
+  dark backgrounds) — made transparent.
+• Tested: every page day + night (32 captures), bag, results day/night, new-game W1
+  (results → card → lessons gift), veteran save — zero console errors. sw v62.
+
 v7.1 “Lobby” (2026-10-24) — Mateusz: rare/epic cards too frequent; TRAINER page “feels weird”,
 wants an Archero-style home screen; keep the old version to go back to.
 • BACKUP: branch backup-v7.0.1-classic (= the live v7.0.1, commit 82bc34d) on GitHub, AND an
