@@ -1090,7 +1090,6 @@ html.theme-night .lbscene::after{background:radial-gradient(ellipse 62% 46% at 5
 .lbintro .lbart{animation:lbartin .7s cubic-bezier(.2,1.2,.4,1),lbfloat 3s ease-in-out .7s infinite}
 @keyframes lbfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
 @keyframes lbartin{0%{transform:translateY(40px) scale(.3);filter:brightness(6) saturate(0);opacity:0}60%{filter:brightness(2.5) saturate(0);opacity:1}100%{transform:none}}
-.lbtrainer{bottom:8px;margin-left:-138px;width:64px;height:64px;image-rendering:pixelated;filter:drop-shadow(0 3px 0 rgba(0,0,0,.25))}
 .lbplate{left:50%;bottom:10px;transform:translateX(-50%);width:min(240px,62vw);padding:5px 9px 6px;cursor:pointer;
   background:rgba(255,255,255,.94);color:#303030;border:2px solid #2C3440;border-radius:8px;box-shadow:0 3px 0 rgba(0,0,0,.25);
   display:flex;flex-direction:column;gap:3px;text-align:left;font-family:inherit}
@@ -1522,6 +1521,109 @@ html.theme-night .modal .mbtns .btn.acc{background:linear-gradient(180deg,#C8584
 .roundbtn:active{transform:translateY(2px);box-shadow:none}
 .shtitle .g{display:inline-block;padding:4px 9px;border-radius:10px;border:2px solid currentColor;font-size:8px}
 .shtitle h1{font-size:15px}
+/* ---------- v7.4 WARDROBE ---------- */
+.wdstage{position:relative;height:262px;margin:14px 12px 0;border-radius:18px;overflow:hidden;border:3px solid var(--frame);
+  --w1:#F6E8F0;--w2:#EEDCE7;--f1:#C99872;--f2:#B4825E;
+  background:linear-gradient(180deg,transparent 0 70%,rgba(0,0,0,.12) 70% 71%,transparent 71%),
+    repeating-linear-gradient(90deg,var(--f1) 0 46px,var(--f2) 46px 48px) bottom/100% 29% no-repeat,
+    repeating-linear-gradient(90deg,var(--w1) 0 16px,var(--w2) 16px 32px);
+  box-shadow:0 4px 0 rgba(0,0,0,.1)}
+html.theme-night .wdstage{--w1:#2C2638;--w2:#28222F;--f1:#4A3A30;--f2:#3E3028}
+.wdstage>*{position:absolute}
+.wdbeam{top:0;left:50%;width:250px;height:100%;margin-left:-125px;pointer-events:none;
+  background:linear-gradient(180deg,rgba(255,248,214,.75),rgba(255,248,214,0) 92%);clip-path:polygon(40% 0,60% 0,100% 100%,0 100%);
+  animation:wdbeamk 4s ease-in-out infinite}
+html.theme-night .wdbeam{background:linear-gradient(180deg,rgba(255,236,170,.32),rgba(255,236,170,0) 92%)}
+@keyframes wdbeamk{0%,100%{opacity:.85}50%{opacity:1}}
+.wdring{bottom:-46px;left:50%;width:170px;height:170px;margin-left:-85px;border-radius:50%;border:3px dashed rgba(255,255,255,.9);
+  transform:rotateX(76deg);animation:lbringk 9s linear infinite;pointer-events:none}
+.wdplat{bottom:14px;left:50%;width:168px;height:36px;margin-left:-84px;border-radius:50%;pointer-events:none;
+  background:radial-gradient(ellipse,rgba(255,255,255,.95) 0%,rgba(255,255,255,.4) 55%,rgba(255,255,255,0) 72%)}
+html.theme-night .wdplat{background:radial-gradient(ellipse,rgba(255,240,200,.5) 0%,rgba(255,240,200,.16) 55%,rgba(255,240,200,0) 72%)}
+.wdme{bottom:26px;left:50%;width:156px;height:156px;margin-left:-78px;image-rendering:pixelated;object-fit:contain;
+  transform-origin:50% 100%;filter:drop-shadow(0 4px 0 rgba(0,0,0,.18));animation:wdbreath 2.6s ease-in-out infinite}
+@keyframes wdbreath{0%,100%{transform:scale(1,1)}50%{transform:scale(1.012,.985)}}
+.wdme.wdpop{animation:wdpopk .5s cubic-bezier(.2,1.4,.4,1),wdbreath 2.6s ease-in-out .5s infinite}
+@keyframes wdpopk{0%{transform:scale(.82,1.16);filter:brightness(2.2) drop-shadow(0 4px 0 rgba(0,0,0,.18))}45%{transform:scale(1.12,.9)}75%{transform:scale(.97,1.03)}100%{transform:none}}
+.wdme.wdinl{animation:wdinlk .32s cubic-bezier(.2,1.2,.4,1),wdbreath 2.6s ease-in-out .32s infinite}
+.wdme.wdinr{animation:wdinrk .32s cubic-bezier(.2,1.2,.4,1),wdbreath 2.6s ease-in-out .32s infinite}
+@keyframes wdinlk{from{transform:translateX(-70px);opacity:0}to{transform:none;opacity:1}}
+@keyframes wdinrk{from{transform:translateX(70px);opacity:0}to{transform:none;opacity:1}}
+.wdpoof{left:50%;bottom:100px;width:0;height:0;pointer-events:none}
+.wdpoof i{position:absolute;left:-5px;top:-5px;width:10px;height:10px;background:#FFF6B0;
+  clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%);
+  filter:drop-shadow(0 0 3px rgba(255,220,90,.9));animation:wdpoofk .62s ease-out forwards}
+@keyframes wdpoofk{0%{transform:rotate(var(--a)) translateY(-14px) scale(.4);opacity:1}
+  100%{transform:rotate(var(--a)) translateY(calc(-1 * var(--d))) scale(1.1);opacity:0}}
+.wdarr{top:50%;width:42px;height:42px;margin-top:-30px;border-radius:50%;cursor:pointer;z-index:2;padding:0;
+  background:rgba(255,255,255,.92);border:2px solid #2C3440;color:#2C3440;box-shadow:0 3px 0 rgba(20,28,40,.45);
+  font-family:'Press Start 2P';font-size:16px;line-height:38px;text-align:center}
+.wdarr:active{transform:translateY(3px);box-shadow:0 0 0 rgba(20,28,40,.45)}
+.wdarr.l{left:10px}.wdarr.r{right:10px}
+.wdtag{left:10px;top:10px;display:flex;flex-direction:column;gap:4px;padding:6px 9px;border-radius:10px;
+  background:rgba(255,255,255,.92);border:2px solid #2C3440;box-shadow:0 2px 0 rgba(0,0,0,.2)}
+.wdtag b{font-family:'Press Start 2P';font-size:9px;font-weight:400;color:#2C3440}
+.wdtag span{font-family:'Press Start 2P';font-size:6px;color:#A04878}
+.wdtabs{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:12px 12px 0}
+.wdtab{display:flex;flex-direction:column;align-items:center;gap:5px;padding:8px 2px 7px;cursor:pointer;border-radius:12px;
+  background:var(--boxw);border:2px solid var(--bord);color:var(--mut);font-family:'Press Start 2P';font-size:6px;
+  box-shadow:0 3px 0 rgba(0,0,0,.08);transition:transform .1s}
+html.theme-night .wdtab{border-color:rgba(255,255,255,.1)}
+.wdtab.on{border-color:#A04878;color:var(--text);transform:translateY(-2px);box-shadow:0 4px 0 #A04878;
+  background:linear-gradient(180deg,var(--boxw),color-mix(in srgb,#A04878 12%,var(--boxw)))}
+.wdgi{display:inline-flex}
+.wdpanel h3{justify-content:flex-start}
+.wdpanel h3 .bestchip,.wdpanel h3 .wdorig{margin-left:auto}
+.wdcur{font-family:'Press Start 2P';font-size:7px;color:#A04878;letter-spacing:0}
+.wdorig{display:inline-flex;align-items:center;gap:5px;padding:5px 8px;border-radius:999px;cursor:pointer;
+  background:var(--boxw);border:2px solid var(--bord);color:var(--mut);font-family:'Press Start 2P';font-size:6px}
+.wdorig i{width:11px;height:11px;border-radius:50%;background:var(--oc);border:2px dashed rgba(0,0,0,.45)}
+.wdorig.on{border-color:#A04878;color:var(--text)}
+.wdsw{display:grid;grid-template-columns:repeat(6,1fr);gap:11px;padding:4px 3px}
+.wdc{position:relative;aspect-ratio:1;border-radius:50%;padding:0;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  border:2px solid rgba(20,24,32,.85);box-shadow:0 3px 0 rgba(0,0,0,.22);transition:transform .1s;
+  background:radial-gradient(circle at 34% 30%,var(--c4) 0 13%,var(--c3) 16% 56%,var(--c1) 100%)}
+.wdc:active{transform:scale(.9)}
+.wdc.on{transform:scale(1.08);box-shadow:0 0 0 3px var(--cream),0 0 0 6px #F0B828,0 3px 0 rgba(0,0,0,.22)}
+.wdc.lock{filter:grayscale(.75) brightness(.78)}
+.wdc.lock svg{filter:drop-shadow(0 1px 0 rgba(0,0,0,.6))}
+.wdnext{display:flex;flex-direction:column;gap:5px;margin-top:12px;padding-top:10px;border-top:2px dashed rgba(0,0,0,.09);font-size:16px;color:var(--mut)}
+html.theme-night .wdnext{border-top-color:rgba(255,255,255,.08)}
+.wdnext b{color:var(--text);font-weight:400}
+.wdbar{display:block;width:100%;height:6px;border-radius:3px;background:rgba(0,0,0,.14);overflow:hidden}
+html.theme-night .wdbar{background:rgba(255,255,255,.1)}
+.wdbar>i{display:block;height:100%;border-radius:3px;background:linear-gradient(90deg,#C05898,#F098C8)}
+.wdgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.wdgrid.four{grid-template-columns:repeat(4,1fr)}
+.wdcard{position:relative;min-width:0;display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 4px 7px;cursor:pointer;
+  background:var(--boxw);border:2px solid rgba(0,0,0,.1);border-radius:12px;color:var(--text);font-family:'Press Start 2P';font-size:6px;line-height:1.3}
+html.theme-night .wdcard{background:var(--cream2);border-color:rgba(255,255,255,.08)}
+.wdcard img{width:58px;height:58px;object-fit:contain;image-rendering:pixelated;
+  background:radial-gradient(ellipse 60% 22% at 50% 88%,rgba(160,72,120,.2),transparent)}
+.wdgrid.four .wdcard img{width:50px;height:50px}
+.wdcard>span{max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wdcard.on{border-color:#A04878;box-shadow:inset 0 0 0 1px #A04878;background:color-mix(in srgb,#A04878 10%,var(--boxw))}
+.wdcard.lock>span{color:var(--mut)}
+.wdcard.lock img{filter:brightness(0);opacity:.28}
+html.theme-night .wdcard.lock img{filter:brightness(0) invert(1);opacity:.16}
+.wdcard em{font-style:normal;font-family:'VT323',monospace;font-size:14px;line-height:1;color:var(--mut);display:flex;align-items:center;gap:3px;text-align:center}
+.wdcard .wdbar{width:82%;height:4px}
+.wdnew{position:absolute;top:-7px;right:-5px;z-index:1;padding:3px 4px;border-radius:6px;background:#E83828;border:2px solid #FFF;
+  color:#FFF;font-family:'Press Start 2P';font-size:6px;line-height:1;animation:lbdotk 1.2s ease-in-out infinite}
+.wdc .wdnew{top:-8px;right:-10px}
+.wdset{text-align:center;padding:18px 14px}
+.wdset p{margin:8px 0 14px;font-size:18px;line-height:1.2}
+/* the lobby trainer is the wardrobe door */
+.lbme{left:calc(50% - 138px);bottom:74px;width:64px;height:64px;padding:0;border:0;background:none;cursor:pointer;z-index:2}
+.lbme img{width:64px;height:64px;image-rendering:pixelated;filter:drop-shadow(0 3px 0 rgba(0,0,0,.25))}
+.lbme:active img{transform:scale(.94)}
+.lbmetag{position:absolute;top:-6px;right:-8px;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:#FFF;border:2px solid #2C3440;box-shadow:0 2px 0 rgba(0,0,0,.3)}
+.lbmetag .lbdot{top:-7px;right:-7px;width:11px;height:11px}
+@media (max-width:360px){.lbme{left:calc(50% - 124px);transform:scale(.9);transform-origin:0 100%}}
+.tcme{position:relative;flex:none;width:60px;height:60px;padding:0;border:0;background:none;cursor:pointer}
+.tcme img{width:56px;height:56px;image-rendering:pixelated}
+.tcme svg{position:absolute;right:-4px;bottom:-2px;box-sizing:content-box;padding:3px;border-radius:50%;background:#FFF;border:2px solid #2C3440}
 </style>
 </head>
 <body>
@@ -1727,6 +1829,7 @@ function render(keepScroll){
   else if(tab==='body')v.innerHTML=bodyHTML();
   else if(tab==='prhall')v.innerHTML=prhallHTML();
   else if(tab==='perks')v.innerHTML=perksHTML();
+  else if(tab==='wardrobe')v.innerHTML=wardrobeHTML();
   else if(tab==='nav')v.innerHTML=navHTML();
   else if(tab&&tab.indexOf('poi-')===0)v.innerHTML=poiPageHTML(tab.slice(4));
   else v.innerHTML=settingsHTML();
@@ -1892,8 +1995,15 @@ function endWorkout(){
     var tx1=perksOf().xp||0;
     heroD={lv0:tLvAt(ses.tx0),lv1:tLvAt(tx1),gain:Math.max(0,Math.round(tx1-ses.tx0)),pick:perkPicksLeft()>0};
   }
+  /* v7.4: wardrobe pieces this workout unlocked (announced once, skipped if already seen) */
+  var wardNew=0;
+  if(state.game&&state.game.player){
+    var wSeen=state.game.player.ws||[];
+    wardNew=wardFresh('wa').filter(function(e){return wSeen.indexOf(e[0])<0;}).length;
+    wardRemember('wa');save();
+  }
   fxHold=true;
-  showResults({dur:fmtDur(end-ses.start),st:st,xpg:ses.xpg||0,cut:cut,hero:heroD,crown:crown,prs:prs,
+  showResults({dur:fmtDur(end-ses.start),st:st,xpg:ses.xpg||0,cut:cut,hero:heroD,crown:crown,prs:prs,ward:wardNew,
     rk:rkWas?{healed:rkHealed,n:Math.min(ROOKIE_N,rookieDone())}:null,mon:state.game?activeMon():null});
   if(state.game){
     checkGameEvents();
@@ -1936,7 +2046,7 @@ function showResults(d){
     stage='<div class="rsstage" style="--tc:'+tc+'"><div class="rsglow"></div><div class="rsplat"></div>'+
       '<img class="rsart'+(m.shiny?' shinyglow':'')+'" src="'+(m.shiny?sprPath(m.sp,true):'sprites/art/'+DEX[m.sp].id+'.png')+'" alt=""'+
         (m.shiny?' style="image-rendering:pixelated"':' onerror="this.onerror=null;this.src=\''+sprPath(m.sp,false)+'\';this.style.imageRendering=\'pixelated\'"')+'>'+
-      (state.game?'<img class="rstr" src="sprites/trainers/'+playerSpr()+'.png" alt="">':'')+'</div>';
+      (state.game?'<img class="rstr" data-me src="'+playerSrc()+'" alt="">':'')+'</div>';
   }
   function tile(icon,val,label,cnt,pre){
     return '<div class="rstile">'+itemImg(icon,22)+'<b'+(cnt!=null?' data-count="'+cnt+'"'+(pre?' data-pre="'+pre+'"':' data-pre=" "'):'')+'>'+val+'</b><span>'+label+'</span></div>';
@@ -1946,6 +2056,7 @@ function showResults(d){
   if(d.xpg)rew+='<span class="rsrw">'+itemImg('luckyegg',18)+'<b data-count="'+d.xpg+'" data-pre="+">+'+d.xpg+'</b> EXP</span>';
   if(d.crown)rew+='<span class="rsrw gold">'+itemImg('rarecandy',18)+'<b>+1</b> RARE CANDY</span>';
   if(d.prs)rew+='<span class="rsrw gold">'+pxIcon('trophy',18)+'<b>'+d.prs+'</b> NEW RECORD'+(d.prs===1?'':'S')+'</span>';
+  if(d.ward)rew+='<span class="rsrw gold">'+pxIcon('hanger',18)+'<b>'+d.ward+'</b> NEW IN WARDROBE</span>';
   var hero='';
   if(d.hero){
     var up=d.hero.lv1.lv>d.hero.lv0.lv;
@@ -2280,6 +2391,14 @@ var PX_ICONS={
   pen:['.........##.','........#rr#','.......#rr#.','......#oo#..','.....#oo#...','....#oo#....','...#oo#.....','..#oo#......','.#mm#.......','.#n#........','.##.........','............'],
   save:['###########.','#b#wwww#bb#.','#b#wwww#bb##','#b#ww#w#bbb#','#b######bbb#','#bbbbbbbbbb#','#b########b#','#b#wwwwww#b#','#b#w####w#b#','#b#wwwwww#b#','#b#wwwwww#b#','############'],
   warn:['.....##.....','....#yy#....','....#yy#....','...#y##y#...','...#y##y#...','..#yy##yy#..','..#yy##yy#..','.#yyy##yyy#.','.#yyyyyyyy#.','#yyyy##yyyy#','#yyyy##yyyy#','############'],
+  cap:['............','............','....####....','..##ZZZZ##..','.#ZZZwwZZZ#.','.#ZZwwwwZZ#.','.#ZZZZZZZZ#.','.#ZZZZZZZZ#.','############','#zzzzzzzzzz#','.##########.','............'],
+  shirt:['...##..##...','.##ZZ##ZZ##.','#ZZZZZZZZZZ#','#ZZZZZZZZZZ#','#zZZZZZZZZz#','.##ZZZZZZ##.','..#ZZZZZZ#..','..#ZZZZZZ#..','..#ZZZZZZ#..','..#zzzzzz#..','..########..','............'],
+  pants:['............','..########..','..#zzzzzz#..','..#ZZZZZZ#..','..#ZZZZZZ#..','..#ZZZZZZ#..','..#ZZ##ZZ#..','..#ZZ##ZZ#..','..#ZZ##ZZ#..','..#ZZ##ZZ#..','..#zz##zz#..','..###..###..'],
+  boot:['............','...####.....','...#ZZ#.....','...#ZZ#.....','...#ZZ#.....','...#ZZ#.....','...#ZZ####..','...#ZZZZZZ#.','...#ZZZZZZZ#','...#zzzzzzz#','...#wwwwwww#','...#########'],
+  hanger:['.....##.....','....#..#....','.......#....','......#.....','.....#o#....','....#ooO#...','...#oo#oO#..','..#oo#.#oO#.','.#oo#...#oO#','#oooooooooO#','############','............'],
+  dice:['.##########.','#wwwwwwwwww#','#w##wwww##w#','#w##wwww##w#','#wwwwwwwwww#','#wwww##wwww#','#wwww##wwww#','#wwwwwwwwww#','#w##wwww##w#','#w##wwww##w#','#wwwwwwwwww#','.##########.'],
+  person:['....####....','...#kkkk#...','...#kkkk#...','...#kkkk#...','....####....','..########..','.#rrrrrrrr#.','.#rrrrrrrr#.','.#r#rrrr#r#.','...#bbbb#...','...#b##b#...','...##..##...'],
+  lock:['............','....####....','...#....#...','...#....#...','..########..','..#yyyyyy#..','..#yy##yy#..','..#yy##yy#..','..#yyyyyy#..','..########..','............','............'],
   nav:['..########..','.#rrrrrrrr#.','.#r######r#.','.#r#gggg#r#.','.#r#gggg#r#.','.#r######r#.','.#rrrrrrrr#.','.#rww#rwwr#.','.#rrrrrrrr#.','.#rr##rrrr#.','.#rrrrrrrr#.','..########..']
 };
 function pxIcon(k,size){
@@ -2291,6 +2410,10 @@ function pxIcon(k,size){
       var ch=row.charAt(x),x0=x;
       while(x<row.length&&row.charAt(x)===ch)x++;
       if(ch!=='.'&&PX_PAL[ch])r+='<rect x="'+x0+'" y="'+y+'" width="'+(x-x0)+'" height="1" fill="'+PX_PAL[ch]+'"/>';
+      else if(ch==='Z'||ch==='z'){ /* v7.4: tintable pixels — the SVG's own color (wardrobe garment icons) */
+        r+='<rect x="'+x0+'" y="'+y+'" width="'+(x-x0)+'" height="1" fill="currentColor"/>';
+        if(ch==='z')r+='<rect x="'+x0+'" y="'+y+'" width="'+(x-x0)+'" height="1" fill="rgba(0,0,0,.32)"/>';
+      }
     }
   });
   return '<svg class="pxi" viewBox="0 0 12 12" width="'+size+'" height="'+size+'" shape-rendering="crispEdges" aria-hidden="true">'+r+'</svg>';
@@ -2350,7 +2473,7 @@ function homeHTML(){
   var h='<div class="lobby'+(intro?' lbintro':'')+'">'+
     '<div class="lbscene" style="--town:url('+tw.img+')">'+
     '<div class="lbtop">'+
-      '<button class="lbava" data-action="tab" data-tab="card" aria-label="Trainer card"><img src="sprites/trainers/'+playerSpr()+'.png" alt=""><span class="lblv">'+tlv+'</span></button>'+
+      '<button class="lbava" data-action="tab" data-tab="card" aria-label="Trainer card"><img data-me src="'+playerSrc()+'" alt=""><span class="lblv">'+tlv+'</span></button>'+
       '<button class="lbwho" data-action="tab" data-tab="perks"><b>'+esc(playerName())+'</b>'+
         '<span class="lbxp"><i style="width:'+Math.min(100,Math.round(tpg.have/tpg.need*100))+'%"></i></span>'+
         '<span class="lbxpt">TRAINER LV '+tlv+'</span></button>'+
@@ -2378,8 +2501,9 @@ function homeHTML(){
         '<div class="lbglow"></div><div class="lbring"></div><div class="lbplat"></div>'+
         '<img class="lbart'+(am.shiny?' shinyglow':'')+'" src="'+(am.shiny?sprPath(am.sp,true):'sprites/art/'+DEX[am.sp].id+'.png')+'" alt="'+DEX[am.sp].n+'"'+
           (am.shiny?' style="image-rendering:pixelated"':' onerror="this.onerror=null;this.src=\''+sprPath(am.sp,false)+'\';this.style.imageRendering=\'pixelated\'"')+'>'+
-        '<img class="lbtrainer" src="sprites/trainers/'+playerSpr()+'.png" alt="">'+
       '</div>'+
+      '<button class="lbme" data-action="tab" data-tab="wardrobe" aria-label="Wardrobe"><img data-me src="'+playerSrc()+'" alt="">'+
+        '<span class="lbmetag">'+pxIcon('hanger',14)+(wardFresh('ws').length?'<i class="lbdot"></i>':'')+'</span></button>'+
       '<button class="lbplate" data-action="open-mon" data-m="'+am.uid+'">'+
         '<span class="lbpn">'+DEX[am.sp].n+(am.shiny?' <span class="shinystar">★</span>':'')+' <span class="plv">:L'+l+'</span></span>'+
         '<span class="lbbars"><span class="barlab">HP</span><span class="gbar"><span class="lbhp" style="width:'+hpp+'%;background:'+hpColor(hpp)+'"></span></span></span>'+
@@ -2462,7 +2586,7 @@ function heroHTML(){
     '</span></div>';
   return '<div class="panel hero">'+
     '<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">'+
-    '<img class="bob" src="sprites/trainers/'+playerSpr()+'.png" alt="" style="width:46px;height:46px;image-rendering:pixelated;flex:none">'+
+    '<img class="bob" data-me src="'+playerSrc()+'" alt="" style="width:46px;height:46px;image-rendering:pixelated;flex:none">'+
     '<div class="hero-title" style="margin:0">'+esc(playerName())+'</div></div>'+
     activeMonStripHTML()+card+
     (state.game?(function(){ /* v6.9: YOUR XP bar, right beside the team's */
@@ -2840,7 +2964,7 @@ function openPerkChooser(){
   el.className='top'+top;
   el.innerHTML='<div class="pkveil"></div><div class="pkrays"></div>'+
     '<div class="pkwrap">'+
-    '<div class="pkhead"><img class="pktr" src="sprites/trainers/'+playerSpr()+'.png" alt="">'+
+    '<div class="pkhead"><img class="pktr" data-me src="'+playerSrc()+'" alt="">'+
       '<div><div class="pktitle">LEVEL UP!</div><div class="pklv">TRAINER LV '+trainerLevel()+'</div></div></div>'+
     '<div class="pksub">'+(first?'Your training made YOU stronger. Pick ONE card — a permanent boost for this adventure.'
       :(left>1?left+' picks banked — choose a card':'Choose one card to keep'))+'</div>'+
@@ -3043,14 +3167,14 @@ function cardHTML(){
   cs.forEach(function(c){stars+=rankTierOf(c);});
   var rk=cardRank(stars);
   var h=pageHero({t:'TRAINER CARD',s:'Earned in the gym, stamped in '+(inHoenn()?'Hoenn':'Kanto'),ic:'id',c:rk[1],back:'auto',
-    chips:[phChip(rk[0]+' · '+stars+'★'),phChip(badgeCount()+'/8 BADGES')]});
+    chips:[phChip(rk[0]+' · '+stars+'★'),phChip(badgeCount()+'/8 BADGES'),phBtn('WARDROBE',pxIcon('hanger',12),'tab',' data-tab="wardrobe"')]});
   var idNo=('00000'+(strHash('id'+((state.game&&state.game.startTs)||0))%100000)).slice(-5);
   var days=Object.keys(daySetsMap()).length;
   /* the card itself */
   h+='<div class="panel tcard" style="border-color:'+rk[1]+';--rk:'+rk[1]+'">'+
     '<h3>'+(state.game?esc(playerName()):'TRAINER')+'<span class="bestchip" style="border-color:'+rk[1]+';color:'+rk[1]+'">'+rk[0]+' · '+stars+'★</span></h3>'+
     '<div style="display:flex;align-items:center;gap:12px;margin:6px 0 8px">'+
-    '<img src="sprites/trainers/'+playerSpr()+'.png" alt="" style="width:56px;height:56px;image-rendering:pixelated;flex:none">'+
+    '<button class="tcme" data-action="tab" data-tab="wardrobe" aria-label="Wardrobe"><img data-me src="'+playerSrc()+'" alt="">'+pxIcon('hanger',12)+'</button>'+
     '<div style="flex:1;min-width:0">'+
     '<div class="statrow"><span style="color:var(--mut)">ID No.</span><b style="font-weight:400">'+idNo+'</b></div>'+
     '<div class="statrow"><span style="color:var(--mut)">MONEY</span><b style="font-weight:400">₽'+money().toLocaleString()+'</b></div>'+
@@ -6412,7 +6536,7 @@ function playVsFx(oppCls,oppName){
   var old=document.getElementById('vsfx');
   if(old&&old.parentNode)old.parentNode.removeChild(old);
   var ov=document.createElement('div');ov.id='vsfx';
-  ov.innerHTML='<div class="vsp vsl"><img src="sprites/trainers/'+playerSpr()+'.png" alt=""><span>'+esc(playerName())+'</span></div>'+
+  ov.innerHTML='<div class="vsp vsl"><img data-me src="'+playerSrc()+'" alt=""><span>'+esc(playerName())+'</span></div>'+
     '<div class="vstxt">VS</div>'+
     '<div class="vsp vsr"><span style="text-align:right">'+esc(oppName)+'</span><img src="sprites/trainers/'+oppCls+'.png" alt=""></div>';
   document.body.appendChild(ov);
@@ -6683,7 +6807,7 @@ function runBattleStep(st){
     var tArena=bq('.arenabg');
     if(tArena){
       var tb=document.createElement('div');tb.className='tlvband';
-      tb.innerHTML='<img src="sprites/trainers/'+playerSpr()+'.png" alt=""><div><b>LEVEL UP!</b><span>TRAINER LV '+st.tlv+'</span></div>';
+      tb.innerHTML='<img data-me src="'+playerSrc()+'" alt=""><div><b>LEVEL UP!</b><span>TRAINER LV '+st.tlv+'</span></div>';
       tArena.appendChild(tb);
       setTimeout(function(){if(tb.parentNode)tb.parentNode.removeChild(tb);},2300);
     }
@@ -7422,7 +7546,7 @@ function partyStripHTML(){
   state.game.mons.forEach(function(m){if(curHpOf(m)<maxHpOf(m))anyHurt=true;});
   var h='<div class="panel" style="margin-top:10px">'+
     '<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">'+
-    '<img src="sprites/trainers/'+playerSpr()+'.png" alt="" style="width:44px;height:44px;image-rendering:pixelated;flex:none">'+
+    '<img data-me src="'+playerSrc()+'" alt="" style="width:44px;height:44px;image-rendering:pixelated;flex:none">'+
     '<div style="flex:1;min-width:0"><div class="pname" style="font-size:18px">'+esc(playerName())+'</div>'+
     '<div class="plv">'+state.game.mons.length+' POKEMON · '+badgeCount()+'/8 badges · ₽'+money().toLocaleString()+'</div></div>'+
     '<button class="btn" data-action="tab" data-tab="travel" style="flex:none;padding:9px 9px">'+
@@ -11596,6 +11720,304 @@ function playerSpr(){
   if(['red','leaf','brendan','may'].indexOf(s)>=0)return s;
   return inHoenn()?'brendan':'red';
 }
+/* ===== v7.4 WARDROBE — dress the trainer, garment by garment =====
+   The official sprites can't change SHAPE without new pixel art, so the wardrobe
+   recolours them: every base trainer has hand-mapped garment boxes, and inside a box
+   only that garment's own palette entries are swapped onto a stop of the chosen
+   colour's 5-step ramp (0 deep shade · 1 shade · 2 core · 3 lit body · 4 highlight).
+   Shape variety comes from the official trainer-class COSTUMES, earned in the gym.
+   The look lives in game.player.look = {b, cap, top, pants, shoes}; '' = original. */
+var WARD_BASES=['red','leaf','brendan','may'];
+var WARD_BASE_N={red:'RED',leaf:'LEAF',brendan:'BRENDAN',may:'MAY'};
+var WARD_SLOTS=[['cap','CAP','cap'],['top','TOP','shirt'],['pants','BOTTOMS','pants'],['shoes','SHOES','boot']];
+var WARD_RULES={ /* [slot, x0,y0,x1,y1, 'RRGGBB:stop,…'] — boxes are inclusive sprite pixels */
+  red:[['cap',33,14,47,22,'C04040:2,F86058:3'],['top',37,33,48,46,'C04040:2,F86058:3'],
+    ['pants',28,45,52,63,'306888:1,5088B0:2,78B8D8:3'],
+    ['shoes',28,64,40,68,'C04040:2,182850:0,306888:1'],['shoes',41,64,54,68,'C04040:2,182850:0,306888:1']],
+  leaf:[['cap',30,13,48,22,'F8F8F8:3,D0D0D8:2,78B8D8:2,5088B0:1,306888:1'],['top',34,31,46,41,'78B8D8:3,5088B0:2,306888:1,182850:0'],
+    ['pants',32,41,46,46,'F86058:3,C04040:2'],
+    ['shoes',26,57,52,63,'78B8D8:3,5088B0:2,306888:1'],['shoes',26,63,52,66,'C04040:2']],
+  brendan:[['cap',17,8,36,15,'FFFFFF:3,DEE6EE:3,627B9C:2,4A5A83:1'],['top',21,24,37,37,'627B9C:2,4A5A83:1,C54141:3,FF625A:4'],
+    ['pants',22,38,38,50,'627B9C:3,4A5A83:2'],['shoes',18,52,42,61,'629C5A:2,8BDE73:3,C54141:2,4A5A83:1']],
+  may:[['cap',14,8,35,16,'629C5A:2,8BDE73:3'],['top',20,25,36,39,'C54141:2,FF625A:3'],
+    ['pants',21,40,37,44,'293941:1,626273:2,CDCDDE:3'],['shoes',18,52,40,61,'293941:1,626273:2,C54141:2,FF625A:3']]
+};
+/* colour ramps, hand-tuned against the GBA palettes (RED's cap and jeans are the RED / BLUE ramps) */
+var WARD_SW={
+  red:{n:'RED',r:['681820','A82830','D84038','F86058','F8A890']},
+  orange:{n:'ORANGE',r:['703010','B85010','E87820','F8A040','F8D080']},
+  yellow:{n:'YELLOW',r:['705808','B08810','E0B818','F8E048','F8F8A8']},
+  green:{n:'GREEN',r:['184820','288838','48B048','78D868','B8F0A0']},
+  teal:{n:'TEAL',r:['104848','188078','28B0A0','58D8C8','A8F0E8']},
+  blue:{n:'BLUE',r:['183858','306888','5088B0','78B8D8','B8E0F0']},
+  navy:{n:'NAVY',r:['080C28','182850','283C70','40588F','6880B0']},
+  purple:{n:'PURPLE',r:['301050','582888','8048B8','A878D8','D8B8F8']},
+  pink:{n:'PINK',r:['682040','B84070','E06898','F898B8','F8D0E0']},
+  white:{n:'WHITE',r:['585860','9898A8','C8C8D0','E8E8F0','FFFFFF']},
+  black:{n:'BLACK',r:['080808','181820','303038','484850','707078']},
+  brown:{n:'BROWN',r:['301808','603818','885830','B08050','D8B080']},
+  /* earned in the gym */
+  gold:{n:'GOLD',r:['503000','906000','C89810','F0D040','FFF8C0'],req:{lv:10}},
+  silver:{n:'SILVER',r:['383840','687080','98A0B0','C8D0E0','F8F8FF'],req:{w:10}},
+  crystal:{n:'CRYSTAL',r:['203870','3060B0','58A0E0','98D8F8','E0FFFF'],req:{w:25}},
+  ruby:{n:'RUBY',r:['400818','800828','C01840','E84868','F8A0B0'],req:{b:4}},
+  emerald:{n:'EMERALD',r:['083820','107040','20A060','48D088','A0F8C8'],req:{st:7}},
+  shadow:{n:'SHADOW',r:['100818','281838','402858','603880','9060B0'],req:{champ:1}}
+};
+var WARD_SW_ORDER=['red','orange','yellow','green','teal','blue','navy','purple','pink','white','black','brown','gold','silver','crystal','ruby','emerald','shadow'];
+/* official trainer-class sprites, worn as complete outfits */
+var WARD_COSTUMES=[
+  ['youngster','YOUNGSTER',{w:2}],['lass','LASS',{w:2}],['camper','CAMPER',{w:5}],['picnicker','PICNICKER',{w:5}],
+  ['bugcatcher','BUG CATCHER',{dex:12}],['fisherman','FISHERMAN',{dex:25}],['blackbelt','BLACK BELT',{w:15}],['battlegirl','BATTLE GIRL',{w:15}],
+  ['hiker','HIKER',{sets:400}],['birdkeeper','BIRD KEEPER',{b:3}],['kindler','KINDLER',{st:5}],['aromalady','AROMA LADY',{lv:15}],
+  ['aquagrunt','AQUA GRUNT',{b:5}],['magmagrunt','MAGMA GRUNT',{b:5}],['hexmaniac','HEX MANIAC',{lv:25}],['dragontamer','DRAGON TAMER',{champ:1}]
+];
+var WARD_PRESETS=[
+  ['CLASSIC',{}],
+  ['MIDNIGHT',{cap:'black',top:'navy',pants:'black',shoes:'white'}],
+  ['OCEAN',{cap:'white',top:'blue',pants:'navy',shoes:'teal'}],
+  ['FOREST',{cap:'green',top:'brown',pants:'green',shoes:'brown'}],
+  ['SAKURA',{cap:'pink',top:'white',pants:'pink',shoes:'purple'}],
+  ['GOLDEN',{cap:'gold',top:'black',pants:'gold',shoes:'gold'}],
+  ['GLACIER',{cap:'crystal',top:'silver',pants:'crystal',shoes:'silver'}],
+  ['CHAMPION',{cap:'ruby',top:'shadow',pants:'black',shoes:'gold'}]
+];
+function wardCostume(k){for(var i=0;i<WARD_COSTUMES.length;i++)if(WARD_COSTUMES[i][0]===k)return WARD_COSTUMES[i];return null;}
+function wardStats(){
+  var g=state.game;
+  return {w:(state.sessions||[]).length,sets:totalSetsAll(),dex:dexCaughtCount(),b:badgeCount(),lv:trainerLevel(),
+    st:Math.max((g&&g.bestStreak)||0,(g&&g.daily&&g.daily.streak)||0),champ:isChampion()?1:0};
+}
+function wardReq(req,S){
+  if(!req)return {ok:true};
+  var k=Object.keys(req)[0],need=req[k],have=Math.min(need,(S||wardStats())[k]||0);
+  var t=k==='lv'?'TRAINER LV '+need:k==='champ'?'CHAMPION':k==='st'?need+'-DAY STREAK':
+    need+(k==='w'?' WORKOUTS':k==='sets'?' SETS':k==='dex'?' CAUGHT':' BADGES');
+  return {ok:have>=need,have:have,need:need,t:t};
+}
+/* every earnable piece, as 'c:colour' / 'o:costume' keys */
+function wardEarnables(){
+  var a=[];
+  WARD_SW_ORDER.forEach(function(k){if(WARD_SW[k].req)a.push(['c:'+k,WARD_SW[k].req,WARD_SW[k].n]);});
+  WARD_COSTUMES.forEach(function(c){a.push(['o:'+c[0],c[2],c[1]]);});
+  return a;
+}
+function wardUnlocked(S){S=S||wardStats();return wardEarnables().filter(function(e){return wardReq(e[1],S).ok;});}
+function wardFresh(field,S){ /* unlocked pieces not yet in player[field] ('ws' seen in the wardrobe, 'wa' announced) */
+  var p=state.game&&state.game.player;if(!p)return [];
+  var known=p[field]||[];
+  return wardUnlocked(S).filter(function(e){return known.indexOf(e[0])<0;});
+}
+function wardRemember(field,S){
+  var p=state.game&&state.game.player;if(!p)return;
+  p[field]=wardUnlocked(S).map(function(e){return e[0];});
+}
+function lookOf(){var p=state.game&&state.game.player;return (p&&p.look)||{};}
+function lookBase(lk){
+  lk=lk||lookOf();
+  return (lk.b&&(WARD_RULES[lk.b]||wardCostume(lk.b)))?lk.b:playerSpr();
+}
+function lookSig(lk){
+  var b=lookBase(lk);if(!WARD_RULES[b])return '';
+  var s=WARD_SLOTS.map(function(sl){return WARD_SW[lk[sl[0]]]?lk[sl[0]]:'';});
+  return s.join('')?b+'|'+s.join('|'):'';
+}
+/* the original colour of a garment on a base (its brightest mapped entry) — the ORIGINAL chip */
+function wardOrigHex(b,slot){
+  var best=null,bs=-1;
+  (WARD_RULES[b]||[]).forEach(function(r){
+    if(r[0]!==slot)return;
+    r[5].split(',').forEach(function(p){var q=p.split(':');if(+q[1]>bs){bs=+q[1];best=q[0];}});
+  });
+  return '#'+(best||'888888');
+}
+function wardPaint(px,W,H,rules,lk){
+  var done=new Uint8Array(W*H);
+  rules.forEach(function(r){
+    var sw=WARD_SW[lk[r[0]]],src=[];
+    r[5].split(',').forEach(function(p){
+      var q=p.split(':'),n=parseInt(q[0],16);
+      src.push([n>>16&255,n>>8&255,n&255,sw?parseInt(sw.r[+q[1]],16):-1]);
+    });
+    for(var y=r[2];y<=Math.min(r[4],H-1);y++)for(var x=r[1];x<=Math.min(r[3],W-1);x++){
+      var i=y*W+x,o=i*4;
+      if(done[i]||px[o+3]<128)continue;
+      for(var j=0;j<src.length;j++){ /* ±6 per channel: some decoders nudge colour-managed PNGs */
+        var s=src[j];
+        if(Math.abs(px[o]-s[0])<7&&Math.abs(px[o+1]-s[1])<7&&Math.abs(px[o+2]-s[2])<7){
+          done[i]=1;
+          if(s[3]>=0){px[o]=s[3]>>16&255;px[o+1]=s[3]>>8&255;px[o+2]=s[3]&255;}
+          break;
+        }
+      }
+    }
+  });
+}
+var lookUrls={},lookImgs={},lookSaved='';
+try{var _lk0=JSON.parse(localStorage.getItem('gymtracker.look')||'null');if(_lk0&&_lk0.k&&_lk0.u)lookUrls[_lk0.k]=_lk0.u;}catch(e){}
+function lookImg(b){
+  var im=lookImgs[b];
+  if(!im){
+    im=lookImgs[b]=new Image();
+    im.onload=lookRefresh;
+    im.src='sprites/trainers/'+b+'.png';
+  }
+  return im;
+}
+/* any look → an image URL: the plain sprite, or a recoloured data: URL built once and cached */
+function lookUrl(lk){
+  var b=lookBase(lk),sig=lookSig(lk),plain='sprites/trainers/'+b+'.png';
+  if(!sig)return plain;
+  if(lookUrls[sig])return lookUrls[sig];
+  var im=lookImg(b);
+  if(!im.complete||!im.naturalWidth)return plain; // lookRefresh swaps it in once loaded
+  try{
+    var cv=document.createElement('canvas');cv.width=im.naturalWidth;cv.height=im.naturalHeight;
+    var cx=cv.getContext('2d');cx.drawImage(im,0,0);
+    var d=cx.getImageData(0,0,cv.width,cv.height);
+    wardPaint(d.data,cv.width,cv.height,WARD_RULES[b],lk);
+    cx.putImageData(d,0,0);
+    lookUrls[sig]=cv.toDataURL('image/png');
+  }catch(e){return plain;}
+  return lookUrls[sig];
+}
+/* the player's own sprite, everywhere it appears (img[data-me] re-points when a build lands) */
+function playerSrc(){
+  var lk=lookOf(),u=lookUrl(lk),sig=lookSig(lk);
+  if(sig&&lookUrls[sig]&&lookSaved!==sig){
+    lookSaved=sig;
+    try{localStorage.setItem('gymtracker.look',JSON.stringify({k:sig,u:lookUrls[sig]}));}catch(e){}
+  }
+  return u;
+}
+function lookRefresh(){
+  if(tab==='wardrobe'){render(true);return;}
+  var u=playerSrc();
+  document.querySelectorAll('img[data-me]').forEach(function(im){if(im.getAttribute('src')!==u)im.src=u;});
+}
+/* the WARDROBE page: a dressing-room stage, outfit tabs that double as your current
+   colours, swatches, trainer + costume racks and one-tap OUTFITS */
+var wardSlot='style',wardFx='',wardNewSnap=[],wardBusy=false;
+function wardW(){
+  var g=state.game;
+  if(!g.player)g.player={name:inHoenn()?'BRENDAN':'RED',spr:playerSpr()};
+  if(!g.player.look)g.player.look={};
+  return g.player.look;
+}
+function wardColorOk(k,S){var sw=WARD_SW[k];return !!sw&&wardReq(sw.req,S).ok;}
+function wardLockedMsg(n,req,S){
+  var r=wardReq(req,S);
+  return n+' · UNLOCK: '+r.t+(r.need>1?' ('+r.have+'/'+r.need+')':'');
+}
+function wardRack(){ /* bases + earned costumes, in display order: what ‹ › cycles through */
+  var S=wardStats();
+  return WARD_BASES.concat(WARD_COSTUMES.filter(function(c){return wardReq(c[2],S).ok;}).map(function(c){return c[0];}));
+}
+function wardTag(isNew){return isNew?'<span class="wdnew">NEW</span>':'';}
+function wardrobeHTML(){
+  var g=state.game;
+  if(!g)return settingsHTML();
+  var S=wardStats(),lk=lookOf(),b=lookBase(lk),cos=wardCostume(b);
+  if(lastRenderedTab!=='wardrobe'){ /* arriving: snapshot what's new for this visit, then mark it seen */
+    wardNewSnap=wardFresh('ws',S).map(function(e){return e[0];});
+    if(g.player){wardRemember('ws',S);save();}
+  }
+  var earn=wardEarnables(),got=wardUnlocked(S).length;
+  var h=pageHero({t:'WARDROBE',s:'New pieces unlock as you train',ic:'hanger',c:'#A04878',back:'auto',
+    chips:[phChip(got+' / '+earn.length+' EARNED')].concat(cos?[]:[phBtn('RANDOM',pxIcon('dice',12),'ward-random')])});
+  /* — the stage — */
+  var poof='';
+  if(wardFx==='pop')for(var pi=0;pi<10;pi++)poof+='<i style="--a:'+(pi*36+((pi%2)*14))+'deg;--d:'+(54+(pi%3)*16)+'px"></i>';
+  h+='<div class="wdstage">'+
+      '<div class="wdbeam"></div><div class="wdring"></div><div class="wdplat"></div>'+
+      '<img class="wdme'+(wardFx==='l'?' wdinl':wardFx==='r'?' wdinr':wardFx?' wdpop':'')+'" data-me src="'+playerSrc()+'" alt="Your trainer">'+
+      (poof?'<div class="wdpoof">'+poof+'</div>':'')+
+      '<button class="wdarr l" data-action="ward-cycle" data-d="-1" aria-label="Previous style">‹</button>'+
+      '<button class="wdarr r" data-action="ward-cycle" data-d="1" aria-label="Next style">›</button>'+
+      '<div class="wdtag"><b>'+esc(playerName())+'</b><span>'+(cos?cos[1]+' COSTUME':WARD_BASE_N[b]+' STYLE')+'</span></div>'+
+    '</div>';
+  wardFx='';
+  /* — outfit tabs: each garment icon wears its current colour — */
+  function wtab(k,label,icon){
+    return '<button class="wdtab'+(wardSlot===k?' on':'')+'" data-action="ward-slot" data-s="'+k+'">'+icon+'<span>'+label+'</span></button>';
+  }
+  h+='<div class="wdtabs">'+wtab('style','STYLE',pxIcon('person',22))+
+    WARD_SLOTS.map(function(sl){
+      var sw=WARD_SW[lk[sl[0]]];
+      var col=cos?'#8890A0':(sw?'#'+sw.r[3]:wardOrigHex(b,sl[0]));
+      return wtab(sl[0],sl[1],'<span class="wdgi" style="color:'+col+'">'+pxIcon(sl[2],22)+'</span>');
+    }).join('')+'</div>';
+  if(wardSlot==='style'){
+    /* trainers wear your colours; costumes are complete official outfits */
+    var tr='';
+    WARD_BASES.forEach(function(k){
+      var lv={b:k,cap:lk.cap,top:lk.top,pants:lk.pants,shoes:lk.shoes};
+      tr+='<button class="wdcard'+(b===k?' on':'')+'" data-action="ward-base" data-b="'+k+'">'+
+        '<img src="'+lookUrl(lv)+'" alt="">'+'<span>'+WARD_BASE_N[k]+'</span></button>';
+    });
+    var cs='',nGot=0;
+    WARD_COSTUMES.forEach(function(c){
+      var r=wardReq(c[2],S);
+      if(r.ok){
+        nGot++;
+        cs+='<button class="wdcard'+(b===c[0]?' on':'')+'" data-action="ward-base" data-b="'+c[0]+'">'+wardTag(wardNewSnap.indexOf('o:'+c[0])>=0)+
+          '<img src="sprites/trainers/'+c[0]+'.png" alt="">'+'<span>'+c[1]+'</span></button>';
+      }else{
+        cs+='<button class="wdcard lock" data-action="ward-locked" data-k="o:'+c[0]+'">'+
+          '<img src="sprites/trainers/'+c[0]+'.png" alt="">'+'<span>'+c[1]+'</span>'+
+          '<em>'+pxIcon('lock',10)+r.t+'</em>'+
+          (r.need>1?'<i class="wdbar"><i style="width:'+Math.round(r.have/r.need*100)+'%"></i></i>':'')+'</button>';
+      }
+    });
+    h+='<div class="panel wdpanel"><h3>TRAINERS<span class="wdcur">WEAR YOUR COLOURS</span></h3><div class="wdgrid four">'+tr+'</div></div>'+
+      '<div class="panel wdpanel"><h3>COSTUMES<span class="bestchip">'+nGot+' / '+WARD_COSTUMES.length+'</span></h3>'+
+      '<div class="wdgrid">'+cs+'</div></div>';
+  }else{
+    var sl=null;WARD_SLOTS.forEach(function(x){if(x[0]===wardSlot)sl=x;});
+    if(cos){
+      var back=(lk.pb&&WARD_RULES[lk.pb])?lk.pb:playerSpr();
+      h+='<div class="panel wdpanel wdset"><span class="wdgi" style="color:#8890A0">'+pxIcon(sl[2],40)+'</span>'+
+        '<p>The <b>'+cos[1]+'</b> costume comes as a complete set.</p>'+
+        '<button class="btn acc" data-action="ward-base" data-b="'+back+'">WEAR '+WARD_BASE_N[back]+' TO MIX COLOURS</button></div>';
+    }else{
+      var cur=WARD_SW[lk[sl[0]]];
+      var sws='',next=null,nextP=-1;
+      WARD_SW_ORDER.forEach(function(k){
+        var sw=WARD_SW[k],r=wardReq(sw.req,S);
+        if(!r.ok&&r.have/r.need>nextP){nextP=r.have/r.need;next=[sw.n,r];}
+        sws+='<button class="wdc'+(cur===sw?' on':'')+(r.ok?'':' lock')+'" data-action="ward-color" data-s="'+sl[0]+'" data-c="'+k+'" aria-label="'+sw.n+'"'+
+          ' style="--c1:#'+sw.r[1]+';--c3:#'+sw.r[3]+';--c4:#'+sw.r[4]+'">'+
+          (r.ok?wardTag(wardNewSnap.indexOf('c:'+k)>=0):pxIcon('lock',14))+'</button>';
+      });
+      h+='<div class="panel wdpanel"><h3>'+sl[1]+'<span class="wdcur">'+(cur?cur.n:'ORIGINAL')+'</span>'+
+          '<button class="wdorig'+(cur?'':' on')+'" data-action="ward-color" data-s="'+sl[0]+'" data-c="" style="--oc:'+wardOrigHex(b,sl[0])+'"><i></i>ORIGINAL</button></h3>'+
+        '<div class="wdsw">'+sws+'</div>'+
+        (next?'<div class="wdnext"><span>NEXT: <b>'+next[0]+'</b> · '+next[1].t+'</span>'+
+          (next[1].need>1?'<i class="wdbar"><i style="width:'+Math.round(next[1].have/next[1].need*100)+'%"></i></i>':'')+'</div>':'')+
+        '</div>';
+    }
+  }
+  /* — one-tap OUTFITS, previewed on your current trainer — */
+  if(!cos){
+    var pr='';
+    WARD_PRESETS.forEach(function(p,i){
+      var c=p[1],lockN=null;
+      WARD_SLOTS.forEach(function(x){if(!lockN&&c[x[0]]&&!wardColorOk(c[x[0]],S))lockN=WARD_SW[c[x[0]]];});
+      var on=WARD_SLOTS.every(function(x){return (c[x[0]]||'')===(WARD_SW[lk[x[0]]]?lk[x[0]]:'');});
+      pr+='<button class="wdcard pre'+(on?' on':'')+(lockN?' lock':'')+'" data-action="ward-preset" data-i="'+i+'">'+
+        '<img src="'+lookUrl({b:b,cap:c.cap,top:c.top,pants:c.pants,shoes:c.shoes})+'" alt="">'+
+        '<span>'+p[0]+'</span>'+(lockN?'<em>'+pxIcon('lock',10)+lockN.n+'</em>':'')+'</button>';
+    });
+    h+='<div class="panel wdpanel"><h3>OUTFITS</h3><div class="wdgrid four">'+pr+'</div></div>';
+  }
+  return h;
+}
+function wardApply(fn,fx){ /* state first, then the stage pops */
+  fn(wardW());
+  save();
+  wardFx=fx||'pop';
+  render(true);
+}
 function showGenderModal(){
   var ho=inHoenn();
   var boy=ho?'brendan':'red',girl=ho?'may':'leaf';
@@ -11838,10 +12260,11 @@ function settingsHTML(){
   function group(t,rows){return '<div class="sgroup"><div class="sgh">'+t+'</div><div class="sgbox">'+rows+'</div></div>';}
   var bw=bwList();
   return pageHero({t:'OPTION',s:'Everything stays on this device',ic:'option',c:'#4A5A70',
-      chips:[phChip('v7.3 “Juice”'),phChip(kb+' KB SAVED')]})+
+      chips:[phChip('v7.4 “Style”'),phChip(kb+' KB SAVED')]})+
     group('LOOK & SOUND',
       row('daynight','Style','FireRed day or night look',seg('theme','th',[['night','NIGHT',state.theme!=='day'],['day','DAY',state.theme==='day']]))+
       (state.game?row('home','Home screen','TRAINER tab: new lobby or the classic page',seg('home-style','s',[['new','NEW',!homeStyleClassic()],['classic','CLASSIC',homeStyleClassic()]])):'')+
+      (state.game?row('hanger','Wardrobe','Caps, tops, bottoms, shoes and costumes','<button class="btn" data-action="tab" data-tab="wardrobe">OPEN</button>'):'')+
       row('sound','Sound','GBA-style beeps and jingles',seg('sound','s',[['on','ON',state.sound!==false],['off','OFF',state.sound===false]])))+
     group('TRAINING',
       row('dumbbell','Unit','Label for logged weights',seg('unit','u',[['kg','KG',state.unit==='kg'],['lb','LB',state.unit==='lb']]))+
@@ -11856,7 +12279,7 @@ function settingsHTML(){
       row('save','Backup','Export your data as a file','<div style="display:flex;gap:6px"><button class="btn" data-action="copy">COPY</button><button class="btn acc" data-action="export">EXPORT</button></div>')+
       row('save','Restore','Import a backup file','<button class="btn" data-action="import">IMPORT</button>')+
       row('warn','Reset everything','Deletes all history','<button class="btn danger" data-action="reset">RESET</button>','danger'))+
-    '<div class="about">Gym Tracker v7.3 “Juice” · '+kb+' KB stored locally<br>'+
+    '<div class="about">Gym Tracker v7.4 “Style” · '+kb+' KB stored locally<br>'+
     'Your data never leaves your phone. Export a backup once in a while —<br>if you delete the app icon, its data goes with it.</div>';
 }
 
@@ -12562,6 +12985,21 @@ function applyImport(txt){
     gm.player=(dgame.player&&typeof dgame.player.name==='string')?
       {name:String(dgame.player.name).slice(0,10),
        spr:hoR?(dgame.player.spr==='may'?'may':'brendan'):(dgame.player.spr==='leaf'?'leaf':'red')}:null;
+    /* v7.4 wardrobe: the look + which earned pieces were seen / announced */
+    if(gm.player){
+      var dlk=dgame.player.look;
+      if(dlk&&typeof dlk==='object'){
+        var nlk={};
+        if(typeof dlk.b==='string'&&(WARD_RULES[dlk.b]||wardCostume(dlk.b)))nlk.b=dlk.b;
+        if(typeof dlk.pb==='string'&&WARD_RULES[dlk.pb])nlk.pb=dlk.pb;
+        WARD_SLOTS.forEach(function(x){if(typeof dlk[x[0]]==='string'&&WARD_SW[dlk[x[0]]])nlk[x[0]]=dlk[x[0]];});
+        gm.player.look=nlk;
+      }
+      var wkeys=wardEarnables().map(function(e){return e[0];});
+      ['ws','wa'].forEach(function(f){
+        if(Array.isArray(dgame.player[f]))gm.player[f]=dgame.player[f].filter(function(k){return wkeys.indexOf(k)>=0;});
+      });
+    }
     gm.egg=(dgame.egg&&isFinite(dgame.egg.left)&&+dgame.egg.left>0)?{left:Math.round(+dgame.egg.left)}:null;
     gm.money=Math.max(0,Math.round(+dgame.money)||0);
     gm.bag={};
@@ -13841,6 +14279,56 @@ document.addEventListener('click',function(e){
       pendingName=v.toUpperCase().slice(0,10);
       afterNamePicked();
     },'OK');
+  }
+  else if(a==='ward-slot'){wardSlot=b.dataset.s;sfx('click');render(true);}
+  else if(a==='ward-color'){
+    var wk=b.dataset.c,wsl=b.dataset.s;
+    if(wk&&!wardColorOk(wk)){if(WARD_SW[wk])toast(wardLockedMsg(WARD_SW[wk].n,WARD_SW[wk].req));return;}
+    sfx('click');
+    wardApply(function(l){l[wsl]=wk;});
+  }
+  else if(a==='ward-base'){
+    var wb=b.dataset.b,wc=wardCostume(wb);
+    if(!WARD_RULES[wb]&&!(wc&&wardReq(wc[2]).ok))return;
+    sfx(wc?'save':'click');
+    wardApply(function(l){l.b=wb;if(!wc)l.pb=wb;});
+  }
+  else if(a==='ward-locked'){
+    var we=null;wardEarnables().forEach(function(e){if(e[0]===b.dataset.k)we=e;});
+    if(we)toast(wardLockedMsg(we[2],we[1]));
+  }
+  else if(a==='ward-cycle'){
+    var wrack=wardRack(),wcur=wrack.indexOf(lookBase()),wd=+b.dataset.d||1;
+    var wnb=wrack[(wcur+wd+wrack.length)%wrack.length];
+    sfx('click');
+    wardApply(function(l){l.b=wnb;if(WARD_RULES[wnb])l.pb=wnb;},wd<0?'l':'r');
+  }
+  else if(a==='ward-preset'){
+    var wp=WARD_PRESETS[+b.dataset.i];if(!wp)return;
+    var wlock=null;
+    WARD_SLOTS.forEach(function(x){var c=wp[1][x[0]];if(!wlock&&c&&!wardColorOk(c))wlock=WARD_SW[c];});
+    if(wlock){toast(wp[0]+' needs '+wardLockedMsg(wlock.n,wlock.req));return;}
+    sfx('save');
+    wardApply(function(l){WARD_SLOTS.forEach(function(x){l[x[0]]=wp[1][x[0]]||'';});});
+  }
+  else if(a==='ward-random'){
+    /* a quick slot-machine shuffle through earned colours, then it lands */
+    if(wardBusy||wardCostume(lookBase()))return;
+    var wS=wardStats(),wpool=WARD_SW_ORDER.filter(function(k){return wardColorOk(k,wS);});
+    var wroll=function(){var o={b:lookBase()};WARD_SLOTS.forEach(function(x){o[x[0]]=wpool[Math.floor(Math.random()*wpool.length)];});return o;};
+    var wme=document.querySelector('.wdme'),wfin=wroll(),wn=0;
+    if(!wme)return;
+    wardBusy=true;
+    var wiv=setInterval(function(){
+      if(!wme.isConnected){clearInterval(wiv);wardBusy=false;return;}
+      if(++wn>8){
+        clearInterval(wiv);wardBusy=false;
+        sfx('shiny');
+        wardApply(function(l){WARD_SLOTS.forEach(function(x){l[x[0]]=wfin[x[0]];});});
+        return;
+      }
+      wme.src=lookUrl(wroll());sfx('click');
+    },75);
   }
   else if(a==='rename-trainer'){
     if(!state.game)return;
