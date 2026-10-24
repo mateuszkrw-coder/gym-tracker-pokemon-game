@@ -1,4 +1,4 @@
-Gym Tracker — Handover Document (current as of app v7.2 / sw v62 / schema v20, 2026-10-23)
+Gym Tracker — Handover Document (current as of app v7.3 / sw v63 / schema v20, 2026-10-23)
 
 ============================================================
 1. WHAT THIS IS
@@ -22,7 +22,7 @@ installed home-screen app isolated storage — a separate app couldn't read the 
 Live URL:  https://mateuszkrw-coder.github.io/gym-tracker-pokemon-game/
 Repo:      https://github.com/mateuszkrw-coder/gym-tracker-pokemon-game  (GitHub Pages from main branch root;
            renamed from gym-tracker, whose old Pages URL now 404s)
-Current:   app v7.2 “Arcade”, service-worker cache v62, data schema v20.
+Current:   app v7.3 “Juice”, service-worker cache v63, data schema v20.
 
 ============================================================
 2. THE TWO-LAPTOP WORKFLOW (read this FIRST on any machine)
@@ -477,6 +477,42 @@ Johto/Gen-2 content pack (a 3rd campaign — the region model supports it cleanl
 ============================================================
 13. IMMEDIATE STATE
 ============================================================
+v7.3 “Juice” (2026-10-24) — Mateusz: upgrade the other animations (collecting money…),
+the map-click designs/animations, and find every design still on the old look.
+• REWARD FX (rewardFx(srcEl,{from,to,label,items,target}) + moneyHud): coins burst out
+  of the tapped button and fly (Web Animations) into a money HUD (#coinhud) that slides
+  in top-right and counts old → new (red rim when spending); “+₽n / −₽n” pops; items fly
+  as their icons (Mart purchases land on the hero's BAG chip). New sfx 'coin' and 'door'.
+  Wired: quest/daily/research claims, research milestones, Mart buys, Center instant
+  heal, FIRST LESSONS rewards (lessonPop(L,fx) — coins fly out of the lesson banner).
+• MAP PINS: spot() renders .hotspot.pin with a bobbing icon pill (.mpin: BOSS trophy /
+  SHOP mart / HEAL center / TRAIN ball) + a pulse ring (.mring); past gyms show a
+  BEATEN pin with their badge; pins near the map's top edge hang inside (.pin-low).
+• DOOR IRIS (doorFx(el,fn)): the pin squashes, a GBA iris (box-shadow ring, Web
+  Animations on width/height) closes on the door, fn() renders the room, the iris opens.
+  Used by bld boss/mart/center and every PLACES card (poi-open). irisBusy guard + 2s
+  failsafe; falls straight through if Element.animate is missing.
+• BUILDINGS: poiBanner() returns a TOKEN while poiPageHTML builds (poiHeroMode); then
+  poiPageHTML strips the page's titlebar/subtitle and rebuilds them + the token as one
+  pageHero scene (official interior, POI icon via o.icImg, banner tag + def.st() chips,
+  back to MAP). The “wrong town” and gated (?????) pages got heroes too. All 12 Kanto +
+  17 Hoenn building pages verified (no leftover tokens).
+• GOTCHA (announceCatch → #gotfx): full-screen — banner, ball pops, Sugimori art bursts
+  out, types, NEW-to-POKEDEX badge (newDexSp set in addMon), shiny sparkles; got-done.
+• EVOLUTION (playEvolution(mon,to) → #evofx, state-first: saved before the scene):
+  the old art, then white silhouettes trading places faster and faster (420→60ms) with
+  sparks converging, a white flash, the new form in colour + its cry, FRLG text box,
+  CONTINUE (evo-done) only after the reveal. Used by level evolutions (maybeEvolve),
+  branch choices (evo-choice) and STONES (dept-evolve) — doEvolve kept for nothing else.
+• COMPONENTS: modals (22px frame with a lip, centred titles, solid red primary button),
+  toasts (dark pill), every *-claim / res-mile button gold with a coin + pulse,
+  LEVEL UP / NEW MOVE modals with sprite and type chip, the in-workout exercise list
+  (group-coloured cards, BEST chip, ✓ when done, compact “PICK AN EXERCISE” head; the
+  edit mode from OPTION gets a page hero), the set sheet's round close + group pill.
+• Tested: coins (buy, heal, daily claim), pins + iris + places, all building pages,
+  gotcha, evolution (Charmeleon → Charizard by a set), new-game W1 → results → card →
+  lessons gift, veteran save, every page day + night — zero console errors. sw v63.
+
 v7.2 “Arcade” (2026-10-24) — Mateusz: redo the workout-complete screen, remove the weather
 (“weird”), modernise QUEST / MAP / OPTION and every page reachable from TRAINER.
 • WEATHER OFF: wxChipHTML() and wxOverlayHTML() return '' (map, battle, every caller);
