@@ -1382,6 +1382,146 @@ html.theme-night .tcard::after{background:linear-gradient(100deg,transparent,rgb
   text-shadow:2px 2px 0 rgba(90,16,8,.6);animation:phtxk .35s ease-out 1.1s backwards}
 .rsgo:active{transform:translateY(5px);box-shadow:0 1px 0 #6A1408}
 html.theme-night .phscene .npc{filter:brightness(.62) saturate(.75)}
+/* ---------- v7.3 reward FX: flying coins + money HUD ---------- */
+#coinhud{position:fixed;top:calc(env(safe-area-inset-top) + 10px);right:10px;z-index:300;pointer-events:none;
+  display:flex;flex-wrap:wrap;align-items:center;gap:6px;max-width:220px;padding:6px 12px 6px 7px;border-radius:18px;
+  background:rgba(16,22,32,.86);border:2px solid #F8D048;color:#FFF;box-shadow:0 4px 14px rgba(0,0,0,.35);
+  transform:translateX(130%);transition:transform .35s cubic-bezier(.2,1.2,.4,1)}
+#coinhud.on{transform:none}
+#coinhud.spend{border-color:#E87060}
+#coinhud b{font-family:'Press Start 2P';font-size:11px;font-weight:400}
+#coinhud i{flex-basis:100%;font-style:normal;font-family:'Press Start 2P';font-size:6px;color:#F8E8A0;padding-left:30px;margin-top:-2px}
+#coinhud i:empty{display:none}
+#coinhud.bump .chcoin{animation:cntpopk .3s ease-out}
+.chcoin,.flycoin{display:inline-block;width:22px;height:22px;border-radius:50%;flex:none;
+  background:radial-gradient(circle at 35% 30%,#FFF6C0 0 18%,#F8D048 19% 55%,#C8901A 56% 100%);
+  border:2px solid #8A5A08;box-shadow:inset -2px -2px 0 rgba(0,0,0,.18)}
+.flycoin{position:fixed;width:16px;height:16px;z-index:301;pointer-events:none}
+.flyitem{position:fixed;width:28px;height:28px;z-index:301;pointer-events:none;image-rendering:pixelated}
+.rewpop{position:fixed;z-index:302;pointer-events:none;transform:translate(-50%,-50%);font-family:'Press Start 2P';font-size:14px;color:#F8D048;
+  text-shadow:2px 0 0 #6A4008,-2px 0 0 #6A4008,0 2px 0 #6A4008,0 -2px 0 #6A4008;white-space:nowrap;animation:rewpopk 1.25s ease-out forwards}
+.rewpop.neg{color:#FFFFFF;text-shadow:2px 0 0 #A02818,-2px 0 0 #A02818,0 2px 0 #A02818,0 -2px 0 #A02818}
+.rewpop.item{font-size:9px;color:#FFFFFF;text-shadow:2px 0 0 #2C3440,-2px 0 0 #2C3440,0 2px 0 #2C3440,0 -2px 0 #2C3440}
+@keyframes rewpopk{0%{transform:translate(-50%,-50%) scale(.4);opacity:0}15%{transform:translate(-50%,-80%) scale(1.25);opacity:1}
+  30%{transform:translate(-50%,-90%) scale(1)}80%{opacity:1}100%{transform:translate(-50%,-190%);opacity:0}}
+.bump{animation:cntpopk .3s ease-out}
+/* ---------- v7.3 map pins + door iris ---------- */
+.hotspot.pin{align-items:flex-start;overflow:visible}
+.hotspot.pin:active{background:none}
+.mpin{position:absolute;left:50%;top:0;transform:translate(-50%,-55%);display:flex;align-items:center;gap:4px;white-space:nowrap;
+  padding:3px 8px 3px 4px;border-radius:12px;background:#FFFFFF;border:2px solid #2C3440;box-shadow:0 3px 0 rgba(0,0,0,.35);
+  animation:mpinbob 1.8s ease-in-out infinite;z-index:2}
+.mpin::after{content:'';position:absolute;left:50%;bottom:-7px;margin-left:-5px;border:5px solid transparent;border-top-color:#2C3440;border-bottom:0}
+.mpin b{font-family:'Press Start 2P';font-size:8px;font-weight:400;color:#2C3440}
+.mpin img{width:14px;height:14px;object-fit:contain}
+.pin-boss .mpin{background:linear-gradient(180deg,#FFF0E8,#FFD8C8);border-color:#A02818}
+.pin-boss .mpin b{color:#A02818}
+.pin-boss .mpin::after{border-top-color:#A02818}
+.pin-mart .mpin{background:linear-gradient(180deg,#F0F6FF,#D4E4FA)}
+.pin-center .mpin{background:linear-gradient(180deg,#FFF0F4,#FAD4DE)}
+.pin-train .mpin{background:linear-gradient(180deg,#F0FFF2,#CFF0D6)}
+.pin-done .mpin{animation:none;opacity:.9}
+.hotspot.pin:nth-of-type(2) .mpin{animation-delay:.3s}.hotspot.pin:nth-of-type(3) .mpin{animation-delay:.6s}.hotspot.pin:nth-of-type(4) .mpin{animation-delay:.9s}
+@keyframes mpinbob{0%,100%{transform:translate(-50%,-55%)}50%{transform:translate(-50%,-75%)}}
+.mpin.press{animation:mpinpress .3s ease-out}
+@keyframes mpinpress{0%{transform:translate(-50%,-55%) scale(1)}35%{transform:translate(-50%,-40%) scale(1.2,.8)}100%{transform:translate(-50%,-55%) scale(1)}}
+.mring{position:absolute;left:50%;top:62%;width:70%;aspect-ratio:2.2/1;border:2px solid rgba(255,255,255,.9);border-radius:50%;
+  transform:translate(-50%,-50%) scale(.6);opacity:0;animation:mringk 2.4s ease-out infinite;pointer-events:none}
+@keyframes mringk{0%{transform:translate(-50%,-50%) scale(.5);opacity:0}25%{opacity:.9}100%{transform:translate(-50%,-50%) scale(1.25);opacity:0}}
+.iris{position:fixed;z-index:400;border-radius:50%;transform:translate(-50%,-50%);box-shadow:0 0 0 400vmax #0C0C14;pointer-events:none}
+/* a building hugging the map's top edge hangs its pin INSIDE the frame */
+.pin-low .mpin{transform:translate(-50%,15%);animation-name:mpinbobl}
+.pin-low .mpin::after{display:none}
+@keyframes mpinbobl{0%,100%{transform:translate(-50%,15%)}50%{transform:translate(-50%,0)}}
+/* ---------- v7.3 GOTCHA + EVOLUTION scenes ---------- */
+#gotfx,#evofx{position:fixed;inset:0;z-index:73;overflow-y:auto;display:flex;justify-content:center;animation:fadein .3s ease-out}
+#gotfx.out,#evofx.out{animation:stoutk .3s ease-in forwards}
+.gotveil{background:radial-gradient(circle at 50% 38%,#3A6A9A 0%,#1A3050 52%,#0A121E 100%)}
+.gotrays{background:repeating-conic-gradient(rgba(255,255,255,.09) 0 9deg,transparent 9deg 18deg)}
+.gotwrap,.evowrap{position:relative;width:100%;max-width:420px;padding:calc(env(safe-area-inset-top) + 40px) 18px calc(env(safe-area-inset-bottom) + 24px);
+  display:flex;flex-direction:column;align-items:center;color:#FFF;min-height:100%;justify-content:center}
+.gotban{font-family:'Press Start 2P';font-size:30px;color:#F8D048;letter-spacing:2px;
+  text-shadow:3px 3px 0 #8A4A08,-2px -2px 0 #8A4A08,2px -2px 0 #8A4A08,-2px 2px 0 #8A4A08,0 0 26px rgba(248,208,72,.5);
+  animation:gotbank .6s cubic-bezier(.2,1.6,.4,1) .1s backwards}
+@keyframes gotbank{from{transform:scale(3) rotate(-12deg);opacity:0}to{transform:none;opacity:1}}
+.gotstage{position:relative;width:240px;height:240px;margin:12px 0 4px}
+.gotstage>*{position:absolute;left:50%;top:50%;pointer-events:none}
+.gotball{width:48px;height:48px;margin:-24px;image-rendering:pixelated;animation:gotballk 1s ease-in forwards}
+@keyframes gotballk{0%{transform:translateY(-40px) scale(.6);opacity:0}25%{transform:none;opacity:1}40%{transform:rotate(-20deg)}55%{transform:rotate(16deg)}
+  70%{transform:rotate(0)}85%{transform:scale(1.2);filter:brightness(3)}100%{transform:scale(0);opacity:0}}
+.gotburst{width:30px;height:30px;margin:-15px;border-radius:50%;background:radial-gradient(circle,#FFF 30%,rgba(255,255,255,0) 70%);
+  opacity:0;animation:stflashk .7s ease-out .85s}
+.gotart{width:210px;height:210px;margin:-105px;object-fit:contain;filter:drop-shadow(0 8px 8px rgba(0,0,0,.4));
+  animation:lbartin .7s cubic-bezier(.2,1.2,.4,1) .9s backwards,lbfloat 3s ease-in-out 1.7s infinite}
+.gotshiny{font-size:26px;color:#FFF6A0;text-shadow:0 0 10px #F8D048;margin:-110px 0 0 70px;animation:prtwinkle .8s ease-in-out infinite,fadein .3s ease-out 1.2s backwards}
+.gotshiny.s2{margin:30px 0 0 -110px;animation-delay:.3s,1.3s}.gotshiny.s3{margin:-60px 0 0 -100px;font-size:18px;animation-delay:.5s,1.4s}
+.gotname{font-family:'Press Start 2P';font-size:16px;letter-spacing:1px;text-shadow:2px 2px 0 rgba(0,0,0,.5);animation:phtxk .4s ease-out 1.3s backwards}
+.gotname span{font-size:11px;color:#C8D8F0}
+.gottypes{display:flex;gap:6px;margin-top:10px;animation:fadein .3s ease-out 1.5s backwards}
+.gotnew{margin-top:14px;padding:8px 14px;border-radius:14px;background:linear-gradient(180deg,#FFF4C0,#F8D048);color:#6A4008;
+  font-family:'Press Start 2P';font-size:8px;box-shadow:0 3px 0 rgba(0,0,0,.35);animation:gotbank .5s cubic-bezier(.2,1.6,.4,1) 1.7s backwards}
+.gotnew.shiny{background:linear-gradient(90deg,#FFD6F0,#FFF4C0,#C8F0FF);animation-delay:1.5s}
+#gotfx .rsgo,#evofx .rsgo{max-width:340px;animation-delay:1.9s}
+.evoveil{background:radial-gradient(circle at 50% 40%,#284A60 0%,#122230 55%,#060A10 100%)}
+.evorays{background:repeating-conic-gradient(rgba(160,220,255,.08) 0 9deg,transparent 9deg 18deg)}
+.evostage{position:relative;width:250px;height:250px}
+.evostage>*{position:absolute;left:50%;top:50%;pointer-events:none}
+.evo-a,.evo-b{width:220px;height:220px;margin:-110px;object-fit:contain;filter:drop-shadow(0 8px 8px rgba(0,0,0,.4));transition:opacity .06s}
+.evo-b{opacity:0}
+#evofx.morph .evo-a,#evofx.morph .evo-b{filter:brightness(0) invert(1) drop-shadow(0 0 14px rgba(180,230,255,.9))}
+#evofx.morph.showb .evo-a{opacity:0}#evofx.morph.showb .evo-b{opacity:1}
+#evofx.reveal .evo-a{opacity:0}
+#evofx.reveal .evo-b{opacity:1;animation:evorev .9s cubic-bezier(.2,1.2,.4,1),lbfloat 3s ease-in-out .9s infinite}
+@keyframes evorev{0%{filter:brightness(0) invert(1);transform:scale(1.25)}35%{filter:brightness(3)}100%{filter:drop-shadow(0 8px 8px rgba(0,0,0,.4));transform:none}}
+.evoglow{width:240px;height:240px;margin:-120px;border-radius:50%;background:radial-gradient(circle,rgba(180,230,255,.45),transparent 65%);opacity:.5}
+#evofx.morph .evoglow{animation:lbglowk .5s ease-in-out infinite;opacity:1}
+#evofx.reveal::after{content:'';position:fixed;inset:0;background:#FFF;pointer-events:none;animation:legfk .8s ease-out forwards}
+.evosparks{width:0;height:0}
+.evosparks i{position:absolute;width:6px;height:6px;border-radius:50%;background:#E8F8FF;box-shadow:0 0 8px #A8E0FF;opacity:0}
+#evofx.morph .evosparks i{animation:evospk 1.1s ease-in infinite}
+.evosparks i:nth-child(1){--a:0deg}.evosparks i:nth-child(2){--a:40deg;animation-delay:.12s!important}.evosparks i:nth-child(3){--a:80deg;animation-delay:.24s!important}
+.evosparks i:nth-child(4){--a:120deg;animation-delay:.36s!important}.evosparks i:nth-child(5){--a:160deg;animation-delay:.48s!important}.evosparks i:nth-child(6){--a:200deg;animation-delay:.6s!important}
+.evosparks i:nth-child(7){--a:240deg;animation-delay:.72s!important}.evosparks i:nth-child(8){--a:280deg;animation-delay:.84s!important}.evosparks i:nth-child(9){--a:320deg;animation-delay:.96s!important}
+@keyframes evospk{0%{transform:rotate(var(--a)) translateX(150px);opacity:0}30%{opacity:1}100%{transform:rotate(var(--a)) translateX(0);opacity:0}}
+.evobox{width:100%;margin-top:18px;background:#F8F8F8;color:#303030;border:3px solid #484848;border-radius:10px;box-shadow:inset 0 0 0 2px #C8C8C8;
+  padding:12px 14px;min-height:72px;font-size:20px;line-height:1.25}
+.evobox p{margin:0}
+.evobox b{color:#C05028;font-weight:400}
+#evofx .evogo{opacity:0;pointer-events:none;transition:opacity .3s;animation:none}
+#evofx.done .evogo{opacity:1;pointer-events:auto;animation:phtxk .35s ease-out}
+/* ---------- v7.3 component pass: modals, toasts, claim buttons, exercise list, sheet ---------- */
+.modal{border-radius:22px;padding:4px;background:linear-gradient(180deg,#5A6C88,var(--frame));
+  box-shadow:0 8px 0 rgba(0,0,0,.28),0 22px 50px rgba(0,0,0,.45)}
+.modal .min{border-radius:18px;padding:18px 16px}
+.modal h3{text-align:center;font-size:12px;letter-spacing:.5px}
+.modal .mbtns{margin-top:16px}
+.modal .mbtns .btn{border-radius:14px;padding:15px 6px;font-size:11px}
+.modal .mbtns .btn.acc{background:linear-gradient(180deg,#F86A48,#E04028 60%,#C83020);color:#FFF;border:3px solid #6A1408;
+  box-shadow:0 4px 0 #6A1408;text-shadow:1px 1px 0 rgba(90,16,8,.6)}
+.modal .mbtns .btn.acc:active{transform:translateY(3px);box-shadow:0 1px 0 #6A1408}
+html.theme-night .modal .mbtns .btn.acc{background:linear-gradient(180deg,#C85840,#A83828);color:#FFF4EE;border-color:#5A1A10}
+#toast{border-radius:20px;background:rgba(18,24,34,.94);color:#FFF;border:2px solid rgba(255,255,255,.22);
+  box-shadow:0 8px 24px rgba(0,0,0,.35);padding:9px 16px;font-size:19px}
+#toast button{color:#F8B090}
+.btn[data-action$="-claim"],.btn[data-action="res-mile"]{position:relative;padding-left:30px;color:#6A4008;border:2px solid #9A6008;
+  background:linear-gradient(180deg,#FFF4C0,#F8D048);box-shadow:0 3px 0 #9A6008;animation:claimk 1.4s ease-in-out infinite}
+.btn[data-action$="-claim"]::before,.btn[data-action="res-mile"]::before{content:'';position:absolute;left:8px;top:50%;width:14px;height:14px;margin-top:-7px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#FFF6C0 0 18%,#F8D048 19% 55%,#C8901A 56% 100%);border:2px solid #8A5A08}
+@keyframes claimk{0%,100%{box-shadow:0 3px 0 #9A6008,0 0 0 0 rgba(248,208,72,.0)}50%{box-shadow:0 3px 0 #9A6008,0 0 0 6px rgba(248,208,72,.35)}}
+.gymhead{display:flex;align-items:center;justify-content:space-between;margin:16px 12px 2px}
+.gyk{display:flex;align-items:center;gap:7px;font-family:'Press Start 2P';font-size:9px;color:var(--ink)}
+.sechead h2{color:var(--gc,var(--ink))}
+.card.excard{border-left:7px solid var(--gc,var(--bord))}
+.exbest{display:flex;flex-direction:column;align-items:center;flex:none;font-family:'Press Start 2P';font-size:5.5px;color:var(--mut);
+  padding:4px 7px;border-radius:9px;background:var(--cream2)}
+.exbest b{font-weight:400;font-size:9px;color:var(--text);margin-top:3px}
+.card.excard.done{border-left-color:#48A860}
+.card.excard.done .gobtn{background:#48A860;border-color:#2E7A44;color:#FFF;font-size:14px}
+.card.excard .gobtn{border-radius:50%}
+.roundbtn{border-radius:50%;width:40px;height:40px;box-shadow:0 3px 0 var(--bord)}
+.roundbtn:active{transform:translateY(2px);box-shadow:none}
+.shtitle .g{display:inline-block;padding:4px 9px;border-radius:10px;border:2px solid currentColor;font-size:8px}
+.shtitle h1{font-size:15px}
 </style>
 </head>
 <body>
@@ -2161,7 +2301,8 @@ function pageHero(o){
   var intro=lastRenderedTab!==tab;
   var back=o.back==='auto'?heroBackTo:o.back; // 'auto' = back to wherever you came from
   var backBtn=back?'<button class="phback" data-action="tab" data-tab="'+back+'" aria-label="Back">'+(back==='summary'?pxIcon('home',22):'‹')+'</button>':'';
-  var icon=o.ic?'<span class="phicon">'+pxIcon(o.ic,o.scene?28:32)+'</span>':'';
+  var icon=o.ic?'<span class="phicon">'+pxIcon(o.ic,o.scene?28:32)+'</span>':
+    (o.icImg?'<span class="phicon"><img src="'+o.icImg+'" alt="" style="width:'+(o.scene?34:40)+'px;height:'+(o.scene?34:40)+'px;object-fit:contain;image-rendering:pixelated"></span>':'');
   var tx='<div class="phtx"><h1>'+o.t+'</h1>'+(o.s?'<div class="phsub">'+o.s+'</div>':'')+'</div>';
   var chips=o.chips&&o.chips.length?'<div class="phchips">'+o.chips.join('')+'</div>':'';
   if(o.scene){ /* scene variant: a compact header band over the official interior / map */
@@ -3841,6 +3982,126 @@ function heldOf(m){return (m&&m.held&&ITEMS[m.held]&&ITEMS[m.held].hold)?m.held:
 function heldBoostFor(m,mvType){var k=heldOf(m);return (k&&ITEMS[k].boost===mvType)?1.2:1;}
 function heldCritBonus(m){var k=heldOf(m);return (k&&ITEMS[k].crit)?ITEMS[k].crit:0;}
 function itemIcon(k){return 'sprites/items/'+k+'.png';}
+/* ===== v7.3 REWARD FX — collecting feels like collecting: coins burst out of what you
+   tapped and fly into a money counter that slides in top-right and ticks up (or down,
+   when you spend). Items you get fly in as their own icons. Pure theatre: the state
+   change has already been saved by the caller. ===== */
+var hudTimer=null,hudVal=null;
+/* v7.3 DOOR TRANSITION: a GBA-style iris closes on the door you tapped, the new room
+   renders behind the dark, then the iris opens from the centre of the screen */
+var irisBusy=false;
+function doorFx(el,fn){
+  if(irisBusy||!document.body.animate){fn();return;}
+  var c=rectCenter(el),W=window.innerWidth,H=window.innerHeight;
+  var R=Math.ceil(Math.hypot(Math.max(c.x,W-c.x),Math.max(c.y,H-c.y)))*2+24;
+  var pin=el.querySelector&&el.querySelector('.mpin');
+  if(pin){pin.classList.remove('press');void pin.offsetWidth;pin.classList.add('press');}
+  var ir=document.createElement('div');ir.className='iris';
+  ir.style.left=c.x+'px';ir.style.top=c.y+'px';ir.style.width=ir.style.height=R+'px';
+  document.body.appendChild(ir);irisBusy=true;
+  sfx('door');
+  var a1=ir.animate([{width:R+'px',height:R+'px'},{width:'0px',height:'0px'}],
+    {duration:360,delay:90,easing:'cubic-bezier(.55,0,.8,.2)',fill:'both'});
+  a1.onfinish=function(){
+    try{fn();}catch(e){}
+    var R2=Math.ceil(Math.hypot(W,H))+24;
+    ir.style.left=(W/2)+'px';ir.style.top=(H*0.42)+'px';
+    var a2=ir.animate([{width:'0px',height:'0px'},{width:R2+'px',height:R2+'px'}],
+      {duration:420,delay:110,easing:'cubic-bezier(.2,.9,.3,1)',fill:'both'});
+    a2.onfinish=function(){if(ir.parentNode)ir.parentNode.removeChild(ir);irisBusy=false;};
+  };
+  setTimeout(function(){if(ir.parentNode){ir.parentNode.removeChild(ir);}irisBusy=false;},2000); // never strand the veil
+}
+function moneyHud(from,to,label,delay){
+  var hud=document.getElementById('coinhud');
+  if(!hud){
+    hud=document.createElement('div');hud.id='coinhud';
+    hud.innerHTML='<span class="chcoin"></span><b></b><i></i>';
+    document.body.appendChild(hud);
+  }
+  clearTimeout(hudTimer);
+  var b=hud.querySelector('b'),lab=hud.querySelector('i');
+  if(hudVal===null||!hud.classList.contains('on'))hudVal=from;
+  b.textContent='₽'+Math.round(hudVal).toLocaleString();
+  lab.textContent=label||'';
+  hud.classList.toggle('spend',to<from);
+  hud.classList.add('on');
+  setTimeout(function(){
+    var a0=hudVal,t0=performance.now(),dur=650;
+    (function step(now){
+      var k=Math.min(1,(now-t0)/dur),e=1-Math.pow(1-k,3);
+      hudVal=a0+(to-a0)*e;b.textContent='₽'+Math.round(hudVal).toLocaleString();
+      if(k<1)requestAnimationFrame(step);
+      else{hud.classList.remove('bump');void hud.offsetWidth;hud.classList.add('bump');}
+    })(t0);
+  },delay||0);
+  hudTimer=setTimeout(function(){hud.classList.remove('on');hudVal=null;},(delay||0)+2000);
+}
+function hudPoint(){
+  var hud=document.getElementById('coinhud');
+  var r=hud?hud.getBoundingClientRect():null;
+  return r&&r.width?{x:r.left+16,y:r.top+r.height/2}:{x:window.innerWidth-60,y:40};
+}
+function rectCenter(el){
+  if(!el||!el.getBoundingClientRect)return {x:window.innerWidth/2,y:window.innerHeight/2};
+  var r=el.getBoundingClientRect();
+  return {x:r.left+r.width/2,y:r.top+r.height/2};
+}
+/* o = {m: money delta (+/-), from, to, label, items:[[key,qty]], target: element to fly items into} */
+function rewardFx(srcEl,o){
+  var src=rectCenter(srcEl);
+  var gain=(o.to||0)-(o.from||0);
+  if(o.from!=null&&o.to!=null&&gain!==0){
+    moneyHud(o.from,o.to,o.label,gain>0?620:120);
+    if(gain>0){
+      var dst=hudPoint(),n=Math.min(14,4+Math.round(Math.log(gain)/Math.log(3)));
+      for(var i=0;i<n;i++)(function(i){
+        var c=document.createElement('span');c.className='flycoin';
+        c.style.left=src.x+'px';c.style.top=src.y+'px';
+        document.body.appendChild(c);
+        var ang=Math.random()*Math.PI*2,rad=40+Math.random()*50;
+        var bx=Math.cos(ang)*rad,by=Math.sin(ang)*rad-20;
+        var anim=c.animate?c.animate([
+          {transform:'translate(-50%,-50%) translate(0,0) scale(.3)',opacity:0},
+          {transform:'translate(-50%,-50%) translate('+bx+'px,'+by+'px) scale(1.1)',opacity:1,offset:.28},
+          {transform:'translate(-50%,-50%) translate('+bx+'px,'+by+'px) scale(1)',opacity:1,offset:.4},
+          {transform:'translate(-50%,-50%) translate('+(dst.x-src.x)+'px,'+(dst.y-src.y)+'px) scale(.55)',opacity:1,offset:.96},
+          {transform:'translate(-50%,-50%) translate('+(dst.x-src.x)+'px,'+(dst.y-src.y)+'px) scale(.4)',opacity:0}
+        ],{duration:780+i*45,easing:'cubic-bezier(.45,.05,.55,.95)'}):null;
+        var done=function(){if(c.parentNode)c.parentNode.removeChild(c);if(i%3===0)sfx('coin');};
+        if(anim)anim.onfinish=done;else setTimeout(done,800);
+      })(i);
+    }
+    var pop=document.createElement('span');pop.className='rewpop'+(gain<0?' neg':'');
+    pop.textContent=(gain>0?'+':'−')+'₽'+Math.abs(gain).toLocaleString();
+    pop.style.left=src.x+'px';pop.style.top=src.y+'px';
+    document.body.appendChild(pop);
+    setTimeout(function(){if(pop.parentNode)pop.parentNode.removeChild(pop);},1300);
+    if(gain>0)sfx('coin');
+  }
+  (o.items||[]).forEach(function(it,j){
+    var tgt=o.target?rectCenter(o.target):hudPoint();
+    var f=document.createElement('img');f.className='flyitem';f.src=itemIcon(it[0]);f.alt='';
+    f.style.left=src.x+'px';f.style.top=src.y+'px';
+    document.body.appendChild(f);
+    var dx=tgt.x-src.x,dy=tgt.y-src.y;
+    var an=f.animate?f.animate([
+      {transform:'translate(-50%,-50%) scale(.4)',opacity:0},
+      {transform:'translate(-50%,-50%) translate(0,-46px) scale(1.5)',opacity:1,offset:.35},
+      {transform:'translate(-50%,-50%) translate('+dx+'px,'+dy+'px) scale(.7)',opacity:1,offset:.92},
+      {transform:'translate(-50%,-50%) translate('+dx+'px,'+dy+'px) scale(.4)',opacity:0}
+    ],{duration:820,delay:j*120,easing:'cubic-bezier(.4,0,.4,1)',fill:'backwards'}):null;
+    var fin=function(){
+      if(f.parentNode)f.parentNode.removeChild(f);
+      if(o.target){o.target.classList.remove('bump');void o.target.offsetWidth;o.target.classList.add('bump');}
+    };
+    if(an)an.onfinish=fin;else setTimeout(fin,900);
+    var tag=document.createElement('span');tag.className='rewpop item';tag.textContent='+'+it[1]+' '+(ITEMS[it[0]]?ITEMS[it[0]].n:it[0]);
+    tag.style.left=src.x+'px';tag.style.top=(src.y-16-j*18)+'px';
+    document.body.appendChild(tag);
+    setTimeout(function(){if(tag.parentNode)tag.parentNode.removeChild(tag);},1300);
+  });
+}
 function money(){return (state.game&&state.game.money)||0;}
 function addMoney(n){if(state.game&&n>0)state.game.money=(state.game.money||0)+Math.round(n*(1+0.10*perkN('amuletheart')));}
 function bagOf(){if(!state.game)return {};if(!state.game.bag)state.game.bag={};return state.game.bag;}
@@ -3904,7 +4165,9 @@ function statsFor(m){
 function findMon(u){if(!state.game)return null;for(var i=0;i<state.game.mons.length;i++)if(state.game.mons[i].uid===u)return state.game.mons[i];return null;}
 function activeMon(){if(!state.game)return null;return findMon(state.game.active)||state.game.mons[0]||null;}
 function registerDex(sp,shiny){if(!state.game)return;var d=state.game.dex[sp]||{};d.c=1;if(shiny)d.s=1;state.game.dex[sp]=d;resBump(sp,'c');}
+var newDexSp={}; /* v7.3: species that just became NEW in the dex — the GOTCHA scene reads it */
 function addMon(sp,shiny){
+  if(state.game&&!(state.game.dex[sp]&&state.game.dex[sp].c))newDexSp[sp]=1;
   var m={uid:uid(),sp:sp,xp:0,shiny:!!shiny,ts:Date.now()};
   state.game.mons.push(m);
   registerDex(sp,shiny);
@@ -3943,7 +4206,9 @@ function queueLevelUp(mon,before,after){
   }else{
     queueModal(function(){
       sfx('levelup');
-      showModal('<h3>'+esc(nm)+' grew to LV '+after+'!</h3>'+statGainGrid(s0,s1)+
+      showModal('<div class="vbanner" style="font-size:13px">LEVEL UP!</div>'+
+        '<div style="text-align:center;padding:2px 0"><img class="bigspr" src="'+sprPath(mon.sp,mon.shiny)+'" alt="" style="width:72px;height:72px;image-rendering:pixelated;animation:lbfloat 2.4s ease-in-out infinite"></div>'+
+        '<h3>'+esc(nm)+' grew to LV '+after+'!</h3>'+statGainGrid(s0,s1)+
         '<div class="mbtns"><button class="btn acc" data-action="modal-ok">OK</button></div>');
       modalOk=function(){closeModal();};
     });
@@ -3954,7 +4219,10 @@ function queueLevelUp(mon,before,after){
       (function(mv){
         queueModal(function(){
           sfx('save');
-          showModal('<h3>'+esc(nm)+' learned '+esc(mv)+'!</h3>'+
+          var mvT=moveTypeOf(mv);
+          showModal('<div class="vbanner" style="font-size:13px">NEW MOVE!</div>'+
+            '<h3>'+esc(nm)+' learned '+esc(mv)+'!</h3>'+
+            '<div style="text-align:center"><span class="tchip" style="background:'+(TYPE_COLORS[mvT]||'#888')+'">'+mvT.toUpperCase()+'</span></div>'+
             '<div class="mbtns"><button class="btn acc" data-action="modal-ok">OK</button></div>');
           modalOk=function(){closeModal();};
         });
@@ -3980,20 +4248,53 @@ function maybeEvolve(mon){
     return;
   }
   var to=ev.to;
-  queueModal(function(){
-    showModal('<h3>What?</h3><p>'+esc(DEX[mon.sp].n)+' is evolving!</p>'+
-      '<div style="text-align:center;padding:8px 0"><img class="bigspr evoflash" src="'+sprPath(mon.sp,mon.shiny)+'" alt=""></div>'+
-      '<div class="mbtns"><button class="btn acc" data-action="modal-ok">. . .</button></div>',true);
-    modalOk=function(){
-      // the classic morph: white silhouette pulses, old shape becomes the new one
-      showModal('<h3 style="text-align:center">. . .</h3>'+
-        '<div class="evomorph"><img class="em-old" src="'+sprPath(mon.sp,mon.shiny)+'" alt="">'+
-        '<img class="em-new" src="'+sprPath(to,mon.shiny)+'" alt=""></div>',true);
-      modalOk=null;
-      sfx('evolve');
-      setTimeout(function(){closeModal();doEvolve(mon,to);},2650);
-    };
-  });
+  queueModal(function(){playEvolution(mon,to);}); // v7.3: the full-screen theatre
+}
+/* v7.3 EVOLUTION THEATRE — state-first: the new form is saved the moment the scene
+   starts; then the classic flicker (white silhouettes trading places, faster and
+   faster), the flash, the reveal in colour with its cry. */
+function playEvolution(mon,to){
+  var fromSp=mon.sp,fromN=DEX[fromSp].n;
+  mon.sp=to;registerDex(to,mon.shiny);save();
+  fxHold=true;
+  var old=document.getElementById('evofx');if(old)old.parentNode.removeChild(old);
+  function art(sp){return mon.shiny?sprPath(sp,true):'sprites/art/'+DEX[sp].id+'.png';}
+  function img(sp,cls){return '<img class="'+cls+'" src="'+art(sp)+'" alt=""'+(mon.shiny?' style="image-rendering:pixelated"':
+    ' onerror="this.onerror=null;this.src=\''+sprPath(sp,false)+'\';this.style.imageRendering=\'pixelated\'"')+'>';}
+  var el=document.createElement('div');el.id='evofx';
+  el.innerHTML='<div class="rsveil evoveil"></div><div class="rsrays evorays"></div>'+
+    '<div class="evowrap"><div class="evostage">'+
+      '<span class="evoglow"></span>'+img(fromSp,'evo-a')+img(to,'evo-b')+
+      '<span class="evosparks">'+new Array(10).join('<i></i>')+'</span></div>'+
+      '<div class="evobox"><p id="evo-txt">What? '+fromN+' is evolving!</p></div>'+
+      '<button class="rsgo evogo" data-action="evo-done">CONTINUE</button></div>';
+  document.body.appendChild(el);
+  cry(fromSp);
+  /* the flicker: A and B trade places, interval shrinking 420ms → 60ms */
+  var t=900,iv=420,showB=false,T=[];
+  setTimeout(function(){el.classList.add('morph');sfx('evolve');},700);
+  while(t<3900){
+    (function(b){T.push(setTimeout(function(){el.classList.toggle('showb',b);},t));})(showB=!showB);
+    t+=iv;iv=Math.max(60,iv*0.8);
+  }
+  setTimeout(function(){
+    el.classList.remove('morph');el.classList.add('showb','reveal');
+    sfx('levelup');
+    setTimeout(function(){cry(to);},350);
+    var tx=document.getElementById('evo-txt');
+    if(tx)tx.innerHTML='Congratulations! Your '+fromN+' evolved into <b>'+DEX[to].n+'</b>!';
+    el.classList.add('done');
+  },4000);
+  maybeEvolve(mon); // a chain (two stages in one jump) queues behind this scene
+}
+function closeEvolution(){
+  var el=document.getElementById('evofx');if(!el||!el.classList.contains('done'))return;
+  el.classList.add('out');
+  setTimeout(function(){
+    if(el.parentNode)el.parentNode.removeChild(el);
+    fxHold=false;render(true);
+    if(modalQueue.length&&!$('#modalwrap').classList.contains('open')){var f=modalQueue.shift();setTimeout(f,180);}
+  },300);
 }
 function doEvolve(mon,to){
   var fromN=DEX[mon.sp].n;
@@ -4040,16 +4341,44 @@ function daysSinceGameStart(){
   allLogsFlat().forEach(function(o){if(o.l.ts>=state.game.startTs)m[dateKey(o.l.ts)]=1;});
   return Object.keys(m).length;
 }
+/* v7.3 GOTCHA scene: a full-screen celebration instead of a small popup — the banner
+   bounces in, the ball pops, the official art bursts out; NEW dex entries get a badge */
 function announceCatch(sp,shiny,lv){
+  var isNew=!!newDexSp[sp];delete newDexSp[sp];
   queueModal(function(){
+    fxHold=true;
+    var old=document.getElementById('gotfx');if(old)old.parentNode.removeChild(old);
+    var art=shiny?sprPath(sp,true):'sprites/art/'+DEX[sp].id+'.png';
+    var chips='';
+    DEX[sp].t.forEach(function(t){chips+='<span class="tchip" style="background:'+(TYPE_COLORS[t]||'#888')+'">'+t.toUpperCase()+'</span>';});
+    var el=document.createElement('div');el.id='gotfx';
+    el.innerHTML='<div class="rsveil gotveil"></div><div class="rsrays gotrays"></div>'+
+      '<div class="gotwrap">'+
+        '<div class="gotban">GOTCHA!</div>'+
+        '<div class="gotstage"><img class="gotball" src="'+itemIcon('pokeball')+'" alt=""><span class="gotburst"></span>'+
+          '<img class="gotart'+(shiny?' shinyglow':'')+'" src="'+art+'" alt=""'+(shiny?' style="image-rendering:pixelated"':
+            ' onerror="this.onerror=null;this.src=\''+sprPath(sp,false)+'\';this.style.imageRendering=\'pixelated\'"')+'>'+
+          (shiny?'<span class="gotshiny">✦</span><span class="gotshiny s2">✦</span><span class="gotshiny s3">✦</span>':'')+'</div>'+
+        '<div class="gotname">'+DEX[sp].n+(lv?' <span>:L'+lv+'</span>':'')+'</div>'+
+        '<div class="gottypes">'+chips+'</div>'+
+        (shiny?'<div class="gotnew shiny">✦ SHINY! ✦</div>':'')+
+        (isNew?'<div class="gotnew">NEW! Registered in the POKEDEX</div>':'')+
+        '<button class="rsgo" data-action="got-done">'+(isNew?'AWESOME!':'NICE!')+'</button>'+
+      '</div>';
+    document.body.appendChild(el);
     sfx('catch');
-    cry(sp);
-    if(shiny)setTimeout(function(){sfx('shiny');},600);
-    showModal('<h3>Gotcha!</h3><p>'+esc(DEX[sp].n)+(lv?' :L'+lv:'')+' was caught!'+(shiny?' ✨ It’s SHINY!':'')+'</p>'+
-      '<div style="text-align:center;padding:8px 0"><img class="bigspr'+(shiny?' shinyglow':'')+'" src="'+sprPath(sp,shiny)+'" alt=""></div>'+
-      '<div class="mbtns"><button class="btn acc" data-action="modal-ok">OK</button></div>');
-    modalOk=function(){closeModal();render(true);};
+    setTimeout(function(){cry(sp);},700);
+    if(shiny)setTimeout(function(){sfx('shiny');},1100);
   });
+}
+function closeGotcha(){
+  var el=document.getElementById('gotfx');if(!el)return;
+  el.classList.add('out');
+  setTimeout(function(){
+    if(el.parentNode)el.parentNode.removeChild(el);
+    fxHold=false;render(true);
+    if(modalQueue.length&&!$('#modalwrap').classList.contains('open')){var f=modalQueue.shift();setTimeout(f,180);}
+  },300);
 }
 function grantMon(flag,sp,title,msg){
   var g=state.game;
@@ -5560,8 +5889,9 @@ function lessonTick(k){
   if(d[k])return;
   var L=null;LESSONS.forEach(function(x){if(x.k===k)L=x;});if(!L)return;
   d[k]=1;
+  var lsM0=money();
   if(L.rw.m)addMoney(L.rw.m);else bagOf()[L.rw.i]=(bagOf()[L.rw.i]||0)+L.rw.q;
-  lessonPop(L);
+  lessonPop(L,L.rw.m?{from:lsM0,to:money(),label:'LESSON: '+L.n}:{items:[[L.rw.i,L.rw.q]]});
   if(LESSONS.every(function(x){return d[x.k];})){
     g.lessons.fin=1;
     bagOf().luckyegg=(bagOf().luckyegg||0)+1;
@@ -5581,7 +5911,8 @@ function lessonTick(k){
 }
 /* a little card slides down from the top: lesson done + its reward */
 var lessonPopQ=[],lessonPopOn=false;
-function lessonPop(L){
+function lessonPop(L,fx){
+  L=Object.create(L);L.fx=fx;
   lessonPopQ.push(L);
   if(!lessonPopOn)lessonPopNext();
 }
@@ -5594,6 +5925,7 @@ function lessonPopNext(){
     '<span class="lprw">'+lessonRwIcon(L.rw,18)+' '+lessonRwTxt(L.rw)+'</span>';
   document.body.appendChild(el);
   setTimeout(function(){sfx('ballclick');},250);
+  if(L.fx)setTimeout(function(){if(el.isConnected)rewardFx(el.querySelector('.lprw')||el,L.fx);},500); // v7.3 coins
   setTimeout(function(){el.classList.add('out');},2600);
   setTimeout(function(){if(el.parentNode)el.parentNode.removeChild(el);lessonPopNext();},3000);
 }
@@ -7118,9 +7450,13 @@ function partyStripHTML(){
 }
 function mapHTML(){
   var ti=curTown(),tw=TOWNS[ti],story=atStoryTown();
+  /* v7.3: buildings wear PINS — an icon pill floating over the roof, a pulse ring on the
+     doorstep — and tapping one walks you in through a GBA-style iris (doorFx) */
+  var PIN_IC={boss:'trophy',mart:'mart',center:'center',train:'team'};
   function spot(key,label,extra){
     var b=tw.hs[key];
-    return '<button class="hotspot" data-action="bld" data-b="'+key+'" style="left:'+b[0]+'%;top:'+b[1]+'%;width:'+b[2]+'%;height:'+b[3]+'%" aria-label="'+label+'">'+(extra||'')+'<span class="maptag">'+label+'</span></button>';
+    return '<button class="hotspot pin pin-'+key+(b[1]<12?' pin-low':'')+'" data-action="bld" data-b="'+key+'" style="left:'+b[0]+'%;top:'+b[1]+'%;width:'+b[2]+'%;height:'+b[3]+'%" aria-label="'+label+'">'+(extra||'')+
+      '<span class="mring"></span><span class="mpin">'+pxIcon(PIN_IC[key]||'map',14)+'<b>'+label+'</b></span></button>';
   }
   /* v7.2: the official town map IS the page hero — full-bleed, the town's name above it */
   var sc='<img class="mapimg" src="'+tw.img+'" alt="'+tw.n+'" style="width:100%;display:block;image-rendering:pixelated">'+
@@ -7128,7 +7464,7 @@ function mapHTML(){
     wxOverlayHTML(ti)+
     // BOSS only at your story town; past towns show a beaten-gym tag instead
     (story?spot('boss','BOSS')
-          :'<span class="hotspot" style="left:'+tw.hs.boss[0]+'%;top:'+tw.hs.boss[1]+'%;width:'+tw.hs.boss[2]+'%;height:'+tw.hs.boss[3]+'%"><span class="maptag" style="color:'+(ti>townIdx()?'#6B7280">GYM 🔒':'#2E8B48">GYM ✓')+'</span></span>')+
+          :'<span class="hotspot pin pin-done" style="left:'+tw.hs.boss[0]+'%;top:'+tw.hs.boss[1]+'%;width:'+tw.hs.boss[2]+'%;height:'+tw.hs.boss[3]+'%"><span class="mpin">'+(ti>townIdx()?pxIcon('warn',14)+'<b>LOCKED</b>':'<img src="'+badgeSrcFor(Math.min(7,ti))+'" alt=""><b>BEATEN</b>')+'</span></span>')+
     (featOn('mart')?spot('mart','SHOP'):'')+
     spot('train','TRAIN')+
     (tw.hs.center?spot('center','HEAL'):'');
@@ -9111,7 +9447,11 @@ function switchRegion(to){
 }
 /* ============ end HOENN REGION PACK ============ */
 /* every building banner: its official FRLG art + name tag, in the building's colors */
+/* v7.3: while poiPageHTML builds a page, the banner leaves a TOKEN instead — the page
+   header + banner are then rebuilt as one pageHero scene (see poiPageHTML) */
+var poiHeroMode=false;
 function poiBanner(k,tag){
+  if(poiHeroMode)return '\u0001PB|'+k+'|'+encodeURIComponent(tag||'')+'\u0001';
   var d=poiDef(k);if(!d)return '';
   var ac=(d.pal&&d.pal.c)||'#C05028';
   return '<div class="mapwrap" style="border-color:'+ac+'">'+
@@ -9157,14 +9497,16 @@ function poiPageHTML(k){
   if(!def||!state.game)return mapHTML();
   var defTown=def.dt?def.dt():def.town;
   if(defTown!==curTown()&&!(def.towns&&def.towns.indexOf(curTown())>=0)){
-    return '<div class="titlebar"><h1>'+def.n+'</h1><button class="textbtn" data-action="tab" data-tab="map">← BACK</button></div>'+
+    return pageHero({t:def.n,s:'In '+TOWNS[defTown].n,icImg:def.icon,c:(def.pal&&def.pal.c)||'#405068',back:'map',img:def.img})+
       '<div class="panel"><div class="memo">This place is in '+TOWNS[defTown].n+' — hop the ferry there first!</div></div>'+poiBackBtn();
   }
   if(def.gate&&!def.gate()){
-    return '<div class="titlebar"><h1>?????</h1><button class="textbtn" data-action="tab" data-tab="map">← BACK</button></div>'+
+    return pageHero({t:'?????',s:'Something blocks the way',ic:'warn',c:'#3A4048',back:'map'})+
       '<div class="panel"><div class="memo">'+(def.gateTxt||'The ghosts here are unidentifiable! Something in the ROCKET HIDEOUT might reveal them…')+'</div></div>'+poiBackBtn();
   }
   var out=null;
+  poiHeroMode=true;
+  try{
   if(k==='tower')out=towerHTML();
   else if(k==='dept')out=deptHTML();
   else if(k==='corner')out=cornerHTML();
@@ -9191,7 +9533,27 @@ function poiPageHTML(k){
   else if(k==='hall')out=hallHTML();
   else if(k==='shoal')out=shoalHTML();
   else if(k==='mine')out=mineHTML();
+  }finally{poiHeroMode=false;}
   if(out===null)return mapHTML();
+  /* v7.3: every building gets the shared page hero — its official interior full-bleed
+     under a header band (title, subtitle, the building's icon, its status chip) */
+  var mh=out.match(/^<div class="titlebar"><h1>([\s\S]*?)<\/h1>[\s\S]*?<\/div>(?:<div class="subtitle">([\s\S]*?)<\/div>)?/);
+  var tok=out.match(/\u0001PB\|([^|]*)\|([^\u0001]*)\u0001/);
+  if(mh){
+    out=out.slice(mh[0].length);
+    var pdh=(tok&&poiDef(tok[1]))||def,ach=(pdh.pal&&pdh.pal.c)||'#C05028',sc=null,chips=[];
+    if(tok){
+      var ptag=decodeURIComponent(tok[2]);
+      sc='<img class="mapimg" src="'+pdh.img+'" alt="" style="width:100%;display:block;image-rendering:pixelated;aspect-ratio:240/112;object-fit:cover">';
+      if(ptag)chips.push(phChip(ptag));
+      out=out.replace(tok[0],'');
+    }
+    var stv=def.st?def.st():'';
+    if(stv)chips.push(phChip(stv));
+    out=pageHero({t:mh[1],s:mh[2]||'',icImg:def.icon,c:ach,back:'map',scene:sc,img:sc?null:pdh.img,chips:chips})+out;
+    return out.replace(/\u0001PB\|[^\u0001]*\u0001/g,'');
+  }
+  out=out.replace(/\u0001PB\|[^\u0001]*\u0001/g,'');
   // a quick exit lives top-right of every building page (the bottom one stays too)
   return out.replace('</h1></div>','</h1><button class="textbtn" data-action="tab" data-tab="map">← BACK</button></div>');
 }
@@ -11345,6 +11707,8 @@ function sfx(name){
   try{
     if(name==='click')seSelect(t);
     else if(name==='save'){tone(t,660,0.07,'square',0.05);tone(t+0.08,880,0.1,'square',0.05);}
+    else if(name==='door'){tone(t,330,0.06,'square',0.05);tone(t+0.07,247,0.07,'square',0.05);tone(t+0.16,196,0.12,'square',0.04);}
+    else if(name==='coin'){tone(t,988,0.05,'square',0.045);tone(t+0.05,1319,0.14,'square',0.045);}
     else if(name==='heal'){[784,988,1175,1568].forEach(function(f,i){tone(t+i*0.09,f,0.09,'square',0.06);});tone(t+0.4,1568,0.24,'square',0.05);}
     else if(name==='hit')tone(t,210,0.11,'square',0.09,110);
     else if(name==='superhit'){tone(t,280,0.09,'square',0.11,90);tone(t+0.1,170,0.13,'square',0.1,60);}
@@ -11394,9 +11758,11 @@ function exCard(ex,g){
   }else{
     inner='No entries yet — tap to log';
   }
-  return '<button class="card'+(done?' done':'')+'" data-action="open" data-ex="'+ex.id+'">'+
+  var bst=bestW(ex.id);
+  return '<button class="card excard'+(done?' done':'')+'" data-action="open" data-ex="'+ex.id+'">'+
     '<div class="exinfo"><div class="exname">'+esc(ex.name)+'</div><div class="exlast">'+inner+'</div></div>'+
-    '<div class="gobtn">'+(done?'OK':PLUS_SVG)+'</div></button>';
+    (bst>0&&!done?'<span class="exbest">BEST<b>'+fmtW(bst)+'</b></span>':'')+
+    '<div class="gobtn">'+(done?'✓':PLUS_SVG)+'</div></button>';
 }
 function sessionSetsOf(id){
   if(!state.session)return 0;
@@ -11431,15 +11797,21 @@ function workoutHTML(){
       '<button class="btn small" data-action="end-workout">End</button></div><div class="lvspace"></div>'+
       '<div class="btwrap'+modeCls+'">'+battlePanelHTML(anim0,null,cam0)+'</div>';
   }
-  h+='<div class="titlebar"><h1>GYM</h1><button class="textbtn" data-action="toggle-edit">'+(editMode?'DONE':'EDIT')+'</button></div>'+
-    '<div class="subtitle">'+DAYSF[d.getDay()]+', '+MONTHS[d.getMonth()]+' '+d.getDate()+'</div>';
+  /* v7.3: under a battle the list gets a compact header; editing (from OPTION) gets the page hero */
+  if(state.session&&!editMode){
+    h+='<div class="gymhead"><span class="gyk">'+pxIcon('dumbbell',18)+'PICK AN EXERCISE</span>'+
+      '<button class="phchip btnchip" data-action="toggle-edit">EDIT</button></div>';
+  }else{
+    h+=pageHero({t:editMode?'EDIT EXERCISES':'GYM',s:DAYSF[d.getDay()]+', '+MONTHS[d.getMonth()]+' '+d.getDate(),ic:'dumbbell',c:'#2E8B48',
+      back:state.session?null:'settings',chips:[phBtn(editMode?'DONE':'EDIT','','toggle-edit')]});
+  }
   if(!editMode&&showInstallBanner()){
     h+='<div class="banner"><div class="binfo"><b>Install this app:</b> in Safari tap the <b>Share</b> button (square with ↑), then <b>Add to Home Screen</b>.</div>'+
       '<button class="delbtn" data-action="dismiss-banner" aria-label="Dismiss">✕</button></div>';
   }
   state.groups.forEach(function(g,gi){
     var c=GROUP_COLORS[gi%GROUP_COLORS.length];
-    h+='<div class="section"><div class="sechead"><span class="dot" style="background:'+c+'"></span><h2>'+esc(g.name)+'</h2>';
+    h+='<div class="section" style="--gc:'+c+'"><div class="sechead"><span class="dot" style="background:'+c+'"></span><h2>'+esc(g.name)+'</h2>';
     h+=editMode
       ?'<button class="iconbtn" data-action="rename-group" data-g="'+g.id+'" aria-label="Rename">✎</button>'+
        '<button class="iconbtn red" data-action="del-group" data-g="'+g.id+'" aria-label="Delete">✕</button>'
@@ -11466,7 +11838,7 @@ function settingsHTML(){
   function group(t,rows){return '<div class="sgroup"><div class="sgh">'+t+'</div><div class="sgbox">'+rows+'</div></div>';}
   var bw=bwList();
   return pageHero({t:'OPTION',s:'Everything stays on this device',ic:'option',c:'#4A5A70',
-      chips:[phChip('v7.2 “Arcade”'),phChip(kb+' KB SAVED')]})+
+      chips:[phChip('v7.3 “Juice”'),phChip(kb+' KB SAVED')]})+
     group('LOOK & SOUND',
       row('daynight','Style','FireRed day or night look',seg('theme','th',[['night','NIGHT',state.theme!=='day'],['day','DAY',state.theme==='day']]))+
       (state.game?row('home','Home screen','TRAINER tab: new lobby or the classic page',seg('home-style','s',[['new','NEW',!homeStyleClassic()],['classic','CLASSIC',homeStyleClassic()]])):'')+
@@ -11484,7 +11856,7 @@ function settingsHTML(){
       row('save','Backup','Export your data as a file','<div style="display:flex;gap:6px"><button class="btn" data-action="copy">COPY</button><button class="btn acc" data-action="export">EXPORT</button></div>')+
       row('save','Restore','Import a backup file','<button class="btn" data-action="import">IMPORT</button>')+
       row('warn','Reset everything','Deletes all history','<button class="btn danger" data-action="reset">RESET</button>','danger'))+
-    '<div class="about">Gym Tracker v7.2 “Arcade” · '+kb+' KB stored locally<br>'+
+    '<div class="about">Gym Tracker v7.3 “Juice” · '+kb+' KB stored locally<br>'+
     'Your data never leaves your phone. Export a backup once in a while —<br>if you delete the app icon, its data goes with it.</div>';
 }
 
@@ -12551,6 +12923,8 @@ document.addEventListener('click',function(e){
   else if(a==='theme'){state.theme=b.dataset.th==='day'?'day':'night';save();applyTheme();render(true);}
   else if(a==='home-style'){state.homeStyle=b.dataset.s==='classic'?'classic':'new';save();render(true);toast(state.homeStyle==='classic'?'Classic TRAINER page restored':'New TRAINER lobby on');}
   else if(a==='res-done'){closeResults();}
+  else if(a==='got-done'){closeGotcha();}
+  else if(a==='evo-done'){closeEvolution();}
   else if(a==='bag-info'){
     var bi=document.getElementById('bag-info'),bk=ITEMS[b.dataset.k];
     if(bi&&bk){bi.innerHTML='<b>'+bk.n+'</b> — '+bk.d;bi.classList.remove('pop');void bi.offsetWidth;bi.classList.add('pop');}
@@ -12589,10 +12963,11 @@ document.addEventListener('click',function(e){
     var rsp=b.dataset.sp;
     if(!state.game||!resClaimable(rsp))return;
     resOf(rsp).rw=1;
+    var rsM0=money();
     addMoney(400);
     save();
     sfx('save');
-    toast(DEX[rsp].n+' research complete — ₽400!');
+    rewardFx(b,{from:rsM0,to:money(),label:DEX[rsp].n+' RESEARCH'}); // v7.3
     showDexArt(rsp);
   }
   else if(a==='res-mile'){
@@ -12600,6 +12975,7 @@ document.addEventListener('click',function(e){
     var mtg={resm1:10,resm2:30,resm3:60,resm4:resM4Target()}[mk2];
     if(!state.game||!mtg||state.game.flags[mk2]||resCount()<mtg)return;
     state.game.flags[mk2]=1;
+    var rmM0=money();
     if(mk2==='resm1')addMoney(2000);
     else if(mk2==='resm2')bagOf().rarecandy=(bagOf().rarecandy||0)+3;
     else if(mk2==='resm3')addMoney(10000);
@@ -12616,7 +12992,7 @@ document.addEventListener('click',function(e){
     }
     save();
     sfx('badge');
-    toast('Research milestone claimed!');
+    rewardFx(b,mk2==='resm2'?{items:[['rarecandy',3]]}:{from:rmM0,to:money(),label:'RESEARCH MILESTONE'}); // v7.3
     render(true);
   }
   else if(a==='mine-dig'){
@@ -12769,17 +13145,17 @@ document.addEventListener('click',function(e){
       else if(state.game){
         /* v6.6.1: the Gym Guide stops you AT THE DOOR — the arena won't even open */
         if(!roadClear()&&bossInfo())gymGuideModal();
-        else {tab='gymhall';render();}
+        else doorFx(b,function(){tab='gymhall';render();});
       }
       else toast('Meet '+profName()+' first!');
     }
     else if(bid==='mart'){
       if(!state.game){toast('Meet '+profName()+' first!');}
       else if(!featOn('mart')){toast('The MART opens once you reach the next town!');}
-      else{tab='mart';render();}
+      else doorFx(b,function(){tab='mart';render();});
     }
     else if(bid==='center'){
-      if(state.game){tab='center';render();}
+      if(state.game)doorFx(b,function(){tab='center';render();});
       else toast('Meet '+profName()+' first!');
     }
   }
@@ -12843,11 +13219,15 @@ document.addEventListener('click',function(e){
     var bik=b.dataset.it,bit=ITEMS[bik];
     if(bit&&bit.rod&&(bagOf()[bik]||0)>0){toast('You already own one!');return;}
     if(bit&&state.game&&(bit.t||0)<=curTown()&&money()>=bit.p){
+      var biM0=money();
       state.game.money-=bit.p;
       bagOf()[bik]=(bagOf()[bik]||0)+1;
       sfx('save');save();
+      var biSrc=b;
       render(true);
-      toast('Bought '+bit.n+'!');
+      /* v7.3: the item hops off the shelf into your BAG, the purse counts down */
+      rewardFx(biSrc,{from:biM0,to:money(),label:'BOUGHT '+bit.n,items:[[bik,1]],
+        target:document.querySelector('.phchip[data-action="show-bag"]')});
     }
   }
   else if(a==='throw-pick'){showThrowModal();}
@@ -12871,7 +13251,7 @@ document.addEventListener('click',function(e){
   }
   else if(a==='area-mon'){showAreaMonModal(b.dataset.sp);}
   else if(a==='dex-art'){showDexArt(b.dataset.sp);}
-  else if(a==='poi-open'){if(state.game){if(b.dataset.k==='bf')frontierFac=null;if(b.dataset.k==='corner')cornerGame='slots';tab='poi-'+b.dataset.k;render();}}
+  else if(a==='poi-open'){if(state.game){if(b.dataset.k==='bf')frontierFac=null;if(b.dataset.k==='corner')cornerGame='slots';var pk7=b.dataset.k;doorFx(b,function(){tab='poi-'+pk7;render();});}}
   else if(a==='poi-fight'){poiStartFight(b.dataset.kind,parseInt(b.dataset.f,10));}
   else if(a==='bf-open'){frontierFac=b.dataset.f;render();}
   else if(a==='bf-back'){frontierFac=null;render();}
@@ -13114,8 +13494,10 @@ document.addEventListener('click',function(e){
     var svmap=STONE_EVOS[svk];
     if(!svm||!svmap||!svmap[svm.sp]||money()<2500)return;
     state.game.money-=2500;
-    save();closeModal();sfx('save');
-    doEvolve(svm,svmap[svm.sp]);
+    save();sfx('save');
+    var sto=svmap[svm.sp];
+    modalQueue.unshift(function(){playEvolution(svm,sto);}); // v7.3 the stone gets the full theatre too
+    closeModal();
   }
   else if(a==='lab-fossil'){
     var fsp=b.dataset.sp,fdef=null;
@@ -13193,9 +13575,10 @@ document.addEventListener('click',function(e){
     if(cq&&questReady(cq)&&!questClaimed(cqi)){
       state.game.road.qdone[cqi]=1;
       var cqPay=Math.round(cq.reward*(1+0.08*perkN('deeppockets'))); // v6.8
+      var cqM0=money();
       addMoney(cqPay);
       save();sfx('badge');
-      toast('+₽'+cqPay.toLocaleString()+' from '+cq.clsN+' '+cq.name+'!');
+      rewardFx(b,{from:cqM0,to:money(),label:cq.clsN+' '+cq.name}); // v7.3
       checkGameEvents();
       render(true);
     }
@@ -13208,6 +13591,7 @@ document.addEventListener('click',function(e){
     if(dq&&dailyProg(dq)>=dq.target&&!state.game.daily.claimed[ddi]){
       state.game.daily.claimed[ddi]=1;
       var dqPay=Math.round(dq.reward*(1+0.08*perkN('deeppockets'))); // v6.8
+      var dqM0=money();
       addMoney(dqPay);
       // the flex streak: rest days (up to 3 calendar days between claims) never break it
       var dl=state.game.daily;
@@ -13217,7 +13601,7 @@ document.addEventListener('click',function(e){
       }
       if((dl.streak||0)>((state.game.bestStreak)||0))state.game.bestStreak=dl.streak; // TRAINER CARD rank
       save();sfx('badge');
-      toast('+₽'+dqPay.toLocaleString()+' — daily done! 🔥'+dl.streak);
+      rewardFx(b,{from:dqM0,to:money(),label:'DAILY · STREAK '+dl.streak}); // v7.3
       render(true);
     }
   }
@@ -13268,7 +13652,9 @@ document.addEventListener('click',function(e){
       if(hcur<hmx||restOf()[hm.uid])healedList.push(hm);
     });
     if(!healedList.length)return;
+    var chM0=money();
     state.game.money-=centerFee();
+    rewardFx(b,{from:chM0,to:money(),label:'INSTANT HEAL'}); // v7.3
     healedList.forEach(function(hm){
       if(state.game.hurt)delete state.game.hurt[hm.uid];
       delete restOf()[hm.uid];
@@ -13446,7 +13832,7 @@ document.addEventListener('click',function(e){
   }
   else if(a==='evo-choice'){
     var em=findMon(b.dataset.m);
-    if(em&&DEX[b.dataset.to]){closeModal();doEvolve(em,b.dataset.to);}
+    if(em&&DEX[b.dataset.to]){var eto=b.dataset.to;modalQueue.unshift(function(){playEvolution(em,eto);});closeModal();}
   }
   else if(a==='pick-gender'){
     pendingGender=['red','leaf','brendan','may'].indexOf(b.dataset.g)>=0?b.dataset.g:(inHoenn()?'brendan':'red');
