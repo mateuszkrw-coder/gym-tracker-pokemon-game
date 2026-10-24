@@ -1,4 +1,4 @@
-Gym Tracker — Handover Document (current as of app v7.3 / sw v63 / schema v20, 2026-10-23)
+Gym Tracker — Handover Document (current as of app v7.4 / sw v64 / schema v20, 2026-10-24)
 
 ============================================================
 1. WHAT THIS IS
@@ -22,7 +22,7 @@ installed home-screen app isolated storage — a separate app couldn't read the 
 Live URL:  https://mateuszkrw-coder.github.io/gym-tracker-pokemon-game/
 Repo:      https://github.com/mateuszkrw-coder/gym-tracker-pokemon-game  (GitHub Pages from main branch root;
            renamed from gym-tracker, whose old Pages URL now 404s)
-Current:   app v7.3 “Juice”, service-worker cache v63, data schema v20.
+Current:   app v7.4 “Style”, service-worker cache v64, data schema v20.
 
 ============================================================
 2. THE TWO-LAPTOP WORKFLOW (read this FIRST on any machine)
@@ -477,6 +477,45 @@ Johto/Gen-2 content pack (a 3rd campaign — the region model supports it cleanl
 ============================================================
 13. IMMEDIATE STATE
 ============================================================
+v7.4 “Style” (2026-10-24) — Mateusz: “add a way to customize your character, how it looks
+with outfits etc, from pants to shirts to boots to caps, if its not possible then tell me”.
+What is and isn't possible (told to Mateusz): garment SHAPES can't change — a beanie
+instead of a cap, boots instead of sneakers — without hand-drawing new pixel art for
+every combination on all four trainers. COLOURS per garment can, on the official sprites,
+and the official trainer-class sprites give real shape variety as complete costumes.
+• WARDROBE page (tab 'wardrobe', wardrobeHTML): dressing-room stage (spotlight, rotating
+  ring, ‹ › cycles bases + earned costumes, name tag), 5 tabs STYLE / CAP / TOP /
+  BOTTOMS / SHOES whose pixel garment icons are tinted with the current colour
+  (pxIcon 'Z'/'z' = currentColor / shaded currentColor), 18 swatches per garment
+  (12 free + 6 earned) + an ORIGINAL pill, “NEXT: …” progress line, TRAINERS rack
+  (RED / LEAF / BRENDAN / MAY, each previewed in your colours), COSTUMES rack (16
+  official classes, locked = silhouette + requirement + bar), 8 one-tap OUTFITS
+  previewed on your trainer, RANDOM (slot-machine shuffle, then lands). Changes are
+  state-first (wardApply → save → render with a pop/sparkle or slide FX).
+• ENGINE (after playerSpr): WARD_RULES[base] = [slot, x0,y0,x1,y1, 'RRGGBB:stop,…'] —
+  hand-mapped garment boxes on each 64/80px sprite; inside a box only that garment's
+  palette entries are swapped onto stop 0–4 of the chosen colour ramp (WARD_SW, ramps
+  tuned so RED = Red's cap, BLUE = Red's jeans). wardPaint (±6 colour tolerance),
+  lookUrl(look) → canvas → data: URL cached in lookUrls; the equipped one persists in
+  localStorage 'gymtracker.look' so boot shows it instantly. playerSrc() replaces every
+  'sprites/trainers/'+playerSpr()+'.png' (9 spots: lobby avatar + stage, classic home,
+  card, perks head, VS screen, trainer LV banner, results, …); those imgs carry data-me
+  and lookRefresh() re-points them when a base image finishes loading.
+• DATA: game.player.look = {b, pb, cap, top, pants, shoes} ('' / missing = original;
+  b may be a costume key; pb = last base, for “WEAR x TO MIX COLOURS”); player.ws =
+  earned pieces already seen in the wardrobe (NEW badges + lobby dot), player.wa =
+  pieces already announced on the results screen. sanitizeGame keeps all three.
+  Per region (it lives on the region's player), like the name.
+• UNLOCKS (wardReq, keys w/sets/dex/b/lv/st/champ from wardStats): GOLD LV10, SILVER
+  10 workouts, CRYSTAL 25, RUBY 4 badges, EMERALD 7-day streak, SHADOW champion;
+  costumes from 2 workouts (YOUNGSTER/LASS) up to DRAGON TAMER (champion).
+  Workout end announces “n NEW IN WARDROBE” on the results screen (once per piece).
+• ENTRY POINTS: tap your trainer in the lobby (hanger tag, red dot when something new),
+  WARDROBE chip + tappable sprite on the TRAINER CARD, OPTION → LOOK & SOUND → Wardrobe.
+• Tested: all 4 bases recolour in Chromium (pixel diff), every slot/preset/random/
+  costume/cycle path, lobby + card + results + VS sprite, new game + veteran save,
+  every page day + night — zero console errors. sw v64.
+
 v7.3 “Juice” (2026-10-24) — Mateusz: upgrade the other animations (collecting money…),
 the map-click designs/animations, and find every design still on the old look.
 • REWARD FX (rewardFx(srcEl,{from,to,label,items,target}) + moneyHud): coins burst out
