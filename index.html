@@ -1853,6 +1853,93 @@ html.theme-night #travelfx .tvdest{filter:brightness(.62) saturate(.8)}
 .tvskip{position:absolute;left:50%;bottom:calc(env(safe-area-inset-bottom) + 24px);transform:translateX(-50%);z-index:4;
   font-family:'Press Start 2P';font-size:7px;color:rgba(255,255,255,.65);animation:tvskipk 1.2s ease-in-out infinite}
 @keyframes tvskipk{50%{opacity:.3}}
+/* ---------- v7.6 CELEBRATION CARD ---------- */
+#modalwrap.cel{padding:18px}
+#modalwrap.cel .backdrop{background:radial-gradient(circle at 50% 38%,rgba(40,48,70,.55),rgba(8,10,16,.86) 70%);
+  -webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px)}
+#modalwrap.cel .modal{background:none;padding:0;box-shadow:none;border:0;max-width:350px;overflow:visible;animation:celin .5s cubic-bezier(.2,1.35,.4,1)}
+@keyframes celin{from{opacity:0;transform:translateY(46px) scale(.82)}to{opacity:1;transform:none}}
+#modalwrap.cel .modal .min{background:none;padding:0;border:0;box-shadow:none;overflow:visible}
+.celc{position:relative;margin-top:64px;padding:0 18px 18px;border-radius:26px;text-align:center;color:var(--text);
+  background:var(--boxw);border:3px solid color-mix(in srgb,var(--cc) 70%,#000);
+  box-shadow:0 0 0 4px rgba(255,255,255,.08),0 20px 50px rgba(0,0,0,.5)}
+.celtop{position:relative;height:96px;margin:0 -18px;border-radius:23px 23px 0 0;
+  background:linear-gradient(160deg,color-mix(in srgb,var(--cc) 72%,#FFF) 0%,var(--cc) 55%,color-mix(in srgb,var(--cc) 72%,#000) 100%)}
+.celtop::before{content:'';position:absolute;inset:0;border-radius:inherit;background:repeating-linear-gradient(135deg,rgba(255,255,255,.1) 0 10px,transparent 10px 24px)}
+.celrays{position:absolute;left:50%;top:22px;width:300px;height:300px;margin:-150px 0 0 -150px;pointer-events:none;border-radius:50%;
+  background:repeating-conic-gradient(from 0deg,rgba(255,255,255,.34) 0deg 9deg,transparent 9deg 24deg);
+  -webkit-mask:radial-gradient(circle,#000 0 30%,transparent 68%);mask:radial-gradient(circle,#000 0 30%,transparent 68%);
+  animation:celspin 9s linear infinite,celfade .5s ease-out .2s backwards}
+@keyframes celspin{to{transform:rotate(360deg)}}
+@keyframes celfade{from{opacity:0}}
+.celdisc{position:absolute;left:50%;top:-30px;width:132px;height:132px;margin-left:-66px;border-radius:50%;
+  background:radial-gradient(circle at 50% 42%,#FFFFFF 0%,color-mix(in srgb,var(--cc) 30%,#FFF) 55%,color-mix(in srgb,var(--cc) 55%,#FFF) 100%);
+  border:4px solid #FFF;box-shadow:0 6px 0 rgba(0,0,0,.18),0 0 0 6px color-mix(in srgb,var(--cc) 40%,transparent);animation:celpop .55s cubic-bezier(.2,1.5,.4,1) .12s backwards}
+.celhero{position:absolute;left:50%;top:-34px;width:140px;height:140px;margin-left:-70px;display:flex;align-items:center;justify-content:center;
+  animation:celpop .6s cubic-bezier(.2,1.6,.4,1) .24s backwards}
+@keyframes celpop{from{transform:scale(.2);opacity:0}to{transform:none;opacity:1}}
+.celhero img{filter:drop-shadow(0 4px 2px rgba(0,0,0,.25))}
+.celhero.h-spr img{width:104px;height:104px;image-rendering:pixelated;object-fit:contain}
+.celhero.h-ow img{width:68px;height:96px;image-rendering:pixelated;margin-top:6px}
+.celhero.h-art img{width:150px;height:150px;object-fit:contain;margin-top:-14px}
+.celhero.h-badge img,.celhero.h-badge svg{width:92px;height:92px;image-rendering:pixelated;object-fit:contain;animation:celbadge 1.1s cubic-bezier(.2,1.2,.4,1) .3s backwards}
+@keyframes celbadge{0%{transform:rotateY(540deg) scale(.3)}100%{transform:none}}
+.celhero.h-wide img{width:132px;height:132px;object-fit:cover;border-radius:50%;image-rendering:pixelated}
+
+.celhero2{position:absolute;right:-8px;bottom:6px;width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:#FFF;border:3px solid color-mix(in srgb,var(--cc) 70%,#000);box-shadow:0 3px 0 rgba(0,0,0,.2);animation:celpop .5s cubic-bezier(.2,1.6,.4,1) .5s backwards}
+.celhero2 img{width:46px!important;height:46px!important;margin:0!important;image-rendering:pixelated;object-fit:contain}
+.celspk{position:absolute;width:14px;height:14px;margin:-7px;background:#FFF8C8;pointer-events:none;
+  clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%);filter:drop-shadow(0 0 4px rgba(255,230,120,.95));
+  animation:celtw 1.6s ease-in-out infinite}
+@keyframes celtw{0%,100%{transform:scale(.2) rotate(0);opacity:0}50%{transform:scale(1.1) rotate(45deg);opacity:1}}
+.celban{position:relative;z-index:2;margin:-18px -30px 0;display:flex;justify-content:center;animation:celban .5s cubic-bezier(.2,1.5,.4,1) .38s backwards}
+@keyframes celban{from{transform:scaleX(.1);opacity:0}to{transform:none;opacity:1}}
+.celban span{position:relative;display:inline-block;max-width:100%;padding:11px 22px 10px;overflow:hidden;
+  font-family:'Press Start 2P';font-size:13px;line-height:1.35;color:#FFF;text-shadow:2px 2px 0 rgba(0,0,0,.35);
+  background:linear-gradient(180deg,color-mix(in srgb,var(--cc) 80%,#FFF),color-mix(in srgb,var(--cc) 82%,#000));
+  border:3px solid color-mix(in srgb,var(--cc) 55%,#000);border-radius:10px;box-shadow:0 4px 0 color-mix(in srgb,var(--cc) 45%,#000)}
+.celban span::after{content:'';position:absolute;top:0;bottom:0;left:-60%;width:40%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);animation:celshine 2.6s ease-in-out .9s infinite}
+@keyframes celshine{0%,60%{left:-60%}90%,100%{left:130%}}
+.celtag{margin-top:12px;font-family:'Press Start 2P';font-size:7px;letter-spacing:.5px;color:var(--mut);line-height:1.5}
+.celsub{margin:8px 4px 0;font-size:19px;line-height:1.2}
+.celsub b{color:color-mix(in srgb,var(--cc) 80%,var(--text))}
+.celrws{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:14px}
+.celrw{flex:1;min-width:82px;max-width:150px;display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 4px 9px;border-radius:14px;
+  background:color-mix(in srgb,var(--cc) 10%,var(--boxw));border:2px solid color-mix(in srgb,var(--cc) 40%,transparent);
+  animation:celrw .42s cubic-bezier(.2,1.5,.4,1) var(--d) backwards}
+@keyframes celrw{from{transform:translateY(14px) scale(.7);opacity:0}to{transform:none;opacity:1}}
+.celrw img,.celrw svg{width:24px;height:24px;image-rendering:pixelated;object-fit:contain}
+.celrw b{font-family:'Press Start 2P';font-size:11px;font-weight:400;white-space:nowrap}
+.celrw b.cntpop{animation:cntpopk .3s ease-out}
+.celrw span{font-family:'Press Start 2P';font-size:6px;color:var(--mut)}
+.celprog{display:flex;align-items:center;gap:8px;margin-top:14px;padding:9px 11px;border-radius:12px;background:color-mix(in srgb,var(--cc) 8%,var(--boxw));
+  border:2px solid rgba(0,0,0,.08);text-align:left}
+.celprog span{font-family:'Press Start 2P';font-size:6px;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:42%}
+.celprog>i{flex:1;height:8px;border-radius:4px;background:rgba(0,0,0,.12);overflow:hidden}
+.celprog>i>i{display:block;height:100%;width:0;border-radius:4px;background:linear-gradient(90deg,var(--cc),color-mix(in srgb,var(--cc) 55%,#FFF));
+  animation:celbar .9s cubic-bezier(.3,.8,.3,1) .8s forwards}
+@keyframes celbar{to{width:var(--w)}}
+.celprog b{font-family:'Press Start 2P';font-size:8px;font-weight:400}
+.celnote{margin:12px 4px 0;font-size:16px;line-height:1.2;color:var(--mut)}
+.celnote b{color:var(--text);font-weight:400}
+.celbtns{display:flex;flex-direction:column;gap:6px;margin-top:16px}
+.celgo{width:100%;min-height:52px;border-radius:15px;cursor:pointer;font-family:'Press Start 2P';font-size:12px;color:#FFF;letter-spacing:.5px;
+  text-shadow:2px 2px 0 rgba(0,0,0,.3);border:3px solid color-mix(in srgb,var(--cc) 50%,#000);
+  background:linear-gradient(180deg,color-mix(in srgb,var(--cc) 78%,#FFF),var(--cc) 55%,color-mix(in srgb,var(--cc) 80%,#000));
+  box-shadow:0 5px 0 color-mix(in srgb,var(--cc) 45%,#000);animation:celrw .4s cubic-bezier(.2,1.5,.4,1) .9s backwards}
+.celgo:active{transform:translateY(4px);box-shadow:0 1px 0 color-mix(in srgb,var(--cc) 45%,#000)}
+.celalt{width:100%;min-height:40px;border:0;background:none;cursor:pointer;font-family:'Press Start 2P';font-size:9px;color:var(--mut)}
+.celconf{position:absolute;left:-70px;right:-70px;top:-110px;height:560px;pointer-events:none;overflow:hidden;z-index:-1} /* behind the card: it streams past the edges */
+.celconf i{position:absolute;top:-14px;width:8px;height:13px;border-radius:2px;background:var(--c);opacity:0;
+  animation-name:celconf;animation-timing-function:cubic-bezier(.3,.6,.6,1);animation-fill-mode:forwards}
+@keyframes celconf{0%{opacity:1;transform:translateY(0) rotate(var(--r))}85%{opacity:1}100%{opacity:0;transform:translateY(560px) rotate(calc(var(--r) + 540deg))}}
+html.theme-night .celc{box-shadow:0 0 0 4px rgba(255,255,255,.05),0 20px 50px rgba(0,0,0,.65)}
+html.theme-night .celdisc{border-color:#E8ECF2}
+.celtray{display:flex;justify-content:center;flex-wrap:wrap;gap:6px}
+.celhero2 svg{width:40px;height:40px}
+.celhero.h-badge>svg{filter:drop-shadow(0 4px 2px rgba(0,0,0,.25))}
 </style>
 </head>
 <body>
@@ -2136,7 +2223,7 @@ function startWorkout(mode){
     if(pendingMb!=null&&roadActive()&&!state.game.road.mb[pendingMb]){
       var pmb=mbFor(state.game.road.idx,pendingMb);
       state.session.wild={sp:pmb.sp,lv:pmb.lv,hp:pmb.hp,max:pmb.hp,shiny:false,
-        tr:{cls:pmb.cls,clsN:pmb.clsN,name:pmb.name,purse:pmb.purse,mb:pendingMb,arena:pmb.arena}};
+        tr:{cls:pmb.cls,clsN:pmb.clsN,name:pmb.name,purse:pmb.purse,mb:pendingMb,arena:pmb.arena,rival:!!pmb.rival}};
     }
     pendingMb=null;
     if(pendingPoi){
@@ -2284,13 +2371,10 @@ function endWorkout(){
     if(rkEnded){
       var rkProf=profName(),rkSpr=profSpr();
       queueModal(function(){
-        sfx('badge');
-        showModal('<div style="text-align:center"><img src="'+rkSpr+'" alt="" style="width:60px;height:60px;image-rendering:pixelated"></div>'+
-          '<div class="vbanner" style="font-size:12px;line-height:1.6">ROOKIE SEASON<br>COMPLETE!</div>'+
-          '<p>“Three workouts — you’re a real TRAINER now! From here on, battles hit at full strength and I won’t be rushing in with POTIONS.”</p>'+
-          '<p>Hurt POKEMON heal at the <b>POKEMON CENTER</b> on the MAP. Keep POTIONS in your BAG for tough fights!</p>'+
-          '<div class="mbtns"><button class="btn acc" data-action="modal-ok">GOT IT</button></div>',true);
-        modalOk=function(){closeModal();};
+        celModal({c:'#2E8B48',sfx:'badge',title:'ROOKIE SEASON DONE!',tag:rkProf,hero:'<img src="'+rkSpr+'" alt="">',heroCls:'h-spr',
+          sub:'“Three workouts — you’re a real TRAINER now! Battles hit at full strength from here on.”',
+          note:'Hurt POKEMON heal at the <b>POKEMON CENTER</b> on the MAP. Keep POTIONS in your BAG for tough fights!',
+          btns:[{t:'GOT IT'}],ok:function(){closeModal();}});
       });
     }
     /* v6.8: a banked card pick greets you after the recap (v7.0: queued LAST, so it
@@ -4696,11 +4780,8 @@ function doEvolve(mon,to){
   registerDex(to,mon.shiny);
   save();
   queueModal(function(){
-    sfx('evolve');
-    showModal('<h3>Congratulations!</h3><p>Your '+esc(fromN)+' evolved into '+esc(DEX[to].n)+'!</p>'+
-      '<div style="text-align:center;padding:8px 0"><img class="bigspr'+(mon.shiny?' shinyglow':'')+'" src="'+sprPath(to,mon.shiny)+'" alt=""></div>'+
-      '<div class="mbtns"><button class="btn acc" data-action="modal-ok">OK</button></div>',true);
-    modalOk=function(){closeModal();render(true);};
+    celModal({c:TYPE_COLORS[DEX[to].t[0]]||'#E0A020',sfx:'evolve',title:'CONGRATULATIONS!',tag:'EVOLUTION',hero:celArt(to,mon.shiny),heroCls:'h-art',
+      sub:'Your '+esc(fromN)+' evolved into <b>'+esc(DEX[to].n)+'</b>!'});
   });
   maybeEvolve(mon);
 }
@@ -4783,12 +4864,9 @@ function grantMon(flag,sp,title,msg){
   var am0=activeMon(),glv=Math.max(5,(am0&&am0!==gm?monLevel(am0.xp):5)-2);
   gm.xp=xpFloor(glv);
   queueModal(function(){
-    sfx('catch');
     if(shiny)setTimeout(function(){sfx('shiny');},600);
-    showModal('<h3>'+esc(title)+'</h3><p>'+esc(msg)+' (:L'+glv+')'+(shiny?' ✨ It’s SHINY!':'')+'</p>'+
-      '<div style="text-align:center;padding:8px 0"><img class="bigspr'+(shiny?' shinyglow':'')+'" src="'+sprPath(sp,shiny)+'" alt=""></div>'+
-      '<div class="mbtns"><button class="btn acc" data-action="modal-ok">OK</button></div>');
-    modalOk=function(){closeModal();render(true);};
+    celModal({c:TYPE_COLORS[DEX[sp].t[0]]||'#E0A020',sfx:'catch',title:esc(title).toUpperCase(),tag:'NEW POKEMON · :L'+glv,
+      hero:celArt(sp,shiny),heroCls:'h-art',sub:esc(msg)+(shiny?' It’s <b>SHINY</b>!':'')});
   });
   return true;
 }
@@ -4800,13 +4878,9 @@ function checkGameEvents(){
   if(!ho&&!g.flags.sstidal&&(g.flags.champion||(g.hof&&g.hof.length))){
     g.flags.sstidal=1;changed=true;
     queueModal(function(){
-      sfx('badge');
-      showModal('<h3 style="text-align:center">S.S. TIDAL</h3>'+
-        '<div style="text-align:center;padding:4px 0">'+ferryIcon(44)+'</div>'+
-        '<p style="text-align:center">A ferry ticket arrives from a distant region… <b>HOENN</b> awaits, Champion! A brand-new campaign — new POKEMON, new gyms, new league.</p>'+
-        '<p style="text-align:center">Sail any time from <b>OPTION → Region</b>.</p>'+
-        '<div class="mbtns"><button class="btn acc" data-action="modal-ok">AMAZING</button></div>');
-      modalOk=function(){closeModal();render(true);};
+      celModal({c:'#20885C',sfx:'badge',title:'S.S. TIDAL TICKET!',tag:'A NEW REGION',hero:'<img src="map/hoenn.png" alt="">',heroCls:'h-wide',
+        sub:'A ferry ticket arrives… <b>HOENN</b> awaits, Champion! New POKEMON, new gyms, a new league.',
+        note:'Sail any time from <b>OPTION → Region</b>.',btns:[{t:'AMAZING'}]});
     });
   }
   /* v5.17: the passive catch bars are gone — wilds are caught IN BATTLE with balls.
@@ -4853,12 +4927,8 @@ function checkGameEvents(){
       g.medals[md.t]=1;changed=true;
       (function(t){
         queueModal(function(){
-          sfx('badge');
-          showModal('<div style="text-align:center">'+badgeImg(t,true,64)+'</div>'+
-            '<h3 style="text-align:center">'+t.toUpperCase()+' MEDAL GET! 🎖</h3>'+
-            '<p style="text-align:center">You caught every '+t+'-type POKEMON!</p>'+
-            '<div class="mbtns"><button class="btn acc" data-action="modal-ok">OK</button></div>',true);
-          modalOk=function(){closeModal();render(true);};
+          celModal({c:TYPE_COLORS[t]||'#C08A18',sfx:'badge',title:'MEDAL GET!',tag:t.toUpperCase()+' MEDAL',
+            hero:badgeImg(t,true,92),heroCls:'h-badge',sub:'You caught every <b>'+t+'</b>-type POKEMON!'});
         });
       })(md.t);
     }
@@ -4870,12 +4940,8 @@ function checkGameEvents(){
       g.medals[sm.k]=1;changed=true;
       (function(s2){
         queueModal(function(){
-          sfx('badge');
-          showModal('<div style="text-align:center">'+medalSVG(s2.k,true,64,s2.color,s2.letter)+'</div>'+
-            '<h3 style="text-align:center">'+s2.n+' MEDAL GET! 🎖</h3>'+
-            '<p style="text-align:center">'+s2.d+'</p>'+
-            '<div class="mbtns"><button class="btn acc" data-action="modal-ok">OK</button></div>',true);
-          modalOk=function(){closeModal();render(true);};
+          celModal({c:s2.color||'#C08A18',sfx:'badge',title:'MEDAL GET!',tag:s2.n+' MEDAL',
+            hero:medalSVG(s2.k,true,92,s2.color,s2.letter),heroCls:'h-badge',sub:s2.d});
         });
       })(sm);
     }
@@ -4896,12 +4962,8 @@ function checkGameEvents(){
         sfx('badge');
         setTimeout(function(){
           fxHold=false;
-          showModal('<div class="vbanner" style="font-size:13px;line-height:1.6">NEW FEATURE<br>UNLOCKED!</div>'+
-            '<div style="text-align:center;padding:6px 0"><img src="'+f2.icon+'" alt="" style="width:44px;height:44px;image-rendering:pixelated"></div>'+
-            '<h3 style="text-align:center">'+f2.n+'</h3>'+
-            '<p style="text-align:center">'+f2.d+'</p>'+
-            '<div class="mbtns"><button class="btn acc" data-action="modal-ok">OK</button></div>',true);
-          modalOk=function(){closeModal();render(true);};
+          celModal({c:'#7A48B8',title:'NEW FEATURE!',tag:'UNLOCKED',
+            hero:'<img src="'+f2.icon+'" alt="">',heroCls:'h-spr',sub:'<b>'+f2.n+'</b>',note:f2.d,btns:[{t:'AWESOME'}]});
         },1900);
       });
     })(f);
@@ -4913,12 +4975,12 @@ function checkGameEvents(){
       g.npcq.st[q.k]=Date.now();changed=true;
       (function(q2){
         queueModal(function(){
-          sfx('save');
-          showModal('<div style="text-align:center;padding-bottom:2px"><img src="sprites/npc/'+q2.npc+'.png" alt="" style="width:34px;image-rendering:pixelated"></div>'+
-            '<h3 style="text-align:center">New collector request!</h3>'+
-            '<p>'+q2.who+': “'+q2.ask+'”</p>'+
-            '<div class="mbtns"><button class="btn acc" data-action="modal-ok">OK</button></div>',true);
-          modalOk=function(){closeModal();render(true);};
+          var live=!state.session;
+          celModal({c:'#7848B0',sfx:'save',title:'NEW REQUEST!',tag:'COLLECTOR · '+q2.who,
+            hero:celNpc(q2.npc),heroCls:'h-ow',hero2:'<img src="'+sprPath(q2.mon,false)+'" alt="" style="filter:brightness(0);opacity:.5">',
+            sub:'“'+q2.ask+'”',rewards:[{icon:pxIcon('team',24),n:'?????',l:'POKEMON'}],confetti:false,
+            btns:live?[{t:'VIEW REQUEST'},{t:'LATER',alt:1}]:[{t:'OK'}],
+            ok:live?function(){closeModal();questTab='req';tab='quests';render();}:null});
         });
       })(q);
     });
@@ -4931,26 +4993,33 @@ function checkGameEvents(){
       if(questReady(q)){
         // no auto-pay: the NPC waits on the QUEST page with your reward
         rr.qann[qi]=1;changed=true;
-        (function(q2){
+        (function(q2,qi2){
           queueModal(function(){
-            sfx('badge');
-            showModal('<div style="text-align:center;padding-bottom:2px"><img src="sprites/npc/'+q2.npc+'.png" alt="" style="width:34px;image-rendering:pixelated"></div>'+
-              '<h3 style="text-align:center">QUEST COMPLETE!</h3>'+
-              '<p>'+q2.clsN+' '+q2.name+' is waiting on the QUEST page — collect your <b>₽'+q2.reward.toLocaleString()+'</b>!</p>'+
-              '<div class="mbtns"><button class="btn acc" data-action="modal-ok">OK</button></div>',true);
-            modalOk=function(){closeModal();render(true);};
+            /* v7.6: a celebration card — and the reward can be claimed right here */
+            if(!roadActive()||questClaimed(qi2)||!questReady(q2))return closeModalQueueNext();
+            var pay=Math.round(q2.reward*(1+0.08*perkN('deeppockets')));
+            var pr=celRoadProg();if(pr)pr.done=Math.min(pr.total,pr.done+1);
+            celModal({c:'#E0A020',sfx:'badge',title:'QUEST COMPLETE!',tag:'SIDE QUEST · '+q2.clsN+' '+q2.name,
+              hero:celNpc(q2.npc),heroCls:'h-ow',
+              sub:'<b>'+qTaskTitle(q2)+'</b> — done! '+q2.name+' has your reward.',
+              rewards:[celMoney(pay,'REWARD')],prog:pr,
+              btns:[{t:'CLAIM REWARD'},{t:'LATER',alt:1}],
+              ok:function(){var cb=document.querySelector('#modalwrap .celgo');claimQuest(qi2,cb);closeModal();}});
           });
-        })(q);
+        })(q,qi);
       }
     });
     if(!rr.clearmsg&&roadClear()){
       rr.clearmsg=1;changed=true;
       (function(bidx){
         queueModal(function(){
-          sfx('badge');
-          showModal('<h3>The road is clear!</h3><p>Every quest done, every roadblock beaten. '+esc(BOSSES[bidx].n)+' awaits at the GYM!</p>'+
-            '<div class="mbtns"><button class="btn acc" data-action="modal-ok">OK</button></div>',true);
-          modalOk=function(){closeModal();render(true);};
+          var bb=BOSSES[bidx],tot=questsFor(bidx).length+roadMbCount(bidx),live=!state.session;
+          celModal({c:'#2E8B48',sfx:'badge',title:'ROAD CLEAR!',tag:roadLoc(bidx).n+' · EVERY STEP DONE',
+            hero:celTrainer(bb.tr),heroCls:'h-spr',hero2:bidx<8?'<img src="'+badgeSrcFor(bidx)+'" alt="">':'',
+            sub:'The gym doors are open — <b>'+esc(bb.n)+'</b> accepts your challenge'+(bb.gym?' at '+esc(bb.gym):'')+'!',
+            prog:{done:tot,total:tot,l:'ROAD TO '+bb.n},
+            btns:live?[{t:'TO THE GYM'},{t:'LATER',alt:1}]:[{t:'LET’S GO'}],
+            ok:live?function(){closeModal();tab='gymhall';render();}:null});
         });
       })(rr.idx);
     }
@@ -4961,12 +5030,12 @@ function checkGameEvents(){
     g.flags['sight_'+r.k]=1;g.seen[r.k]=1;changed=true;
     (function(rr){
       queueModal(function(){
-        sfx('battlestart');
-        showModal('<h3>RUMOR…</h3><p>'+esc(rr.flavor)+'</p>'+
-          '<div style="text-align:center;padding:8px 0"><img class="bigspr" src="sprites/'+DEX[rr.k].id+'.png" alt="" style="filter:brightness(0);opacity:.45"></div>'+
-          '<p style="text-align:center">'+DEX[rr.k].n+' was sighted! Open the LAB to start the raid.</p>'+
-          '<div class="mbtns"><button class="btn acc" data-action="modal-ok">OK</button></div>');
-        modalOk=function(){closeModal();render(true);};
+        var live=!state.session&&featOn('lab');
+        celModal({c:'#4A4870',sfx:'battlestart',title:'RUMOR…',tag:'LEGENDARY SIGHTING',confetti:false,
+          hero:'<img src="sprites/'+DEX[rr.k].id+'.png" alt="" style="filter:brightness(0);opacity:.62">',heroCls:'h-spr',
+          sub:esc(rr.flavor),note:'<b>'+DEX[rr.k].n+'</b> was sighted! Start the raid from the LAB.',
+          btns:live?[{t:'TO THE LAB'},{t:'LATER',alt:1}]:[{t:'OK'}],
+          ok:live?function(){closeModal();tab='lab';render();}:null});
       });
     })(r);
   });
@@ -4981,13 +5050,11 @@ function checkGameEvents(){
       rm.xp=xpFloor(rd.lv);
       (function(sp2,sh2,lv2){
         queueModal(function(){
-          sfx('catch');
           cry(sp2);
           if(sh2)setTimeout(function(){sfx('shiny');},600);
-          showModal('<h3>RAID CLEARED! 🎉</h3><p>All that iron paid off — '+DEX[sp2].n+' gave in and joined your team at :L'+lv2+'!'+(sh2?' ✨ It’s SHINY!':'')+'</p>'+
-            '<div style="text-align:center;padding:8px 0"><img class="bigspr'+(sh2?' shinyglow':'')+'" src="'+sprPath(sp2,sh2)+'" alt=""></div>'+
-            '<div class="mbtns"><button class="btn acc" data-action="modal-ok">OK</button></div>');
-          modalOk=function(){closeModal();render(true);};
+          celModal({c:'#D03028',sfx:'catch',title:'RAID CLEARED!',tag:'LEGENDARY · :L'+lv2,
+            hero:celArt(sp2,sh2),heroCls:'h-art',
+            sub:'All that iron paid off — <b>'+DEX[sp2].n+'</b> joined your team!'+(sh2?' It’s <b>SHINY</b>!':''),btns:[{t:'AMAZING'}]});
         });
       })(rd.k,rsh,rd.lv);
     }
@@ -4996,12 +5063,10 @@ function checkGameEvents(){
   if(!g.flags.v68note){
     g.flags.v68note=1;changed=true;
     queueModal(function(){
-      sfx('badge');
-      showModal('<div class="vbanner" style="font-size:13px;line-height:1.6">TRAINER<br>CARDS!</div>'+
-        '<p>YOU level up now: every <b>training day</b> raises your TRAINER LEVEL, and every level banks a <b>card pick</b> — three cards, keep one.</p>'+
-        '<p>Dodge chance, gold bonuses, faster hatching, guardian saves… Find your build under <b>TRAINER → PERKS</b>. Your past training already counts!</p>'+
-        '<div class="mbtns"><button class="btn acc" data-action="modal-ok">SHOW ME</button></div>',true);
-      modalOk=function(){closeModal();tab='perks';render();};
+      celModal({c:'#7A48B8',sfx:'badge',title:'TRAINER CARDS!',tag:'NEW FEATURE',hero:pxIcon('cards',92),heroCls:'h-badge',
+        sub:'YOU level up now — every level banks a <b>card pick</b>: three cards, keep one.',
+        note:'Dodge chance, gold bonuses, faster hatching, guardian saves… Your past training already counts!',
+        btns:[{t:'SHOW ME'},{t:'LATER',alt:1}],ok:function(){closeModal();tab='perks';render();}});
     });
   }
   var pkA=perksOf();
@@ -5040,13 +5105,10 @@ function checkGameEvents(){
     var jshiny=Math.random()<0.1;
     var jm=addMon('jirachi',jshiny);jm.xp=xpFloor(30);
     queueModal(function(){
-      sfx('catch');cry('jirachi');
+      cry('jirachi');
       if(jshiny)setTimeout(function(){sfx('shiny');},600);
-      showModal('<h3 style="text-align:center">A wish come true…</h3>'+
-        '<p>Seven straight days of training — the Millennium Comet heard you. <b>JIRACHI</b> descends in a streak of starlight and joins you at :L30!'+(jshiny?' ✨ It’s SHINY!':'')+'</p>'+
-        '<div style="text-align:center;padding:8px 0"><img class="bigspr'+(jshiny?' shinyglow':'')+'" src="'+sprPath('jirachi',jshiny)+'" alt=""></div>'+
-        '<div class="mbtns"><button class="btn acc" data-action="modal-ok">AMAZING</button></div>');
-      modalOk=function(){closeModal();render(true);};
+      celModal({c:'#D8A818',sfx:'catch',title:'A WISH COME TRUE',tag:'7-DAY STREAK · :L30',hero:celArt('jirachi',jshiny),heroCls:'h-art',
+        sub:'The Millennium Comet heard you — <b>JIRACHI</b> joins you!'+(jshiny?' It’s <b>SHINY</b>!':''),btns:[{t:'AMAZING'}]});
     });
   }
   // Oak's eggs at badges 1, 4 and 7
@@ -5058,12 +5120,9 @@ function checkGameEvents(){
       changed=true;
       var pEgg=profName(),pEggSpr=profSpr(); // pin the professor at queue time
       queueModal(function(){
-        sfx('catch');
-        showModal('<div style="text-align:center;padding-bottom:4px"><img src="'+pEggSpr+'" alt="" style="width:64px;height:64px;image-rendering:pixelated"></div>'+
-          '<h3>'+pEgg+'</h3><p>Take this EGG from the daycare! It hatches as you log sets. I wonder what’s inside…</p>'+
-          '<div style="text-align:center;padding:4px 0">'+eggSVG(52)+'</div>'+
-          '<div class="mbtns"><button class="btn acc" data-action="modal-ok">OK</button></div>',true);
-        modalOk=function(){closeModal();render(true);};
+        celModal({c:'#58A8E0',sfx:'catch',title:'A MYSTERY EGG!',tag:'A GIFT FROM '+pEgg,hero:eggSVG(84),heroCls:'h-badge',
+          hero2:'<img src="'+pEggSpr+'" alt="">',sub:'“Take this EGG from the daycare! I wonder what’s inside…”',
+          rewards:[{icon:eggSVG(24),n:30,pre:'',l:'SETS TO HATCH'}],btns:[{t:'TAKE IT'}]});
       });
     }
   });
@@ -6290,14 +6349,10 @@ function lessonTick(k){
     bagOf().luckyegg=(bagOf().luckyegg||0)+1;
     var lp=profName(),ls=profSpr();
     queueModal(function(){
-      sfx('badge');
-      showModal('<div style="text-align:center"><img src="'+ls+'" alt="" style="width:60px;height:60px;image-rendering:pixelated"></div>'+
-        '<div class="vbanner" style="font-size:12px;line-height:1.6">LESSONS<br>COMPLETE!</div>'+
-        '<p>“You’ve got the basics — lift, battle, catch, level up. Here’s my graduation gift!”</p>'+
-        '<div style="text-align:center;padding:4px 0">'+itemImg('luckyegg',40)+'</div>'+
-        '<p style="text-align:center"><b>LUCKY EGG</b> — your next workout earns <b>2× EXP</b>. It activates by itself.</p>'+
-        '<div class="mbtns"><button class="btn acc" data-action="modal-ok">THANK YOU!</button></div>',true);
-      modalOk=function(){closeModal();render(true);};
+      celModal({c:'#2E8B48',sfx:'badge',title:'LESSONS COMPLETE!',tag:lp+'’S GRADUATION GIFT',hero:'<img src="'+ls+'" alt="">',heroCls:'h-spr',
+        sub:'“You’ve got the basics — lift, battle, catch, level up!”',
+        rewards:[{icon:itemImg('luckyegg',24),n:'LUCKY EGG',l:'2× EXP NEXT WORKOUT'}],
+        note:'It activates by itself when you start your next workout.',btns:[{t:'THANK YOU!'}]});
     });
   }
   save();
@@ -7293,6 +7348,21 @@ function questsHTML(){
   h+=questTab==='road'?qRet(body):body;
   return h;
 }
+/* collect a ready side quest — from its card, or straight from the QUEST COMPLETE pop-up */
+function claimQuest(qi,srcEl){
+  if(!state.game||!roadActive())return false;
+  var cq=questsFor(state.game.road.idx)[qi];
+  if(!(cq&&questReady(cq)&&!questClaimed(qi)))return false;
+  state.game.road.qdone[qi]=1;
+  var pay=Math.round(cq.reward*(1+0.08*perkN('deeppockets'))); // v6.8
+  var m0=money();
+  addMoney(pay);
+  save();sfx('badge');
+  rewardFx(srcEl,{from:m0,to:money(),label:cq.clsN+' '+cq.name}); // v7.3
+  checkGameEvents();
+  render(true);
+  return true;
+}
 function qRet(inner){var rv=questReveal;questReveal=false;return rv?'<div class="qreveal">'+inner+'</div>':inner;}
 /* the CHAPTER banner: the real area map, where you are, and a progress ring */
 function qChapterHTML(t,done,total,toTxt,tag){
@@ -7528,24 +7598,18 @@ function bossDefeated(){
   setTimeout(function(){
   var fin=function(){
   queueModal(function(){
-    sfx('victory');
-    showModal('<div class="vbanner">VICTORY!</div>'+
-      '<div style="text-align:center;padding:6px 0 2px"><img src="sprites/trainers/'+bz.tr+'.png" alt="'+bz.n+'" style="width:72px;height:72px;image-rendering:pixelated"></div>'+
-      '<p style="text-align:center;margin:2px 0 8px">'+esc(playerName())+' defeated '+esc(bz.n)+(bz.gym?' of '+esc(bz.gym):'')+'!</p>'+
-      '<div class="vrow"><img src="'+itemIcon('pokeball')+'" alt="">Prize money<b style="margin-left:auto">₽'+purse.toLocaleString()+'</b></div>'+
-      '<div class="vrow"><img src="'+itemIcon('luckyegg')+'" alt="">Whole team EXP<b style="margin-left:auto">+'+bonus.toLocaleString()+'</b></div>'+
-      '<div style="display:flex;align-items:center;gap:6px;margin:4px 0 2px"><span class="barlab" style="color:#88A8E8">EXP</span><div class="gbar exp"><div class="vexp"></div></div></div>'+
-      (wildAfter?'<p style="text-align:center;margin:10px 0 0;color:var(--mut)">Your workout continues as <b style="color:#2E8B48">NORMAL TRAINING</b><br>— a wild '+wildAfter+' appeared!</p>':'')+
-      '<div class="mbtns"><button class="btn acc" data-action="modal-ok">OK</button></div>',true);
-    modalOk=function(){closeModal();};
-  });
-  queueModal(function(){
-    sfx('badge');
-    showModal('<h3>'+(bz.badge?esc(bz.badge)+' GET! 🏅':'VICTORY!')+'</h3>'+
-      '<p>Your whole team earned +'+bonus+' XP! '+esc(bz.n)+' paid out <b>₽'+Math.round(bz.lv*60*(bz.round||1)).toLocaleString()+'</b>.'+
-      (bz.idx<8&&bz.badge?'':(isChamp?'':' Next challenger: '+esc(BOSSES[bz.idx+1].n)+'.'))+'</p>'+
-      '<div class="mbtns"><button class="btn acc" data-action="modal-ok">OK</button></div>',true);
-    modalOk=function(){closeModal();render(true);};
+    /* v7.6: ONE victory card (it used to be two pop-ups): leader, prize, team EXP, the badge */
+    var gotBadge=bz.idx<8&&bz.badge;
+    var rws=[celMoney(purse,'PRIZE'),celExp(bonus,'TEAM EXP')];
+    if(gotBadge)rws.push({icon:'<img src="'+badgeSrcFor(bz.idx)+'" alt="">',n:esc(String(bz.badge).split(' ')[0]),l:'BADGE'});
+    var nextN=(!gotBadge&&!isChamp&&BOSSES[bz.idx+1])?BOSSES[bz.idx+1].n:null;
+    celModal({c:TYPE_COLORS[bz.type]||'#C05028',sfx:'victory',title:'VICTORY!',
+      tag:(bz.idx>=12?'CHAMPION':bz.idx>=8?'ELITE FOUR':'GYM LEADER')+' · '+esc(bz.n),
+      hero:celTrainer(bz.tr),heroCls:'h-spr',hero2:gotBadge?'<img src="'+badgeSrcFor(bz.idx)+'" alt="">':'',
+      sub:esc(playerName())+' defeated <b>'+esc(bz.n)+'</b>'+(bz.gym?' of '+esc(bz.gym):'')+'!',
+      rewards:rws,
+      note:(nextN?'Next challenger: <b>'+esc(nextN)+'</b>. ':'')+(wildAfter?'Your workout continues — a wild <b>'+wildAfter+'</b> appeared!':''),
+      ok:function(){closeModal();render(true);}});
   });
   /* v6.5: a fresh badge opens a town — the town gets its own curtain call */
   if(bz.idx<8&&bz.badge){
@@ -7557,22 +7621,20 @@ function bossDefeated(){
         sfx('ferry');
         setTimeout(function(){
           fxHold=false;
-          showModal('<div class="mapwrap" style="margin:0 0 8px"><img class="mapimg" src="'+nt.img+'" alt="" style="width:100%;display:block;image-rendering:pixelated;aspect-ratio:240/140;object-fit:cover"></div>'+
-            '<h3 style="text-align:center">'+nt.n+'</h3>'+
-            '<p style="text-align:center;color:var(--mut)">'+(nt.sub||'')+'</p>'+
-            '<p style="text-align:center;margin-top:4px">Hop the ferry — the first trip is free!'+(BOSSES[ni]?' '+esc(BOSSES[ni].n)+' awaits at the gym.':'')+'</p>'+
-            '<div class="mbtns"><button class="btn acc" data-action="modal-ok">SET SAIL</button></div>',true);
-          modalOk=function(){closeModal();render(true);};
+          celModal({c:inHoenn()?'#20885C':'#2E7A9A',title:'NEW TOWN!',tag:nt.n,
+            hero:'<img src="'+nt.img+'" alt="">',heroCls:'h-wide',sub:'<b>'+nt.n+'</b> — '+(nt.sub||'a new town'),
+            note:'Hop the ferry — the first trip is FREE!'+(BOSSES[ni]?' <b>'+esc(BOSSES[ni].n)+'</b> awaits at the gym.':''),
+            btns:[{t:'SET SAIL'}]});
         },1900);
       });
     })(TOWNS[Math.min(bz.idx+1,8)],bz.idx+1);
   }
   if(isChamp){
     queueModal(function(){
-      sfx('badge');
-      showModal('<h3>HALL OF FAME! 🏆</h3><p>'+esc(playerName())+' and team enter the HALL OF FAME! But the league never rests… ROUND '+g.round+' begins: every boss returns, twice as strong.</p>'+
-        '<div class="mbtns"><button class="btn acc" data-action="modal-ok">OK</button></div>',true);
-      modalOk=function(){closeModal();render(true);};
+      celModal({c:'#C08A18',sfx:'badge',title:'HALL OF FAME!',tag:'CHAMPION '+esc(playerName()),
+        hero:'<img data-me src="'+playerSrc()+'" alt="">',heroCls:'h-spr',hero2:pxIcon('trophy',40),
+        sub:esc(playerName())+' and team enter the <b>HALL OF FAME</b>!',
+        note:'The league never rests… <b>ROUND '+g.round+'</b> begins: every boss returns, twice as strong.'});
     });
     grantMon('mewtwo','mewtwo','A legend stirs…','You are the CHAMPION! MEWTWO acknowledges your strength and joins you!');
   }
@@ -7611,18 +7673,13 @@ function trainerVictoryModal(tr,monSp,xpGain,isRival,newWildN){
   var col=isRival?'#D03028':'#E8A010';
   setTimeout(function(){
     queueModal(function(){
-      sfx('victory');
-      showModal('<div class="vbanner" style="color:'+col+';font-size:15px">'+title+'</div>'+
-        '<div style="display:flex;align-items:center;justify-content:center;gap:8px;padding:6px 0 2px">'+
-        '<img src="sprites/trainers/'+tr.cls+'.png" alt="" style="width:60px;height:60px;image-rendering:pixelated">'+
-        (DEX[monSp]?'<span style="font-size:22px;color:var(--mut)">›</span><img src="'+sprPath(monSp,false)+'" alt="" style="width:52px;height:52px;image-rendering:pixelated">':'')+
-        '</div>'+
-        '<p style="text-align:center;margin:2px 0 8px">'+esc(playerName())+' beat '+tr.clsN+' '+tr.name+' and their '+(DEX[monSp]?DEX[monSp].n:'POKEMON')+'!</p>'+
-        '<div class="vrow"><img src="'+itemIcon('pokeball')+'" alt="">Prize money<b style="margin-left:auto">₽'+tr.purse.toLocaleString()+'</b></div>'+
-        '<div class="vrow"><img src="'+itemIcon('luckyegg')+'" alt="">EXP earned<b style="margin-left:auto">+'+xpGain.toLocaleString()+'</b></div>'+
-        '<p style="text-align:center;margin:10px 0 0;color:var(--mut)">Back to <b style="color:#2E8B48">NORMAL TRAINING</b>'+(newWildN?'<br>— a wild '+newWildN+' appeared!':'')+'</p>'+
-        '<div class="mbtns"><button class="btn acc" data-action="modal-ok">OK</button></div>',true);
-      modalOk=function(){closeModal();};
+      /* v7.6: the win card — trainer + their partner, prize and EXP counting up, the road's progress */
+      celModal({c:col,sfx:'victory',title:title,tag:isRival?'RIVAL · '+tr.name:'ROADBLOCK · '+tr.clsN+' '+tr.name,
+        hero:celTrainer(tr.cls),heroCls:'h-spr',hero2:DEX[monSp]?celMon(monSp):'',
+        sub:esc(playerName())+' beat <b>'+tr.clsN+' '+tr.name+'</b>'+(DEX[monSp]?' and '+DEX[monSp].n:'')+'!',
+        rewards:[celMoney(tr.purse,'PRIZE'),celExp(xpGain,'EXP')],prog:celRoadProg(),
+        note:'Back to <b>NORMAL TRAINING</b>'+(newWildN?' — a wild <b>'+newWildN+'</b> appeared!':''),
+        ok:function(){closeModal();}});
     });
   },3400); // let the faint + defeat steps play out
 }
@@ -8851,16 +8908,13 @@ function runContest(uid,cat){
   queueModal(function(){
     sfx(won?'victory':'weakhit');
     if(won)setTimeout(function(){sfx('badge');},700);
-    showModal('<h3 style="text-align:center">'+(won?'FIRST PLACE!':['','','2ND PLACE','3RD PLACE','4TH PLACE'][place])+'</h3>'+
-      '<div style="text-align:center;padding:4px 0"><img class="bigspr" src="'+sprPath(m.sp,m.shiny)+'" alt=""></div>'+
-      (won&&rib<4?'<div style="text-align:center;padding:2px 0">'+ribbonSVG(cat,rib+1,34)+'</div>'+
-        '<p style="text-align:center">'+DEX[m.sp].n+' wins the '+catLab+' '+CONTEST_RANKS[rank][0]+' RIBBON!</p>':'')+
-      (won&&rib>=4?'<p style="text-align:center">A flawless MASTER-class encore!</p>':'')+
-      (won?'':'<p style="text-align:center">The crowd claps politely. Train the '+catLabelOfGroups(cat)+' groups and feed more POKEBLOCKS!</p>')+
-      '<p style="text-align:center">Prize: ₽'+prize.toLocaleString()+'</p>'+
-      (newMaster&&state.game.flags.conteststar?'<p style="text-align:center;color:#B06AD0">★ ALL FIVE MASTER RIBBONS — the hall names you a CONTEST STAR!</p>':'')+
-      '<div class="mbtns"><button class="btn acc" data-action="modal-ok">OK</button></div>',true);
-    modalOk=function(){closeModal();render(true);};
+    celModal({c:won?catCol:'#6A6F80',title:won?'FIRST PLACE!':['','','2ND PLACE','3RD PLACE','4TH PLACE'][place],
+      tag:catLab+' CONTEST · '+CONTEST_RANKS[rank][0]+' RANK',confetti:won,
+      hero:celArt(m.sp,m.shiny),heroCls:'h-art',hero2:won&&rib<4?ribbonSVG(cat,rib+1,40):'',
+      sub:won?(rib<4?'<b>'+DEX[m.sp].n+'</b> wins the '+catLab+' '+CONTEST_RANKS[rank][0]+' RIBBON!':'A flawless MASTER-class encore!')
+        :'The crowd claps politely. Train the '+catLabelOfGroups(cat)+' groups and feed more POKEBLOCKS!',
+      rewards:prize>0?[celMoney(prize,'PRIZE')]:[],
+      note:newMaster&&state.game.flags.conteststar?'ALL FIVE MASTER RIBBONS — the hall names you a <b>CONTEST STAR</b>!':''});
   });
 }
 /* feed one blended block to the chosen star */
@@ -9259,7 +9313,7 @@ function playFinishFx(durTxt){
   setTimeout(function(){el.remove();},2450);
 }
 /* the full-screen record celebration — plays over whatever else is happening */
-function playPrFx(exName,w){
+function playPrFx(exName,w,release){
   var old=document.getElementById('prfx');if(old)old.remove();
   var am=state.game?activeMon():null;
   var art=am?'<img src="'+artSrc(am.sp,am.shiny)+'" alt=""'+artFallback(am.sp,am.shiny)+' style="width:130px;height:130px;object-fit:contain;filter:drop-shadow(0 4px 10px rgba(0,0,0,.45))">':'';
@@ -9274,7 +9328,10 @@ function playPrFx(exName,w){
     '<div class="prw">'+fmtW(w)+' '+esc(state.unit)+'</div></div>';
   document.body.appendChild(el);
   setTimeout(function(){el.classList.add('fade');},2100);
-  setTimeout(function(){el.remove();},2650);
+  setTimeout(function(){
+    el.remove();
+    if(release){fxHold=false;closeModalQueueNext();}
+  },2650);
 }
 /* ----- the canon TRAINER CARD stars: five feats, five stamps ----- */
 function canonStars(){
@@ -10344,11 +10401,9 @@ function poiTrainerWin(tr){
         var lshiny=Math.random()<0.05;
         var lm=addMon('lapras',lshiny);lm.xp=xpFloor(25);
         queueModal(function(){
-          sfx('catch');cry('lapras');
-          showModal('<h3>A gift!</h3><p>A grateful SILPH researcher hands you LAPRAS :L25!'+(lshiny?' ✨ It’s SHINY!':'')+'</p>'+
-            '<div style="text-align:center;padding:8px 0"><img class="bigspr'+(lshiny?' shinyglow':'')+'" src="'+sprPath('lapras',lshiny)+'" alt=""></div>'+
-            '<div class="mbtns"><button class="btn acc" data-action="modal-ok">OK</button></div>');
-          modalOk=function(){closeModal();render(true);};
+          cry('lapras');
+          celModal({c:'#4890D8',sfx:'catch',title:'A GIFT!',tag:'SILPH CO. · :L25',hero:celArt('lapras',lshiny),heroCls:'h-art',
+            sub:'A grateful SILPH researcher hands you <b>LAPRAS</b>!'+(lshiny?' It’s <b>SHINY</b>!':'')});
         });
         extra+=' A researcher gifted you LAPRAS!';
       }
@@ -11648,14 +11703,13 @@ function finishTrick(){
   save();
   closeModal();
   queueModal(function(){
-    sfx(passed?'badge':'weakhit');
-    showModal('<h3 style="text-align:center">'+(passed?'TRICK CLEARED!':'So close…')+'</h3>'+
-      '<p style="text-align:center">'+ts.score+' / '+t.rounds+' correct.'+
-      (paidNow?' The TRICK MASTER grudgingly pays <b>₽400</b>!':'')+
-      (candyNow?'<br>ALL THREE SWEPT — he hurls a <b>RARE CANDY</b> at you!':'')+
-      (!passed?'<br>“Fwahaha! Come back when your brain matches your biceps!” (retry any time)':'')+'</p>'+
-      '<div class="mbtns"><button class="btn acc" data-action="modal-ok">OK</button></div>');
-    modalOk=function(){closeModal();render(true);};
+    var trw=[];
+    if(paidNow)trw.push(celMoney(400,'PAID'));
+    if(candyNow)trw.push({icon:itemImg('rarecandy',24),n:1,pre:'×',l:'RARE CANDY'});
+    celModal({c:passed?'#B848A8':'#6A6F80',sfx:passed?'badge':'weakhit',title:passed?'TRICK CLEARED!':'SO CLOSE…',tag:'TRICK HOUSE · '+ts.score+' / '+t.rounds+' CORRECT',
+      hero:celNpc('man'),heroCls:'h-ow',confetti:passed,rewards:trw,
+      sub:passed?(candyNow?'ALL THREE SWEPT — the TRICK MASTER hurls a <b>RARE CANDY</b> at you!':'The TRICK MASTER grudgingly admits defeat.'):'“Fwahaha! Come back when your brain matches your biceps!”',
+      note:passed?'':'Retry any time.'});
   });
 }
 /* ----- WEATHER INSTITUTE (Fortree) ----- */
@@ -12578,7 +12632,7 @@ function settingsHTML(){
   function group(t,rows){return '<div class="sgroup"><div class="sgh">'+t+'</div><div class="sgbox">'+rows+'</div></div>';}
   var bw=bwList();
   return pageHero({t:'OPTION',s:'Everything stays on this device',ic:'option',c:'#4A5A70',
-      chips:[phChip('v7.5 “Journey”'),phChip(kb+' KB SAVED')]})+
+      chips:[phChip('v7.6 “Fanfare”'),phChip(kb+' KB SAVED')]})+
     group('LOOK & SOUND',
       row('daynight','Style','FireRed day or night look',seg('theme','th',[['night','NIGHT',state.theme!=='day'],['day','DAY',state.theme==='day']]))+
       (state.game?row('home','Home screen','TRAINER tab: new lobby or the classic page',seg('home-style','s',[['new','NEW',!homeStyleClassic()],['classic','CLASSIC',homeStyleClassic()]])):'')+
@@ -12597,7 +12651,7 @@ function settingsHTML(){
       row('save','Backup','Export your data as a file','<div style="display:flex;gap:6px"><button class="btn" data-action="copy">COPY</button><button class="btn acc" data-action="export">EXPORT</button></div>')+
       row('save','Restore','Import a backup file','<button class="btn" data-action="import">IMPORT</button>')+
       row('warn','Reset everything','Deletes all history','<button class="btn danger" data-action="reset">RESET</button>','danger'))+
-    '<div class="about">Gym Tracker v7.5 “Journey” · '+kb+' KB stored locally<br>'+
+    '<div class="about">Gym Tracker v7.6 “Fanfare” · '+kb+' KB stored locally<br>'+
     'Your data never leaves your phone. Export a backup once in a while —<br>if you delete the app icon, its data goes with it.</div>';
 }
 
@@ -12929,7 +12983,7 @@ function saveLogEntry(){
             if(partyHolds('amuletcoin'))wd.tr.purse=Math.round(wd.tr.purse*1.5);
             if(perkN('bounty'))wd.tr.purse=Math.round(wd.tr.purse*(1+0.10*perkN('bounty'))); // v6.8
             addMoney(wd.tr.purse);
-            var isRival=!!wd.tr.rival;
+            var isRival=!!(wd.tr.rival||wd.tr.clsN==='RIVAL'); // v7.6: road fights never carried the flag
             var mbWin=(wd.tr.mb!==undefined&&state.game.road)?(isRival?' RIVAL DEFEATED!':' ROADBLOCK CLEARED!'):'';
             if(wd.tr.mb!==undefined&&state.game.road)state.game.road.mb[wd.tr.mb]=1;
             mbWin+=poiTrainerWin(wd.tr); // building floors advance here (tower/hideout/silph)
@@ -13040,12 +13094,8 @@ function saveLogEntry(){
             playHatchFx(hsp,hshiny);
             setTimeout(function(){
               fxHold=false;
-              showModal('<div class="vbanner" style="font-size:13px;line-height:1.6">EGG HATCHED!</div>'+
-                '<div style="text-align:center;padding:8px 0"><img class="bigspr'+(hshiny?' shinyglow':'')+'" src="'+sprPath(hsp,hshiny)+'" alt=""></div>'+
-                '<h3 style="text-align:center">'+DEX[hsp].n+' joined the team!</h3>'+
-                (hshiny?'<p style="text-align:center">✨ It’s SHINY!</p>':'')+
-                '<div class="mbtns"><button class="btn acc" data-action="modal-ok">WELCOME</button></div>',true);
-              modalOk=function(){closeModal();render(true);};
+              celModal({c:'#58A8E0',title:'EGG HATCHED!',tag:'DAYCARE',hero:celArt(hsp,hshiny),heroCls:'h-art',
+                sub:'<b>'+DEX[hsp].n+'</b> joined the team!'+(hshiny?' It’s <b>SHINY</b>!':''),btns:[{t:'WELCOME!'}]});
             },3000);
           });
         }
@@ -13061,7 +13111,9 @@ function saveLogEntry(){
   if(entry.w>prevBest&&prevBest>0){
     var prExN='';
     state.groups.forEach(function(g){g.exercises.forEach(function(e){if(e.id===id)prExN=e.name;});});
-    setTimeout(function(){playPrFx(prExN,entry.w);},350);
+    /* v7.6: pop-ups this set triggers wait until the NEW RECORD flash is done */
+    var prHold=!fxHold;if(prHold)fxHold=true;
+    setTimeout(function(){playPrFx(prExN,entry.w,prHold);},350);
   }
   toast(entry.w>prevBest&&prevBest>0?('New record — '+fmtW(entry.w)+' '+state.unit+'! 🎉 RARE CANDY!'):'Logged ✓'+(entry.xpg?' +'+entry.xpg+' XP':''));
   if(state.game)checkGameEvents();
@@ -13159,11 +13211,80 @@ function toast(msg,opts){
 /* ===== modals ===== */
 var modalOk=null;
 function showModal(html,blocking){
+  $('#modalwrap').classList.remove('cel');celAltFn=null;
   $('#modalwrap').innerHTML='<div class="backdrop"'+(blocking?'':' data-action="close-modal"')+'></div><div class="modal"><div class="min">'+html+'</div></div>';
   $('#modalwrap').classList.add('open');
 }
+/* ===== v7.6 CELEBRATION CARD — one modern pop-up for every reward / event moment
+   (quest done, road clear, roadblock + gym wins, medals, unlocks, gifts, hatches…).
+   It rides the normal modal queue (showModal + modalOk), so ordering is unchanged.
+   o = {c accent, title, tag, sub, hero html, heroCls 'h-spr'|'h-ow'|'h-art'|'h-badge'|'h-wide',
+        hero2 html (a small companion, bottom-right of the hero), rewards [{icon,n,pre,l}],
+        prog {done,total,l}, note, btns [{t, alt:1}], ok fn, alt fn, sfx, confetti:false} */
+var celAltFn=null;
+/* a queued pop-up that has nothing to show any more must still pass the queue on */
+function closeModalQueueNext(){
+  if(modalQueue.length&&!$('#modalwrap').classList.contains('open')){var f=modalQueue.shift();setTimeout(f,180);}
+}
+function celModal(o){
+  var c=o.c||'#E0A020';
+  var rw='';
+  (o.rewards||[]).forEach(function(r,i){
+    var num=typeof r.n==='number';
+    rw+='<div class="celrw" style="--d:'+(0.62+i*0.12).toFixed(2)+'s">'+(r.icon||'')+
+      '<b'+(num?' data-count="'+r.n+'" data-pre="'+(r.pre==null?'+':r.pre||' ')+'"':'')+'>'+(num?(r.pre==null?'+':r.pre)+r.n.toLocaleString():r.n)+'</b>'+
+      '<span>'+r.l+'</span></div>';
+  });
+  var prog='';
+  if(o.prog){
+    var pc=Math.round(o.prog.done/Math.max(1,o.prog.total)*100);
+    prog='<div class="celprog"><span>'+o.prog.l+'</span><i><i style="--w:'+pc+'%"></i></i><b>'+o.prog.done+'/'+o.prog.total+'</b></div>';
+  }
+  var sp='';
+  [[-78,-30,0],[74,-46,.35],[-60,40,.7],[66,34,1.05]].forEach(function(s){
+    sp+='<span class="celspk" style="left:calc(50% + '+s[0]+'px);top:calc(50% + '+s[1]+'px);animation-delay:'+(0.5+s[2])+'s"></span>';
+  });
+  var conf='';
+  if(o.confetti!==false){
+    var cols=['#F8C850','#E84838','#58B8F0','#68D070','#F890C0','#FFFFFF'];
+    for(var i=0;i<22;i++)conf+='<i style="left:'+((i*37)%100)+'%;--c:'+cols[i%cols.length]+';--r:'+((i*53)%360)+'deg;'+
+      'animation-delay:'+(0.25+(i%7)*0.09).toFixed(2)+'s;animation-duration:'+(1.4+(i%5)*0.18).toFixed(2)+'s"></i>';
+  }
+  var bs=o.btns||[{t:'OK'}];
+  var btns=bs.map(function(b){return '<button class="'+(b.alt?'celalt':'celgo')+'" data-action="'+(b.alt?'cel-alt':'modal-ok')+'">'+b.t+'</button>';}).join('');
+  showModal('<div class="celc" style="--cc:'+c+'">'+
+      (conf?'<div class="celconf">'+conf+'</div>':'')+
+      '<div class="celtop"><span class="celrays"></span><span class="celdisc"></span>'+
+        '<span class="celhero '+(o.heroCls||'h-spr')+'">'+(o.hero||'')+(o.hero2?'<span class="celhero2">'+o.hero2+'</span>':'')+'</span>'+sp+'</div>'+
+      '<div class="celban"><span>'+o.title+'</span></div>'+
+      (o.tag?'<div class="celtag">'+o.tag+'</div>':'')+
+      (o.sub?'<p class="celsub">'+o.sub+'</p>':'')+
+      (rw?'<div class="celrws">'+rw+'</div>':'')+prog+
+      (o.note?'<p class="celnote">'+o.note+'</p>':'')+
+      '<div class="celbtns">'+btns+'</div>'+
+    '</div>',true);
+  var w=$('#modalwrap');w.classList.add('cel');
+  modalOk=o.ok||function(){closeModal();render(true);};
+  celAltFn=o.alt||function(){closeModal();render(true);};
+  if(o.sfx)sfx(o.sfx);
+  var card=w.querySelector('.celc');
+  if(card&&card.querySelector('[data-count]'))setTimeout(function(){if(card.isConnected)countUp(card);},720);
+}
+/* common heroes */
+function celNpc(n){return '<img src="sprites/npc/'+n+'.png" alt="">';}
+function celTrainer(cls){return '<img src="sprites/trainers/'+cls+'.png" alt="">';}
+function celArt(sp,shiny){return '<img src="'+artSrc(sp,shiny)+'" alt=""'+artFallback(sp,shiny)+'>';}
+function celMon(sp,shiny){return '<img src="'+sprPath(sp,!!shiny)+'" alt="">';}
+function celMoney(n,l){return {icon:itemImg('pokeball',24),n:n,pre:'₽',l:l||'PRIZE'};}
+function celExp(n,l){return {icon:itemImg('luckyegg',24),n:n,pre:'+',l:l||'EXP'};}
+/* the road's step count, for progress rows */
+function celRoadProg(){
+  var g=state.game;if(!g||!roadActive())return null;
+  var qs=questsFor(g.road.idx),total=qs.length+roadMbCount(g.road.idx);
+  return {done:total-roadStepsLeft(),total:total,l:'ROAD TO '+(bossInfo()?bossInfo().n:'THE GYM')};
+}
 function closeModal(){
-  $('#modalwrap').classList.remove('open');
+  $('#modalwrap').classList.remove('open','cel');celAltFn=null;
   $('#modalwrap').innerHTML='';
   modalOk=null;
   if(modalQueue.length){var f=modalQueue.shift();setTimeout(f,180);}
@@ -13675,6 +13796,7 @@ document.addEventListener('click',function(e){
   else if(a==='dismiss-banner'){localStorage.setItem('gym.bannerOff','1');render(true);}
   else if(a==='close-modal'){closeModal();}
   else if(a==='modal-ok'){if(modalOk)modalOk();}
+  else if(a==='cel-alt'){var caf=celAltFn;celAltFn=null;if(caf)caf();else closeModal();}
   else if(a==='unit'){state.unit=b.dataset.u==='lb'?'lb':'kg';save();render(true);}
   else if(a==='theme'){state.theme=b.dataset.th==='day'?'day':'night';save();applyTheme();render(true);}
   else if(a==='home-style'){state.homeStyle=b.dataset.s==='classic'?'classic':'new';save();render(true);toast(state.homeStyle==='classic'?'Classic TRAINER page restored':'New TRAINER lobby on');}
@@ -14132,10 +14254,8 @@ document.addEventListener('click',function(e){
     var dvshiny=Math.random()<0.05;
     var dvm=addMon(dvsp,dvshiny);dvm.xp=xpFloor(30);
     save();sfx('evolve');cry(dvsp);
-    showModal('<h3>It’s alive!</h3><p>The DEVON machine hums… '+DEX[dvsp].n+' :L30 was revived!'+(dvshiny?' ✨ It’s SHINY!':'')+'</p>'+
-      '<div style="text-align:center;padding:6px 0"><img class="bigspr'+(dvshiny?' shinyglow':'')+'" src="'+sprPath(dvsp,dvshiny)+'" alt=""></div>'+
-      '<div class="mbtns"><button class="btn acc" data-action="modal-ok">OK</button></div>');
-    modalOk=function(){closeModal();render(true);};
+    celModal({c:'#8A6E52',title:'IT’S ALIVE!',tag:'FOSSIL REVIVED · :L30',hero:celArt(dvsp,dvshiny),heroCls:'h-art',
+      sub:'The DEVON machine hums… <b>'+DEX[dvsp].n+'</b> was revived!'+(dvshiny?' It’s <b>SHINY</b>!':'')});
   }
   else if(a==='devon-exp'){
     if(!state.game||!state.game.flags.arc1)return;
@@ -14154,10 +14274,8 @@ document.addEventListener('click',function(e){
     var cfm=addMon('castform',cfsh);cfm.xp=xpFloor(25);
     save();sfx('catch');cry('castform');
     if(cfsh)setTimeout(function(){sfx('shiny');},600);
-    showModal('<h3>CASTFORM joined you!</h3><p>The scientists wave goodbye — “It always liked the field more than the lab.” :L25'+(cfsh?' ✨ It’s SHINY!':'')+'</p>'+
-      '<div style="text-align:center;padding:6px 0"><img class="bigspr'+(cfsh?' shinyglow':'')+'" src="'+sprPath('castform',cfsh)+'" alt=""></div>'+
-      '<div class="mbtns"><button class="btn acc" data-action="modal-ok">OK</button></div>');
-    modalOk=function(){closeModal();render(true);};
+    celModal({c:'#58A8E0',title:'CASTFORM JOINED!',tag:'WEATHER INSTITUTE · :L25',hero:celArt('castform',cfsh),heroCls:'h-art',
+      sub:'“It always liked the field more than the lab.”'+(cfsh?' It’s <b>SHINY</b>!':'')});
   }
   else if(a==='trick-start'){
     if(!state.game||!inHoenn())return;
@@ -14316,7 +14434,7 @@ document.addEventListener('click',function(e){
     var mbD=mbFor(state.game.road.idx,mj);
     if(state.session){
       state.session.wild={sp:mbD.sp,lv:mbD.lv,hp:mbD.hp,max:mbD.hp,shiny:false,
-        tr:{cls:mbD.cls,clsN:mbD.clsN,name:mbD.name,purse:mbD.purse,mb:mj,arena:mbD.arena}};
+        tr:{cls:mbD.cls,clsN:mbD.clsN,name:mbD.name,purse:mbD.purse,mb:mj,arena:mbD.arena,rival:!!mbD.rival}};
       state.session.bmsg=mbD.clsN+' '+mbD.name+' sent out '+DEX[mbD.sp].n+'!';
       save();sfx('battlestart');
       var mbTr=state.session.wild.tr;
@@ -14331,21 +14449,7 @@ document.addEventListener('click',function(e){
     }
   }
   else if(a==='qtab'){questTab=b.dataset.q;sfx('click');render(true);}
-  else if(a==='quest-claim'){
-    if(!state.game||!roadActive())return;
-    var cqi=parseInt(b.dataset.qi,10);
-    var cq=questsFor(state.game.road.idx)[cqi];
-    if(cq&&questReady(cq)&&!questClaimed(cqi)){
-      state.game.road.qdone[cqi]=1;
-      var cqPay=Math.round(cq.reward*(1+0.08*perkN('deeppockets'))); // v6.8
-      var cqM0=money();
-      addMoney(cqPay);
-      save();sfx('badge');
-      rewardFx(b,{from:cqM0,to:money(),label:cq.clsN+' '+cq.name}); // v7.3
-      checkGameEvents();
-      render(true);
-    }
-  }
+  else if(a==='quest-claim'){claimQuest(parseInt(b.dataset.qi,10),b);}
   else if(a==='daily-claim'){
     if(!state.game)return;
     ensureDaily();
@@ -14380,12 +14484,9 @@ document.addEventListener('click',function(e){
       save();sfx('catch');
       cry(nq.mon);
       if(nsh)setTimeout(function(){sfx('shiny');},600);
-      showModal('<div style="text-align:center;padding-bottom:2px"><img src="sprites/npc/'+nq.npc+'.png" alt="" style="width:34px;image-rendering:pixelated"></div>'+
-        '<h3 style="text-align:center">A gift from '+nq.who+'!</h3>'+
-        '<p style="text-align:center">'+DEX[nq.mon].n+' joined your team!'+(nsh?' ✨ It’s SHINY!':'')+'</p>'+
-        '<div style="text-align:center;padding:6px 0"><img class="bigspr'+(nsh?' shinyglow':'')+'" src="'+sprPath(nq.mon,nsh)+'" alt=""></div>'+
-        '<div class="mbtns"><button class="btn acc" data-action="modal-ok">OK</button></div>');
-      modalOk=function(){closeModal();checkGameEvents();render(true);};
+      celModal({c:'#7848B0',title:'NEW POKEMON!',tag:'A GIFT FROM '+nq.who,hero:celArt(nq.mon,nsh),heroCls:'h-art',
+        hero2:celNpc(nq.npc),sub:'<b>'+DEX[nq.mon].n+'</b> joined your team!'+(nsh?' It’s <b>SHINY</b>!':''),
+        btns:[{t:'THANK YOU!'}],ok:function(){closeModal();checkGameEvents();render(true);}});
     }
   }
   else if(a==='show-hof'){showHofModal();}
@@ -14428,12 +14529,9 @@ document.addEventListener('click',function(e){
     healedList.slice(0,6).forEach(function(hm,hi){
       healTray+='<span class="healslot" style="animation-delay:'+(hi*0.13)+'s">'+monIconImg(hm.sp,hm.shiny,34)+'</span>';
     });
-    showModal('<div class="vbanner" style="font-size:13px;line-height:1.6;color:#58C868">ALL HEALED!</div>'+
-      '<div style="text-align:center;padding:4px 0"><img src="sprites/npc/nurse.png" alt="" style="width:44px;height:44px;image-rendering:pixelated"></div>'+
-      '<div style="display:flex;justify-content:center;gap:6px;padding:6px 0">'+healTray+'</div>'+
-      '<p style="text-align:center">“Your POKEMON are fighting fit'+(healedList.length>6?' — all '+healedList.length+' of them':'')+'! We hope to see you again!”</p>'+
-      '<div class="mbtns"><button class="btn acc" data-action="modal-ok">THANKS!</button></div>',true);
-    modalOk=function(){closeModal();render(true);};
+    celModal({c:'#E85888',title:'ALL HEALED!',tag:'POKEMON CENTER',hero:celNpc('nurse'),heroCls:'h-ow',confetti:false,
+      sub:'“Your POKEMON are fighting fit'+(healedList.length>6?' — all '+healedList.length+' of them':'')+'! We hope to see you again!”',
+      note:'<span class="celtray">'+healTray+'</span>',btns:[{t:'THANKS!'}]});
   }
   else if(a==='restore-mon'){
     if(!state.game)return;
@@ -14454,12 +14552,10 @@ document.addEventListener('click',function(e){
     if(state.game.raid){toast('Finish your current raid first!');return;}
     state.game.raid={k:rsD.k,startTs:Date.now()};
     save();sfx('battlestart');
-    showModal('<h3>RAID STARTED!</h3><p>'+esc(rsD.flavor)+'</p>'+
-      '<div style="text-align:center;padding:8px 0"><img class="bigspr" src="sprites/'+DEX[rsD.k].id+'.png" alt=""></div>'+
-      '<p style="text-align:center">Wear '+DEX[rsD.k].n+' down with '+rsD.target.toLocaleString()+' kg of lifting. Every set from now counts!</p>'+
-      '<div class="mbtns"><button class="btn acc" data-action="close-modal">LET’S GO</button></div>');
-    modalOk=null;
     render(true);
+    celModal({c:'#D03028',title:'RAID STARTED!',tag:'LEGENDARY RAID',confetti:false,hero:celArt(rsD.k,false),heroCls:'h-art',
+      sub:esc(rsD.flavor),rewards:[{icon:itemImg('iron',24),n:rsD.target,pre:'',l:'KG TO LIFT'}],
+      note:'Wear <b>'+DEX[rsD.k].n+'</b> down — every set from now counts!',btns:[{t:'LET’S GO'}],ok:function(){closeModal();}});
   }
   else if(a==='raid-quit'){
     if(state.game&&state.game.raid){
@@ -14581,16 +14677,12 @@ document.addEventListener('click',function(e){
     sfx('catch');
     setTimeout(closeStarterFx,650);
     setTimeout(function(){queueModal(function(){
-      sfx('levelup');
-      showModal('<div class="vbanner" style="font-size:12px;line-height:1.6">A NEW PARTNER!</div>'+
-        '<div style="text-align:center;padding:2px 0 0"><img class="joinart" src="sprites/art/'+DEX[ssp].id+'.png" onerror="this.onerror=null;this.src=\''+sprPath(ssp,false)+'\';this.style.imageRendering=\'pixelated\'" alt=""></div>'+
-        '<h3 style="text-align:center">'+esc(DEX[ssp].n)+' :L'+slv+' joined you!</h3><p>'+
-        (retro>xpFloor(5)?('Your past training counts: +'+retro+' XP — it’s already LV '+slv+'! '):'')+
-        'Every set you log is an attack — the closer to your best, the harder it hits.</p>'+
-        '<div class="kitrow"><span>'+itemImg('pokeball',22)+' ×5 POKE BALL</span><span>'+itemImg('potion',22)+' ×2 POTION</span></div>'+
-        '<p class="plv" style="text-align:center;white-space:normal;line-height:1.3;margin-top:6px">'+profName()+': “Take these for the road — weaken a wild POKEMON, then throw a ball!”</p>'+
-        '<div class="mbtns"><button class="btn acc" data-action="modal-ok">LET’S GO</button></div>',true);
-      modalOk=function(){closeModal();tab='summary';checkGameEvents();render();}; // events first: they open the road to BROCK
+      celModal({c:TYPE_COLORS[DEX[ssp].t[0]]||'#E0A020',sfx:'levelup',title:'A NEW PARTNER!',tag:esc(DEX[ssp].n)+' · :L'+slv,
+        hero:celArt(ssp,false),heroCls:'h-art',
+        sub:(retro>xpFloor(5)?'Your past training counts: <b>+'+retro+' XP</b>! ':'')+'Every set you log is an attack — the closer to your best, the harder it hits.',
+        rewards:[{icon:itemImg('pokeball',24),n:5,pre:'×',l:'POKE BALLS'},{icon:itemImg('potion',24),n:2,pre:'×',l:'POTIONS'}],
+        note:profName()+': “Weaken a wild POKEMON, then throw a ball!”',btns:[{t:'LET’S GO'}],
+        ok:function(){closeModal();tab='summary';checkGameEvents();render();}}); // events first: they open the road to BROCK
     });},700);
   }
   else if(a==='evo-choice'){

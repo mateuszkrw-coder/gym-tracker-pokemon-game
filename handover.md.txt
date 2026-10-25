@@ -1,4 +1,4 @@
-Gym Tracker — Handover Document (current as of app v7.5 / sw v65 / schema v20, 2026-10-24)
+Gym Tracker — Handover Document (current as of app v7.6 / sw v66 / schema v20, 2026-10-25)
 
 ============================================================
 1. WHAT THIS IS
@@ -22,7 +22,7 @@ installed home-screen app isolated storage — a separate app couldn't read the 
 Live URL:  https://mateuszkrw-coder.github.io/gym-tracker-pokemon-game/
 Repo:      https://github.com/mateuszkrw-coder/gym-tracker-pokemon-game  (GitHub Pages from main branch root;
            renamed from gym-tracker, whose old Pages URL now 404s)
-Current:   app v7.5 “Journey”, service-worker cache v65, data schema v20.
+Current:   app v7.6 “Fanfare”, service-worker cache v66, data schema v20.
 
 ============================================================
 2. THE TWO-LAPTOP WORKFLOW (read this FIRST on any machine)
@@ -477,6 +477,36 @@ Johto/Gen-2 content pack (a 3rd campaign — the region model supports it cleanl
 ============================================================
 13. IMMEDIATE STATE
 ============================================================
+v7.6 “Fanfare” (2026-10-25) — Mateusz: make the quest-completed and roadblock-completed
+pop-ups (and every pop-up like them) more modern and better looking.
+• CELEBRATION CARD celModal(o) (before closeModal): ONE component for every reward / event
+  moment, rendered INSIDE #modalwrap (class .cel on the wrapper, card .celc) so the modal
+  queue, modalOk and closeModal work exactly as before. Coloured top band (o.c) with
+  stripes + rotating light rays, the hero on a glowing disc popping above the card
+  (heroCls h-spr pixel sprite / h-ow overworld NPC / h-art official artwork / h-badge
+  badge·medal·svg spin-in / h-wide round map thumb; hero2 = small companion badge), a
+  ribbon title with a shine sweep, tag line, sub text, REWARD TILES that count up
+  (celMoney / celExp helpers, countUp), optional progress bar (celRoadProg), note,
+  big primary button (modalOk = o.ok, default close+render) + optional LATER (cel-alt →
+  o.alt). Confetti streams BEHIND the card (z-index:-1). Hero classes are prefixed
+  (h-…) because page classes like .npc/.wide carry transforms.
+• Converted: QUEST COMPLETE (claim RIGHT THERE: claimQuest(qi,srcEl) — shared with the
+  card's button; coins fly from the pop-up), ROAD CLEAR (TO THE GYM when not mid-workout),
+  ROADBLOCK CLEARED / RIVAL DEFEATED (trainer + partner, prize + EXP, road progress),
+  GYM VICTORY (one card instead of two: prize, team EXP, the BADGE tile; next challenger),
+  NEW TOWN, HALL OF FAME, MEDAL GET (type + special), NEW FEATURE, TRAINER CARDS intro,
+  NEW REQUEST (VIEW REQUEST → quests REQUESTS tab), collector gift, RUMOR (→ LAB), RAID
+  STARTED / CLEARED, EGG HATCHED, Oak's MYSTERY EGG, ALL HEALED, A NEW PARTNER (starter
+  kit as tiles), ROOKIE SEASON / LESSONS complete, grantMon gifts, JIRACHI, LAPRAS, DEVON
+  fossil, CASTFORM, TRICK HOUSE result, CONTEST result, doEvolve fallback.
+• Fixes: road fights now carry tr.rival (a rival win used to say ROADBLOCK CLEARED);
+  a NEW RECORD flash now holds the pop-up queue (fxHold) until it fades, so cards no
+  longer open underneath it; closeModalQueueNext() passes the queue on when a queued
+  pop-up turns out to be stale (e.g. a quest already claimed).
+• Tested: quest complete → claim (money + qdone) / LATER, rival win, gym win → badge →
+  new town, request, feature, trainer cards, egg, heal, new partner — day + night, the
+  full regression set — zero console errors. sw v66.
+
 v7.5 “Journey” (2026-10-24) — Mateusz: official illustrations of your main POKEMON on the
 TRAINER page, a better QUEST page (structure from popular games), better animations when a
 fight starts / a workout starts, the SAME header size on MAP / TEAM / QUEST / OPTION, and a
