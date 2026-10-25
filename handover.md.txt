@@ -1,4 +1,4 @@
-Gym Tracker — Handover Document (current as of app v7.7 / sw v67 / schema v20, 2026-10-25)
+Gym Tracker — Handover Document (current as of app v7.8 / sw v68 / schema v20, 2026-10-25)
 
 ============================================================
 1. WHAT THIS IS
@@ -22,7 +22,7 @@ installed home-screen app isolated storage — a separate app couldn't read the 
 Live URL:  https://mateuszkrw-coder.github.io/gym-tracker-pokemon-game/
 Repo:      https://github.com/mateuszkrw-coder/gym-tracker-pokemon-game  (GitHub Pages from main branch root;
            renamed from gym-tracker, whose old Pages URL now 404s)
-Current:   app v7.7 “Talent”, service-worker cache v67, data schema v20.
+Current:   app v7.8 “Explorer”, service-worker cache v68, data schema v20.
 
 ============================================================
 2. THE TWO-LAPTOP WORKFLOW (read this FIRST on any machine)
@@ -477,6 +477,61 @@ Johto/Gen-2 content pack (a 3rd campaign — the region model supports it cleanl
 ============================================================
 13. IMMEDIATE STATE
 ============================================================
+v7.8 “Explorer” (2026-10-25) — Mateusz: pop-ups that follow a boss win should wait until the
+workout ends (only the boss win itself shows live); swap the Pokémon illustrations for another
+official style; and modernise the places (Museum Dig Site and its page, every other place),
+the area Pokémon, the bag and the shop.
+• POP-UP DEFERRAL: queueModal(f,live) — while state.session is open, every queued pop-up
+  goes into deferredQ instead of showing; queueLive(f) (= live) keeps the battle's own
+  moments live: the boss VICTORY card, trainerVictoryModal (roadblock/rival wins),
+  announceCatch (gotcha), both safari GAME OVER pop-ups, triggerBlackout, bfSwapOffer.
+  Everything else (quest ready, road clear, level-ups, evolutions, new mons, new town, Hall
+  of Fame, symbols, story scenes, gifts, egg hatch, lessons) waits. endWorkout sets fxHold
+  and releaseDeferred() puts deferredQ at the front of modalQueue, so they play after the
+  results screen; render() also releases a stray deferredQ once no session is open, and
+  closeModalQueueNext refuses to drain while fxHold. State is still saved first — only the
+  pop-up waits. maybeEvolve's queued entry checks the mon is still its old species, so a
+  mon that levels twice in one workout evolves once.
+• ART: sprites/art/ and sprites/art/shiny/ now hold the Pokémon HOME renders (all 306
+  species, normal + shiny; PokeAPI sprites repo other/home, trimmed, padded 6%, 300×300).
+  artSrc/artFallback unchanged. Not precached — the sw CACHE bump makes phones refetch.
+• PLACE ART: the five places that wore stock battle backdrops now use crops of the official
+  town maps (map/poi/museum, pier, h-pier, h-dig, athlon, garden, base — added to sw
+  POI_MAPS): Pewter museum for the dig site, Vermilion's pier, Dewford's pier, Granite
+  Cave, a Vermilion field for the Pokéathlon, Pewter's flower garden, a Granite Cave room
+  for the secret base.
+• PLACES LIST (poiPlacesHTML): location cards — art full-bleed under a left shade, the
+  building icon in a tile, live status pill, name + blurb, a round accent “›”; locked doors
+  dark with a lock and the rumour text.
+• PLACE PAGES (poiPageHTML): every body sits in <div class="poib" style="--pc:accent">:
+  borderless soft cards tinted by the building colour, an accent bar on section titles,
+  accent action buttons (#view .poib .btn.acc — the id beats the Hoenn/night .btn.acc
+  rules), a proper disabled look, a ghost BACK TO TOWN. Wrong town → an “away” card
+  (art, town pin, TRAVEL TO … button with the fare, via travel-go); gated → a dark
+  “THE WAY IS BLOCKED” card.
+• DIG SITE (mineHTML): HUD (swing medallion + the wall's treasure slots + hint), a framed
+  rock wall (3 stone tones, cracks, dark holes, glinting dirt, gold glow under found
+  loot), a shake + dust puff on every swing and a pop + ring when treasure comes out
+  (mineFx, set in mine-dig before render), and the loot table as rarity chips
+  (mineLootChips from mineLootTable weights). Night dims the rock.
+• AREA POKEMON (areaDexHTML): route + WILD LV header, caught/seen bar, 3-up cards with the
+  official art on a rarity glow (silhouette until seen, Poké Ball stamp when caught, ★ for
+  shiny, rarity gems via rarityTier). Tap → showAreaMonModal: a dex card (#no., spinning
+  rays in the rarity colour, bobbing art, type chips, RARITY / WILD LV / STATUS tiles, a
+  how-to tip). Modal wrapper class amw (cleared in showModal/closeModal).
+• BAG (showBagModal): header (bag tile, kinds · items, ₽), pocket tabs BALLS / HEAL /
+  BOOST / HELD / BERRY / TOOLS (only non-empty; bagPocketOf; remembered in bagTab; bag-tab
+  switches client-side), 4-up tiles with count badges, a detail strip (bagInfoHTML), and
+  HELD BY YOUR TEAM chips.
+• SHOP (martHTML): category chips (one shelf at a time, ALL for everything; martCat,
+  mart-cat action), 2-up product cards (icon on a pocket-coloured shelf, ×owned, blurb, a
+  blue price button / grey when short / OWNED for rods), NEXT DELIVERIES as locked tiles
+  sorted by badges away.
+• Tested: quest finishing mid-workout shows only after the results; boss VICTORY and rival
+  win still live; evolution after the workout (and only once); every Kanto + Hoenn place
+  page, away + blocked cards, dig site swings, area cards + dex card, bag tabs, shop
+  chips + buying, day + night, the full regression — zero console errors. sw v68.
+
 v7.7 “Talent” (2026-10-25) — Mateusz: redo the gym boss page, the challenge pop-up and the
 lead picker; make outfits/colours harder to get (paid, milestones) + a RESET button; rework
 the cards like Archero 2's talent cards (stars for duplicates), rethink the whole deck, and

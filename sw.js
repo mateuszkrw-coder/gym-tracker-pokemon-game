@@ -1,6 +1,6 @@
 /* Gym Tracker service worker.
    Bump CACHE when you change any file, so installed phones pick up the update. */
-const CACHE = 'gym-tracker-v67';
+const CACHE = 'gym-tracker-v68';
 const TOWN_MAPS = ['viridian','pewter','cerulean','vermilion','celadon','fuchsia','saffron','cinnabar','indigo'];
 const HOENN_TOWN_MAPS = ['littleroot','rustboro','dewford','mauville','lavaridge','petalburg','fortree','mossdeep','sootopolis','evergrande'];
 const ARENAS = ['gym','grass','water','cave','pond','ice','sand','poison','teal','psychic'];
@@ -32,7 +32,9 @@ const POI_MAPS = ['tower','dept','corner','hideout','safari','silph','tower2','l
   'h-devon','h-corner','h-trick','h-dept','h-wx','h-pyre','h-magma','h-aqua','h-space','h-origin','h-sky','h-seafloor',
   'h-frontier','bf-tower','bf-dome','bf-palace','bf-arena','bf-factory','bf-pike','bf-pyramid',
   /* v6.4.1: official Gen-3 interiors for the Contest Hall + Shoal Cave */
-  'h-hall','h-shoal','h-shoalice'];
+  'h-hall','h-shoal','h-shoalice',
+  /* v7.8: crops of the official town maps replace the stock battle backdrops */
+  'museum','pier','h-pier','h-dig','athlon','garden','base'];
 /* Cries (sounds/cries/*.mp3) are NOT precached — the fetch handler caches them the first time they play. */
 const ASSETS = [
   './',
@@ -71,7 +73,7 @@ const ASSETS = [
   .concat(ROAD_MAPS.map((r) => './map/road/' + r + '.png'))
   .concat(POI_MAPS.map((p) => './map/poi/' + p + '.png'))
   .concat(['./map/center.png', './map/mart.png', './map/kanto.png', './map/hoenn.png']);
-/* Sugimori artwork (sprites/art/*.png, and the official shiny art in sprites/art/shiny/) is NOT precached — the fetch handler caches each on first view. */
+/* Official artwork (sprites/art/*.png + sprites/art/shiny/, v7.8: Pokémon HOME renders) is NOT precached — the fetch handler caches each on first view. */
 
 self.addEventListener('install', (e) => {
   // Add each asset individually so one missing file can't abort the whole install.
