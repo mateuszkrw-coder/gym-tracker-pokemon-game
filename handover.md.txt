@@ -1,4 +1,4 @@
-Gym Tracker — Handover Document (current as of app v7.6 / sw v66 / schema v20, 2026-10-25)
+Gym Tracker — Handover Document (current as of app v7.7 / sw v67 / schema v20, 2026-10-25)
 
 ============================================================
 1. WHAT THIS IS
@@ -22,7 +22,7 @@ installed home-screen app isolated storage — a separate app couldn't read the 
 Live URL:  https://mateuszkrw-coder.github.io/gym-tracker-pokemon-game/
 Repo:      https://github.com/mateuszkrw-coder/gym-tracker-pokemon-game  (GitHub Pages from main branch root;
            renamed from gym-tracker, whose old Pages URL now 404s)
-Current:   app v7.6 “Fanfare”, service-worker cache v66, data schema v20.
+Current:   app v7.7 “Talent”, service-worker cache v67, data schema v20.
 
 ============================================================
 2. THE TWO-LAPTOP WORKFLOW (read this FIRST on any machine)
@@ -477,6 +477,60 @@ Johto/Gen-2 content pack (a 3rd campaign — the region model supports it cleanl
 ============================================================
 13. IMMEDIATE STATE
 ============================================================
+v7.7 “Talent” (2026-10-25) — Mateusz: redo the gym boss page, the challenge pop-up and the
+lead picker; make outfits/colours harder to get (paid, milestones) + a RESET button; rework
+the cards like Archero 2's talent cards (stars for duplicates), rethink the whole deck, and
+replace the forced level-up card pop-up with a paid DRAW button on the cards page.
+• TALENT CARDS (deck rethought): 24 cards (8 COMMON / 8 RARE / 5 EPIC / 3 LEGENDARY), each
+  ★1→★5 (PERK_MAX); a duplicate draw IS the upgrade. Per-star effects live in p.v(n) and the
+  engine hooks (powerbrace 5%/★, ironguard 6%, keeneye 3%, swiftstep 3%, scholar 6%,
+  fastlearner 6%, deeppockets 6%, bounty 8% purses + ₽10/KO, sharplens 12%, vitalspirit 5%,
+  pharmacist 12% potions + −1h rest −₽60 fee, ballmaestro 6% catch + 4% refund, mentor
+  50+5%, warmnest 15%, luckycharm 3%, goldentouch ₽60, titanslayer 8%, guardian 1/2/3 uses
+  (guardianUses), secondwind 1%/set, formmaster form 95−n% + PR cap 125+5n%, raremagnet 12%
+  rares + 8% uncaught + 0.2% shiny, sacredflame revive 30+10n%, championaura 3% all three,
+  candycrown 20% candy chance). CUT (side-building only / never wired / economy-breaking):
+  goldrush, highroller, arcaderat, blockartist, prospector, safaripass, twintickets,
+  haggler (its hook never existed), amuletheart, wishstar, candymaker. MERGED: tipjar→bounty,
+  ballsaver→ballmaestro, fieldmedic→pharmacist (now FIELD MEDIC), overdrive→formmaster,
+  dexscanner+shinysense→raremagnet. Sharp lens is shown as SHARP CLAW.
+• MIGRATION migratePerks77 (runs once inside perksOf, flag pk.v77): old stacks × PERK_MIG
+  factor → stars (ceil, capped 5); stars past ★5 and every cut card refund FREE DRAWS
+  (pk.free); an old unpaid offer is dropped; flags.cards77 → a one-time TALENT CARDS 2.0
+  celebration card (with the refund). Sanitizer: v77 saves keep only today's deck; older
+  backups keep raw keys so the migration converts them later.
+• DRAWS: every TRAINER level banks one (perkPicksLeft = (LV−1)−used + free). NO forced
+  pop-up any more (results / level-up / confirm no longer open the chooser): the CARDS page
+  shows a DRAW dock; perkDraw pays state-first (free draws first, the very first draw ever is
+  free, else ₽ min(4000, 300+150×paid)), rolls the hand into pk.offer, then opens the theatre.
+  “decide later” keeps the PAID hand (OPEN / PAID HAND). Epics draw from LV 5
+  (PERK_EPIC_LV), legendaries from LV 10 (perkTierCap filters the pool, odds e=0 below LV5).
+• CARDS PAGE (perksHTML, Archero 2 look): draw dock (deck of card backs with the draw count,
+  “n DRAWS READY / NEXT DRAW AT LV”, XP bar, DRAW · ₽cost button) + one grid per rarity:
+  framed cards (rarity colours PERK_RAR_C violet/blue/pink/gold), gold stars on an arc
+  above owned cards (perkStarsHTML), dark “?” silhouettes for undrawn cards, a
+  “DRAW AFTER LV.n” band over locked rows; tap → showCardInfo (★1–★5 table, current star
+  highlighted). The draw theatre's cards wear the same frames and show the stars to come.
+• WARDROBE SHOP: only RED / BLUE / BLACK / WHITE are free; the other base dyes cost ₽600–900,
+  the gem dyes need their milestone AND ₽2,000–6,000; costumes need a (raised) milestone AND
+  ₽1,500–8,000 (WARD_COSTUMES[i][3]). Bought keys live in player.wown (sanitized);
+  wardInitOwn grandfathers what you are wearing on the first visit. Price tags on swatches/
+  cards, wardBuyModal (celModal with a TRY-ON preview of the dye on your trainer) →
+  wardBuy (state-first, coins fly). RANDOM uses owned dyes only; RESET chip restores the
+  original outfit.
+• GYM PAGE (gymhallHTML): a boss card — the leader big on a spotlight with rays over the
+  blurred official interior in their TYPE colour, title/name/type chip/badge, the team
+  lineup (current ringed, beaten ✓), GYM HP (clamped), reward tiles (prize, team EXP,
+  badge), “HIT x's TYPE TEAM WITH …” (typesStrongVs from EFF2) and a big CHALLENGE button.
+  Locked: silhouette + LOCKED, the Gym Guide's speech, road progress, TO THE QUESTS.
+• CHALLENGE POP-UP (showStadiumModal): a celModal VS card (your team icons VS theirs via
+  o.extra, kg to lift, prize, CHALLENGE / LEAVE). LEAD PICKERS: monPickCard grid (type-colour
+  cards, level + type chips, HP, EXP on the workout picker, STRONG / WEAK vs the leader's
+  type); boss picker has a leader header; tapping a card re-marks LEAD in place.
+• Tested: migration + announcement, free and paid draws, deferred paid hand, not-enough-₽,
+  star-up, card info, wardrobe buy/gate/reset, gym open + locked, challenge card, both
+  pickers, the full regression — zero console errors. sw v67.
+
 v7.6 “Fanfare” (2026-10-25) — Mateusz: make the quest-completed and roadblock-completed
 pop-ups (and every pop-up like them) more modern and better looking.
 • CELEBRATION CARD celModal(o) (before closeModal): ONE component for every reward / event
