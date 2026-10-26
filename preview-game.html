@@ -2321,16 +2321,7 @@ html.theme-night .amctop{background:radial-gradient(circle at 50% 58%,color-mix(
 .modal .bght h3{margin:0;font-size:13px;line-height:1}
 .bght span{font-size:15px;line-height:1;color:var(--mut)}
 .bgmoney{flex:none;padding:6px 10px;border-radius:999px;background:var(--cream2);font-family:'Press Start 2P';font-size:8px;color:var(--text)}
-.bgtabs{display:flex;gap:4px;padding:4px;border-radius:14px;background:var(--cream2);margin-bottom:10px}
-.bgtab{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:4px;padding:7px 2px 6px;border:0;border-radius:10px;background:transparent;
-  font-family:'Press Start 2P';font-size:5.5px;color:var(--mut);cursor:pointer;transition:background .15s,color .15s}
-.bgtab img,.bgtab svg{opacity:.55;transition:opacity .15s}
-.bgtab span{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.bgtab.on{background:var(--boxw);color:var(--bc);box-shadow:0 2px 0 rgba(0,0,0,.08),inset 0 -3px 0 var(--bc)}
-html.theme-night .bgtab.on{background:rgba(255,255,255,.08);color:#FFF}
-.bgtab.on img,.bgtab.on svg{opacity:1}
 .bggrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
-.bggrid[hidden]{display:none}
 .bgt{position:relative;display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0;padding:7px 3px 7px;border:0;border-radius:14px;cursor:pointer;
   background:var(--boxw);box-shadow:inset 0 0 0 1.5px rgba(0,0,0,.1),0 2px 0 rgba(0,0,0,.06);font-family:inherit;color:var(--text)}
 html.theme-night .bgt{background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1)}
@@ -2357,46 +2348,47 @@ html.theme-night .bginic{background:rgba(255,255,255,.07)}
 .bgheld>span{display:flex;flex-direction:column;gap:2px;min-width:0}
 .bgheld b{font-weight:400;font-size:13px;line-height:1;text-transform:uppercase}
 .bgheld i{display:inline-flex;align-items:center;gap:3px;font-style:normal;font-size:12px;line-height:1;color:var(--mut);text-transform:uppercase}
-/* ---------- v7.8 POKE MART ---------- */
-.mkchips{display:flex;gap:6px;overflow-x:auto;margin:-2px -13px 4px;padding:2px 13px 6px;scrollbar-width:none}
-.mkchips::-webkit-scrollbar{display:none}
-.mkchip{flex:none;display:inline-flex;align-items:center;gap:5px;height:32px;padding:0 11px;border-radius:999px;border:0;cursor:pointer;
-  background:var(--cream2);font-family:'Press Start 2P';font-size:7px;color:var(--mut);box-shadow:inset 0 0 0 1.5px rgba(0,0,0,.08)}
-.mkchip i{font-style:normal;padding:2px 5px;border-radius:6px;background:rgba(0,0,0,.08)}
-.mkchip.on{background:var(--bc,#3878C8);color:#FFF;box-shadow:0 2px 0 color-mix(in srgb,var(--bc,#3878C8) 60%,#000)}
-.mkchip.on i{background:rgba(255,255,255,.25)}
-.mkchip.on img{filter:drop-shadow(0 0 2px rgba(255,255,255,.8))}
-.mksec{margin-top:12px}
-.mksh{display:flex;align-items:center;gap:8px;margin:0 2px 8px;font-family:'Press Start 2P';font-size:8px;color:var(--text)}
-.mksh::before{content:'';width:5px;height:14px;border-radius:3px;background:var(--bc)}
-.mksh span{color:var(--mut);font-size:7px}
-.mkgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-.mkc{display:flex;flex-direction:column;gap:5px;min-width:0;padding:8px;border-radius:16px;background:var(--boxw);
-  box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--bc) 22%,rgba(0,0,0,.06)),0 3px 0 rgba(0,0,0,.05)}
-html.theme-night .mkc{background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1)}
-.mkshelf{position:relative;height:54px;border-radius:11px;display:flex;align-items:center;justify-content:center;margin-bottom:3px;
-  background:radial-gradient(circle at 50% 45%,#FFF 0,color-mix(in srgb,var(--bc) 18%,#FFF) 70%)}
-html.theme-night .mkshelf{background:radial-gradient(circle at 50% 45%,#3A4656,color-mix(in srgb,var(--bc) 28%,#232B37) 75%)}
-.mkshelf img,.mkshelf svg{filter:drop-shadow(0 3px 0 rgba(0,0,0,.15))}
-.mkhave{position:absolute;top:6px;left:6px;padding:3px 6px;border-radius:7px;background:rgba(255,255,255,.85);font-family:'Press Start 2P';font-size:6px;color:#303840}
-.mkn{font-weight:400;font-size:16px;line-height:1;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.mkd{flex:1;font-size:13px;line-height:1.1;color:var(--mut);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:28px}
-.mkbuy{display:flex;align-items:center;justify-content:center;gap:5px;height:34px;margin-top:3px;border:0;border-radius:11px;cursor:pointer;
-  background:linear-gradient(180deg,#58A0E8,#3878C8);color:#FFF;font-family:'Press Start 2P';font-size:9px;
-  box-shadow:0 3px 0 #24589A;text-shadow:1px 1px 0 rgba(0,0,0,.25);transition:transform .07s,box-shadow .07s}
-.mkbuy:active:not(:disabled){transform:translateY(3px);box-shadow:0 0 0 #24589A}
-.mkbuy.poor{background:var(--cream2);color:var(--mut);box-shadow:none;text-shadow:none;cursor:default}
-.mkbuy.owned{background:rgba(46,139,72,.12);color:#2E8B48;box-shadow:none;text-shadow:none;font-size:8px}
-.mkc.own .mkshelf{opacity:.75}
-.mklocks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
-.mklock{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0;padding:8px 3px 7px;border-radius:13px;background:var(--cream2);text-align:center}
-.mklockic{position:relative;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.05)}
+/* v7.9: every Pokémon picture is a FireRed sprite — keep the pixels crisp at any size */
+img[src^="sprites/"]{image-rendering:pixelated}
+/* ---------- v7.9 POKE MART: one compact scroll ---------- */
+.mkpanel{padding-top:10px}
+.mksh{display:flex;align-items:center;gap:7px;margin:12px 2px 7px;font-family:'Press Start 2P';font-size:7px;color:var(--mut);letter-spacing:.5px}
+.mksh:first-child{margin-top:2px}
+.mksh::before{content:'';width:4px;height:12px;border-radius:2px;background:var(--bc)}
+.mkgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}
+.mkt{display:flex;flex-direction:column;min-width:0;border-radius:13px;overflow:hidden;background:var(--boxw);
+  box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--bc) 22%,rgba(0,0,0,.07)),0 2px 0 rgba(0,0,0,.05)}
+html.theme-night .mkt{background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1)}
+.mkti{position:relative;display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 3px 4px;border:0;background:none;
+  font-family:inherit;color:var(--text);cursor:pointer;min-width:0}
+.mktic{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(circle at 50% 40%,#FFF,color-mix(in srgb,var(--bc) 22%,#FFF))}
+html.theme-night .mktic{background:radial-gradient(circle at 50% 40%,#3A4656,color-mix(in srgb,var(--bc) 30%,#232B37))}
+.mkth{position:absolute;top:5px;right:5px;padding:2px 4px;border-radius:6px;background:var(--bc);color:#FFF;font-style:normal;
+  font-family:'Press Start 2P';font-size:5.5px;line-height:1}
+.mkti b{font-weight:400;font-size:11px;line-height:1;text-transform:uppercase;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mkbuy{display:flex;align-items:center;justify-content:center;height:24px;margin:0 4px 4px;border:0;border-radius:8px;cursor:pointer;
+  background:linear-gradient(180deg,#FFD860,#F0B020);color:#5A3A00;font-family:'Press Start 2P';font-size:6.5px;
+  box-shadow:0 2px 0 #B87E10;transition:transform .07s,box-shadow .07s}
+.mkbuy:active:not(:disabled){transform:translateY(2px);box-shadow:0 0 0 #B87E10}
+.mkbuy.poor{background:var(--cream2);color:var(--mut);box-shadow:none;cursor:default}
+.mkbuy.owned{background:rgba(46,139,72,.12);color:#2E8B48;box-shadow:none;font-size:6.5px}
+.mkt.own .mktic{opacity:.6}
+.mklocks{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.mklock{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0;padding:6px 2px;border-radius:11px;background:var(--cream2)}
+.mklockic{position:relative;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.05)}
 .mklockic>img,.mklockic>svg{filter:grayscale(1) brightness(.8);opacity:.45}
-.mklockic i{position:absolute;right:-3px;bottom:-3px;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--boxw);box-shadow:0 1px 0 rgba(0,0,0,.15);line-height:0}
-.mklock b{font-weight:400;font-size:12px;line-height:1;text-transform:uppercase;color:var(--mut);max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.mklock em{font-style:normal;padding:3px 5px;border-radius:6px;font-family:'Press Start 2P';font-size:5px;color:#FFF;background:#E0A020}
+.mklockic i{position:absolute;right:-3px;bottom:-3px;width:15px;height:15px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:var(--boxw);box-shadow:0 1px 0 rgba(0,0,0,.15);line-height:0}
+.mklock em{font-style:normal;padding:2px 4px;border-radius:5px;font-family:'Press Start 2P';font-size:4.5px;color:#FFF;background:#E0A020;white-space:nowrap}
 .mklock em.a2{background:#D07838}
 .mklock em.a3{background:#8890A0}
+.mkinfo{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px}
+.mkinic{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(circle at 50% 40%,#FFF,color-mix(in srgb,var(--bc) 25%,#FFF))}
+.modal .mkinfo h3{margin:4px 0 0}
+.modal .mkinfo p{margin:0;font-size:18px}
+.mkinown{padding:4px 9px;border-radius:999px;background:var(--cream2);font-family:'Press Start 2P';font-size:7px;color:var(--mut)}
 </style>
 </head>
 <body>
@@ -3243,7 +3235,7 @@ function pageHero(o){
   var backBtn=back?'<button class="phback" data-action="tab" data-tab="'+back+'" aria-label="Back">'+(back==='summary'?pxIcon('home',22):'‹')+'</button>':'';
   var icon=o.ic?'<span class="phicon">'+pxIcon(o.ic,28)+'</span>':
     (o.icImg?'<span class="phicon"><img src="'+o.icImg+'" alt="" style="width:34px;height:34px;object-fit:contain;image-rendering:pixelated"></span>':'');
-  var tx='<div class="phtx"><h1>'+o.t+'</h1>'+(o.s?'<div class="phsub">'+o.s+'</div>':'')+'</div>';
+  var tx='<div class="phtx"><h1>'+o.t+'</h1></div>'; // v7.9: no subtitle line — Mateusz wants calmer headers
   var chips=o.chips&&o.chips.length?'<div class="phchips">'+o.chips.join('')+'</div>':'';
   /* v7.5: ONE header band for every page — the same fixed height whether the page is a
      plain banner, blurred official art (o.img) or sits above an interior/map (o.scene),
@@ -3420,11 +3412,11 @@ function heroHTML(){
       '<button class="btn" data-action="tab" data-tab="trophy" style="flex:1">TROPHY</button></div>':'')+
     '</div>';
 }
-/* v7.8 BAG: pocket tabs (only the pockets you have something in), a tile grid per
-   pocket, and a detail strip for the selected item — the FRLG bag, modernised. */
-var bagTab=null;
-var BAG_POCKETS=[['balls','BALLS','#E04838','BALLS'],['med','MEDICINE','#38A060','HEAL'],['boost','BOOSTS','#8A58C8','BOOST'],
-  ['held','HELD','#D08A18','HELD'],['berry','BERRIES','#D04878','BERRY'],['tools','TOOLS','#4888D0','TOOLS']];
+/* v7.9 BAG: everything at once — one tile grid in pocket order (balls, healing, boosts,
+   held, berries, tools; each icon on its pocket colour) and a detail strip for the
+   selected item. No tabs: Mateusz wants to see the whole bag in one look. */
+var BAG_POCKETS=[['balls','BALLS','#E04838'],['med','MEDICINE','#38A060'],['boost','BOOSTS','#8A58C8'],
+  ['held','HELD ITEMS','#D08A18'],['berry','BERRIES','#D04878'],['tools','TOOLS','#4888D0']];
 function bagPocketOf(k){
   var it=ITEMS[k];
   if(/ball$/.test(k))return 'balls';
@@ -3439,21 +3431,20 @@ function bagInfoHTML(k){
   return '<span class="bginic">'+itemImg(k,34)+'</span><span class="bgintx"><b>'+it.n+'<em>×'+(bagOf()[k]||0)+'</em></b><span>'+it.d+'</span></span>';
 }
 function showBagModal(){
-  var bag=bagOf(),n=0,tot=0,pk={},first={};
+  var bag=bagOf(),n=0,tot=0,pk={},first=null;
   var bagKeys=ITEMS_ORDER.slice();
   Object.keys(bag).forEach(function(k){if(ITEMS[k]&&bagKeys.indexOf(k)<0)bagKeys.push(k);});
   bagKeys.forEach(function(k){
     var c=bag[k]||0;if(!c||!ITEMS[k])return;n++;tot+=c;
-    var po=bagPocketOf(k);
-    if(!pk[po]){pk[po]='';first[po]=k;}
-    pk[po]+='<button class="bgt" data-action="bag-info" data-k="'+k+'"><span class="bgtic">'+itemImg(k,30)+'</span><b>×'+c+'</b><span class="bgtn">'+ITEMS[k].n+'</span></button>';
+    (pk[bagPocketOf(k)]=pk[bagPocketOf(k)]||[]).push([k,c]);
   });
-  var live=BAG_POCKETS.filter(function(q){return pk[q[0]];}),tabs='',grids='';
-  if(!live.some(function(q){return q[0]===bagTab;}))bagTab=live.length?live[0][0]:null;
-  live.forEach(function(q){
-    var on=q[0]===bagTab;
-    tabs+='<button class="bgtab'+(on?' on':'')+'" data-action="bag-tab" data-pk="'+q[0]+'" style="--bc:'+q[2]+'">'+itemImg(first[q[0]],20)+'<span>'+q[3]+'</span></button>';
-    grids+='<div class="bggrid" data-pk="'+q[0]+'" style="--bc:'+q[2]+'"'+(on?'':' hidden')+'>'+pk[q[0]]+'</div>';
+  var tiles='';
+  BAG_POCKETS.forEach(function(q){
+    (pk[q[0]]||[]).forEach(function(e){
+      if(!first)first=e[0];
+      tiles+='<button class="bgt'+(e[0]===first?' on':'')+'" data-action="bag-info" data-k="'+e[0]+'" style="--bc:'+q[2]+'">'+
+        '<span class="bgtic">'+itemImg(e[0],30)+'</span><b>×'+e[1]+'</b><span class="bgtn">'+ITEMS[e[0]].n+'</span></button>';
+    });
   });
   var held='';
   (state.game?state.game.mons:[]).forEach(function(m){
@@ -3461,15 +3452,13 @@ function showBagModal(){
     held+='<span class="bgheld"><img src="'+sprPath(m.sp,m.shiny)+'" alt=""><span><b>'+DEX[m.sp].n+'</b><i>'+itemImg(hk,14)+ITEMS[hk].n+'</i></span></span>';
   });
   var h='<div class="bghead"><span class="bgbag">'+pxIcon('bag',30)+'</span>'+
-    '<div class="bght"><h3>BAG</h3><span>'+(n?n+' kinds · '+tot+' items':'Nothing inside yet')+'</span></div>'+
+    '<div class="bght"><h3>BAG</h3><span>'+(n?tot+' items':'Nothing inside yet')+'</span></div>'+
     '<span class="bgmoney">₽'+money().toLocaleString()+'</span></div>';
-  if(n)h+='<div class="bgtabs">'+tabs+'</div>'+grids+'<div class="bginfo" id="bag-info">'+bagInfoHTML(first[bagTab])+'</div>';
+  if(n)h+='<div class="bggrid">'+tiles+'</div><div class="bginfo" id="bag-info">'+bagInfoHTML(first)+'</div>';
   else h+='<div class="bgempty">'+pxIcon('mart',34)+'<p>Empty! Stock up at the POKE MART on the map.</p></div>';
   if(held)h+='<div class="bgsec">HELD BY YOUR TEAM</div><div class="bghelds">'+held+'</div>';
   h+='<div class="mbtns"><button class="btn acc" data-action="close-modal">CLOSE</button></div>';
   showModal(h);
-  var ft=document.querySelector('#modalwrap .bggrid:not([hidden]) .bgt');
-  if(ft)ft.classList.add('on');
   modalOk=null;
 }
 function trophyHTML(){
@@ -3975,17 +3964,6 @@ function perksHTML(){
       '<div class="tcgrid'+(lock?' locked':'')+'">'+cs.map(function(p){return tcCardHTML(p);}).join('')+
       (lock?'<div class="tcban"><em>'+lockLv+'</em>DRAW AFTER LV.'+lockLv+'</div>':'')+'</div>';
   });
-  var od=perkOdds(lv);
-  function pc(v){return v>=0.1?Math.round(v*100)+'%':(Math.round(v*1000)/10)+'%';}
-  h+='<div class="panel"><h3>DRAW ODDS<span class="bestchip">PER CARD · LV '+lv+'</span></h3>'+
-    '<div class="oddsbar"><i style="flex:'+od.c+';background:'+PERK_RAR_C[0]+'"></i><i style="flex:'+od.r+';background:'+PERK_RAR_C[1]+'"></i>'+
-      '<i style="flex:'+od.e+';background:'+PERK_RAR_C[2]+'"></i><i style="flex:'+od.l+';background:'+PERK_RAR_C[3]+'"></i></div>'+
-    '<div class="oddsrow">'+
-      '<span style="color:'+PERK_RAR_C[0]+'">COMMON '+pc(od.c)+'</span><span style="color:'+PERK_RAR_C[1]+'">RARE '+pc(od.r)+'</span>'+
-      '<span style="color:'+PERK_RAR_C[2]+'">'+(lv<PERK_EPIC_LV?'EPIC · LV '+PERK_EPIC_LV:'EPIC '+pc(od.e))+'</span><span style="color:'+PERK_RAR_C[3]+'">'+(lv<PERK_LEG_LV?'LEGEND · LV '+PERK_LEG_LV:'LEGEND '+pc(od.l))+'</span></div>'+
-    '<div class="plv" style="white-space:normal;line-height:1.3;margin-top:6px">A draw deals THREE cards — keep one. Each rolls its own rarity; odds rise slowly as you level'+
-      (od.pity>0.001?', and your luck is building: <b style="color:'+PERK_RAR_C[2]+'">+'+Math.round(od.pity*100)+'% EPIC</b> until one shows up':'')+
-      '. Every TRAINER level banks a draw; each paid draw costs a little more (now ₽'+Math.min(4000,300+150*(pk.paid||0)).toLocaleString()+').</div></div>';
   return h;
 }
 function showCardInfo(k){
@@ -5716,7 +5694,7 @@ function showStarterModal(){
   starterList().forEach(function(sp,i){
     balls+='<button class="stball" data-action="st-ball" data-sp="'+sp+'" style="animation-delay:'+(i*0.22)+'s" aria-label="'+DEX[sp].n+'">'+
       '<img src="'+itemIcon('pokeball')+'" alt=""></button>';
-    var pre=new Image();pre.src='sprites/home/'+DEX[sp].id+'.png'; // warm the art before the reveal
+    var pre=new Image();pre.src=sprPath(sp,false); // warm the sprite before the reveal
   });
   var el=document.createElement('div');
   el.id='starterfx';
@@ -5751,9 +5729,8 @@ function starterPeek(sp){
     ball.classList.add('opened');
     sfx('ballopen');
     fl.classList.remove('go');void fl.offsetWidth;fl.classList.add('go');
-    art.onerror=function(){art.onerror=null;art.src=sprPath(sp,false);art.style.imageRendering='pixelated';};
-    art.style.imageRendering='';
-    art.src='sprites/home/'+DEX[sp].id+'.png';
+    art.style.imageRendering='pixelated';
+    art.src=sprPath(sp,false);
     art.style.opacity='';
     void art.offsetWidth;art.classList.add('pop');
     gl.classList.add('on');
@@ -6270,7 +6247,7 @@ function dexHTML(){
   h+='</div><div class="about">CAUGHT '+c+' / '+DEX_ORDER.length+' — tap a caught POKEMON for its official artwork</div>';
   return h;
 }
-/* the DEX gallery: official artwork (v7.8: the Pokémon HOME renders), lazy-loaded and cached on first view */
+/* the DEX gallery: the FireRed sprite big (v7.9), plus the field-research checklist */
 function showDexArt(sp){
   var d=state.game&&state.game.dex[sp];
   if(!d||!d.c||!DEX[sp])return;
@@ -6290,8 +6267,7 @@ function showDexArt(sp){
   else if(r.rw)rbtn='<div class="plv" style="text-align:center;margin-top:6px;color:#2E8B48">RESEARCHED ✓ — reward claimed</div>';
   else rbtn='<div class="plv" style="text-align:center;margin-top:6px">Finish any 4 of 5 to complete the research.</div>';
   showModal('<div style="text-align:center;padding:2px 0 6px">'+
-    '<img src="sprites/home/'+dd.id+'.png" alt="'+dd.n+'" style="width:208px;height:208px;object-fit:contain" '+
-    'onerror="this.onerror=null;this.src=\''+sprPath(sp,!!d.s)+'\';this.style.imageRendering=\'pixelated\'">'+
+    '<img src="'+sprPath(sp,!!d.s)+'" alt="'+dd.n+'" style="width:192px;height:192px;object-fit:contain;image-rendering:pixelated">'+
     '</div>'+
     '<h3 style="text-align:center">No.'+('00'+dd.id).slice(-3)+' '+dd.n+(d.s?' <span class="shinystar">★</span>':'')+'</h3>'+
     '<p style="text-align:center;margin:4px 0 8px">'+chips+'</p>'+
@@ -8302,9 +8278,10 @@ function martHTML(){
       '<img class="npc" src="sprites/npc/chef.png" alt="" style="left:17%;top:40%;width:9%">'+
       '<img class="npc" src="sprites/npc/youngster.png" alt="" style="left:58%;top:72%;width:9%">',
     chips:[moneyChip(),phBtn('BAG',pxIcon('bag',14),'show-bag')]});
-  /* v7.8: a real shop — category chips, product cards in a 2-up grid (big icon on a
-     pocket-coloured shelf, what it does, one price button), and the next deliveries
-     as locked tiles ordered by how many badges away they are */
+  /* v7.9 shop, after mobile-game store practice: ONE scroll with no tabs or filters,
+     items grouped under small category headers, equal compact tiles (icon, name, what
+     you own) with the price on a gold buy button; the blurb opens on tapping the item.
+     What's coming later is a tight strip of locked icons. */
   var cats={},later=[];
   ITEMS_ORDER.forEach(function(k){
     var it=ITEMS[k];
@@ -8313,46 +8290,44 @@ function martHTML(){
     var c=bagPocketOf(k);
     (cats[c]=cats[c]||[]).push(k);
   });
-  var live=BAG_POCKETS.filter(function(q){return cats[q[0]];});
-  /* one shelf at a time keeps the page short; ALL is there for a full browse */
-  if(martCat!=='all'&&!cats[martCat])martCat=live.length?live[0][0]:'all';
-  var nStock=0,chipsH='';live.forEach(function(q){nStock+=cats[q[0]].length;});
-  live.forEach(function(q){
-    chipsH+='<button class="mkchip'+(martCat===q[0]?' on':'')+'" data-action="mart-cat" data-c="'+q[0]+'" style="--bc:'+q[2]+'">'+itemImg(cats[q[0]][0],16)+q[1]+'<i>'+cats[q[0]].length+'</i></button>';
-  });
-  chipsH+='<button class="mkchip'+(martCat==='all'?' on':'')+'" data-action="mart-cat" data-c="all">ALL<i>'+nStock+'</i></button>';
   var secs='';
-  live.forEach(function(q){
-    if(martCat!=='all'&&martCat!==q[0])return;
-    var cards='';
-    cats[q[0]].forEach(function(k){
+  BAG_POCKETS.forEach(function(q){
+    var ks=cats[q[0]];if(!ks)return;
+    var tl='';
+    ks.forEach(function(k){
       var it=ITEMS[k],have=bag[k]||0,afford=money()>=it.p,owned=it.rod&&have>0;
-      cards+='<div class="mkc'+(owned?' own':'')+'" style="--bc:'+q[2]+'">'+
-        '<div class="mkshelf">'+itemImg(k,40)+(have&&!it.rod?'<span class="mkhave">×'+have+'</span>':'')+'</div>'+
-        '<b class="mkn">'+it.n+'</b><span class="mkd">'+it.d+'</span>'+
+      tl+='<div class="mkt'+(owned?' own':'')+'">'+
+        '<button class="mkti" data-action="mart-info" data-it="'+k+'" aria-label="'+it.n+'">'+
+          '<span class="mktic">'+itemImg(k,26)+'</span>'+(have&&!it.rod?'<i class="mkth">×'+have+'</i>':'')+
+          '<b>'+it.n+'</b></button>'+
         (owned?'<span class="mkbuy owned">OWNED</span>'
           :'<button class="mkbuy'+(afford?'':' poor')+'" data-action="buy-item" data-it="'+k+'"'+(afford?'':' disabled')+'>₽'+it.p.toLocaleString()+'</button>')+
       '</div>';
     });
-    secs+='<div class="mksec">'+(martCat==='all'?'<div class="mksh" style="--bc:'+q[2]+'">'+q[1]+'<span>'+cats[q[0]].length+'</span></div>':'')+'<div class="mkgrid">'+cards+'</div></div>';
+    secs+='<div class="mksh" style="--bc:'+q[2]+'">'+q[1]+'</div><div class="mkgrid" style="--bc:'+q[2]+'">'+tl+'</div>';
   });
-  h+='<div class="panel mkpanel"><h3>ON THE SHELVES<span class="bestchip">'+nStock+' ITEMS</span></h3>'+
-    '<div class="mkchips">'+chipsH+'</div>'+secs+'</div>';
+  h+='<div class="panel mkpanel">'+secs+'</div>';
   if(later.length){
     later.sort(function(x,y){return (ITEMS[x].t-ITEMS[y].t)||ITEMS_ORDER.indexOf(x)-ITEMS_ORDER.indexOf(y);});
     var lt='';
     later.forEach(function(k){
-      var it=ITEMS[k],away=it.t-ti;
-      lt+='<div class="mklock"><span class="mklockic">'+itemImg(k,28)+'<i>'+pxIcon('lock',12)+'</i></span><b>'+it.n+'</b>'+
-        '<em class="a'+Math.min(away,3)+'">'+away+' BADGE'+(away===1?'':'S')+'</em></div>';
+      var away=ITEMS[k].t-ti;
+      lt+='<span class="mklock" title="'+ITEMS[k].n+'"><span class="mklockic">'+itemImg(k,24)+'<i>'+pxIcon('lock',10)+'</i></span>'+
+        '<em class="a'+Math.min(away,3)+'">'+away+' BADGE'+(away===1?'':'S')+'</em></span>';
     });
-    h+='<div class="panel"><h3>NEXT DELIVERIES<span class="bestchip">'+later.length+'</span></h3>'+
-      '<div class="plv" style="margin:-4px 0 10px;white-space:normal;line-height:1.2">Every badge you win stocks the shelves with more.</div>'+
-      '<div class="mklocks">'+lt+'</div></div>';
+    h+='<div class="panel"><h3>NEXT DELIVERIES<span class="bestchip">'+later.length+'</span></h3><div class="mklocks">'+lt+'</div></div>';
   }
   return h;
 }
-var martCat='balls';
+function showMartInfo(k){
+  var it=ITEMS[k];if(!it||!state.game)return;
+  var have=bagOf()[k]||0,afford=money()>=it.p,owned=it.rod&&have>0;
+  showModal('<div class="mkinfo"><span class="mkinic" style="--bc:'+(BAG_POCKETS.filter(function(q){return q[0]===bagPocketOf(k);})[0]||[0,0,'#3878C8'])[2]+'">'+itemImg(k,40)+'</span>'+
+      '<h3>'+it.n+'</h3><p>'+it.d+'</p><span class="mkinown">IN BAG ×'+have+'</span></div>'+
+    '<div class="mbtns"><button class="btn" data-action="close-modal">CLOSE</button>'+
+      (owned?'':'<button class="btn acc" data-action="buy-item" data-it="'+k+'"'+(afford?'':' disabled')+'>BUY · ₽'+it.p.toLocaleString()+'</button>')+'</div>');
+  modalOk=null;
+}
 /* the gym halls: official FRLG interiors, one per boss — the leader waits on their platform */
 var GYMS=[
   {img:'map/gym/pewter.png',lx:50,ly:22},
@@ -12721,8 +12696,7 @@ function centerHTML(){
       '<img class="npc" src="sprites/npc/nurse.png" alt="" style="left:50%;top:31%;width:9%">'+
       '<img class="npc" src="sprites/npc/oldman.png" alt="" style="left:15%;top:70%;width:9%">'+
       '<img class="npc" src="sprites/npc/lass.png" alt="" style="left:79%;top:76%;width:9%">',
-    chips:[cHurt?phChip(cHurt+' NEED CARE','',true):phChip('TEAM FIGHTING FIT'),moneyChip()]})+
-    '<div class="panel"><h3>NURSE</h3><div class="plv" style="line-height:1.35">Welcome! Leave a POKEMON with me and it will be fighting fit in <b>'+restHrsTxt()+'</b> — free, as always. In a hurry? For <b>₽'+centerFee().toLocaleString()+'</b> flat I’ll have your <b>whole team</b> dancing on the spot.</div></div>';
+    chips:[cHurt?phChip(cHurt+' NEED CARE','',true):phChip('TEAM FIGHTING FIT'),moneyChip()]});
   if(state.session){
     h+='<div class="panel"><div class="plv" style="color:#D03028">The nurse can’t treat a team mid-battle — finish your workout first!</div></div>';
   }
@@ -12764,11 +12738,10 @@ function centerHTML(){
   return h;
 }
 
-/* v7.5: OFFICIAL ARTWORK for any species — shiny ones get the official shiny
-   illustration (sprites/home/shiny/, same 300px as the normal art); the pixel sprite
-   is only the fallback if a file is missing */
-function artSrc(sp,shiny){return 'sprites/home/'+(shiny?'shiny/':'')+DEX[sp].id+'.png';}
-function artFallback(sp,shiny){return ' onerror="this.onerror=null;this.src=\''+sprPath(sp,!!shiny)+'\';this.style.imageRendering=\'pixelated\'"';}
+/* v7.9: every big Pokémon picture is the FIRERED sprite itself (Mateusz's pick over
+   Sugimori art and HOME renders) — scaled up crisp; img[src^="sprites/"] is pixelated */
+function artSrc(sp,shiny){return sprPath(sp,shiny);}
+function artFallback(){return '';}
 /* ===== game: hero ===== */
 var pendingGender=null,pendingName=null,titlePlayed=false;
 function playerName(){return (state.game&&state.game.player&&state.game.player.name)?state.game.player.name:'TRAINER';}
@@ -13111,19 +13084,6 @@ function wardrobeHTML(){
         '</div>';
     }
   }
-  /* — one-tap OUTFITS, previewed on your current trainer — */
-  if(!cos){
-    var pr='';
-    WARD_PRESETS.forEach(function(p,i){
-      var c=p[1],lockN=null;
-      WARD_SLOTS.forEach(function(x){if(!lockN&&c[x[0]]&&!wardColorOk(c[x[0]]))lockN=WARD_SW[c[x[0]]];});
-      var on=WARD_SLOTS.every(function(x){return (c[x[0]]||'')===(WARD_SW[lk[x[0]]]?lk[x[0]]:'');});
-      pr+='<button class="wdcard pre'+(on?' on':'')+(lockN?' lock':'')+'" data-action="ward-preset" data-i="'+i+'">'+
-        '<img src="'+lookUrl({b:b,cap:c.cap,top:c.top,pants:c.pants,shoes:c.shoes})+'" alt="">'+
-        '<span>'+p[0]+'</span>'+(lockN?'<em>'+pxIcon('lock',10)+lockN.n+'</em>':'')+'</button>';
-    });
-    h+='<div class="panel wdpanel"><h3>OUTFITS</h3><div class="wdgrid four">'+pr+'</div></div>';
-  }
   return h;
 }
 function wardApply(fn,fx){ /* state first, then the stage pops */
@@ -13376,7 +13336,7 @@ function settingsHTML(){
   function group(t,rows){return '<div class="sgroup"><div class="sgh">'+t+'</div><div class="sgbox">'+rows+'</div></div>';}
   var bw=bwList();
   return pageHero({t:'OPTION',s:'Everything stays on this device',ic:'option',c:'#4A5A70',
-      chips:[phChip('v7.8 “Explorer”'),phChip(kb+' KB SAVED')]})+
+      chips:[phChip('v7.9 “Pixel”'),phChip(kb+' KB SAVED')]})+
     group('LOOK & SOUND',
       row('daynight','Style','FireRed day or night look',seg('theme','th',[['night','NIGHT',state.theme!=='day'],['day','DAY',state.theme==='day']]))+
       (state.game?row('home','Home screen','TRAINER tab: new lobby or the classic page',seg('home-style','s',[['new','NEW',!homeStyleClassic()],['classic','CLASSIC',homeStyleClassic()]])):'')+
@@ -13395,7 +13355,7 @@ function settingsHTML(){
       row('save','Backup','Export your data as a file','<div style="display:flex;gap:6px"><button class="btn" data-action="copy">COPY</button><button class="btn acc" data-action="export">EXPORT</button></div>')+
       row('save','Restore','Import a backup file','<button class="btn" data-action="import">IMPORT</button>')+
       row('warn','Reset everything','Deletes all history','<button class="btn danger" data-action="reset">RESET</button>','danger'))+
-    '<div class="about">Gym Tracker v7.8 “Explorer” · '+kb+' KB stored locally<br>'+
+    '<div class="about">Gym Tracker v7.9 “Pixel” · '+kb+' KB stored locally<br>'+
     'Your data never leaves your phone. Export a backup once in a while —<br>if you delete the app icon, its data goes with it.</div>';
 }
 
@@ -14551,18 +14511,6 @@ document.addEventListener('click',function(e){
     [].slice.call(document.querySelectorAll('.bgt')).forEach(function(t){t.classList.toggle('on',t===b);});
     sfx('click');
   }
-  else if(a==='bag-tab'){
-    bagTab=b.dataset.pk;
-    [].slice.call(document.querySelectorAll('#modalwrap .bgtab')).forEach(function(t){t.classList.toggle('on',t===b);});
-    [].slice.call(document.querySelectorAll('#modalwrap .bggrid')).forEach(function(g){g.hidden=g.dataset.pk!==bagTab;});
-    var btf=document.querySelector('#modalwrap .bggrid:not([hidden]) .bgt');
-    if(btf){
-      [].slice.call(document.querySelectorAll('#modalwrap .bgt')).forEach(function(t){t.classList.toggle('on',t===btf);});
-      var bti=document.getElementById('bag-info');
-      if(bti){bti.innerHTML=bagInfoHTML(btf.dataset.k);bti.classList.remove('pop');void bti.offsetWidth;bti.classList.add('pop');}
-    }
-    sfx('click');
-  }
   else if(a==='lessons-open'){
     showModal(lessonsHTML().replace('class="panel lessons"','class="lessons"')+'<div class="mbtns"><button class="btn acc" data-action="close-modal">OK</button></div>');
   }
@@ -14855,7 +14803,7 @@ document.addEventListener('click',function(e){
       sfx('levelup');save();closeModal();updateBattlePanel();
     }
   }
-  else if(a==='mart-cat'){martCat=b.dataset.c||'all';sfx('click');render(true);}
+  else if(a==='mart-info'){sfx('click');showMartInfo(b.dataset.it);}
   else if(a==='buy-item'){
     var bik=b.dataset.it,bit=ITEMS[bik];
     if(bit&&bit.rod&&(bagOf()[bik]||0)>0){toast('You already own one!');return;}
@@ -14864,7 +14812,8 @@ document.addEventListener('click',function(e){
       state.game.money-=bit.p;
       bagOf()[bik]=(bagOf()[bik]||0)+1;
       sfx('save');save();
-      var biSrc=b;
+      var biR=b.getBoundingClientRect(),biSrc={getBoundingClientRect:function(){return biR;}}; // the button is redrawn below
+      if(b.closest&&b.closest('#modalwrap'))closeModal(); // bought from the item card
       render(true);
       /* v7.3: the item hops off the shelf into your BAG, the purse counts down */
       rewardFx(biSrc,{from:biM0,to:money(),label:'BOUGHT '+bit.n,items:[[bik,1]],
