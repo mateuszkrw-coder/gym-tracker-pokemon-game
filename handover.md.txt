@@ -1,4 +1,4 @@
-Gym Tracker — Handover Document (current as of app v7.8 / sw v68 / schema v20, 2026-10-25)
+Gym Tracker — Handover Document (current as of app v7.9 / sw v69 / schema v20, 2026-10-26)
 
 ============================================================
 1. WHAT THIS IS
@@ -22,7 +22,7 @@ installed home-screen app isolated storage — a separate app couldn't read the 
 Live URL:  https://mateuszkrw-coder.github.io/gym-tracker-pokemon-game/
 Repo:      https://github.com/mateuszkrw-coder/gym-tracker-pokemon-game  (GitHub Pages from main branch root;
            renamed from gym-tracker, whose old Pages URL now 404s)
-Current:   app v7.8 “Explorer”, service-worker cache v68, data schema v20.
+Current:   app v7.9 “Pixel”, service-worker cache v69, data schema v20.
 
 ============================================================
 2. THE TWO-LAPTOP WORKFLOW (read this FIRST on any machine)
@@ -84,7 +84,7 @@ the only syntax check anywhere.
 • Single HTML file: index.html (~8300 lines) — all HTML + CSS (one <style>) + JS (one <script>).
 • localStorage for all persistence (key `gymtracker.v1`). No backend, no accounts, by design.
 • Service worker (sw.js) for offline PWA behavior — precaches the app shell + sprites/maps.
-  sprites/art/ (Sugimori artwork) and sounds/ are NOT precached — runtime-cached on first use.
+  sounds/ is NOT precached — runtime-cached on first use. (sprites/art/ was removed in v7.9.)
 • Web Audio API — GBA-style synth SFX in code AND official audio files:
     - sounds/cries/{key}.mp3   : 122 Pokémon cries (Kanto only; Hoenn needs none, locked)
     - sounds/moves/{slug}.mp3  : 139 authentic FRLG attack-move SFX
@@ -477,6 +477,34 @@ Johto/Gen-2 content pack (a 3rd campaign — the region model supports it cleanl
 ============================================================
 13. IMMEDIATE STATE
 ============================================================
+v7.9 “Pixel” (2026-10-26) — Mateusz: no 3D Pokémon — use the FireRed design; make the game calmer
+(less on screen): the bag shows everything at once, no draw odds on the cards page, no
+subtitle line on any header, no OUTFITS in the wardrobe (costumes etc. stay), no NURSE text
+at the Center, and a shop that shows every product with no filters and smaller tiles
+(researched mobile-game shop practice first).
+• ART: every big Pokémon picture is the FireRed sprite (artSrc → sprPath; artFallback is a
+  no-op; starter reveal + dex gallery use sprPath too). CSS img[src^="sprites/"] keeps them
+  pixelated at any size. sprites/art/ (HOME renders, earlier Sugimori art) is deleted —
+  sprites/ is 6.8 MB and fully precached, so the big art now works offline.
+• HEADERS: pageHero renders the title only (o.s is ignored, the band keeps its fixed height).
+• CARDS PAGE: the DRAW ODDS panel is gone (perkOdds still drives the draws).
+• CENTER: the NURSE speech panel is gone (REST 10H / INSTANT HEAL ₽ buttons say it all).
+• WARDROBE: the OUTFITS presets panel is gone (WARD_PRESETS + ward-preset handler remain,
+  unused); TRAINERS, COSTUMES, colours, RANDOM and RESET stay.
+• BAG: one tile grid in pocket order (BAG_POCKETS: balls, medicine, boosts, held, berries,
+  tools — the icon disc wears the pocket colour), detail strip, HELD BY YOUR TEAM chips.
+  No tabs (bagTab / bag-tab removed).
+• SHOP (martHTML): research notes — one scroll, no tabs/filters (less decision fatigue),
+  grouped by small category headers, equal compact tiles, price always visible on a gold
+  buy button, little text with the blurb on tap, money in the header. So: 4-up tiles
+  (icon disc, name, ×owned badge, gold ₽ button), category headers in BAG_POCKETS colours,
+  tap the item → showMartInfo (icon, blurb, IN BAG ×n, BUY), NEXT DELIVERIES as 5-up locked
+  icons with the badges-away pill. martCat / mart-cat removed. buy-item now captures the
+  button rect before render (the coins used to fly from the corner) and closes the item
+  card when bought from it.
+• Tested: every page day + night, buying from tile and item card, bag, area cards + dex
+  card, evolution + catch scenes, the full regression — zero console errors. sw v69.
+
 v7.8 “Explorer” (2026-10-25) — Mateusz: pop-ups that follow a boss win should wait until the
 workout ends (only the boss win itself shows live); swap the Pokémon illustrations for another
 official style; and modernise the places (Museum Dig Site and its page, every other place),

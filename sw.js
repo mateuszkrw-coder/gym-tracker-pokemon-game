@@ -1,6 +1,6 @@
 /* Gym Tracker service worker.
    Bump CACHE when you change any file, so installed phones pick up the update. */
-const CACHE = 'gym-tracker-v68';
+const CACHE = 'gym-tracker-v69';
 const TOWN_MAPS = ['viridian','pewter','cerulean','vermilion','celadon','fuchsia','saffron','cinnabar','indigo'];
 const HOENN_TOWN_MAPS = ['littleroot','rustboro','dewford','mauville','lavaridge','petalburg','fortree','mossdeep','sootopolis','evergrande'];
 const ARENAS = ['gym','grass','water','cave','pond','ice','sand','poison','teal','psychic'];
@@ -73,7 +73,7 @@ const ASSETS = [
   .concat(ROAD_MAPS.map((r) => './map/road/' + r + '.png'))
   .concat(POI_MAPS.map((p) => './map/poi/' + p + '.png'))
   .concat(['./map/center.png', './map/mart.png', './map/kanto.png', './map/hoenn.png']);
-/* Official artwork (sprites/art/*.png + sprites/art/shiny/, v7.8: Pokémon HOME renders) is NOT precached — the fetch handler caches each on first view. */
+/* v7.9: there is no separate artwork any more — every big Pokémon picture is its FireRed sprite. */
 
 self.addEventListener('install', (e) => {
   // Add each asset individually so one missing file can't abort the whole install.
