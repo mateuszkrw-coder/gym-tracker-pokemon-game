@@ -17,6 +17,9 @@
 <style>
 @font-face{font-family:'Press Start 2P';src:url('fonts/press-start-2p.woff2') format('woff2');font-display:swap}
 @font-face{font-family:'VT323';src:url('fonts/vt323.woff2') format('woff2');font-display:swap}
+/* v8.0: FireRed's own fonts, rebuilt from the game's glyph sheets (normal + small) */
+@font-face{font-family:'FRLG';src:url('fonts/frlg.woff2') format('woff2');font-display:block}
+@font-face{font-family:'FRLGS';src:url('fonts/frlgs.woff2') format('woff2');font-display:block}
 :root{
   /* Official FRLG window skin: white menu boxes, FireRed red-orange frames */
   --cream:#FFFFFF;
@@ -2389,6 +2392,170 @@ html.theme-night .mktic{background:radial-gradient(circle at 50% 40%,#3A4656,col
 .modal .mkinfo h3{margin:4px 0 0}
 .modal .mkinfo p{margin:0;font-size:18px}
 .mkinown{padding:4px 9px;border-radius:999px;background:var(--cream2);font-family:'Press Start 2P';font-size:7px;color:var(--mut)}
+/* ---------- v8.0 FIRERED UI KIT ---------- */
+.frt{font-family:'FRLG';color:#626262;text-shadow:1px 0 #D5D5CD,0 1px #D5D5CD,1px 1px #D5D5CD;-webkit-font-smoothing:none;font-smooth:never}
+.frwin{border-style:solid;border-color:transparent;border-width:8px;border-image:url(ui/fr/win.png) 8 fill / 8px round;image-rendering:pixelated;background-clip:padding-box}
+.frmsg{border-style:solid;border-color:transparent;border-width:16px;border-image:url(ui/fr/msg.png) 16 fill / 16px round;image-rendering:pixelated}
+.gbawrap{margin:12px 12px 0;line-height:0}
+.gba{position:relative;width:240px;height:160px;overflow:hidden;font-family:'FRLG';font-size:16px;line-height:16px;-webkit-font-smoothing:none;
+  image-rendering:pixelated;border-radius:3px;box-shadow:0 1px 0 rgba(0,0,0,.25);-webkit-user-select:none;user-select:none}
+.gba img{position:absolute;display:block;image-rendering:pixelated;pointer-events:none}
+.gba button{position:absolute;padding:0;margin:0;border:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent;font:inherit;line-height:16px}
+.gba button.frwin{border-style:solid;border-color:transparent;border-width:8px;border-image:url(ui/fr/win.png) 8 fill / 8px round}
+.gba button.frmsg{border-style:solid;border-color:transparent;border-width:16px;border-image:url(ui/fr/msg.png) 16 fill / 16px round}
+.pmbg{left:0;top:0}
+.pms{width:144px;height:24px}
+.pms.main{width:80px;height:56px}
+.pmsbg{left:0;top:0}
+.pmball{width:32px;height:32px;object-fit:none;object-position:0 0}
+.pmball.sm{width:16px;height:16px}
+.pms.sel .pmball{object-position:0 -32px}
+.pms.sel .pmball.sm{object-position:0 -16px}
+.pmicon{width:32px;height:32px}
+.pms.sel .pmicon{animation:pmhop .32s steps(1) infinite}
+@keyframes pmhop{50%{transform:translateY(-3px)}}
+.pmt{position:absolute;white-space:nowrap;color:#FFF;text-shadow:1px 0 #636363,0 1px #636363,1px 1px #636363;font-family:'FRLGS';text-align:left}
+.pmt.s{font-family:'FRLGS'}
+.pmt.r{text-align:right}
+.pmbar{position:absolute;width:48px;height:3px;overflow:hidden;line-height:0}
+.pmbar i{display:block;height:3px}
+.pmbar i.g{background:linear-gradient(#70F8A8 0 1px,#58D080 1px)}
+.pmbar i.y{background:linear-gradient(#F8E038 0 1px,#C8A808 1px)}
+.pmbar i.r{background:linear-gradient(#F85838 0 1px,#A84048 1px)}
+.pmmsg{position:absolute;left:4px;top:126px;width:176px;height:32px;line-height:16px;font-size:16px}
+.pmmsg .frt{display:block;white-space:nowrap;overflow:hidden}
+.pmbtn{width:56px;height:16px}
+.pmbtn img{left:0;top:0}
+.pmbtn span{position:absolute;left:0;right:0;top:0;text-align:center;color:#FFF;font-family:'FRLGS';text-shadow:1px 0 #636363,0 1px #636363,1px 1px #636363}
+.pmbtn:active img{filter:brightness(1.25)}
+.pcwrap{margin-top:10px}
+.gba.pc{width:160px;height:144px}
+.pcbg{left:0;top:0}
+.pcname{position:absolute;left:0;right:0;top:6px;text-align:center;font-size:16px}
+.pcarr{width:16px;height:16px;top:6px}
+.pcarr img{left:0;top:0}
+.pcarr.l{left:8px}.pcarr.l img{transform:scaleX(-1)}
+.pcarr.r{right:8px}
+.pcmon{width:24px;height:21px}
+.pcmon img{left:-4px;top:-8px;width:32px;height:32px}
+.pcmon.sel img:first-child{animation:pmhop .32s steps(1) infinite}
+.pcmon img.pchand{width:16px;height:16px;left:4px;top:-14px;transform:rotate(90deg);animation:pcpt .6s steps(2) infinite}
+@keyframes pcpt{50%{top:-12px}}
+.pcempty{position:absolute;left:0;right:0;top:80px;text-align:center}
+.pcbar{display:flex;justify-content:center;margin:8px 0 0;line-height:normal}
+.frbtn{font-family:'FRLG';font-size:20px;line-height:1;color:#626262;text-shadow:1px 0 #D5D5CD,0 1px #D5D5CD,1px 1px #D5D5CD;cursor:pointer;
+  padding:4px 14px;border-style:solid;border-color:transparent;border-width:8px;border-image:url(ui/fr/win.png) 8 fill / 8px round;image-rendering:pixelated;background:none}
+.frbtn:active{filter:brightness(.92)}
+/* ---------- v8.0 TRAINER page, FireRed edition ---------- */
+.frhome{margin:0;padding-top:env(safe-area-inset-top)}
+.frhome .gba{border-radius:0;box-shadow:none;background:#F8F8F8}
+html.theme-night .frhome .gba{background:#283038}
+.frow{position:absolute;left:0;top:0;width:240px;height:160px;overflow:hidden;background:#101820}
+.frmap{position:absolute;left:120px;top:84px;max-width:none}
+.frme{position:absolute;left:112px;top:58px;width:16px;height:32px;background-position:0 0;background-repeat:no-repeat;image-rendering:pixelated}
+.frintro .frme{animation:frwalk .5s steps(1) 2}
+@keyframes frwalk{0%{background-position:-48px 0}50%{background-position:-64px 0}100%{background-position:0 0}}
+.frsign{position:absolute;left:2px;top:2px;padding:0 4px;height:32px;line-height:16px;white-space:nowrap}
+.frintro .frsign{animation:frsignin .45s ease-out}
+@keyframes frsignin{from{transform:translateY(-40px)}to{transform:none}}
+.frstart{position:absolute;right:2px;top:2px;width:78px;padding:0}
+.frmi{position:relative !important;display:block;width:100%;height:15px;text-align:left;padding-left:9px !important;line-height:16px !important}
+.frmi .frt{position:relative;top:-1px}
+.frmi:first-child::before,.frmi:active::before{content:'';position:absolute;left:1px;top:4px;border-style:solid;border-width:4px 0 4px 5px;border-color:transparent transparent transparent #626262}
+.frstart:active .frmi:first-child:not(:active)::before{display:none}
+.frdot{position:absolute;right:3px;top:5px;width:5px;height:5px;background:#E83828;box-shadow:0 0 0 1px #F8F8F8;animation:lbdotk 1.2s ease-in-out infinite}
+.frdlg{position:absolute;left:0;top:160px;width:240px;height:48px;border-width:8px 16px !important;border-image-width:16px !important;text-align:left;line-height:16px !important}
+.frdlg .frt{display:block;font-size:16px;line-height:16px}
+.frmore{position:absolute;right:-6px;bottom:-2px;width:16px;height:16px;object-fit:none;object-position:0 0;animation:frmore .6s steps(1) infinite}
+@keyframes frmore{25%{object-position:-16px 0}50%{object-position:-32px 0}75%{object-position:-48px 0}}
+.frbat{left:0;top:208px;width:240px;height:72px;overflow:hidden;background:#F8F8F8}
+.frbatbg{left:0;top:-40px;width:240px;height:112px}
+.frback{left:40px;top:8px;width:64px;height:64px}
+.frhb{position:absolute;left:126px;top:30px;width:110px;height:38px;background:#FFFFDE;border:2px solid #395241;border-radius:7px 3px 3px 3px;
+  box-shadow:inset 0 0 0 1px #DED5B4;text-align:left}
+.frhbn,.frhbl,.frhbnum{position:absolute;font-family:'FRLG';color:#414141;text-shadow:1px 0 #DED5B4,0 1px #DED5B4,1px 1px #DED5B4;line-height:16px;white-space:nowrap}
+.frhbn{left:6px;top:-2px}
+.frhbl{right:5px;top:-2px;font-family:'FRLGS'}
+.frhbhp{position:absolute;left:36px;top:15px;width:68px;height:7px}
+.frhbhp img{left:0;top:0}
+.frhbhp .pmbar{left:15px;top:2px;width:48px;height:3px;background:none}
+.frhbnum{right:5px;top:18px;font-family:'FRLGS'}
+.frhbexp{position:absolute;left:-2px;right:-2px;bottom:-2px;height:6px;background:#526A62;display:flex;align-items:center;padding:0 3px;border-radius:0 0 3px 3px}
+.frhbexp b{font-family:'FRLGS';font-weight:400;font-size:16px;line-height:6px;color:#FFE600;height:6px;overflow:hidden;position:relative;top:-5px;margin-right:2px}
+.frhbexp span{flex:1;height:2px;background:#DED5B4;position:relative}
+.frhbexp i{position:absolute;left:0;top:0;bottom:0;background:#40C8F8}
+.frgo{left:8px;top:284px;width:224px;height:40px;text-align:left;padding:0 0 0 22px !important}
+.frgo img{left:2px;top:4px}
+.frgo .frt.big{position:absolute;left:24px;top:0;font-size:16px}
+.frgo .frt.sm{position:absolute;left:24px;top:12px;font-family:'FRLGS'}
+.frgo::after{content:'';position:absolute;right:6px;top:8px;border-style:solid;border-width:4px 0 4px 5px;border-color:transparent transparent transparent #E83828;animation:frnudge .8s steps(2) infinite}
+@keyframes frnudge{50%{transform:translateX(2px)}}
+.frgo.live{width:180px}
+.frend{left:190px;top:284px;width:42px;height:40px}
+.frend .frt{color:#E83828}
+.frcard{left:8px;top:328px;width:224px;height:98px;text-align:left}
+.frcme{position:absolute;right:-2px;top:-4px;width:56px;height:62px;overflow:hidden}
+.frcme img{left:-12px;top:-8px;width:80px;height:80px}
+.frcn{position:absolute;left:0;top:0}
+.frclv{position:absolute;left:0;top:14px;font-family:'FRLGS'}
+.frcxp{position:absolute;left:66px;top:20px;width:80px;height:4px;background:#D5D5CD;border:1px solid #626262}
+.frcxp i{position:absolute;left:0;top:0;bottom:0;background:#40C8F8}
+.frcmo{position:absolute;left:0;top:27px;font-family:'FRLGS'}
+.frcwk{position:absolute;left:0;top:66px;font-family:'FRLGS'}
+.frbadges{position:absolute;left:0;top:44px;display:flex;gap:4px}
+.frbadge{position:relative;width:16px;height:16px;border-radius:50%;background:#D5D5CD}
+.frbadge img{left:0;top:0;width:16px;height:16px;filter:brightness(0);opacity:.18}
+.frbadge.got img{filter:none;opacity:1}
+.frt.sm{font-family:'FRLGS'}
+html.theme-night .frbat{background:#283038}
+/* ---------- v8.0 POKéDEX look: area list + entry ---------- */
+.dxwrap{margin:12px}
+.gba.dx{background:#F6F6EE;outline:2px solid #7B6239;outline-offset:-2px;border-radius:4px}
+.dxhead{position:absolute;left:0;top:0;width:240px;height:16px;background:#CD4139;display:flex;justify-content:space-between;align-items:center;padding:0 6px;box-sizing:border-box}
+.dxhead span{font-family:'FRLG';color:#FFF;text-shadow:1px 0 #7B2A20,0 1px #7B2A20,1px 1px #7B2A20;line-height:16px}
+.dxhead .dxlv{font-family:'FRLGS'}
+.dxsub{position:absolute;left:0;top:16px;width:240px;height:16px;background:#E6DEC5;border-bottom:1px solid #A49462;display:flex;gap:12px;align-items:center;padding:0 6px;box-sizing:border-box;
+  font-family:'FRLGS';color:#7B6239;text-shadow:1px 1px #F6F6EE;line-height:16px}
+.dxsub b{font-weight:400;color:#414141}
+.dxkey{margin-left:auto;display:flex;align-items:center;gap:2px}
+.dxball{display:inline-block;width:12px;height:12px;background:url(ui/fr/menu-info.png) 0 0;image-rendering:pixelated;flex:none}
+.dxr{left:2px;width:236px;height:22px;text-align:left}
+.dxr:nth-of-type(even){background:rgba(213,197,164,.28)}
+.dxr:active{background:#FF8B39 !important}
+.dxr .dxball{position:absolute;left:3px;top:5px}
+.dxno{position:absolute;left:18px;top:3px;font-family:'FRLGS';color:#7B6239;text-shadow:1px 1px #E6DEC5;line-height:16px}
+.dxname{position:absolute;left:52px;top:3px;font-family:'FRLG';color:#414141;text-shadow:1px 0 #D5D5CD,0 1px #D5D5CD,1px 1px #D5D5CD;line-height:16px;white-space:nowrap;display:flex;align-items:center;gap:3px}
+.dxr.seen .dxname{color:#626262}
+.dxr.unk .dxname{color:#A49462;text-shadow:none}
+.dxicon{left:150px;top:-8px;width:32px;height:32px}
+.dxrar{position:absolute;right:4px;top:3px;font-family:'FRLGS';line-height:16px;text-shadow:1px 1px rgba(255,255,255,.7)}
+html.theme-night .gba.dx{background:#2A2A26}
+html.theme-night .dxname{color:#F0F0E8;text-shadow:1px 1px #000}
+html.theme-night .dxr.seen .dxname{color:#C8C8C0}
+html.theme-night .dxsub{background:#3A372E;color:#D5C59A;text-shadow:none}
+html.theme-night .dxsub b{color:#FFF}
+.frtype{display:inline-block;width:32px;height:12px;background-image:url(ui/fr/menu-info.png);image-rendering:pixelated;flex:none}
+.dxmw{margin:0}
+.gba.dxe{background:#F6F6EE;border-radius:6px}
+.dxeh{position:absolute;left:0;top:0;width:240px;height:18px;background:#CD4139;display:flex;justify-content:space-between;align-items:center;padding:0 8px;box-sizing:border-box}
+.dxeh span,.dxeh b{font-family:'FRLG';font-weight:400;color:#FFF;text-shadow:1px 0 #7B2A20,0 1px #7B2A20,1px 1px #7B2A20;line-height:16px}
+.dxpic{position:absolute;left:6px;top:22px;width:80px;height:80px;box-sizing:border-box}
+.dxpic img{left:0;top:0;width:64px;height:64px}
+.dxpic img.unk{filter:brightness(0);opacity:.55}
+.dxen{position:absolute;left:94px;top:24px;font-family:'FRLG';color:#414141;text-shadow:1px 0 #D5D5CD,0 1px #D5D5CD,1px 1px #D5D5CD;line-height:16px}
+.dxtypes{position:absolute;left:94px;top:44px;display:flex;gap:3px}
+.dxst{position:absolute;left:94px;top:62px;display:flex;align-items:center;gap:3px;font-family:'FRLG';line-height:16px;color:#414141}
+.dxst.own{color:#CD4139}
+.dxst.unk{color:#A49462}
+.dxrow{position:absolute;left:94px;font-family:'FRLGS';color:#7B6239;line-height:16px}
+.dxrow b{font-weight:400;font-family:'FRLG';color:#414141;margin-left:4px}
+.dxtip{position:absolute;left:0;top:118px;width:240px;height:52px;border-width:10px 16px !important;border-image-width:16px !important;text-align:left}
+.dxtip .frt{display:block;font-size:16px;line-height:16px}
+/* v8.0: every toast is a FireRed message box */
+#toast{border-radius:0;background:none;box-shadow:none;color:#626262;border-style:solid;border-color:transparent;border-width:12px 24px;
+  border-image:url(ui/fr/msg.png) 16 fill / 24px round;image-rendering:pixelated;font-family:'FRLG';font-size:24px;line-height:24px;
+  text-shadow:1.5px 0 #D5D5CD,0 1.5px #D5D5CD,1.5px 1.5px #D5D5CD;padding:2px 0 0;max-width:calc(100vw - 20px);filter:drop-shadow(0 4px 10px rgba(0,0,0,.25))}
+#toast button{font-family:'FRLG';font-size:24px;color:#E83828;text-shadow:none}
 </style>
 </head>
 <body>
@@ -2561,6 +2728,7 @@ function battleModeCls(){
 }
 function render(keepScroll){
   resolveRests();
+  if(pmEdit&&(tab!=='team'||teamView!=='party'))pmEdit=null; // leaving drops an unsaved party edit
   if(tab==='lab'&&state.game&&!featOn('lab'))tab='summary';
   // visiting the QUEST page acknowledges the claimables YOU CAN SEE — road rewards
   // only show at the frontier town, so peeking at an old village keeps the dot lit
@@ -2599,6 +2767,7 @@ function render(keepScroll){
   else if(tab==='nav')v.innerHTML=navHTML();
   else if(tab&&tab.indexOf('poi-')===0)v.innerHTML=poiPageHTML(tab.slice(4));
   else v.innerHTML=settingsHTML();
+  fitGba(); // v8.0: zoom the GBA stages now that the view is drawn
   if(tab!==lastRenderedTab){
     v.classList.remove('pagein');void v.offsetWidth;v.classList.add('pagein');
     lastRenderedTab=tab;
@@ -3270,9 +3439,11 @@ function roadStepsLeft(){
   for(var j=0;j<roadMbCount(r.idx);j++)if(!r.mb[j])n++;
   return n;
 }
+function homeStyleLobby(){return state.homeStyle==='lobby';}
 function homeHTML(){
   var g=state.game;
   if(!g||homeStyleClassic())return summaryHTML();
+  if(!homeStyleLobby())return frHomeHTML(); // v8.0: the FireRed page is the default
   var intro=lastRenderedTab!=='summary'; // entrance flourishes only when you ARRIVE here
   var am=activeMon(),tlv=trainerLevel(),tpg=trainerLvProg();
   var ti=curTown(),tw=TOWNS[ti]||TOWNS[0];
@@ -3366,6 +3537,94 @@ function homeHTML(){
     '<span><b>'+(ls?rel(ls.end):'—')+'</b>LAST</span>'+
     '</div>';
   h+='</div>'; // /lobby
+  return h;
+}
+/* ===== v8.0 TRAINER page, FireRed edition — the whole page is one GBA stage (240 px wide,
+   zoomed to the phone): the overworld with you outside the POKéMON CENTER, the START menu,
+   a dialogue box with what's next, your lead on its battle platform with the battle HP box,
+   then the START WORKOUT window and a trainer card. The v7.x lobby stays in OPTION. */
+var FR_OW={red:'ow-red',leaf:'ow-leaf',brendan:'ow-brendan',may:'ow-may'};
+function frHomeHTML(){
+  var g=state.game,intro=lastRenderedTab!=='summary';
+  var ti=curTown(),tw=TOWNS[ti]||TOWNS[0],hs=(tw.hs&&tw.hs.center)||[50,50,0,0];
+  var anyHurt=g.mons.some(function(m){return curHpOf(m)<maxHpOf(m);});
+  var me=playerSpr(),ow=FR_OW[me]||(inHoenn()?'ow-brendan':'ow-red');
+  var h='<div class="gbawrap frhome'+(intro?' frintro':'')+'"><div class="gba frh" style="height:432px">';
+  /* — the overworld: your town at 1:1, you on the CENTER doormat — */
+  h+='<div class="frow"><img class="frmap" src="'+tw.img+'" alt="" style="transform:translate(-'+(hs[0]+hs[2]/2)+'%,-'+(hs[1]+hs[3])+'%)">'+
+     '<span class="frme" style="background-image:url(ui/fr/'+ow+'.png)"></span></div>';
+  h+='<div class="frwin frsign"><span class="frt">'+tw.n+'</span></div>';
+  /* — the START menu — */
+  function mi(label,act,extra,dot){
+    return '<button class="frmi" data-action="'+act+'"'+(extra||'')+'><span class="frt">'+label+'</span>'+(dot?'<i class="frdot"></i>':'')+'</button>';
+  }
+  h+='<div class="frwin frstart">'+
+    mi('POKéDEX','tab',' data-tab="team" data-v="dex"')+
+    mi('BAG','show-bag')+
+    mi('CARDS','tab',' data-tab="perks"',perkPicksLeft()>0)+
+    mi('QUESTS','tab',' data-tab="quests"',questDotOn())+
+    (featOn('mart')?mi('SHOP','tab',' data-tab="mart"'):'')+
+    mi('HEAL','tab',' data-tab="center"',anyHurt)+
+    mi(esc(playerName()),'tab',' data-tab="card"')+
+    (inHoenn()&&townIdx()>=1?mi('NAV','tab',' data-tab="nav"'):mi('STATS','tab',' data-tab="stats"'))+
+  '</div>';
+  /* — the dialogue box: whatever matters most right now — */
+  var msg='',act='';
+  if(state.session){
+    msg='Your workout is in progress!<br><span class="elapsed">'+fmtElapsed(Date.now()-state.session.start)+'</span> · '+sessionSets()+' sets logged.';act=' data-action="tab" data-tab="workout"';
+  }else if(g.lessons&&!g.lessons.fin&&(function(){var ld=g.lessons.d||{};return LESSONS.some(function(L){return !ld[L.k];});})()){
+    var ld=g.lessons.d||{},lnext=null,ln=0;
+    LESSONS.forEach(function(L){if(ld[L.k])ln++;else if(!lnext)lnext=L;});
+    msg=profName()+': Lesson '+(ln+1)+'/'+LESSONS.length+' —<br>'+lnext.n+'!';act=' data-action="lessons-open"';
+  }else{
+    var bz=bossInfo();
+    if(g.flags.champion&&!g.boss){msg='You are the CHAMPION of '+regionName()+'!<br>Your name lives in the HALL OF FAME.';act=' data-action="show-hof"';}
+    else if(bz){
+      var clear=roadClear(),steps=roadStepsLeft();
+      msg=bz.n+' of '+bz.gym+(clear?' is ready for you!<br>Go and challenge the GYM!':' is waiting.<br>'+steps+' step'+(steps===1?'':'s')+' left on the road.');
+      act=clear?' data-action="bld" data-b="boss"':' data-action="tab" data-tab="quests"';
+    }
+  }
+  if(msg)h+='<button class="frmsg frdlg"'+act+'><span class="frt">'+msg+'</span><img class="frmore" src="ui/fr/down.png" alt=""></button>';
+  /* — your lead, from behind, on its battle platform with the HP box — */
+  var am=activeMon();
+  if(am){
+    var l=monLevel(am.xp),mx=maxHpOf(am),hp=Math.max(0,Math.min(mx,curHpOf(am)));
+    h+='<button class="frbat" data-action="open-mon" data-m="'+am.uid+'">'+
+      '<img class="frbatbg" src="'+arenaFile('Grass')+'" alt="">'+
+      '<img class="frback" src="sprites/back/'+(am.shiny?'shiny/':'')+DEX[am.sp].id+'.png" alt="'+DEX[am.sp].n+'" onerror="this.onerror=null;this.src=\''+sprPath(am.sp,am.shiny)+'\'">'+
+      '<span class="frhb"><span class="frhbn">'+DEX[am.sp].n+(am.shiny?'★':'')+'</span><span class="frhbl">Lv'+l+'</span>'+
+        '<span class="frhbhp"><img src="ui/fr/hpbar.png" alt=""><span class="pmbar">'+frHp(hp,mx)+'</span></span>'+
+        '<span class="frhbnum">'+hp+'/'+mx+'</span>'+
+        '<span class="frhbexp"><b>EXP</b><span><i style="width:'+expPctOf(am)+'%"></i></span></span></span>'+
+    '</button>';
+  }
+  /* — START WORKOUT — */
+  if(state.session){
+    h+='<button class="frwin frgo live" data-action="tab" data-tab="workout">'+itemImg('pokeball',16)+
+      '<span class="frt big">BACK TO BATTLE</span><span class="frt sm"><span class="elapsed">'+fmtElapsed(Date.now()-state.session.start)+'</span> · '+sessionSets()+' sets</span></button>'+
+      '<button class="frwin frend" data-action="end-workout"><span class="frt">END</span></button>';
+  }else{
+    var band=WILD_BANDS[ti]||[2,6],areaN=(ti<ROAD_LOC.length?ROAD_LOC[ti].n:tw.n);
+    h+='<button class="frwin frgo" data-action="start-workout">'+itemImg('pokeball',16)+
+      '<span class="frt big">START WORKOUT</span><span class="frt sm">'+areaN+' · wild Lv'+band[0]+'–'+band[1]+'</span></button>';
+  }
+  /* — the trainer card: you, your level, your money, your badges — */
+  var tlv=trainerLevel(),tpg=trainerLvProg(),cells='';
+  for(var bi=0;bi<8;bi++)cells+='<span class="frbadge'+(bi<badgeCount()?' got':'')+'"><img src="'+badgeSrcFor(bi)+'" alt=""></span>';
+  var wk=weekStartTs(Date.now()),wkDays={};
+  allLogsFlat().forEach(function(o){if(o.l.ts>=wk)wkDays[dateKey(o.l.ts)]=1;});
+  var ls=state.sessions&&state.sessions.length?state.sessions[state.sessions.length-1]:null;
+  h+='<button class="frwin frcard" data-action="tab" data-tab="card">'+
+    '<span class="frcme"><img data-me src="'+playerSrc()+'" alt=""></span>'+
+    '<span class="frt frcn">'+esc(playerName())+'</span>'+
+    '<span class="frt sm frclv">TRAINER LV '+tlv+'</span>'+
+    '<span class="frcxp"><i style="width:'+Math.min(100,Math.round(tpg.have/tpg.need*100))+'%"></i></span>'+
+    '<span class="frt sm frcmo">MONEY ₽'+money().toLocaleString()+'</span>'+
+    '<span class="frt sm frcwk">WEEK '+Object.keys(wkDays).length+'/7 · '+(state.sessions||[]).length+' WORKOUTS · LAST '+(ls?rel(ls.end):'—')+'</span>'+
+    '<span class="frbadges">'+cells+'</span>'+
+  '</button>';
+  h+='</div></div>';
   return h;
 }
 /* STATS: everything the classic TRAINER page listed below the hero */
@@ -4436,6 +4695,14 @@ function mbFor(i,j){
     sp:c[2][(i+j)%c[2].length],lv:lv,hp:hp,purse:lv*30,arena:roadLoc(i).arena};
 }
 function roadMbCount(i){return RIVAL_ROADS[i]!==undefined?3:2;}
+/* v8.0: roadblocks go in order — the one before must be beaten first. Returns the
+   blocking roadblock (its mbFor record) or null when j is open. */
+function mbLockedBy(j){
+  var r=state.game&&state.game.road;
+  if(!r||j<=0)return null;
+  for(var k=0;k<j;k++)if(!r.mb[k])return mbFor(r.idx,k);
+  return null;
+}
 function ensureRoad(){
   var g=state.game;if(!g)return;
   if(!g.boss){if(g.road){g.road=null;save();}return;}
@@ -6071,50 +6338,120 @@ function teamHTML(){
     '<button data-action="team-view" data-v="party" class="'+(teamView==='party'?'on':'')+'">TEAM</button>'+
     '<button data-action="team-view" data-v="dex" class="'+(teamView==='dex'?'on':'')+'">POKEDEX</button>'+
     '<button data-action="team-view" data-v="box" class="'+(teamView==='box'?'on':'')+'">BOX</button></div>'+
-    (teamView==='party'&&state.game.mons.length>1?'<button class="btn" data-action="edit-party">EDIT PARTY</button>':'')+
     '</div>';
   if(teamView==='party'){
-    if(state.game.egg){
+    h+=partyScreenHTML();
+    if(state.game.egg&&!pmEdit){
       var eleft=Math.max(1,state.game.egg.left);
-      h+='<div class="prow">'+eggSVG(44)+
+      h+='<div class="prow" style="margin:12px">'+eggSVG(44)+
         '<div style="flex:1;min-width:0;margin-left:10px"><div class="pname">EGG</div>'+
         '<div class="plv" style="margin:3px 0 5px">Hatches in '+eleft+' set'+(eleft===1?'':'s')+' — keep logging!</div>'+
         '<div class="gbar exp"><div style="width:'+Math.max(0,Math.round((30-eleft)/30*100))+'%"></div></div></div></div>';
     }
-    /* v6.1: TEAM shows only your fighting six — everyone else lives in the BOX */
-    var tvParty=battleParty();
-    tvParty.forEach(function(m){
-      var l=monLevel(m.xp),st=statsFor(m);
-      var into=m.xp-xpFloor(l),span=Math.max(1,xpFloor(l+1)-xpFloor(l));
-      var mxT=st.hp,curT=Math.max(0,Math.min(mxT,curHpOf(m)));
-      var pcT=Math.round(curT/Math.max(1,mxT)*100);
-      var tcT=TYPE_COLORS[DEX[m.sp].t[0]]||'#888';
-      h+='<button class="prow tm'+(state.game.active===m.uid?' lead':'')+'" data-action="open-mon" data-m="'+m.uid+'" style="--tc:'+tcT+'">'+
-        '<img class="pspr" src="'+monIconPath(m.sp)+'" alt="" onerror="this.onerror=null;this.src=\''+sprPath(m.sp,m.shiny)+'\'"'+(curT<=0?' style="filter:grayscale(1);opacity:.6"':'')+'>'+
-        '<div style="flex:1;min-width:0">'+
-        '<div class="pname">'+DEX[m.sp].n+(m.shiny?' <span class="shinystar">★</span>':'')+' <span class="plv">:L'+l+'</span>'+
-        (state.game.active===m.uid?' <span class="leadchip">LEAD</span>':'')+
-        (curT<=0?' <span class="plv" style="color:#D03028">FNT</span>':'')+'</div>'+
-        '<div class="tmtypes">'+DEX[m.sp].t.map(function(t){return '<span class="tchip" style="background:'+(TYPE_COLORS[t]||'#888')+'">'+t.toUpperCase()+'</span>';}).join('')+'</div>'+
-        '<div style="display:flex;align-items:center;gap:5px;margin-top:5px"><span class="barlab">HP</span><div class="gbar"><div style="width:'+pcT+'%;background:'+hpColor(pcT)+'"></div></div><span class="barnum">'+curT+'/'+mxT+'</span></div>'+
-        '<div style="display:flex;align-items:center;gap:5px;margin-top:4px"><span class="barlab" style="color:#88A8E8">EXP</span><div class="gbar exp"><div style="width:'+Math.min(100,Math.round(into/span*100))+'%"></div></div></div>'+
-        '</div></button>';
-    });
-    var tvRest=state.game.mons.length-tvParty.length;
-    if(tvRest>0){
-      h+='<button class="prow" data-action="team-view" data-v="box" style="padding:9px 12px">'+
+    var tvRest=state.game.mons.length-battleParty().length;
+    if(tvRest>0&&!pmEdit){
+      h+='<button class="prow" data-action="team-view" data-v="box" style="padding:9px 12px;margin:12px">'+
         itemImg('pokeball',26)+
         '<div style="flex:1;min-width:0"><div class="pname" style="font-size:16px">'+tvRest+' more in BILL’S PC</div>'+
-        '<div class="plv" style="margin-top:2px">Tap to open the BOX — search, sort, and pick new teammates.</div></div>'+
+        '<div class="plv" style="margin-top:2px">Search, sort and browse the whole collection.</div></div>'+
         '<span class="plv" style="flex:none">▶</span></button>';
     }
-    h+='<div class="about">These six fight for you — set the order with EDIT PARTY.<br>XP goes to the POKEMON you pick at workout start.</div>';
   }else if(teamView==='box'){
     h+=boxHTML();
   }else{
     h+=dexHTML();
   }
   return h;
+}
+/* ===== v8.0 FIRERED UI KIT =====
+   The game's own graphics, rebuilt from the pret/pokefirered decomp into ui/fr/*.png and
+   fonts/frlg*.woff2: .frwin = the TYPE1 menu frame, .frmsg = the dialogue frame, the red
+   cursor, the party-menu slots. A .gba stage is drawn in real GBA pixels (240×160) and
+   zoomed to the column width by fitGba(), so every coordinate below is the game's own. */
+function fitGba(){
+  [].slice.call(document.querySelectorAll('.gba')).forEach(function(g){
+    var w=g.parentNode.clientWidth||240,base=+(g.dataset.w||240);
+    g.style.zoom=Math.max(1,w/base).toFixed(4);
+  });
+}
+window.addEventListener('resize',function(){fitGba();});
+function frHpCls(pct){return pct>50?'g':(pct>20?'y':'r');}
+function frHp(cur,max){
+  var pct=Math.max(0,Math.min(100,Math.round(cur/Math.max(1,max)*100)));
+  return '<i class="'+frHpCls(pct)+'" style="width:'+pct+'%"></i>';
+}
+/* ===== v8.0 THE PARTY SCREEN — FireRed's party menu, slot for slot (lead box left, five
+   wide boxes right, message box + buttons below). SWITCH turns it into the editor: tap a
+   POKéMON, tap where it goes; BILL'S PC opens underneath to swap teammates in and out. */
+var pmEdit=null,pcPage=0;
+function pmParty(){return pmEdit?pmEdit.p.map(findMon).filter(Boolean):battleParty();}
+function pmBoxList(){
+  var inP={};pmEdit.p.forEach(function(u){inP[u]=1;});
+  return state.game.mons.filter(function(m){return !inP[m.uid];})
+    .sort(function(a,b){return monLevel(b.xp)-monLevel(a.xp)||b.xp-a.xp;});
+}
+function pmMsg(){
+  if(!pmEdit)return 'Choose a POKéMON.';
+  var sl=pmEdit.sel;
+  if(sl&&sl.k==='p'){var mp=findMon(pmEdit.p[sl.i]);return 'Move '+(mp?DEX[mp.sp].n:'it')+' where?';}
+  if(sl&&sl.k==='b'){var mb=findMon(sl.u);return 'Put '+(mb?DEX[mb.sp].n:'it')+' in which slot?';}
+  return 'Choose a POKéMON to move.';
+}
+function pmSlotHTML(m,i){
+  var main=i===0,x=main?8:96,y=main?24:8+24*(i-1),edit=!!pmEdit;
+  var act=edit?' data-action="pm-slot" data-i="'+i+'"':(m?' data-action="open-mon" data-m="'+m.uid+'"':'');
+  if(!m)return main?'':'<button class="pms wide"'+act+' style="left:'+x+'px;top:'+y+'px"><img class="pmsbg" src="ui/fr/pm-wide-e.png" alt=""></button>';
+  var l=monLevel(m.xp),mx=maxHpOf(m),cur=Math.max(0,Math.min(mx,curHpOf(m)));
+  var st=cur<=0?'f':'n',sel=false;
+  if(edit){
+    if(pmEdit.sel&&pmEdit.sel.k==='p'&&pmEdit.sel.i===i){st='s';sel=true;}
+    if(pmEdit.fx&&pmEdit.fx.indexOf(i)>=0)st='w';
+  }
+  var hpTxt=cur+'/'+mx;
+  return '<button class="pms '+(main?'main':'wide')+(sel?' sel':'')+'"'+act+' style="left:'+x+'px;top:'+y+'px">'+
+    '<img class="pmsbg" src="ui/fr/pm-'+(main?'main':'wide')+'-'+st+'.png" alt="">'+
+    (main?'<img class="pmball" src="ui/fr/pm-ball.png" alt="" style="left:-8px;top:-6px">'
+         :'<img class="pmball sm" src="ui/fr/pm-ball-s.png" alt="" style="left:-2px;top:9px">')+
+    '<img class="pmicon" src="'+monIconPath(m.sp)+'" alt="" style="'+(main?'left:-8px;top:0':'left:-8px;top:-6px')+(cur<=0?';filter:grayscale(1)':'')+'">'+
+    '<span class="pmt" style="'+(main?'left:24px;top:11px':'left:22px;top:3px')+'">'+DEX[m.sp].n+'</span>'+
+    '<span class="pmt s" style="'+(main?'left:32px;top:20px':'left:32px;top:12px')+'">Lv'+l+'</span>'+
+    '<span class="pmbar" style="'+(main?'left:24px;top:35px':'left:88px;top:10px')+'">'+frHp(cur,mx)+'</span>'+
+    '<span class="pmt s r" style="'+(main?'left:24px;top:38px;width:53px':'left:88px;top:12px;width:53px')+'">'+hpTxt+'</span>'+
+  '</button>';
+}
+function partyScreenHTML(){
+  var g=state.game,party=pmParty(),h='';
+  for(var i=0;i<6;i++)h+=pmSlotHTML(party[i]||null,i);
+  var edit=!!pmEdit;
+  var btns=edit
+    ?'<button class="pmbtn" data-action="pm-done" style="left:184px;top:120px"><img src="ui/fr/pm-confirm.png" alt=""><span>DONE</span></button>'+
+     '<button class="pmbtn" data-action="pm-cancel" style="left:184px;top:138px"><img src="ui/fr/pm-cancel.png" alt=""><span>CANCEL</span></button>'
+    :(g.mons.length>1?'<button class="pmbtn" data-action="edit-party" style="left:184px;top:136px"><img src="ui/fr/pm-confirm.png" alt=""><span>SWITCH</span></button>':'');
+  var out='<div class="gbawrap"><div class="gba pm"><img class="pmbg" src="ui/fr/pm-bg.png" alt="">'+h+
+    '<div class="frwin pmmsg"><span class="frt">'+pmMsg()+'</span></div>'+btns+'</div></div>';
+  if(edit)out+=pcBoxHTML();
+  return out;
+}
+/* BILL'S PC under the party while switching — FireRed's forest wallpaper, 30 per box */
+function pcBoxHTML(){
+  var list=pmBoxList(),pages=Math.max(1,Math.ceil(list.length/30));
+  if(pcPage>=pages)pcPage=pages-1;
+  var sl=pmEdit.sel,cells='';
+  list.slice(pcPage*30,pcPage*30+30).forEach(function(m,k){
+    var x=8+(k%6)*24,y=34+Math.floor(k/6)*21,on=sl&&sl.k==='b'&&sl.u===m.uid;
+    cells+='<button class="pcmon'+(on?' sel':'')+'" data-action="pm-box" data-m="'+m.uid+'" style="left:'+x+'px;top:'+y+'px" aria-label="'+DEX[m.sp].n+'">'+
+      '<img src="'+monIconPath(m.sp)+'" alt="">'+(on?'<img class="pchand" src="ui/fr/arrow.png" alt="">':'')+'</button>';
+  });
+  var depo=sl&&sl.k==='p'&&pmEdit.p.length>1;
+  return '<div class="gbawrap pcwrap"><div class="gba pc" data-w="160"><img class="pcbg" src="ui/fr/pc-forest.png" alt="">'+
+    (pages>1?'<button class="pcarr l" data-action="pc-page" data-d="-1" aria-label="Previous box"><img src="ui/fr/arrow.png" alt=""></button>'+
+             '<button class="pcarr r" data-action="pc-page" data-d="1" aria-label="Next box"><img src="ui/fr/arrow.png" alt=""></button>':'')+
+    '<span class="pcname frt">BOX '+(pcPage+1)+(pages>1?'/'+pages:'')+'</span>'+
+    (list.length?cells:'<span class="pcempty frt">No other POKéMON yet.</span>')+'</div>'+
+    '<div class="pcbar">'+
+      (depo?'<button class="frbtn" data-action="pm-deposit">DEPOSIT '+DEX[findMon(pmEdit.p[sl.i]).sp].n+'</button>'
+           :'<button class="frbtn" data-action="pm-auto">AUTO · TOP 6 BY LEVEL</button>')+
+    '</div></div>';
 }
 /* ===== BILL'S PC (v5.19): browse and organize the whole collection ===== */
 var boxQ='',boxType='',boxSort='lv';
@@ -7939,12 +8276,14 @@ function qRouteHTML(){
   });
   for(var j=0;j<roadMbCount(r.idx);j++){
     n++;
-    var mb=mbFor(r.idx,j),dn=!!r.mb[j];
-    steps+='<div class="qstep fight'+(dn?' done':'')+(mb.rival?' rival':'')+'"><span class="qdot">'+(dn?'✓':n)+'</span>'+
-      qCard({cls:(dn?'done':'')+(mb.rival?' rival':''),icCls:'tr',icon:'<img src="sprites/trainers/'+mb.cls+'.png" alt="">',
+    var mb=mbFor(r.idx,j),dn=!!r.mb[j],mbLock=!dn&&mbLockedBy(j); // v8.0: one roadblock at a time
+    steps+='<div class="qstep fight'+(dn?' done':'')+(mb.rival?' rival':'')+(mbLock?' locked':'')+'"><span class="qdot">'+(dn?'✓':mbLock?pxIcon('lock',12):n)+'</span>'+
+      qCard({cls:(dn?'done':'')+(mb.rival?' rival':'')+(mbLock?' locked':''),icCls:'tr',icon:'<img src="sprites/trainers/'+mb.cls+'.png" alt="">',
         k:(mb.rival?'RIVAL':'ROADBLOCK')+' · '+mb.clsN,t:mb.name,
         sub:monIconImg(mb.sp,false,22)+DEX[mb.sp].n+' :L'+mb.lv,
-        right:dn?'<span class="qok">BEATEN</span>':'<button class="btn acc qfight" data-action="mb-fight" data-j="'+j+'">FIGHT</button>'})+'</div>';
+        right:dn?'<span class="qok">BEATEN</span>'
+          :mbLock?'<span class="qlock">'+pxIcon('lock',12)+'BEAT '+esc(mbLock.name)+'</span>'
+          :'<button class="btn acc qfight" data-action="mb-fight" data-j="'+j+'">FIGHT</button>'})+'</div>';
   }
   /* the end of the path: the leader */
   steps+='<div class="qstep boss'+(clear?' open':'')+'"><span class="qdot">'+pxIcon('trophy',16)+'</span>'+
@@ -8427,26 +8766,6 @@ function showHofModal(){
   showModal(h);
   modalOk=null;
 }
-var pendingParty=null;
-function showPartyManager(){
-  var g=state.game;if(!g||!g.mons.length)return;
-  if(pendingParty===null){
-    pendingParty=(Array.isArray(g.partyIds)&&g.partyIds.length)?g.partyIds.slice():battleParty().map(function(m){return m.uid;});
-  }
-  var h='<h3>PARTY ORDER</h3><p>Tap to pick your six, in fighting order. #1 leads, #2 tanks next…</p>';
-  g.mons.forEach(function(m){
-    var ix=pendingParty.indexOf(m.uid);
-    h+='<button class="prow" data-action="pm-toggle" data-m="'+m.uid+'" style="padding:6px 10px">'+
-      '<span style="font-family:\'Press Start 2P\';font-size:10px;width:24px;height:24px;border:2px solid var(--bord);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;flex:none;background:'+(ix>=0?'#D03028':'#FFFFFF')+';color:'+(ix>=0?'#FFF8F0':'#B0B0B0')+'">'+(ix>=0?(ix+1):'·')+'</span>'+
-      '<img class="pspr" style="width:38px;height:38px" src="'+sprPath(m.sp,m.shiny)+'" alt="">'+
-      '<span class="pname" style="flex:1;min-width:0">'+DEX[m.sp].n+(m.shiny?' <span class="shinystar">★</span>':'')+'</span>'+
-      '<span class="plv">:L'+monLevel(m.xp)+'</span></button>';
-  });
-  h+='<div class="mbtns"><button class="btn" data-action="pm-auto">AUTO</button>'+
-     '<button class="btn acc" data-action="pm-save">SAVE</button></div>';
-  showModal(h);
-  modalOk=null;
-}
 function partyStripHTML(){
   if(!state.game||!state.game.mons.length)return '';
   var party=battleParty();
@@ -8511,74 +8830,68 @@ function mapHTML(){
   return h;
 }
 /* ===== the AREA DEX: which POKEMON roam the zone you're standing in ===== */
-/* v7.8 AREA POKEMON: the route's roster as official-art cards — tinted by rarity, a
-   silhouette until you've met one, a Poke Ball stamp once it's yours — and a dex-style
-   info card on tap. */
+/* v8.0 AREA POKEMON, as FireRed's POKéDEX list: OWN entries wear the dex's red caught-ball
+   and their party icon, SEEN entries show only the name, unseen ones are dashes — so caught
+   vs only-met is obvious at a glance. Rarity keeps its colour. Tap → a dex entry page. */
 function rarityTier(w){return w>=10?1:(w>=6?2:(w>=3?3:4));}
+var FR_TYPE_CELL={normal:[0,1],fire:[1,1],water:[2,1],grass:[3,1],electric:[0,2],rock:[1,2],ground:[2,2],ice:[3,2],
+  flying:[0,3],fighting:[1,3],ghost:[2,3],bug:[3,3],poison:[0,4],psychic:[1,4],steel:[2,4],dark:[3,4],dragon:[0,5]};
+function frTypeIcon(t){
+  var c=FR_TYPE_CELL[String(t).toLowerCase()]||[1,5];
+  return '<span class="frtype" style="background-position:-'+(c[0]*32)+'px -'+(c[1]*16)+'px" title="'+t+'"></span>';
+}
 function areaDexHTML(){
   if(!state.game)return '';
   var t=curTown(),band=WILD_BANDS[t]||[2,6];
   var list=(AREA_SPAWNS[Math.min(t,AREA_SPAWNS.length-1)]||[]).slice()
     .sort(function(a,b){return b[1]-a[1]||DEX[a[0]].id-DEX[b[0]].id;});
   var areaN=(t<ROAD_LOC.length?ROAD_LOC[t].n:TOWNS[t].n);
-  var champOK=isChampion(),cells='',got=0,seenN=0,tot=0;
+  var champOK=isChampion(),rows='',got=0,seenN=0,y=36;
   list.forEach(function(e){
     var sp=e[0],locked=(sp==='mewtwo'&&!champOK);
     var d=state.game.dex[sp],caught=!!(d&&d.c),seen=!!(state.game.seen[sp]||caught),sh=!!(caught&&d.s);
-    tot++;if(caught)got++;if(seen)seenN++;
-    var rl=rarityLab(e[1]),gems='';
-    for(var g=0;g<rarityTier(e[1]);g++)gems+='<i></i>';
-    var art='<img class="adcart" src="'+artSrc(sp,sh)+'" alt="" loading="lazy" decoding="async"'+artFallback(sp,sh)+'>';
-    if(locked){
-      cells+='<div class="adc unk lock" style="--rc:#E8A010"><span class="adcglow"></span>'+art+
-        '<span class="adclk">'+pxIcon('lock',16)+'</span><b class="adcn">?????</b><span class="adcr">CHAMPION ONLY</span></div>';
-      return;
-    }
-    cells+='<button class="adc'+(seen?'':' unk')+(caught?' got':'')+'" data-action="area-mon" data-sp="'+sp+'" style="--rc:'+rl[1]+'">'+
-      '<span class="adcglow"></span>'+art+
-      (caught?'<img class="adcball" src="'+itemIcon('pokeball')+'" alt="caught">':'')+
-      (sh?'<span class="adcsh">★</span>':'')+
-      '<b class="adcn">'+(seen?DEX[sp].n:'?????')+'</b>'+
-      '<span class="adcr"><span class="adgem">'+gems+'</span>'+rl[0]+'</span></button>';
+    if(caught)got++;if(seen)seenN++;
+    var rl=rarityLab(e[1]);
+    var no='No'+('00'+DEX[sp].id).slice(-3);
+    rows+='<button class="dxr'+(caught?' own':seen?' seen':' unk')+'"'+(locked?' disabled':' data-action="area-mon" data-sp="'+sp+'"')+' style="top:'+y+'px">'+
+      (caught?'<span class="dxball"></span>':'')+
+      '<span class="dxno">'+no+'</span>'+
+      '<span class="dxname">'+(locked?'---------- '+pxIcon('lock',8):(seen?DEX[sp].n+(sh?' ★':''):'----------'))+'</span>'+
+      (caught?'<img class="dxicon" src="'+monIconPath(sp)+'" alt="">':'')+
+      '<span class="dxrar" style="color:'+rl[1]+'">'+(locked?'CHAMPION':rl[0])+'</span>'+
+    '</button>';
+    y+=22;
   });
-  var pc=tot?Math.round(got/tot*100):0,ps=tot?Math.round(seenN/tot*100):0;
-  return '<div class="panel adpanel"><h3>AREA POKEMON<span class="bestchip">'+got+' / '+tot+'</span></h3>'+
-    '<div class="adhd"><span class="adloc">'+pxIcon('map',14)+areaN+'</span><span class="adlv">WILD LV '+band[0]+'–'+band[1]+'</span></div>'+
-    '<div class="adbar"><i class="s" style="width:'+ps+'%"></i><i class="c" style="width:'+pc+'%"></i></div>'+
-    '<div class="adkey"><span><i class="c"></i>CAUGHT '+got+'</span><span><i class="s"></i>SEEN '+seenN+'</span><span class="adtip">Tap one for details</span></div>'+
-    '<div class="adgrid">'+cells+'</div></div>';
+  return '<div class="gbawrap dxwrap"><div class="gba dx" style="height:'+(y+6)+'px">'+
+    '<div class="dxhead"><span class="dxtitle">'+areaN+'</span><span class="dxlv">Lv'+band[0]+'–'+band[1]+'</span></div>'+
+    '<div class="dxsub"><span>SEEN <b>'+seenN+'</b></span><span>OWN <b>'+got+'</b></span><span class="dxkey"><span class="dxball"></span>= CAUGHT</span></div>'+
+    rows+'</div></div>';
 }
+/* the dex entry: sprite in its frame, number, name, FireRed type labels, what you know */
 function showAreaMonModal(sp){
   if(!state.game||!DEX[sp])return;
   var t=curTown(),list=AREA_SPAWNS[Math.min(t,AREA_SPAWNS.length-1)]||[];
   var w=0;list.forEach(function(e){if(e[0]===sp)w=e[1];});
   var d=state.game.dex[sp],caught=!!(d&&d.c),seen=!!(state.game.seen[sp]||caught),sh=!!(caught&&d.s);
-  var rl=rarityLab(w),band=WILD_BANDS[t]||[2,6],gems='';
-  for(var g=0;g<rarityTier(w);g++)gems+='<i></i>';
+  var rl=rarityLab(w),band=WILD_BANDS[t]||[2,6];
   var areaN=(t<ROAD_LOC.length?ROAD_LOC[t].n:TOWNS[t].n);
-  var chips='';
-  if(seen)(DEX[sp].t||[]).forEach(function(ty){chips+=typeChip(ty);});
-  var st=caught?['CAUGHT','#2E8B48']:(seen?['SEEN','#4890D8']:['UNKNOWN','#8890A0']);
-  var tip=caught?(sh?'A shiny one is registered in your POKEDEX!':'Registered in your POKEDEX. More can still turn up while you train here.')
-    :(seen?'You’ve met it. Tire it out in battle, then THROW BALL to catch it.'
-      :'Roams '+areaN+'. TRAIN here to bump into it.');
+  var types=seen?(DEX[sp].t||[]).map(frTypeIcon).join(''):'';
+  var tip=caught?(sh?'A shiny one is registered in your POKéDEX!':'Registered in your POKéDEX. More can turn up while you train here.')
+    :(seen?'You have met it. Tire it out in battle, then throw a BALL!':'It roams '+areaN+'. TRAIN here to meet it.');
   if(seen)cry(sp);
-  showModal('<div class="amc" style="--rc:'+rl[1]+'">'+
-      '<div class="amctop"><span class="amcrays"></span><span class="amcdisc"></span>'+
-        '<img class="amcart'+(seen?'':' unk')+(sh?' shinyglow':'')+'" src="'+artSrc(sp,sh)+'" alt=""'+artFallback(sp,sh)+'>'+
-        '<span class="amcno">#'+('00'+DEX[sp].id).slice(-3)+'</span>'+
-        (caught?'<img class="amcball" src="'+itemIcon('pokeball')+'" alt="caught">':'')+'</div>'+
-      '<h3 class="amcn">'+(seen?DEX[sp].n:'?????')+(sh?' <span class="shinystar">★</span>':'')+'</h3>'+
-      '<div class="amcty">'+(seen?chips:'<span class="amcq">NOT SPOTTED YET</span>')+'</div>'+
-      '<div class="amcst">'+
-        '<span><i>RARITY</i><b style="color:'+rl[1]+'"><span class="adgem">'+gems+'</span>'+rl[0]+'</b></span>'+
-        '<span><i>WILD LV</i><b>'+band[0]+'–'+band[1]+'</b></span>'+
-        '<span><i>STATUS</i><b style="color:'+st[1]+'">'+st[0]+'</b></span></div>'+
-      '<p class="amctip">'+tip+'</p>'+
-      '<div class="mbtns"><button class="btn acc" data-action="close-modal">CLOSE</button></div>'+
-    '</div>');
-  $('#modalwrap').classList.add('amw');
+  showModal('<div class="gbawrap dxmw"><div class="gba dxe" style="height:172px">'+
+      '<div class="dxeh"><span>POKéDEX</span><b>No'+('00'+DEX[sp].id).slice(-3)+'</b></div>'+
+      '<div class="frwin dxpic"><img class="'+(seen?'':'unk')+'" src="'+sprPath(sp,sh)+'" alt=""></div>'+
+      '<span class="dxen">'+(seen?DEX[sp].n:'?????')+(sh?' ★':'')+'</span>'+
+      '<span class="dxtypes">'+types+'</span>'+
+      '<span class="dxst '+(caught?'own':seen?'seen':'unk')+'">'+(caught?'<span class="dxball"></span>OWN':seen?'SEEN':'NOT SEEN')+'</span>'+
+      '<span class="dxrow" style="top:84px">RARITY <b style="color:'+rl[1]+'">'+rl[0]+'</b></span>'+
+      '<span class="dxrow" style="top:98px">WILD <b>Lv'+band[0]+'–'+band[1]+'</b></span>'+
+      '<div class="frmsg dxtip"><span class="frt">'+tip+'</span></div>'+
+    '</div></div>'+
+    '<div class="mbtns"><button class="btn acc" data-action="close-modal">CLOSE</button></div>');
   modalOk=null;
+  fitGba();
 }
 
 /* ============================================================
@@ -13336,10 +13649,10 @@ function settingsHTML(){
   function group(t,rows){return '<div class="sgroup"><div class="sgh">'+t+'</div><div class="sgbox">'+rows+'</div></div>';}
   var bw=bwList();
   return pageHero({t:'OPTION',s:'Everything stays on this device',ic:'option',c:'#4A5A70',
-      chips:[phChip('v7.9 “Pixel”'),phChip(kb+' KB SAVED')]})+
+      chips:[phChip('v8.0 “FireRed”'),phChip(kb+' KB SAVED')]})+
     group('LOOK & SOUND',
       row('daynight','Style','FireRed day or night look',seg('theme','th',[['night','NIGHT',state.theme!=='day'],['day','DAY',state.theme==='day']]))+
-      (state.game?row('home','Home screen','TRAINER tab: new lobby or the classic page',seg('home-style','s',[['new','NEW',!homeStyleClassic()],['classic','CLASSIC',homeStyleClassic()]])):'')+
+      (state.game?row('home','Home screen','TRAINER tab look',seg('home-style','s',[['fr','FIRERED',!homeStyleClassic()&&!homeStyleLobby()],['lobby','LOBBY',homeStyleLobby()],['classic','CLASSIC',homeStyleClassic()]])):'')+
       (state.game?row('hanger','Wardrobe','Caps, tops, bottoms, shoes and costumes','<button class="btn" data-action="tab" data-tab="wardrobe">OPEN</button>'):'')+
       row('sound','Sound','GBA-style beeps and jingles',seg('sound','s',[['on','ON',state.sound!==false],['off','OFF',state.sound===false]])))+
     group('TRAINING',
@@ -13355,7 +13668,7 @@ function settingsHTML(){
       row('save','Backup','Export your data as a file','<div style="display:flex;gap:6px"><button class="btn" data-action="copy">COPY</button><button class="btn acc" data-action="export">EXPORT</button></div>')+
       row('save','Restore','Import a backup file','<button class="btn" data-action="import">IMPORT</button>')+
       row('warn','Reset everything','Deletes all history','<button class="btn danger" data-action="reset">RESET</button>','danger'))+
-    '<div class="about">Gym Tracker v7.9 “Pixel” · '+kb+' KB stored locally<br>'+
+    '<div class="about">Gym Tracker v8.0 “FireRed” · '+kb+' KB stored locally<br>'+
     'Your data never leaves your phone. Export a backup once in a while —<br>if you delete the app icon, its data goes with it.</div>';
 }
 
@@ -14458,7 +14771,7 @@ document.addEventListener('click',function(e){
   if(!titlePlayed){titlePlayed=true;sfx('title');}
   else sfx('click');
 
-  if(a==='tab'){tab=b.dataset.tab;editMode=false;render();}
+  if(a==='tab'){tab=b.dataset.tab;if(tab==='team'&&b.dataset.v)teamView=b.dataset.v;editMode=false;render();}
   else if(a==='toggle-edit'){editMode=!editMode;render(true);}
   else if(a==='open'){openSheet(b.dataset.ex);}
   else if(a==='close-sheet'){closeSheet();}
@@ -14501,7 +14814,10 @@ document.addEventListener('click',function(e){
   else if(a==='cel-alt'){var caf=celAltFn;celAltFn=null;if(caf)caf();else closeModal();}
   else if(a==='unit'){state.unit=b.dataset.u==='lb'?'lb':'kg';save();render(true);}
   else if(a==='theme'){state.theme=b.dataset.th==='day'?'day':'night';save();applyTheme();render(true);}
-  else if(a==='home-style'){state.homeStyle=b.dataset.s==='classic'?'classic':'new';save();render(true);toast(state.homeStyle==='classic'?'Classic TRAINER page restored':'New TRAINER lobby on');}
+  else if(a==='home-style'){
+    state.homeStyle=b.dataset.s==='classic'?'classic':(b.dataset.s==='lobby'?'lobby':'fr');save();render(true);
+    toast(state.homeStyle==='classic'?'Classic TRAINER page restored':(state.homeStyle==='lobby'?'The v7 lobby is back':'FireRed TRAINER page on'));
+  }
   else if(a==='res-done'){closeResults();}
   else if(a==='got-done'){closeGotcha();}
   else if(a==='evo-done'){closeEvolution();}
@@ -15139,6 +15455,8 @@ document.addEventListener('click',function(e){
     if(!state.game||!roadActive())return;
     var mj=parseInt(b.dataset.j,10);
     if(state.game.road.mb[mj]){toast('Already beaten!');return;}
+    var mjLock=mbLockedBy(mj);
+    if(mjLock){toast('Beat '+mjLock.clsN+' '+mjLock.name+' first!');return;}
     if(state.session&&state.session.mode==='boss'){toast('Finish the gym battle first!');return;}
     if(state.session&&state.session.blackout){toast('Your team is out — heal up first!');return;}
     var mbD=mbFor(state.game.road.idx,mj);
@@ -15307,25 +15625,60 @@ document.addEventListener('click',function(e){
       toast('Rest cancelled — no harm done.');
     }
   }
-  else if(a==='edit-party'){pendingParty=null;showPartyManager();}
-  else if(a==='pm-toggle'){
-    if(pendingParty){
-      var pmi=pendingParty.indexOf(b.dataset.m);
-      if(pmi>=0)pendingParty.splice(pmi,1);
-      else if(pendingParty.length<6)pendingParty.push(b.dataset.m);
-      else{toast('Party is full — six max!');return;}
-      showPartyManager();
-    }
+  /* ===== v8.0 the FireRed party screen ===== */
+  else if(a==='edit-party'){
+    if(!state.game)return;
+    pmEdit={p:battleParty().map(function(m){return m.uid;}),sel:null,fx:null,auto:false};pcPage=0;
+    teamView='party';sfx('click');render(true);
+  }
+  else if(a==='pm-slot'){
+    if(!pmEdit)return;
+    var psI=+b.dataset.i,psSel=pmEdit.sel,psP=pmEdit.p;
+    pmEdit.fx=null;
+    if(psSel&&psSel.k==='p'){
+      if(psSel.i===psI)pmEdit.sel=null;
+      else if(psI<psP.length){var psT=psP[psI];psP[psI]=psP[psSel.i];psP[psSel.i]=psT;pmEdit.fx=[psI,psSel.i];pmEdit.sel=null;pmEdit.auto=false;}
+      else{psP.push(psP.splice(psSel.i,1)[0]);pmEdit.fx=[psP.length-1];pmEdit.sel=null;pmEdit.auto=false;}
+    }else if(psSel&&psSel.k==='b'){
+      if(psI<psP.length){psP[psI]=psSel.u;pmEdit.fx=[psI];}
+      else{psP.push(psSel.u);pmEdit.fx=[psP.length-1];}
+      pmEdit.sel=null;pmEdit.auto=false;
+    }else if(psI<psP.length)pmEdit.sel={k:'p',i:psI};
+    else{toast('Pick a POKéMON from the PC below');return;}
+    sfx('click');render(true);
+  }
+  else if(a==='pm-box'){
+    if(!pmEdit)return;
+    var pbU=b.dataset.m,pbSel=pmEdit.sel;
+    pmEdit.fx=null;
+    if(pbSel&&pbSel.k==='p'){pmEdit.p[pbSel.i]=pbU;pmEdit.fx=[pbSel.i];pmEdit.sel=null;pmEdit.auto=false;}
+    else if(pbSel&&pbSel.k==='b'&&pbSel.u===pbU)pmEdit.sel=null;
+    else if(pmEdit.p.length<6){pmEdit.p.push(pbU);pmEdit.fx=[pmEdit.p.length-1];pmEdit.sel=null;pmEdit.auto=false;}
+    else pmEdit.sel={k:'b',u:pbU};
+    sfx('click');render(true);
+  }
+  else if(a==='pm-deposit'){
+    if(!pmEdit||!pmEdit.sel||pmEdit.sel.k!=='p'||pmEdit.p.length<2)return;
+    pmEdit.p.splice(pmEdit.sel.i,1);pmEdit.sel=null;pmEdit.fx=null;pmEdit.auto=false;
+    sfx('click');render(true);
   }
   else if(a==='pm-auto'){
-    if(state.game){state.game.partyIds=null;pendingParty=null;save();closeModal();toast('Auto party: your top 6 by level');render(true);}
+    if(!pmEdit||!state.game)return;
+    pmEdit.p=state.game.mons.slice().sort(function(x,y){return monLevel(y.xp)-monLevel(x.xp)||y.xp-x.xp;}).slice(0,6).map(function(m){return m.uid;});
+    pmEdit.sel=null;pmEdit.fx=null;pmEdit.auto=true;
+    sfx('click');render(true);
   }
-  else if(a==='pm-save'){
-    if(state.game&&pendingParty&&pendingParty.length){
-      state.game.partyIds=pendingParty.slice();pendingParty=null;
-      save();closeModal();toast('Party order saved ✓');render(true);
-    }else toast('Pick at least one POKEMON');
+  else if(a==='pc-page'){
+    if(!pmEdit)return;
+    var pcN=Math.max(1,Math.ceil(pmBoxList().length/30));
+    pcPage=(pcPage+(+b.dataset.d)+pcN)%pcN;sfx('click');render(true);
   }
+  else if(a==='pm-done'){
+    if(!pmEdit||!state.game)return;
+    state.game.partyIds=pmEdit.auto?null:pmEdit.p.slice(0,6);
+    pmEdit=null;save();sfx('save');render(true);toast('Party saved ✓');
+  }
+  else if(a==='pm-cancel'){pmEdit=null;sfx('click');render(true);}
   else if(a==='use-vitamin'){
     var vk=b.dataset.it,vit=ITEMS[vk],vm=findMon(b.dataset.m);
     if(vit&&vit.v&&vm&&(bagOf()[vk]||0)>0){
