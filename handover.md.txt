@@ -1,4 +1,4 @@
-Gym Tracker — Handover Document (current as of app v7.9 / sw v69 / schema v20, 2026-10-26)
+Gym Tracker — Handover Document (current as of app v8.0 / sw v70 / schema v20, 2026-10-26)
 
 ============================================================
 1. WHAT THIS IS
@@ -22,7 +22,7 @@ installed home-screen app isolated storage — a separate app couldn't read the 
 Live URL:  https://mateuszkrw-coder.github.io/gym-tracker-pokemon-game/
 Repo:      https://github.com/mateuszkrw-coder/gym-tracker-pokemon-game  (GitHub Pages from main branch root;
            renamed from gym-tracker, whose old Pages URL now 404s)
-Current:   app v7.9 “Pixel”, service-worker cache v69, data schema v20.
+Current:   app v8.0 “FireRed”, service-worker cache v70, data schema v20.
 
 ============================================================
 2. THE TWO-LAPTOP WORKFLOW (read this FIRST on any machine)
@@ -477,6 +477,55 @@ Johto/Gen-2 content pack (a 3rd campaign — the region model supports it cleanl
 ============================================================
 13. IMMEDIATE STATE
 ============================================================
+v8.0 “FireRed” (2026-10-26) — Mateusz: the TEAM page's party editing is chaotic; use as many FireRed
+UIs as possible; rebuild the TRAINER page in FireRed's UI (keep the old one to go back to); area
+Pokémon should show caught vs only-met clearly (name only for met); roadblocks must be beaten in
+order.
+• FIRERED UI KIT (from the pret/pokefirered decomp, rebuilt by scripts, see below):
+  fonts/frlg.woff2 + frlgs.woff2 — the game's normal + small fonts (glyph sheets
+  graphics/fonts/latin_normal|small.png + width tables in src/text.c + charmap.txt; ₽ maps to
+  the ¥ code like the English game). ui/fr/: win.png (TYPE1 menu frame 3×3), msg.png (the
+  dialogue frame, tiles laid out per WindowFunc_DrawDialogFrame), arrow.png, down.png (▼ 4
+  frames), pm-bg.png (party background from bg.bin), pm-main/wide-{n,s,w,f}.png (slots in the
+  normal / selected / switching / fainted palettes from sPartyBox*PalIds), pm-wide-e.png,
+  pm-cancel/confirm.png, pm-ball(.s).png, pc-forest.png (PC wallpaper), ow-red/leaf/
+  brendan/may.png (overworld sheets, 9 frames of 16×32), hpbar.png (HP tag+frame cut from a
+  slot), menu-info.png (type labels 32×12 at col*32,row*16 + the dex caught ball at 0,0).
+  CSS: .frt (FireRed text colours #626262/#D5D5CD), .frwin, .frmsg, .gba (a stage in GBA
+  pixels: 240 wide, zoomed to the column by fitGba(), called at the end of render() and
+  after modals; data-w for other widths), .gba button resets — NOTE: never use the `border`
+  shorthand on a framed button, it wipes border-image (.gba button.frwin re-sets it).
+  Build scripts used: scratchpad build/mkfont.py (fontTools), build/tiles.py + assets.py.
+• TEAM → party view = FireRed's party menu, slot for slot (sSinglePartyMenuWindowTemplate:
+  lead 80×56 at 8,24; wide 144×24 at 96, 8+24k; names/Lv/HP in the small font at the
+  sPartyBoxInfoRects spots; icons at sPartyMenuSpriteCoords). Tap = the mon's sheet. SWITCH
+  (pm-confirm pill) → pmEdit {p:[uids], sel, fx, auto}: tap a slot (orange "selected"
+  palette, icon hops, ball opens), tap another to swap (green "switching" flash); BILL'S PC
+  opens below (forest wallpaper, 30 per box, ◀ ▶ pages, red cursor): tap a box mon to put it
+  in (fills an empty slot, else asks which slot), DEPOSIT sends the selected one to the box
+  (≥1 stays), AUTO = top 6 by level (saves partyIds=null). DONE saves partyIds, CANCEL drops;
+  leaving the page drops an unsaved edit (render()). The old modal + pendingParty are gone.
+• TRAINER page = frHomeHTML (default; OPTION → HOME SCREEN: FIRERED / LOBBY / CLASSIC, state
+  .homeStyle 'fr'|'lobby'|'classic' — 'lobby' is the v7 page, untouched): one GBA stage —
+  the town map 1:1 with your overworld sprite on the POKéMON CENTER doormat (crop via
+  translate(-x%,-y%) of the hs.center point), the location sign, the START menu (POKéDEX
+  opens TEAM's dex via data-v, BAG, CARDS, QUESTS, SHOP, HEAL, <name> = trainer card, STATS
+  or NAV; red dots for attention), a dialogue box with what matters (workout running →
+  lesson → champion → next gym + steps), your lead's BACK sprite on the battle platform with
+  a FireRed player HP box (name, Lv, HP tag, numbers, EXP), START WORKOUT / BACK TO BATTLE
+  + END, and a trainer card window (sprite in your wardrobe colours, TRAINER LV + bar, MONEY,
+  badges, week stats).
+• AREA POKéMON = a FireRed POKéDEX list (red header with the route + level band, SEEN / OWN
+  counts): OWN rows = the dex's caught ball + name + party icon; SEEN = name only; unseen =
+  dashes; rarity keeps its colour. Tap → a dex entry page (sprite in a frame, No., name,
+  FireRed type labels via frTypeIcon, OWN/SEEN, rarity, wild Lv, a dialogue-box tip).
+• ROADBLOCKS IN ORDER: mbLockedBy(j) returns the first unbeaten earlier roadblock; quest
+  cards show a lock + “BEAT <name>”, mb-fight refuses with a toast.
+• TOASTS are FireRed message boxes (msg.png frame, FRLG font at 24px).
+• Tested: party view + switch/swap/box/deposit/auto/done (saved order checked), FireRed page
+  day + night + Hoenn, lobby + classic still work, dex list + entry, roadblock lock + toast,
+  the full regression — zero console errors. sw v70 (fonts + ui/fr precached).
+
 v7.9 “Pixel” (2026-10-26) — Mateusz: no 3D Pokémon — use the FireRed design; make the game calmer
 (less on screen): the bag shows everything at once, no draw odds on the cards page, no
 subtitle line on any header, no OUTFITS in the wardrobe (costumes etc. stay), no NURSE text

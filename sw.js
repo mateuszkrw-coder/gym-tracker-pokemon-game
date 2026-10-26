@@ -1,6 +1,6 @@
 /* Gym Tracker service worker.
    Bump CACHE when you change any file, so installed phones pick up the update. */
-const CACHE = 'gym-tracker-v69';
+const CACHE = 'gym-tracker-v70';
 const TOWN_MAPS = ['viridian','pewter','cerulean','vermilion','celadon','fuchsia','saffron','cinnabar','indigo'];
 const HOENN_TOWN_MAPS = ['littleroot','rustboro','dewford','mauville','lavaridge','petalburg','fortree','mossdeep','sootopolis','evergrande'];
 const ARENAS = ['gym','grass','water','cave','pond','ice','sand','poison','teal','psychic'];
@@ -28,6 +28,7 @@ const GYM_ROOMS = ['pewter','cerulean','vermilion','celadon','fuchsia','saffron'
   'rustboro','dewford','mauville','lavaridge','petalburg','fortree','mossdeep','sootopolis','sidney','phoebe','glacia','drakeh','wallace'];
 const ROAD_MAPS = ['forest','mtmoon','bridge','route8','hideout','silph','cycling','seafoam','victory',
   'h-woods','h-granite','h-coast','h-jagged','h-desert','h-jungle','h-sea','h-deep','h-victory'];
+const FR_UI = ['arrow.png', 'down.png', 'hpbar.png', 'menu-info.png', 'msg.png', 'ow-brendan.png', 'ow-leaf.png', 'ow-may.png', 'ow-red.png', 'pc-forest.png', 'pm-ball-s.png', 'pm-ball.png', 'pm-bg.png', 'pm-cancel.png', 'pm-confirm.png', 'pm-main-f.png', 'pm-main-n.png', 'pm-main-s.png', 'pm-main-w.png', 'pm-wide-e.png', 'pm-wide-f.png', 'pm-wide-n.png', 'pm-wide-s.png', 'pm-wide-w.png', 'win.png'];
 const POI_MAPS = ['tower','dept','corner','hideout','safari','silph','tower2','lab',
   'h-devon','h-corner','h-trick','h-dept','h-wx','h-pyre','h-magma','h-aqua','h-space','h-origin','h-sky','h-seafloor',
   'h-frontier','bf-tower','bf-dome','bf-palace','bf-arena','bf-factory','bf-pike','bf-pyramid',
@@ -44,8 +45,12 @@ const ASSETS = [
   './icons/icon-192.png',
   './icons/icon-512.png',
   './fonts/press-start-2p.woff2',
-  './fonts/vt323.woff2'
+  './fonts/vt323.woff2',
+  /* v8.0: FireRed's own fonts + UI graphics (rebuilt from the pret/pokefirered decomp) */
+  './fonts/frlg.woff2',
+  './fonts/frlgs.woff2'
 ]
+  .concat(FR_UI.map((f) => './ui/fr/' + f))
   .concat(MON_IDS.map((i) => './sprites/' + i + '.png'))
   .concat(MON_IDS.map((i) => './sprites/shiny/' + i + '.png'))
   .concat(MON_IDS.map((i) => './sprites/back/' + i + '.png'))
