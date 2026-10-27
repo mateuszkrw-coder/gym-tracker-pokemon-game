@@ -1,4 +1,4 @@
-Gym Tracker — Handover Document (current as of app v8.0 / sw v70 / schema v20, 2026-10-26)
+Gym Tracker — Handover Document (current as of app v8.1 / sw v71 / schema v20, 2026-10-27)
 
 ============================================================
 1. WHAT THIS IS
@@ -22,7 +22,7 @@ installed home-screen app isolated storage — a separate app couldn't read the 
 Live URL:  https://mateuszkrw-coder.github.io/gym-tracker-pokemon-game/
 Repo:      https://github.com/mateuszkrw-coder/gym-tracker-pokemon-game  (GitHub Pages from main branch root;
            renamed from gym-tracker, whose old Pages URL now 404s)
-Current:   app v8.0 “FireRed”, service-worker cache v70, data schema v20.
+Current:   app v8.1 “FireRed”, service-worker cache v71, data schema v20.
 
 ============================================================
 2. THE TWO-LAPTOP WORKFLOW (read this FIRST on any machine)
@@ -477,6 +477,20 @@ Johto/Gen-2 content pack (a 3rd campaign — the region model supports it cleanl
 ============================================================
 13. IMMEDIATE STATE
 ============================================================
+v8.1 “FireRed” (2026-10-27) — Mateusz: bring back the old AREA POKEMON (the dex list stood out too much,
+he likes the shadows); make the MAP page's team the same FireRed party screen as TEAM.
+• AREA POKEMON: the v7.8 card grid + dex-card modal are back (sprites via sprPath). New rule
+  for the caught/met distinction he asked for in v8.0: CAUGHT = full colour + Poké Ball stamp;
+  ENCOUNTERED (.adc.seen) = still a black shadow but the name shows; never met = shadow +
+  ?????. The modal keeps the shadow until caught. The v8.0 dex list, frTypeIcon and
+  ui/fr/menu-info.png are removed.
+• MAP page party = partyScreenHTML({sm, msg, btns}) — the FireRed party screen, view only
+  (tap = the mon's sheet), message box "NAME · n/8 BADGES · ₽money" in the small font, MAP
+  (travel) and HEAL (pokecenter) as FireRed pills. pmPill() builds the pills; DONE/CANCEL in
+  the TEAM editor moved to y=128/144 so they no longer overlap the 6th slot.
+• Brainstormed (not built): a walkable FireRed overworld — see the chat; the plan is a
+  prototype slice (Pallet → Route 1 → Viridian) from the decomp's real maps if he wants it.
+
 v8.0 “FireRed” (2026-10-26) — Mateusz: the TEAM page's party editing is chaotic; use as many FireRed
 UIs as possible; rebuild the TRAINER page in FireRed's UI (keep the old one to go back to); area
 Pokémon should show caught vs only-met clearly (name only for met); roadblocks must be beaten in

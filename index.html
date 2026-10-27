@@ -2277,6 +2277,7 @@ html.theme-night .adbar{background:rgba(255,255,255,.1)}
 .adcart{position:relative;width:74px;height:74px;object-fit:contain;filter:drop-shadow(0 3px 0 rgba(0,0,0,.12))}
 .adc.unk .adcart{filter:brightness(0);opacity:.26}
 .adc.unk .adcglow{opacity:.45}
+.adc.seen .adcart{filter:brightness(0);opacity:.4} /* v8.1: met but not caught — still a shadow, name known */
 .adcball{position:absolute;top:7px;right:7px;width:16px;height:16px;image-rendering:pixelated}
 .adcsh{position:absolute;top:5px;left:8px;color:#E8A010;font-size:17px;line-height:1}
 .adcn{position:relative;font-weight:400;font-size:14px;line-height:1;text-transform:uppercase;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -2289,6 +2290,7 @@ html.theme-night .adbar{background:rgba(255,255,255,.1)}
 html.theme-night .adc{background:linear-gradient(180deg,color-mix(in srgb,var(--rc) 22%,var(--cream)),var(--cream) 72%)}
 html.theme-night .adcglow{background:radial-gradient(circle,color-mix(in srgb,var(--rc) 35%,transparent) 0,transparent 68%)}
 html.theme-night .adc.unk .adcart{filter:brightness(0) invert(1);opacity:.16}
+html.theme-night .adc.seen .adcart{filter:brightness(0) invert(1);opacity:.28}
 html.theme-night .adcr{color:color-mix(in srgb,var(--rc) 65%,#FFF)}
 /* the dex-style info card */
 #modalwrap.amw .modal .min{padding:0;overflow:hidden}
@@ -2508,49 +2510,6 @@ html.theme-night .frhome .gba{background:#283038}
 .frbadge.got img{filter:none;opacity:1}
 .frt.sm{font-family:'FRLGS'}
 html.theme-night .frbat{background:#283038}
-/* ---------- v8.0 POKéDEX look: area list + entry ---------- */
-.dxwrap{margin:12px}
-.gba.dx{background:#F6F6EE;outline:2px solid #7B6239;outline-offset:-2px;border-radius:4px}
-.dxhead{position:absolute;left:0;top:0;width:240px;height:16px;background:#CD4139;display:flex;justify-content:space-between;align-items:center;padding:0 6px;box-sizing:border-box}
-.dxhead span{font-family:'FRLG';color:#FFF;text-shadow:1px 0 #7B2A20,0 1px #7B2A20,1px 1px #7B2A20;line-height:16px}
-.dxhead .dxlv{font-family:'FRLGS'}
-.dxsub{position:absolute;left:0;top:16px;width:240px;height:16px;background:#E6DEC5;border-bottom:1px solid #A49462;display:flex;gap:12px;align-items:center;padding:0 6px;box-sizing:border-box;
-  font-family:'FRLGS';color:#7B6239;text-shadow:1px 1px #F6F6EE;line-height:16px}
-.dxsub b{font-weight:400;color:#414141}
-.dxkey{margin-left:auto;display:flex;align-items:center;gap:2px}
-.dxball{display:inline-block;width:12px;height:12px;background:url(ui/fr/menu-info.png) 0 0;image-rendering:pixelated;flex:none}
-.dxr{left:2px;width:236px;height:22px;text-align:left}
-.dxr:nth-of-type(even){background:rgba(213,197,164,.28)}
-.dxr:active{background:#FF8B39 !important}
-.dxr .dxball{position:absolute;left:3px;top:5px}
-.dxno{position:absolute;left:18px;top:3px;font-family:'FRLGS';color:#7B6239;text-shadow:1px 1px #E6DEC5;line-height:16px}
-.dxname{position:absolute;left:52px;top:3px;font-family:'FRLG';color:#414141;text-shadow:1px 0 #D5D5CD,0 1px #D5D5CD,1px 1px #D5D5CD;line-height:16px;white-space:nowrap;display:flex;align-items:center;gap:3px}
-.dxr.seen .dxname{color:#626262}
-.dxr.unk .dxname{color:#A49462;text-shadow:none}
-.dxicon{left:150px;top:-8px;width:32px;height:32px}
-.dxrar{position:absolute;right:4px;top:3px;font-family:'FRLGS';line-height:16px;text-shadow:1px 1px rgba(255,255,255,.7)}
-html.theme-night .gba.dx{background:#2A2A26}
-html.theme-night .dxname{color:#F0F0E8;text-shadow:1px 1px #000}
-html.theme-night .dxr.seen .dxname{color:#C8C8C0}
-html.theme-night .dxsub{background:#3A372E;color:#D5C59A;text-shadow:none}
-html.theme-night .dxsub b{color:#FFF}
-.frtype{display:inline-block;width:32px;height:12px;background-image:url(ui/fr/menu-info.png);image-rendering:pixelated;flex:none}
-.dxmw{margin:0}
-.gba.dxe{background:#F6F6EE;border-radius:6px}
-.dxeh{position:absolute;left:0;top:0;width:240px;height:18px;background:#CD4139;display:flex;justify-content:space-between;align-items:center;padding:0 8px;box-sizing:border-box}
-.dxeh span,.dxeh b{font-family:'FRLG';font-weight:400;color:#FFF;text-shadow:1px 0 #7B2A20,0 1px #7B2A20,1px 1px #7B2A20;line-height:16px}
-.dxpic{position:absolute;left:6px;top:22px;width:80px;height:80px;box-sizing:border-box}
-.dxpic img{left:0;top:0;width:64px;height:64px}
-.dxpic img.unk{filter:brightness(0);opacity:.55}
-.dxen{position:absolute;left:94px;top:24px;font-family:'FRLG';color:#414141;text-shadow:1px 0 #D5D5CD,0 1px #D5D5CD,1px 1px #D5D5CD;line-height:16px}
-.dxtypes{position:absolute;left:94px;top:44px;display:flex;gap:3px}
-.dxst{position:absolute;left:94px;top:62px;display:flex;align-items:center;gap:3px;font-family:'FRLG';line-height:16px;color:#414141}
-.dxst.own{color:#CD4139}
-.dxst.unk{color:#A49462}
-.dxrow{position:absolute;left:94px;font-family:'FRLGS';color:#7B6239;line-height:16px}
-.dxrow b{font-weight:400;font-family:'FRLG';color:#414141;margin-left:4px}
-.dxtip{position:absolute;left:0;top:118px;width:240px;height:52px;border-width:10px 16px !important;border-image-width:16px !important;text-align:left}
-.dxtip .frt{display:block;font-size:16px;line-height:16px}
 /* v8.0: every toast is a FireRed message box */
 #toast{border-radius:0;background:none;box-shadow:none;color:#626262;border-style:solid;border-color:transparent;border-width:12px 24px;
   border-image:url(ui/fr/msg.png) 16 fill / 24px round;image-rendering:pixelated;font-family:'FRLG';font-size:24px;line-height:24px;
@@ -6419,16 +6378,19 @@ function pmSlotHTML(m,i){
     '<span class="pmt s r" style="'+(main?'left:24px;top:38px;width:53px':'left:88px;top:12px;width:53px')+'">'+hpTxt+'</span>'+
   '</button>';
 }
-function partyScreenHTML(){
+function pmPill(act,label,top,cancel,extra){
+  return '<button class="pmbtn" data-action="'+act+'"'+(extra||'')+' style="left:184px;top:'+top+'px"><img src="ui/fr/pm-'+(cancel?'cancel':'confirm')+'.png" alt=""><span>'+label+'</span></button>';
+}
+/* o (v8.1, the MAP page) = {msg, sm (small font), btns} — same screen, no editor */
+function partyScreenHTML(o){
   var g=state.game,party=pmParty(),h='';
   for(var i=0;i<6;i++)h+=pmSlotHTML(party[i]||null,i);
   var edit=!!pmEdit;
-  var btns=edit
-    ?'<button class="pmbtn" data-action="pm-done" style="left:184px;top:120px"><img src="ui/fr/pm-confirm.png" alt=""><span>DONE</span></button>'+
-     '<button class="pmbtn" data-action="pm-cancel" style="left:184px;top:138px"><img src="ui/fr/pm-cancel.png" alt=""><span>CANCEL</span></button>'
-    :(g.mons.length>1?'<button class="pmbtn" data-action="edit-party" style="left:184px;top:136px"><img src="ui/fr/pm-confirm.png" alt=""><span>SWITCH</span></button>':'');
+  var btns=edit?pmPill('pm-done','DONE',128)+pmPill('pm-cancel','CANCEL',144,true)
+    :(o&&o.btns!=null?o.btns:(g.mons.length>1?pmPill('edit-party','SWITCH',136):''));
+  var msg=(!edit&&o&&o.msg)||pmMsg();
   var out='<div class="gbawrap"><div class="gba pm"><img class="pmbg" src="ui/fr/pm-bg.png" alt="">'+h+
-    '<div class="frwin pmmsg"><span class="frt">'+pmMsg()+'</span></div>'+btns+'</div></div>';
+    '<div class="frwin pmmsg"><span class="frt'+(!edit&&o&&o.sm?' sm':'')+'">'+msg+'</span></div>'+btns+'</div></div>';
   if(edit)out+=pcBoxHTML();
   return out;
 }
@@ -8766,38 +8728,14 @@ function showHofModal(){
   showModal(h);
   modalOk=null;
 }
+/* v8.1: the MAP page shows the same FireRed party screen as TEAM (tap a slot = its sheet);
+   the message box carries you + your badges + money, MAP and HEAL are FireRed pills */
 function partyStripHTML(){
   if(!state.game||!state.game.mons.length)return '';
-  var party=battleParty();
-  var anyHurt=false;
-  state.game.mons.forEach(function(m){if(curHpOf(m)<maxHpOf(m))anyHurt=true;});
-  var h='<div class="panel" style="margin-top:10px">'+
-    '<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">'+
-    '<img data-me src="'+playerSrc()+'" alt="" style="width:44px;height:44px;image-rendering:pixelated;flex:none">'+
-    '<div style="flex:1;min-width:0"><div class="pname" style="font-size:18px">'+esc(playerName())+'</div>'+
-    '<div class="plv">'+state.game.mons.length+' POKEMON · '+badgeCount()+'/8 badges · ₽'+money().toLocaleString()+'</div></div>'+
-    '<button class="btn" data-action="tab" data-tab="travel" style="flex:none;padding:9px 9px">'+
-    ferryIcon(18)+' MAP</button>'+
-    '<button class="btn'+(anyHurt?'':'')+'" data-action="pokecenter" style="flex:none;padding:9px 9px'+(anyHurt?';color:#D03028':'')+'">'+
-    '<img src="'+itemIcon('potion')+'" alt="" style="width:15px;height:15px;image-rendering:pixelated;vertical-align:-3px"> HEAL'+(anyHurt?' !':'')+'</button></div>'+
-    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">';
-  party.forEach(function(m){
-    var l=monLevel(m.xp);
-    var mx=maxHpOf(m),cur=Math.max(0,Math.min(mx,curHpOf(m)));
-    var pct=Math.round(cur/Math.max(1,mx)*100);
-    h+='<button class="pslot" data-action="open-mon" data-m="'+m.uid+'">'+
-      '<img src="'+sprPath(m.sp,m.shiny)+'" alt="" style="width:40px;height:40px;image-rendering:pixelated;flex:none'+(cur<=0?';filter:grayscale(1);opacity:.6':(m.shiny?';filter:drop-shadow(0 0 4px rgba(248,200,40,.8))':''))+'">'+
-      '<div style="flex:1;min-width:0">'+
-      '<div class="pname" style="font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+DEX[m.sp].n+'</div>'+
-      '<div style="display:flex;align-items:center;gap:4px;margin:2px 0"><span class="barlab">HP</span><div class="gbar"><div style="width:'+pct+'%;background:'+hpColor(pct)+'"></div></div></div>'+
-      '<div class="plv" style="font-size:12px;line-height:1">:L'+l+(state.game.active===m.uid?' · LEAD':'')+(cur<=0?' · <span style="color:#D03028">FNT</span>':'')+'</div>'+
-      '</div></button>';
-  });
-  for(var i=party.length;i<6;i++){
-    h+='<div class="pslot" style="opacity:.35;justify-content:center">'+
-      '<img src="'+itemIcon('pokeball')+'" alt="" style="width:20px;height:20px;image-rendering:pixelated;filter:grayscale(1)"></div>';
-  }
-  return h+'</div></div>';
+  var anyHurt=state.game.mons.some(function(m){return curHpOf(m)<maxHpOf(m);});
+  return partyScreenHTML({sm:true,
+    msg:esc(playerName())+' · '+badgeCount()+'/8 BADGES · ₽'+money().toLocaleString(),
+    btns:pmPill('tab','MAP',128,false,' data-tab="travel"')+pmPill('pokecenter','HEAL'+(anyHurt?' !':''),144,true)});
 }
 function mapHTML(){
   var ti=curTown(),tw=TOWNS[ti],story=atStoryTown();
@@ -8830,68 +8768,74 @@ function mapHTML(){
   return h;
 }
 /* ===== the AREA DEX: which POKEMON roam the zone you're standing in ===== */
-/* v8.0 AREA POKEMON, as FireRed's POKéDEX list: OWN entries wear the dex's red caught-ball
-   and their party icon, SEEN entries show only the name, unseen ones are dashes — so caught
-   vs only-met is obvious at a glance. Rarity keeps its colour. Tap → a dex entry page. */
+/* v8.1 AREA POKEMON: the card grid is back (v8.0's dex list stood out too much) — a shadow
+   until you've caught one. CAUGHT = full colour + Poké Ball stamp; ENCOUNTERED = still a
+   shadow, but its name is known; never met = shadow + ?????. Rarity keeps its colour. */
 function rarityTier(w){return w>=10?1:(w>=6?2:(w>=3?3:4));}
-var FR_TYPE_CELL={normal:[0,1],fire:[1,1],water:[2,1],grass:[3,1],electric:[0,2],rock:[1,2],ground:[2,2],ice:[3,2],
-  flying:[0,3],fighting:[1,3],ghost:[2,3],bug:[3,3],poison:[0,4],psychic:[1,4],steel:[2,4],dark:[3,4],dragon:[0,5]};
-function frTypeIcon(t){
-  var c=FR_TYPE_CELL[String(t).toLowerCase()]||[1,5];
-  return '<span class="frtype" style="background-position:-'+(c[0]*32)+'px -'+(c[1]*16)+'px" title="'+t+'"></span>';
-}
 function areaDexHTML(){
   if(!state.game)return '';
   var t=curTown(),band=WILD_BANDS[t]||[2,6];
   var list=(AREA_SPAWNS[Math.min(t,AREA_SPAWNS.length-1)]||[]).slice()
     .sort(function(a,b){return b[1]-a[1]||DEX[a[0]].id-DEX[b[0]].id;});
   var areaN=(t<ROAD_LOC.length?ROAD_LOC[t].n:TOWNS[t].n);
-  var champOK=isChampion(),rows='',got=0,seenN=0,y=36;
+  var champOK=isChampion(),cells='',got=0,seenN=0,tot=0;
   list.forEach(function(e){
     var sp=e[0],locked=(sp==='mewtwo'&&!champOK);
     var d=state.game.dex[sp],caught=!!(d&&d.c),seen=!!(state.game.seen[sp]||caught),sh=!!(caught&&d.s);
-    if(caught)got++;if(seen)seenN++;
-    var rl=rarityLab(e[1]);
-    var no='No'+('00'+DEX[sp].id).slice(-3);
-    rows+='<button class="dxr'+(caught?' own':seen?' seen':' unk')+'"'+(locked?' disabled':' data-action="area-mon" data-sp="'+sp+'"')+' style="top:'+y+'px">'+
-      (caught?'<span class="dxball"></span>':'')+
-      '<span class="dxno">'+no+'</span>'+
-      '<span class="dxname">'+(locked?'---------- '+pxIcon('lock',8):(seen?DEX[sp].n+(sh?' ★':''):'----------'))+'</span>'+
-      (caught?'<img class="dxicon" src="'+monIconPath(sp)+'" alt="">':'')+
-      '<span class="dxrar" style="color:'+rl[1]+'">'+(locked?'CHAMPION':rl[0])+'</span>'+
-    '</button>';
-    y+=22;
+    tot++;if(caught)got++;if(seen)seenN++;
+    var rl=rarityLab(e[1]),gems='';
+    for(var g=0;g<rarityTier(e[1]);g++)gems+='<i></i>';
+    var art='<img class="adcart" src="'+sprPath(sp,sh)+'" alt="" loading="lazy" decoding="async">';
+    if(locked){
+      cells+='<div class="adc unk lock" style="--rc:#E8A010"><span class="adcglow"></span>'+art+
+        '<span class="adclk">'+pxIcon('lock',16)+'</span><b class="adcn">?????</b><span class="adcr">CHAMPION ONLY</span></div>';
+      return;
+    }
+    cells+='<button class="adc'+(caught?' got':seen?' seen':' unk')+'" data-action="area-mon" data-sp="'+sp+'" style="--rc:'+rl[1]+'">'+
+      '<span class="adcglow"></span>'+art+
+      (caught?'<img class="adcball" src="'+itemIcon('pokeball')+'" alt="caught">':'')+
+      (sh?'<span class="adcsh">★</span>':'')+
+      '<b class="adcn">'+(seen?DEX[sp].n:'?????')+'</b>'+
+      '<span class="adcr"><span class="adgem">'+gems+'</span>'+rl[0]+'</span></button>';
   });
-  return '<div class="gbawrap dxwrap"><div class="gba dx" style="height:'+(y+6)+'px">'+
-    '<div class="dxhead"><span class="dxtitle">'+areaN+'</span><span class="dxlv">Lv'+band[0]+'–'+band[1]+'</span></div>'+
-    '<div class="dxsub"><span>SEEN <b>'+seenN+'</b></span><span>OWN <b>'+got+'</b></span><span class="dxkey"><span class="dxball"></span>= CAUGHT</span></div>'+
-    rows+'</div></div>';
+  var pc=tot?Math.round(got/tot*100):0,ps=tot?Math.round(seenN/tot*100):0;
+  return '<div class="panel adpanel"><h3>AREA POKEMON<span class="bestchip">'+got+' / '+tot+'</span></h3>'+
+    '<div class="adhd"><span class="adloc">'+pxIcon('map',14)+areaN+'</span><span class="adlv">WILD LV '+band[0]+'–'+band[1]+'</span></div>'+
+    '<div class="adbar"><i class="s" style="width:'+ps+'%"></i><i class="c" style="width:'+pc+'%"></i></div>'+
+    '<div class="adkey"><span><i class="c"></i>CAUGHT '+got+'</span><span><i class="s"></i>SEEN '+seenN+'</span><span class="adtip">Tap one for details</span></div>'+
+    '<div class="adgrid">'+cells+'</div></div>';
 }
-/* the dex entry: sprite in its frame, number, name, FireRed type labels, what you know */
 function showAreaMonModal(sp){
   if(!state.game||!DEX[sp])return;
   var t=curTown(),list=AREA_SPAWNS[Math.min(t,AREA_SPAWNS.length-1)]||[];
   var w=0;list.forEach(function(e){if(e[0]===sp)w=e[1];});
   var d=state.game.dex[sp],caught=!!(d&&d.c),seen=!!(state.game.seen[sp]||caught),sh=!!(caught&&d.s);
-  var rl=rarityLab(w),band=WILD_BANDS[t]||[2,6];
+  var rl=rarityLab(w),band=WILD_BANDS[t]||[2,6],gems='';
+  for(var g=0;g<rarityTier(w);g++)gems+='<i></i>';
   var areaN=(t<ROAD_LOC.length?ROAD_LOC[t].n:TOWNS[t].n);
-  var types=seen?(DEX[sp].t||[]).map(frTypeIcon).join(''):'';
-  var tip=caught?(sh?'A shiny one is registered in your POKéDEX!':'Registered in your POKéDEX. More can turn up while you train here.')
-    :(seen?'You have met it. Tire it out in battle, then throw a BALL!':'It roams '+areaN+'. TRAIN here to meet it.');
+  var chips='';
+  if(seen)(DEX[sp].t||[]).forEach(function(ty){chips+=typeChip(ty);});
+  var st=caught?['CAUGHT','#2E8B48']:(seen?['SEEN','#4890D8']:['UNKNOWN','#8890A0']);
+  var tip=caught?(sh?'A shiny one is registered in your POKEDEX!':'Registered in your POKEDEX. More can still turn up while you train here.')
+    :(seen?'You’ve met it. Tire it out in battle, then THROW BALL to catch it.'
+      :'Roams '+areaN+'. TRAIN here to bump into it.');
   if(seen)cry(sp);
-  showModal('<div class="gbawrap dxmw"><div class="gba dxe" style="height:172px">'+
-      '<div class="dxeh"><span>POKéDEX</span><b>No'+('00'+DEX[sp].id).slice(-3)+'</b></div>'+
-      '<div class="frwin dxpic"><img class="'+(seen?'':'unk')+'" src="'+sprPath(sp,sh)+'" alt=""></div>'+
-      '<span class="dxen">'+(seen?DEX[sp].n:'?????')+(sh?' ★':'')+'</span>'+
-      '<span class="dxtypes">'+types+'</span>'+
-      '<span class="dxst '+(caught?'own':seen?'seen':'unk')+'">'+(caught?'<span class="dxball"></span>OWN':seen?'SEEN':'NOT SEEN')+'</span>'+
-      '<span class="dxrow" style="top:84px">RARITY <b style="color:'+rl[1]+'">'+rl[0]+'</b></span>'+
-      '<span class="dxrow" style="top:98px">WILD <b>Lv'+band[0]+'–'+band[1]+'</b></span>'+
-      '<div class="frmsg dxtip"><span class="frt">'+tip+'</span></div>'+
-    '</div></div>'+
-    '<div class="mbtns"><button class="btn acc" data-action="close-modal">CLOSE</button></div>');
+  showModal('<div class="amc" style="--rc:'+rl[1]+'">'+
+      '<div class="amctop"><span class="amcrays"></span><span class="amcdisc"></span>'+
+        '<img class="amcart'+(caught?'':' unk')+(sh?' shinyglow':'')+'" src="'+sprPath(sp,sh)+'" alt="">'+
+        '<span class="amcno">#'+('00'+DEX[sp].id).slice(-3)+'</span>'+
+        (caught?'<img class="amcball" src="'+itemIcon('pokeball')+'" alt="caught">':'')+'</div>'+
+      '<h3 class="amcn">'+(seen?DEX[sp].n:'?????')+(sh?' <span class="shinystar">★</span>':'')+'</h3>'+
+      '<div class="amcty">'+(seen?chips:'<span class="amcq">NOT SPOTTED YET</span>')+'</div>'+
+      '<div class="amcst">'+
+        '<span><i>RARITY</i><b style="color:'+rl[1]+'"><span class="adgem">'+gems+'</span>'+rl[0]+'</b></span>'+
+        '<span><i>WILD LV</i><b>'+band[0]+'–'+band[1]+'</b></span>'+
+        '<span><i>STATUS</i><b style="color:'+st[1]+'">'+st[0]+'</b></span></div>'+
+      '<p class="amctip">'+tip+'</p>'+
+      '<div class="mbtns"><button class="btn acc" data-action="close-modal">CLOSE</button></div>'+
+    '</div>');
+  $('#modalwrap').classList.add('amw');
   modalOk=null;
-  fitGba();
 }
 
 /* ============================================================
@@ -13649,7 +13593,7 @@ function settingsHTML(){
   function group(t,rows){return '<div class="sgroup"><div class="sgh">'+t+'</div><div class="sgbox">'+rows+'</div></div>';}
   var bw=bwList();
   return pageHero({t:'OPTION',s:'Everything stays on this device',ic:'option',c:'#4A5A70',
-      chips:[phChip('v8.0 “FireRed”'),phChip(kb+' KB SAVED')]})+
+      chips:[phChip('v8.1 “FireRed”'),phChip(kb+' KB SAVED')]})+
     group('LOOK & SOUND',
       row('daynight','Style','FireRed day or night look',seg('theme','th',[['night','NIGHT',state.theme!=='day'],['day','DAY',state.theme==='day']]))+
       (state.game?row('home','Home screen','TRAINER tab look',seg('home-style','s',[['fr','FIRERED',!homeStyleClassic()&&!homeStyleLobby()],['lobby','LOBBY',homeStyleLobby()],['classic','CLASSIC',homeStyleClassic()]])):'')+
@@ -13668,7 +13612,7 @@ function settingsHTML(){
       row('save','Backup','Export your data as a file','<div style="display:flex;gap:6px"><button class="btn" data-action="copy">COPY</button><button class="btn acc" data-action="export">EXPORT</button></div>')+
       row('save','Restore','Import a backup file','<button class="btn" data-action="import">IMPORT</button>')+
       row('warn','Reset everything','Deletes all history','<button class="btn danger" data-action="reset">RESET</button>','danger'))+
-    '<div class="about">Gym Tracker v8.0 “FireRed” · '+kb+' KB stored locally<br>'+
+    '<div class="about">Gym Tracker v8.1 “FireRed” · '+kb+' KB stored locally<br>'+
     'Your data never leaves your phone. Export a backup once in a while —<br>if you delete the app icon, its data goes with it.</div>';
 }
 
